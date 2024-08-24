@@ -7,13 +7,13 @@ namespace permissionAPI.Contollers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class RoleController : Controller
+    public class CimController : Controller
     {
         
         private readonly Inumber1Service _number1Service;
         private readonly ILogger<number1Dbo> _logger;
 
-        public RoleController(Inumber1Service number1Service, ILogger<number1Dbo> logger)
+        public CimController(Inumber1Service number1Service, ILogger<number1Dbo> logger)
         {
             _number1Service = number1Service;
             _logger = logger;
