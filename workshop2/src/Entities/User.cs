@@ -10,16 +10,31 @@ namespace permissionAPI.src.Entities
         [Key]
         [Required]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [Column("UserID", TypeName = "int")]
+        [Column("user_id", TypeName = "int")]
         public int UserID { get; set; }
 
-        [Column("Username", TypeName = "nvarchar(255)")]
+        [Column("user_name", TypeName = "varchar(255)")]
         public string? Username { get; set; }
 
-        [Column("Password", TypeName = "nvarchar(255)")]
+        [Column("user_password", TypeName = "varchar(255)")]
         public string? Password { get; set; }
         
-        [Column("RoleID", TypeName = "nvarchar(255)")]
-        public string? RoleID { get; set; }
+        [Column("user_lastname", TypeName = "varchar(255)")]
+        public string? Lastname { get; set; }
+
+        [Column("user_email", TypeName = "varchar(255)")]
+        public string? email { get; set; }
+
+        [Column("user_phone", TypeName = "varchar(255)")]
+        public string? phone { get; set; }
+
+        [Column("user_address", TypeName = "varchar(255)")]
+        public string? address { get; set; }
+
+        [Column("role_id", TypeName = "INT")]
+        public int? RoleId { get; set; }
+
+        [Column("user_status", TypeName = "varchar(255)")]
+        public string? status { get; set; }       
     }
 }

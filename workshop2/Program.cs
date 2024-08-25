@@ -16,9 +16,12 @@ builder.Services.AddControllers();
 
 
 
-
+//Test connect
 builder.Services.AddScoped<Inumber1Repository,number1Repository>();
 builder.Services.AddScoped<Inumber1Service,number1Service>();
+//User
+builder.Services.AddScoped<IUserRepository,UserRepository>();
+builder.Services.AddScoped<IUserService,UserService>();
 
 
 

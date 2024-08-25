@@ -18,6 +18,8 @@ namespace permissionAPI
         public DbSet<RoleDbo> Role { get; set; }
 
         public DbSet<number1Dbo> cim { get; set; }
+
+        public DbSet<UserDbo> User { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
