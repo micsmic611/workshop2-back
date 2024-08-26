@@ -4,7 +4,7 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #4A8F5A;
+  background-image: linear-gradient(to top, #0ba360 0%, #3cba92 100%);
 }
 
 .login-box {
@@ -36,7 +36,7 @@ h2 {
 
 p {
   margin-bottom: 20px;
-  color: #7f8c8d;
+  color: #000000;
 }
 
 .login-input {
@@ -68,6 +68,7 @@ p {
 
 .reset-link {
   color: #e74c3c;
+  text-decoration:none;
 }
 
 .reset-link:hover {
