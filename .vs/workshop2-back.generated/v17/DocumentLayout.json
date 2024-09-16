@@ -1,0 +1,229 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\DotCom\\Desktop\\Work\\Workshop\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|c:\\users\\dotcom\\desktop\\work\\workshop\\workshop2\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|solutionrelative:workshop2\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|c:\\users\\dotcom\\desktop\\work\\workshop\\workshop2\\src\\entities\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|solutionrelative:workshop2\\src\\entities\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|c:\\users\\dotcom\\desktop\\work\\workshop\\workshop2\\datacontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|solutionrelative:workshop2\\datacontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|c:\\users\\dotcom\\desktop\\work\\workshop\\workshop2\\src\\infrastructure\\repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|solutionrelative:workshop2\\src\\infrastructure\\repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|c:\\users\\dotcom\\desktop\\work\\workshop\\workshop2\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|solutionrelative:workshop2\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|c:\\users\\dotcom\\desktop\\work\\workshop\\workshop2\\migrations\\datacontextmodelsnapshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|solutionrelative:workshop2\\migrations\\datacontextmodelsnapshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|c:\\users\\dotcom\\desktop\\work\\workshop\\workshop2\\workshop2.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|solutionrelative:workshop2\\workshop2.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|c:\\users\\dotcom\\desktop\\work\\workshop\\workshop2\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|solutionrelative:workshop2\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|c:\\users\\dotcom\\desktop\\work\\workshop\\workshop2\\src\\core\\service\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|solutionrelative:workshop2\\src\\core\\service\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|c:\\users\\dotcom\\desktop\\work\\workshop\\workshop2\\workshop2.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
+      "RelativeMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|solutionrelative:workshop2\\workshop2.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|c:\\users\\dotcom\\desktop\\work\\workshop\\workshop2\\controllers\\number1controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|solutionrelative:workshop2\\controllers\\number1controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|c:\\users\\dotcom\\desktop\\work\\workshop\\workshop2\\src\\entities\\cim.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|solutionrelative:workshop2\\src\\entities\\cim.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|c:\\users\\dotcom\\desktop\\work\\workshop\\workshop2\\src\\entities\\role.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|solutionrelative:workshop2\\src\\entities\\role.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "DataContext.cs",
+              "DocumentMoniker": "C:\\Users\\DotCom\\Desktop\\Work\\Workshop\\workshop2\\DataContext.cs",
+              "RelativeDocumentMoniker": "workshop2\\DataContext.cs",
+              "ToolTip": "C:\\Users\\DotCom\\Desktop\\Work\\Workshop\\workshop2\\DataContext.cs",
+              "RelativeToolTip": "workshop2\\DataContext.cs",
+              "ViewState": "AQIAAAsAAAAAAAAAAAAkwB0AAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-16T09:57:18.758Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\DotCom\\Desktop\\Work\\Workshop\\workshop2\\Program.cs",
+              "RelativeDocumentMoniker": "workshop2\\Program.cs",
+              "ToolTip": "C:\\Users\\DotCom\\Desktop\\Work\\Workshop\\workshop2\\Program.cs",
+              "RelativeToolTip": "workshop2\\Program.cs",
+              "ViewState": "AQIAACcAAAAAAAAAAAAAACAAAABVAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-16T09:48:07.428Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\DotCom\\Desktop\\Work\\Workshop\\workshop2\\appsettings.json",
+              "RelativeDocumentMoniker": "workshop2\\appsettings.json",
+              "ToolTip": "C:\\Users\\DotCom\\Desktop\\Work\\Workshop\\workshop2\\appsettings.json",
+              "RelativeToolTip": "workshop2\\appsettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAnAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-09-16T09:49:37.036Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "UserRepository.cs",
+              "DocumentMoniker": "C:\\Users\\DotCom\\Desktop\\Work\\Workshop\\workshop2\\src\\Infrastructure\\Repositories\\UserRepository.cs",
+              "RelativeDocumentMoniker": "workshop2\\src\\Infrastructure\\Repositories\\UserRepository.cs",
+              "ToolTip": "C:\\Users\\DotCom\\Desktop\\Work\\Workshop\\workshop2\\src\\Infrastructure\\Repositories\\UserRepository.cs",
+              "RelativeToolTip": "workshop2\\src\\Infrastructure\\Repositories\\UserRepository.cs",
+              "ViewState": "AQIAAB0AAAAAAAAAAAA3wBoAAAAYAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-16T10:06:18.674Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "User.cs",
+              "DocumentMoniker": "C:\\Users\\DotCom\\Desktop\\Work\\Workshop\\workshop2\\src\\Entities\\User.cs",
+              "RelativeDocumentMoniker": "workshop2\\src\\Entities\\User.cs",
+              "ToolTip": "C:\\Users\\DotCom\\Desktop\\Work\\Workshop\\workshop2\\src\\Entities\\User.cs",
+              "RelativeToolTip": "workshop2\\src\\Entities\\User.cs",
+              "ViewState": "AQIAAB0AAAAAAAAAAAAswAYAAAAUAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-16T09:50:23.19Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "DataContextModelSnapshot.cs",
+              "DocumentMoniker": "C:\\Users\\DotCom\\Desktop\\Work\\Workshop\\workshop2\\Migrations\\DataContextModelSnapshot.cs",
+              "RelativeDocumentMoniker": "workshop2\\Migrations\\DataContextModelSnapshot.cs",
+              "ToolTip": "C:\\Users\\DotCom\\Desktop\\Work\\Workshop\\workshop2\\Migrations\\DataContextModelSnapshot.cs",
+              "RelativeToolTip": "workshop2\\Migrations\\DataContextModelSnapshot.cs",
+              "ViewState": "AQIAABIAAAAAAAAAAAASwA0AAAASAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-16T10:37:24.188Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "workshop2.csproj",
+              "DocumentMoniker": "C:\\Users\\DotCom\\Desktop\\Work\\Workshop\\workshop2\\workshop2.csproj",
+              "RelativeDocumentMoniker": "workshop2\\workshop2.csproj",
+              "ToolTip": "C:\\Users\\DotCom\\Desktop\\Work\\Workshop\\workshop2\\workshop2.csproj",
+              "RelativeToolTip": "workshop2\\workshop2.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAAbAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-09-16T09:48:04.543Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "UserController.cs",
+              "DocumentMoniker": "C:\\Users\\DotCom\\Desktop\\Work\\Workshop\\workshop2\\Controllers\\UserController.cs",
+              "RelativeDocumentMoniker": "workshop2\\Controllers\\UserController.cs",
+              "ToolTip": "C:\\Users\\DotCom\\Desktop\\Work\\Workshop\\workshop2\\Controllers\\UserController.cs",
+              "RelativeToolTip": "workshop2\\Controllers\\UserController.cs",
+              "ViewState": "AQIAAA4AAAAAAAAAAAAAwCYAAAArAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-16T09:53:48.182Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "UserService.cs",
+              "DocumentMoniker": "C:\\Users\\DotCom\\Desktop\\Work\\Workshop\\workshop2\\src\\Core\\Service\\UserService.cs",
+              "RelativeDocumentMoniker": "workshop2\\src\\Core\\Service\\UserService.cs",
+              "ToolTip": "C:\\Users\\DotCom\\Desktop\\Work\\Workshop\\workshop2\\src\\Core\\Service\\UserService.cs",
+              "RelativeToolTip": "workshop2\\src\\Core\\Service\\UserService.cs",
+              "ViewState": "AQIAAAgAAAAAAAAAAAAAwBUAAABGAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-16T10:03:47.013Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "workshop2",
+              "DocumentMoniker": "C:\\Users\\DotCom\\Desktop\\Work\\Workshop\\workshop2\\workshop2.csproj",
+              "RelativeDocumentMoniker": "workshop2\\workshop2.csproj",
+              "ToolTip": "C:\\Users\\DotCom\\Desktop\\Work\\Workshop\\workshop2\\workshop2.csproj",
+              "RelativeToolTip": "workshop2\\workshop2.csproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-09-16T09:54:48.584Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "number1Controller.cs",
+              "DocumentMoniker": "C:\\Users\\DotCom\\Desktop\\Work\\Workshop\\workshop2\\Controllers\\number1Controller.cs",
+              "RelativeDocumentMoniker": "workshop2\\Controllers\\number1Controller.cs",
+              "ToolTip": "C:\\Users\\DotCom\\Desktop\\Work\\Workshop\\workshop2\\Controllers\\number1Controller.cs",
+              "RelativeToolTip": "workshop2\\Controllers\\number1Controller.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-16T09:54:43.652Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Cim.cs",
+              "DocumentMoniker": "C:\\Users\\DotCom\\Desktop\\Work\\Workshop\\workshop2\\src\\Entities\\Cim.cs",
+              "RelativeDocumentMoniker": "workshop2\\src\\Entities\\Cim.cs",
+              "ToolTip": "C:\\Users\\DotCom\\Desktop\\Work\\Workshop\\workshop2\\src\\Entities\\Cim.cs",
+              "RelativeToolTip": "workshop2\\src\\Entities\\Cim.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-16T09:53:21.158Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Role.cs",
+              "DocumentMoniker": "C:\\Users\\DotCom\\Desktop\\Work\\Workshop\\workshop2\\src\\Entities\\Role.cs",
+              "RelativeDocumentMoniker": "workshop2\\src\\Entities\\Role.cs",
+              "ToolTip": "C:\\Users\\DotCom\\Desktop\\Work\\Workshop\\workshop2\\src\\Entities\\Role.cs",
+              "RelativeToolTip": "workshop2\\src\\Entities\\Role.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-16T09:52:45.319Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

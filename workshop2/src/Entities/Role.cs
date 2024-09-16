@@ -4,15 +4,15 @@ using System;
 
 namespace permissionAPI.src.Entities
 {
-    [Table("ROLE")]
+    [Table("role")]
     public class RoleDbo
     {
         [Key]
         [Required]
-        [Column("RoleId", TypeName = "int")]
+        [Column("role_id", TypeName = "int")]
         public int RoleId { get; set; }
 
-        [Column("RoleName", TypeName = "nvarchar(255)")]
+        [Column("role_name", TypeName = "nvarchar(255)")]
         public string RoleName { get; set; }
     }
 }

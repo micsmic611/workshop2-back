@@ -4,7 +4,7 @@ using System;
 
 namespace permissionAPI.src.Entities
 {
-    [Table("User")]
+    [Table("users")]
     public class UserDbo
     {
         [Key]
@@ -25,16 +25,16 @@ namespace permissionAPI.src.Entities
         [Column("user_email", TypeName = "varchar(255)")]
         public string? email { get; set; }
 
-        [Column("user_phone", TypeName = "varchar(255)")]
+        [Column("user_phone", TypeName = "varchar(20)")]
         public string? phone { get; set; }
 
         [Column("user_address", TypeName = "varchar(255)")]
         public string? address { get; set; }
 
-        [Column("role_id", TypeName = "INT")]
+        [Column("role_id", TypeName = "int")]
         public int? RoleId { get; set; }
 
-        [Column("user_status", TypeName = "varchar(255)")]
+        [Column("user_status", TypeName = "varchar(50)")]
         public string? status { get; set; }       
     }
 }
