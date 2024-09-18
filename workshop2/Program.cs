@@ -22,7 +22,9 @@ builder.Services.AddScoped<Inumber1Service,number1Service>();
 //User
 builder.Services.AddScoped<IUserRepository,UserRepository>();
 builder.Services.AddScoped<IUserService,UserService>();
-
+//warehouse
+builder.Services.AddScoped<IWarehouseRepository, WarehouseRepository>();
+builder.Services.AddScoped<IWarehouseService, WarehouseService>();
 
 
 
