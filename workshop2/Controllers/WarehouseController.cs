@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using permissionAPI.DTOs;
 using permissionAPI.src.Core.Interface;
+using permissionAPI.src.Core.Service;
 
 namespace permissionAPI.Controllers
 {
@@ -39,5 +40,23 @@ namespace permissionAPI.Controllers
                 return BadRequest(err);
             }
         }
+        [HttpGet("warehouse")]
+        public async Task<IActionResult> GetWarehouse(string warehouseName, DateTime rentalDateStart, string rentalStatus)
+        {
+            try
+            {
+                var warehouse = await _WarehouseService.GetWarehouseByIdAsync(warehouseName, rentalDateStart, rentalStatus);
+                return Ok(warehouse);
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (ApplicationException ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
     }
 }

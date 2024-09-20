@@ -22,6 +22,8 @@ namespace permissionAPI
         public DbSet<UserDbo> User { get; set; }
         
         public DbSet<WarehouseDbo> warehouse { get; set; }
+        public DbSet<RentalDbo> Rental { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

@@ -37,7 +37,37 @@ namespace permissionAPI.src.Core.Service
                 throw new ApplicationException("An error occurred while getting the Warehouse data.", ex);
             }
         }
+        public async Task<DTOs.WarehouseDbo> GetWarehouseByIdAsync(string warehouseName, DateTime rentalDateStart, string rentalStatus)
+        {
+            try
+            {
+                // เรียกใช้ฟังก์ชันจาก Repository
+                var warehouseEntity = await _WarehouseRepository.GetWarehouseByIdAsync(warehouseName, rentalDateStart, rentalStatus);
 
-        
+                if (warehouseEntity == null)
+                {
+                    throw new KeyNotFoundException("Warehouse not found with the provided criteria.");
+                }
+
+                // แปลงจาก Entity เป็น DTO
+                var warehouseDto = new DTOs.WarehouseDbo
+                {
+                    warehouseid = warehouseEntity.warehouseid,
+                    warehouseaddress = warehouseEntity.warehouseaddress,
+                    warehousename = warehouseEntity.warehousename,
+                    warehousesize = warehouseEntity.warehousesize,
+                    warehousstatus = warehouseEntity.warehousstatus
+                };
+
+                return warehouseDto;
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("An error occurred while retrieving the warehouse data.", ex);
+            }
+        }
+
+
+
     }
 }
