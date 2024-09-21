@@ -2,6 +2,7 @@
 using permissionAPI.src.Entities;
 using permissionAPI.src.Infrastructure.Interface;
 using permissionAPI;
+using workshop2.DTOs;
 //using permissionAPI.DTOs;
 
 namespace permissionAPI.src.Infrastructure.Repositories
@@ -27,7 +28,7 @@ namespace permissionAPI.src.Infrastructure.Repositories
                 throw ex;
             }
         }
-        public async Task<WarehouseDbo> GetWarehouseByIdAsync(string warehouseName, DateTime rentalDateStart, string rentalStatus)
+        public async Task<WarehouseRentalDTO> GetWarehouseByIdAsync(string warehouseName, DateTime rentalDateStart, string warehousestatus)
         {
             try
             {
@@ -36,14 +37,15 @@ namespace permissionAPI.src.Infrastructure.Repositories
                                        on w.warehouseid equals r.warehouseid
                                        where w.warehousename == warehouseName
                                              && r.date_rental_start == rentalDateStart
-                                             && r.rentalstatus == rentalStatus
-                                       select new WarehouseDbo
+                                             && w.warehousstatus == warehousestatus
+                                       select new WarehouseRentalDTO
                                        {
                                            warehouseid = w.warehouseid,
                                            warehouseaddress = w.warehouseaddress,
                                            warehousename = w.warehousename,
                                            warehousesize = w.warehousesize,
-                                           warehousstatus = w.warehousstatus
+                                           warehousstatus = w.warehousstatus,
+                                           date_rental_start = r.date_rental_start
                                        }).FirstOrDefaultAsync();
 
                 if (warehouse == null)
@@ -55,12 +57,11 @@ namespace permissionAPI.src.Infrastructure.Repositories
             }
             catch (Exception ex)
             {
-                throw new ApplicationException("An error occurred while retrieving the warehouse data.", ex);
+                // เพิ่มข้อความแสดงข้อผิดพลาดจาก exception ที่แท้จริง
+                throw new ApplicationException($"An error occurred while retrieving the warehouse data: {ex.Message}", ex);
             }
         }
-
-
-
+        
 
     }
 }

@@ -1,9 +1,10 @@
 ﻿using permissionAPI.DTOs;
+using workshop2.DTOs;
 namespace permissionAPI.src.Core.Interface
 {
     public interface IWarehouseService
     {
         Task<List<DTOs.WarehouseDbo>> GetAllWarehouseAsync();
-        Task<DTOs.WarehouseDbo> GetWarehouseByIdAsync(string warehouseName, DateTime rentalDateStart, string rentalStatus);
+        Task<WarehouseRentalDTO> GetWarehouseByIdAsync(string warehouseName, DateTime rentalDateStart, string warehousestatus);
     }
 }

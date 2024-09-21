@@ -33,10 +33,9 @@ namespace permissionAPI.src.Entities
         public int warehouseid { get; set; }
 
         [Required]
-        [Column("rental_status", TypeName = "varchar(50)")]
+        [Column("rental_status", TypeName = "varchar(100)")]
         public string rentalstatus { get; set; }
 
-        // Navigation property for related Warehouse
-        public WarehouseDbo warehouse { get; set; }
+
     }
 }

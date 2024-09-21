@@ -41,22 +41,24 @@ namespace permissionAPI.Controllers
             }
         }
         [HttpGet("warehouse")]
-        public async Task<IActionResult> GetWarehouse(string warehouseName, DateTime rentalDateStart, string rentalStatus)
+        public async Task<IActionResult> GetWarehouseById(string warehouseName, DateTime rentalDateStart, string warehousestatus)
         {
             try
             {
-                var warehouse = await _WarehouseService.GetWarehouseByIdAsync(warehouseName, rentalDateStart, rentalStatus);
-                return Ok(warehouse);
+                // เรียกใช้ฟังก์ชันจาก WarehouseService
+                var warehouseDto = await _WarehouseService.GetWarehouseByIdAsync(warehouseName, rentalDateStart, warehousestatus);
+                return Ok(warehouseDto); // ส่งผลลัพธ์กลับในรูปแบบ JSON
             }
             catch (KeyNotFoundException ex)
             {
-                return NotFound(ex.Message);
+                return NotFound(new { message = ex.Message }); // ส่ง HTTP 404 ถ้าไม่พบข้อมูล
             }
             catch (ApplicationException ex)
             {
-                return StatusCode(500, ex.Message);
+                return StatusCode(500, new { message = ex.Message }); // ส่ง HTTP 500 เมื่อเกิดข้อผิดพลาดภายใน
             }
         }
+
 
     }
 }

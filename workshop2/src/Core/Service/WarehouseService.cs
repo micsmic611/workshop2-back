@@ -2,6 +2,7 @@
 using permissionAPI.src.Core.Interface;
 using permissionAPI.src.Entities;
 using permissionAPI.src.Infrastructure.Interface;
+using workshop2.DTOs;
 
 namespace permissionAPI.src.Core.Service
 {
@@ -37,35 +38,28 @@ namespace permissionAPI.src.Core.Service
                 throw new ApplicationException("An error occurred while getting the Warehouse data.", ex);
             }
         }
-        public async Task<DTOs.WarehouseDbo> GetWarehouseByIdAsync(string warehouseName, DateTime rentalDateStart, string rentalStatus)
+        public async Task<WarehouseRentalDTO> GetWarehouseByIdAsync(string warehouseName, DateTime rentalDateStart, string warehousestatus)
         {
             try
             {
-                // เรียกใช้ฟังก์ชันจาก Repository
-                var warehouseEntity = await _WarehouseRepository.GetWarehouseByIdAsync(warehouseName, rentalDateStart, rentalStatus);
+                var warehouseDto = await _WarehouseRepository.GetWarehouseByIdAsync(warehouseName, rentalDateStart, warehousestatus);
 
-                if (warehouseEntity == null)
+                if (warehouseDto == null)
                 {
                     throw new KeyNotFoundException("Warehouse not found with the provided criteria.");
                 }
-
-                // แปลงจาก Entity เป็น DTO
-                var warehouseDto = new DTOs.WarehouseDbo
-                {
-                    warehouseid = warehouseEntity.warehouseid,
-                    warehouseaddress = warehouseEntity.warehouseaddress,
-                    warehousename = warehouseEntity.warehousename,
-                    warehousesize = warehouseEntity.warehousesize,
-                    warehousstatus = warehouseEntity.warehousstatus
-                };
 
                 return warehouseDto;
             }
             catch (Exception ex)
             {
-                throw new ApplicationException("An error occurred while retrieving the warehouse data.", ex);
+                // เพิ่มข้อความแสดงข้อผิดพลาดจาก exception ที่แท้จริง
+                throw new ApplicationException($"An error occurred while retrieving the warehouse data: {ex.Message}", ex);
             }
         }
+
+
+
 
 
 
