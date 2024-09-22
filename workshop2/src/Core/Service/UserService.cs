@@ -5,6 +5,7 @@ using permissionAPI.src.Infrastructure.Interface;
 
 namespace permissionAPI.src.Core.Service
 {
+    //business logic layer select response
     public class UserService : IUserService
     {
         private readonly IUserRepository _UserRepository;
@@ -21,6 +22,7 @@ namespace permissionAPI.src.Core.Service
                 var UserData = await _UserRepository.GetAllUserAsync();
                 var UserReturn = UserData.Select(s => new DTOs.UserDbo
                 {
+                    //choose feild for response
                     UserID = s.UserID,
                     Username  = s.Username,
                     Password = s.Password,

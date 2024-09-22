@@ -40,7 +40,7 @@ namespace permissionAPI.Controllers
                 return BadRequest(err);
             }
         }
-        [HttpGet("warehouse")]
+        [HttpGet("getbyid warehouse")]
         public async Task<IActionResult> GetWarehouseById(string warehouseName, DateTime rentalDateStart, string warehousestatus)
         {
             try
@@ -58,7 +58,24 @@ namespace permissionAPI.Controllers
                 return StatusCode(500, new { message = ex.Message }); // ส่ง HTTP 500 เมื่อเกิดข้อผิดพลาดภายใน
             }
         }
-
+        [HttpGet("warehousedetail")]
+        public async Task<IActionResult> GetWarehouseDetail(int warehouseid, DateTime rentalDateStart, string warehousestatus)
+        {
+            try
+            {
+                // เรียกใช้ฟังก์ชันจาก WarehouseService
+                var warehouseDto = await _WarehouseService.getwarehosedetail(warehouseid, rentalDateStart,warehousestatus);
+                return Ok(warehouseDto); // ส่งผลลัพธ์กลับในรูปแบบ JSON
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(new { message = ex.Message }); // ส่ง HTTP 404 ถ้าไม่พบข้อมูล
+            }
+            catch (ApplicationException ex)
+            {
+                return StatusCode(500, new { message = ex.Message }); // ส่ง HTTP 500 เมื่อเกิดข้อผิดพลาดภายใน
+            }
+        }
 
     }
 }
