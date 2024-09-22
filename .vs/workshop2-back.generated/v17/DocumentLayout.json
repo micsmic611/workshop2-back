@@ -1,58 +1,122 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\DotCom\\Desktop\\Work\\Workshop\\",
+  "WorkspaceRootPath": "D:\\GIt\\Workshop\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|c:\\users\\dotcom\\desktop\\work\\workshop\\workshop2\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|solutionrelative:workshop2\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|d:\\git\\workshop\\workshop2\\controllers\\employeecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|solutionrelative:workshop2\\controllers\\employeecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|c:\\users\\dotcom\\desktop\\work\\workshop\\workshop2\\src\\entities\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|solutionrelative:workshop2\\src\\entities\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|c:\\users\\dotcom\\desktop\\work\\workshop\\workshop2\\datacontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|solutionrelative:workshop2\\datacontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|c:\\users\\dotcom\\desktop\\work\\workshop\\workshop2\\src\\infrastructure\\repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|solutionrelative:workshop2\\src\\infrastructure\\repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|c:\\users\\dotcom\\desktop\\work\\workshop\\workshop2\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|solutionrelative:workshop2\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|c:\\users\\dotcom\\desktop\\work\\workshop\\workshop2\\migrations\\datacontextmodelsnapshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|solutionrelative:workshop2\\migrations\\datacontextmodelsnapshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|c:\\users\\dotcom\\desktop\\work\\workshop\\workshop2\\workshop2.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|solutionrelative:workshop2\\workshop2.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|c:\\users\\dotcom\\desktop\\work\\workshop\\workshop2\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|solutionrelative:workshop2\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|c:\\users\\dotcom\\desktop\\work\\workshop\\workshop2\\src\\core\\service\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|solutionrelative:workshop2\\src\\core\\service\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|c:\\users\\dotcom\\desktop\\work\\workshop\\workshop2\\workshop2.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
-      "RelativeMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|solutionrelative:workshop2\\workshop2.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|c:\\users\\dotcom\\desktop\\work\\workshop\\workshop2\\controllers\\number1controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|d:\\git\\workshop\\workshop2\\controllers\\number1controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|solutionrelative:workshop2\\controllers\\number1controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|c:\\users\\dotcom\\desktop\\work\\workshop\\workshop2\\src\\entities\\cim.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|d:\\git\\workshop\\workshop2\\dtos\\employeedto .cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|solutionrelative:workshop2\\dtos\\employeedto .cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|d:\\git\\workshop\\workshop2\\dtos\\rentaldto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|solutionrelative:workshop2\\dtos\\rentaldto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|d:\\git\\workshop\\workshop2\\dtos\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|solutionrelative:workshop2\\dtos\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|d:\\git\\workshop\\workshop2\\src\\core\\interface\\iuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|solutionrelative:workshop2\\src\\core\\interface\\iuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|d:\\git\\workshop\\workshop2\\src\\entities\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|solutionrelative:workshop2\\src\\entities\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|d:\\git\\workshop\\workshop2\\src\\infrastructure\\repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|solutionrelative:workshop2\\src\\infrastructure\\repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|d:\\git\\workshop\\workshop2\\src\\infrastructure\\interface\\iuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|solutionrelative:workshop2\\src\\infrastructure\\interface\\iuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|d:\\git\\workshop\\workshop2\\src\\core\\service\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|solutionrelative:workshop2\\src\\core\\service\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|d:\\git\\workshop\\workshop2\\src\\core\\service\\warehouseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|solutionrelative:workshop2\\src\\core\\service\\warehouseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|d:\\git\\workshop\\workshop2\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|solutionrelative:workshop2\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|d:\\git\\workshop\\workshop2\\src\\infrastructure\\repositories\\number1repository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|solutionrelative:workshop2\\src\\infrastructure\\repositories\\number1repository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|d:\\git\\workshop\\workshop2\\datacontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|solutionrelative:workshop2\\datacontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|d:\\git\\workshop\\workshop2\\src\\entities\\rental.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|solutionrelative:workshop2\\src\\entities\\rental.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|d:\\git\\workshop\\workshop2\\src\\entities\\cim.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|solutionrelative:workshop2\\src\\entities\\cim.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|c:\\users\\dotcom\\desktop\\work\\workshop\\workshop2\\src\\entities\\role.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|d:\\git\\workshop\\workshop2\\src\\entities\\role.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|solutionrelative:workshop2\\src\\entities\\role.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|d:\\git\\workshop\\workshop2\\controllers\\warehousecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|solutionrelative:workshop2\\controllers\\warehousecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|d:\\git\\workshop\\workshop2\\src\\infrastructure\\repositories\\warehouserepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|solutionrelative:workshop2\\src\\infrastructure\\repositories\\warehouserepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|d:\\git\\workshop\\workshop2\\src\\entities\\warehouse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|solutionrelative:workshop2\\src\\entities\\warehouse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|d:\\git\\workshop\\workshop2\\dtos\\warehousedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|solutionrelative:workshop2\\dtos\\warehousedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|d:\\git\\workshop\\workshop2\\dtos\\cimsdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|solutionrelative:workshop2\\dtos\\cimsdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|d:\\git\\workshop\\workshop2\\dtos\\basedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|solutionrelative:workshop2\\dtos\\basedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|d:\\git\\workshop\\workshop2\\dtos\\warehouserentaldto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|solutionrelative:workshop2\\dtos\\warehouserentaldto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|d:\\git\\workshop\\workshop2\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|solutionrelative:workshop2\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|d:\\git\\workshop\\workshop2\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|solutionrelative:workshop2\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|d:\\git\\workshop\\workshop2\\migrations\\datacontextmodelsnapshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|solutionrelative:workshop2\\migrations\\datacontextmodelsnapshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|d:\\git\\workshop\\workshop2\\workshop2.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|solutionrelative:workshop2\\workshop2.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|d:\\git\\workshop\\workshop2\\workshop2.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
+      "RelativeMoniker": "D:0:0:{26D01F25-A8A9-4B1C-8CA8-10CFF1827AD8}|workshop2\\workshop2.csproj|solutionrelative:workshop2\\workshop2.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
     }
   ],
   "DocumentGroupContainers": [
@@ -62,27 +126,338 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "DataContext.cs",
-              "DocumentMoniker": "C:\\Users\\DotCom\\Desktop\\Work\\Workshop\\workshop2\\DataContext.cs",
-              "RelativeDocumentMoniker": "workshop2\\DataContext.cs",
-              "ToolTip": "C:\\Users\\DotCom\\Desktop\\Work\\Workshop\\workshop2\\DataContext.cs",
-              "RelativeToolTip": "workshop2\\DataContext.cs",
-              "ViewState": "AQIAAAsAAAAAAAAAAAAkwB0AAAAJAAAA",
+              "DocumentIndex": 10,
+              "Title": "WarehouseService.cs",
+              "DocumentMoniker": "D:\\GIt\\Workshop\\workshop2\\src\\Core\\Service\\WarehouseService.cs",
+              "RelativeDocumentMoniker": "workshop2\\src\\Core\\Service\\WarehouseService.cs",
+              "ToolTip": "D:\\GIt\\Workshop\\workshop2\\src\\Core\\Service\\WarehouseService.cs",
+              "RelativeToolTip": "workshop2\\src\\Core\\Service\\WarehouseService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-16T09:57:18.758Z"
+              "WhenOpened": "2024-09-22T11:23:36.313Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "UserRepository.cs",
+              "DocumentMoniker": "D:\\GIt\\Workshop\\workshop2\\src\\Infrastructure\\Repositories\\UserRepository.cs",
+              "RelativeDocumentMoniker": "workshop2\\src\\Infrastructure\\Repositories\\UserRepository.cs",
+              "ToolTip": "D:\\GIt\\Workshop\\workshop2\\src\\Infrastructure\\Repositories\\UserRepository.cs",
+              "RelativeToolTip": "workshop2\\src\\Infrastructure\\Repositories\\UserRepository.cs",
+              "ViewState": "AQIAACAAAAAAAAAAAAAwwDwAAAAgAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-16T10:06:18.674Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "User.cs",
+              "DocumentMoniker": "D:\\GIt\\Workshop\\workshop2\\src\\Entities\\User.cs",
+              "RelativeDocumentMoniker": "workshop2\\src\\Entities\\User.cs",
+              "ToolTip": "D:\\GIt\\Workshop\\workshop2\\src\\Entities\\User.cs",
+              "RelativeToolTip": "workshop2\\src\\Entities\\User.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAB0AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-16T09:50:23.19Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "IUserRepository.cs",
+              "DocumentMoniker": "D:\\GIt\\Workshop\\workshop2\\src\\Infrastructure\\Interface\\IUserRepository.cs",
+              "RelativeDocumentMoniker": "workshop2\\src\\Infrastructure\\Interface\\IUserRepository.cs",
+              "ToolTip": "D:\\GIt\\Workshop\\workshop2\\src\\Infrastructure\\Interface\\IUserRepository.cs",
+              "RelativeToolTip": "workshop2\\src\\Infrastructure\\Interface\\IUserRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-21T17:41:45.4Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "EmployeeController.cs",
+              "DocumentMoniker": "D:\\GIt\\Workshop\\workshop2\\Controllers\\EmployeeController.cs",
+              "RelativeDocumentMoniker": "workshop2\\Controllers\\EmployeeController.cs",
+              "ToolTip": "D:\\GIt\\Workshop\\workshop2\\Controllers\\EmployeeController.cs*",
+              "RelativeToolTip": "workshop2\\Controllers\\EmployeeController.cs*",
+              "ViewState": "AQIAAA4AAAAAAAAAAAAQwB0AAAA/AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-21T17:53:34.919Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
+              "Title": "UserDTO.cs",
+              "DocumentMoniker": "D:\\GIt\\Workshop\\workshop2\\DTOs\\UserDTO.cs",
+              "RelativeDocumentMoniker": "workshop2\\DTOs\\UserDTO.cs",
+              "ToolTip": "D:\\GIt\\Workshop\\workshop2\\DTOs\\UserDTO.cs",
+              "RelativeToolTip": "workshop2\\DTOs\\UserDTO.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABkAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-21T17:32:09.786Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "UserService.cs",
+              "DocumentMoniker": "D:\\GIt\\Workshop\\workshop2\\src\\Core\\Service\\UserService.cs",
+              "RelativeDocumentMoniker": "workshop2\\src\\Core\\Service\\UserService.cs",
+              "ToolTip": "D:\\GIt\\Workshop\\workshop2\\src\\Core\\Service\\UserService.cs",
+              "RelativeToolTip": "workshop2\\src\\Core\\Service\\UserService.cs",
+              "ViewState": "AQIAAFAAAAAAAAAAAAAIwGsAAAAmAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-16T10:03:47.013Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "EmployeeDTO .cs",
+              "DocumentMoniker": "D:\\GIt\\Workshop\\workshop2\\DTOs\\EmployeeDTO .cs",
+              "RelativeDocumentMoniker": "workshop2\\DTOs\\EmployeeDTO .cs",
+              "ToolTip": "D:\\GIt\\Workshop\\workshop2\\DTOs\\EmployeeDTO .cs",
+              "RelativeToolTip": "workshop2\\DTOs\\EmployeeDTO .cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAKAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-21T17:34:06.831Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "IUserService.cs",
+              "DocumentMoniker": "D:\\GIt\\Workshop\\workshop2\\src\\Core\\Interface\\IUserService.cs",
+              "RelativeDocumentMoniker": "workshop2\\src\\Core\\Interface\\IUserService.cs",
+              "ToolTip": "D:\\GIt\\Workshop\\workshop2\\src\\Core\\Interface\\IUserService.cs",
+              "RelativeToolTip": "workshop2\\src\\Core\\Interface\\IUserService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAxAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-21T17:32:31.738Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "rentalDTO.cs",
+              "DocumentMoniker": "D:\\GIt\\Workshop\\workshop2\\DTOs\\rentalDTO.cs",
+              "RelativeDocumentMoniker": "workshop2\\DTOs\\rentalDTO.cs",
+              "ToolTip": "D:\\GIt\\Workshop\\workshop2\\DTOs\\rentalDTO.cs",
+              "RelativeToolTip": "workshop2\\DTOs\\rentalDTO.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-21T17:32:07.328Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "number1Controller.cs",
+              "DocumentMoniker": "D:\\GIt\\Workshop\\workshop2\\Controllers\\number1Controller.cs",
+              "RelativeDocumentMoniker": "workshop2\\Controllers\\number1Controller.cs",
+              "ToolTip": "D:\\GIt\\Workshop\\workshop2\\Controllers\\number1Controller.cs",
+              "RelativeToolTip": "workshop2\\Controllers\\number1Controller.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-16T09:54:43.652Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "number1Repository.cs",
+              "DocumentMoniker": "D:\\GIt\\Workshop\\workshop2\\src\\Infrastructure\\Repositories\\number1Repository.cs",
+              "RelativeDocumentMoniker": "workshop2\\src\\Infrastructure\\Repositories\\number1Repository.cs",
+              "ToolTip": "D:\\GIt\\Workshop\\workshop2\\src\\Infrastructure\\Repositories\\number1Repository.cs",
+              "RelativeToolTip": "workshop2\\src\\Infrastructure\\Repositories\\number1Repository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-22T10:59:28.228Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "DataContext.cs",
+              "DocumentMoniker": "D:\\GIt\\Workshop\\workshop2\\DataContext.cs",
+              "RelativeDocumentMoniker": "workshop2\\DataContext.cs",
+              "ToolTip": "D:\\GIt\\Workshop\\workshop2\\DataContext.cs",
+              "RelativeToolTip": "workshop2\\DataContext.cs",
+              "ViewState": "AQIAAAUAAAAAAAAAAAAqwBUAAAAcAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-16T09:57:18.758Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "UserController.cs",
+              "DocumentMoniker": "D:\\GIt\\Workshop\\workshop2\\Controllers\\UserController.cs",
+              "RelativeDocumentMoniker": "workshop2\\Controllers\\UserController.cs",
+              "ToolTip": "D:\\GIt\\Workshop\\workshop2\\Controllers\\UserController.cs",
+              "RelativeToolTip": "workshop2\\Controllers\\UserController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACkAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-16T09:53:48.182Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Rental.cs",
+              "DocumentMoniker": "D:\\GIt\\Workshop\\workshop2\\src\\Entities\\Rental.cs",
+              "RelativeDocumentMoniker": "workshop2\\src\\Entities\\Rental.cs",
+              "ToolTip": "D:\\GIt\\Workshop\\workshop2\\src\\Entities\\Rental.cs",
+              "RelativeToolTip": "workshop2\\src\\Entities\\Rental.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-21T17:34:55.511Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "Cim.cs",
+              "DocumentMoniker": "D:\\GIt\\Workshop\\workshop2\\src\\Entities\\Cim.cs",
+              "RelativeDocumentMoniker": "workshop2\\src\\Entities\\Cim.cs",
+              "ToolTip": "D:\\GIt\\Workshop\\workshop2\\src\\Entities\\Cim.cs",
+              "RelativeToolTip": "workshop2\\src\\Entities\\Cim.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-16T09:53:21.158Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "Role.cs",
+              "DocumentMoniker": "D:\\GIt\\Workshop\\workshop2\\src\\Entities\\Role.cs",
+              "RelativeDocumentMoniker": "workshop2\\src\\Entities\\Role.cs",
+              "ToolTip": "D:\\GIt\\Workshop\\workshop2\\src\\Entities\\Role.cs",
+              "RelativeToolTip": "workshop2\\src\\Entities\\Role.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-16T09:52:45.319Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "WarehouseController.cs",
+              "DocumentMoniker": "D:\\GIt\\Workshop\\workshop2\\Controllers\\WarehouseController.cs",
+              "RelativeDocumentMoniker": "workshop2\\Controllers\\WarehouseController.cs",
+              "ToolTip": "D:\\GIt\\Workshop\\workshop2\\Controllers\\WarehouseController.cs",
+              "RelativeToolTip": "workshop2\\Controllers\\WarehouseController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-22T10:49:57.819Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "WarehouseRepository.cs",
+              "DocumentMoniker": "D:\\GIt\\Workshop\\workshop2\\src\\Infrastructure\\Repositories\\WarehouseRepository.cs",
+              "RelativeDocumentMoniker": "workshop2\\src\\Infrastructure\\Repositories\\WarehouseRepository.cs",
+              "ToolTip": "D:\\GIt\\Workshop\\workshop2\\src\\Infrastructure\\Repositories\\WarehouseRepository.cs",
+              "RelativeToolTip": "workshop2\\src\\Infrastructure\\Repositories\\WarehouseRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-22T10:49:42.385Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "Warehouse.cs",
+              "DocumentMoniker": "D:\\GIt\\Workshop\\workshop2\\src\\Entities\\Warehouse.cs",
+              "RelativeDocumentMoniker": "workshop2\\src\\Entities\\Warehouse.cs",
+              "ToolTip": "D:\\GIt\\Workshop\\workshop2\\src\\Entities\\Warehouse.cs",
+              "RelativeToolTip": "workshop2\\src\\Entities\\Warehouse.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-22T10:42:33.909Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "WarehouseDto.cs",
+              "DocumentMoniker": "D:\\GIt\\Workshop\\workshop2\\DTOs\\WarehouseDto.cs",
+              "RelativeDocumentMoniker": "workshop2\\DTOs\\WarehouseDto.cs",
+              "ToolTip": "D:\\GIt\\Workshop\\workshop2\\DTOs\\WarehouseDto.cs",
+              "RelativeToolTip": "workshop2\\DTOs\\WarehouseDto.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-21T17:32:15.983Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "CimSDTo.cs",
+              "DocumentMoniker": "D:\\GIt\\Workshop\\workshop2\\DTOs\\CimSDTo.cs",
+              "RelativeDocumentMoniker": "workshop2\\DTOs\\CimSDTo.cs",
+              "ToolTip": "D:\\GIt\\Workshop\\workshop2\\DTOs\\CimSDTo.cs",
+              "RelativeToolTip": "workshop2\\DTOs\\CimSDTo.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-21T17:32:03.964Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "BaseDto.cs",
+              "DocumentMoniker": "D:\\GIt\\Workshop\\workshop2\\DTOs\\BaseDto.cs",
+              "RelativeDocumentMoniker": "workshop2\\DTOs\\BaseDto.cs",
+              "ToolTip": "D:\\GIt\\Workshop\\workshop2\\DTOs\\BaseDto.cs",
+              "RelativeToolTip": "workshop2\\DTOs\\BaseDto.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-21T17:32:00.685Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "WarehouseRentalDTO.cs",
+              "DocumentMoniker": "D:\\GIt\\Workshop\\workshop2\\DTOs\\WarehouseRentalDTO.cs",
+              "RelativeDocumentMoniker": "workshop2\\DTOs\\WarehouseRentalDTO.cs",
+              "ToolTip": "D:\\GIt\\Workshop\\workshop2\\DTOs\\WarehouseRentalDTO.cs",
+              "RelativeToolTip": "workshop2\\DTOs\\WarehouseRentalDTO.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-21T17:32:17.235Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\GIt\\Workshop\\workshop2\\appsettings.json",
+              "RelativeDocumentMoniker": "workshop2\\appsettings.json",
+              "ToolTip": "D:\\GIt\\Workshop\\workshop2\\appsettings.json",
+              "RelativeToolTip": "workshop2\\appsettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAA1AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-09-16T09:49:37.036Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
               "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\DotCom\\Desktop\\Work\\Workshop\\workshop2\\Program.cs",
+              "DocumentMoniker": "D:\\GIt\\Workshop\\workshop2\\Program.cs",
               "RelativeDocumentMoniker": "workshop2\\Program.cs",
-              "ToolTip": "C:\\Users\\DotCom\\Desktop\\Work\\Workshop\\workshop2\\Program.cs",
+              "ToolTip": "D:\\GIt\\Workshop\\workshop2\\Program.cs",
               "RelativeToolTip": "workshop2\\Program.cs",
               "ViewState": "AQIAACcAAAAAAAAAAAAAACAAAABVAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -90,49 +465,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\DotCom\\Desktop\\Work\\Workshop\\workshop2\\appsettings.json",
-              "RelativeDocumentMoniker": "workshop2\\appsettings.json",
-              "ToolTip": "C:\\Users\\DotCom\\Desktop\\Work\\Workshop\\workshop2\\appsettings.json",
-              "RelativeToolTip": "workshop2\\appsettings.json",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAnAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-09-16T09:49:37.036Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "UserRepository.cs",
-              "DocumentMoniker": "C:\\Users\\DotCom\\Desktop\\Work\\Workshop\\workshop2\\src\\Infrastructure\\Repositories\\UserRepository.cs",
-              "RelativeDocumentMoniker": "workshop2\\src\\Infrastructure\\Repositories\\UserRepository.cs",
-              "ToolTip": "C:\\Users\\DotCom\\Desktop\\Work\\Workshop\\workshop2\\src\\Infrastructure\\Repositories\\UserRepository.cs",
-              "RelativeToolTip": "workshop2\\src\\Infrastructure\\Repositories\\UserRepository.cs",
-              "ViewState": "AQIAAB0AAAAAAAAAAAA3wBoAAAAYAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-16T10:06:18.674Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "User.cs",
-              "DocumentMoniker": "C:\\Users\\DotCom\\Desktop\\Work\\Workshop\\workshop2\\src\\Entities\\User.cs",
-              "RelativeDocumentMoniker": "workshop2\\src\\Entities\\User.cs",
-              "ToolTip": "C:\\Users\\DotCom\\Desktop\\Work\\Workshop\\workshop2\\src\\Entities\\User.cs",
-              "RelativeToolTip": "workshop2\\src\\Entities\\User.cs",
-              "ViewState": "AQIAAB0AAAAAAAAAAAAswAYAAAAUAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-16T09:50:23.19Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 26,
               "Title": "DataContextModelSnapshot.cs",
-              "DocumentMoniker": "C:\\Users\\DotCom\\Desktop\\Work\\Workshop\\workshop2\\Migrations\\DataContextModelSnapshot.cs",
+              "DocumentMoniker": "D:\\GIt\\Workshop\\workshop2\\Migrations\\DataContextModelSnapshot.cs",
               "RelativeDocumentMoniker": "workshop2\\Migrations\\DataContextModelSnapshot.cs",
-              "ToolTip": "C:\\Users\\DotCom\\Desktop\\Work\\Workshop\\workshop2\\Migrations\\DataContextModelSnapshot.cs",
+              "ToolTip": "D:\\GIt\\Workshop\\workshop2\\Migrations\\DataContextModelSnapshot.cs",
               "RelativeToolTip": "workshop2\\Migrations\\DataContextModelSnapshot.cs",
               "ViewState": "AQIAABIAAAAAAAAAAAASwA0AAAASAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -140,11 +477,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 27,
               "Title": "workshop2.csproj",
-              "DocumentMoniker": "C:\\Users\\DotCom\\Desktop\\Work\\Workshop\\workshop2\\workshop2.csproj",
+              "DocumentMoniker": "D:\\GIt\\Workshop\\workshop2\\workshop2.csproj",
               "RelativeDocumentMoniker": "workshop2\\workshop2.csproj",
-              "ToolTip": "C:\\Users\\DotCom\\Desktop\\Work\\Workshop\\workshop2\\workshop2.csproj",
+              "ToolTip": "D:\\GIt\\Workshop\\workshop2\\workshop2.csproj",
               "RelativeToolTip": "workshop2\\workshop2.csproj",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAAbAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
@@ -152,74 +489,14 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "UserController.cs",
-              "DocumentMoniker": "C:\\Users\\DotCom\\Desktop\\Work\\Workshop\\workshop2\\Controllers\\UserController.cs",
-              "RelativeDocumentMoniker": "workshop2\\Controllers\\UserController.cs",
-              "ToolTip": "C:\\Users\\DotCom\\Desktop\\Work\\Workshop\\workshop2\\Controllers\\UserController.cs",
-              "RelativeToolTip": "workshop2\\Controllers\\UserController.cs",
-              "ViewState": "AQIAAA4AAAAAAAAAAAAAwCYAAAArAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-16T09:53:48.182Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "UserService.cs",
-              "DocumentMoniker": "C:\\Users\\DotCom\\Desktop\\Work\\Workshop\\workshop2\\src\\Core\\Service\\UserService.cs",
-              "RelativeDocumentMoniker": "workshop2\\src\\Core\\Service\\UserService.cs",
-              "ToolTip": "C:\\Users\\DotCom\\Desktop\\Work\\Workshop\\workshop2\\src\\Core\\Service\\UserService.cs",
-              "RelativeToolTip": "workshop2\\src\\Core\\Service\\UserService.cs",
-              "ViewState": "AQIAAAgAAAAAAAAAAAAAwBUAAABGAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-16T10:03:47.013Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 28,
               "Title": "workshop2",
-              "DocumentMoniker": "C:\\Users\\DotCom\\Desktop\\Work\\Workshop\\workshop2\\workshop2.csproj",
+              "DocumentMoniker": "D:\\GIt\\Workshop\\workshop2\\workshop2.csproj",
               "RelativeDocumentMoniker": "workshop2\\workshop2.csproj",
-              "ToolTip": "C:\\Users\\DotCom\\Desktop\\Work\\Workshop\\workshop2\\workshop2.csproj",
+              "ToolTip": "D:\\GIt\\Workshop\\workshop2\\workshop2.csproj",
               "RelativeToolTip": "workshop2\\workshop2.csproj",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
               "WhenOpened": "2024-09-16T09:54:48.584Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "number1Controller.cs",
-              "DocumentMoniker": "C:\\Users\\DotCom\\Desktop\\Work\\Workshop\\workshop2\\Controllers\\number1Controller.cs",
-              "RelativeDocumentMoniker": "workshop2\\Controllers\\number1Controller.cs",
-              "ToolTip": "C:\\Users\\DotCom\\Desktop\\Work\\Workshop\\workshop2\\Controllers\\number1Controller.cs",
-              "RelativeToolTip": "workshop2\\Controllers\\number1Controller.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-16T09:54:43.652Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "Cim.cs",
-              "DocumentMoniker": "C:\\Users\\DotCom\\Desktop\\Work\\Workshop\\workshop2\\src\\Entities\\Cim.cs",
-              "RelativeDocumentMoniker": "workshop2\\src\\Entities\\Cim.cs",
-              "ToolTip": "C:\\Users\\DotCom\\Desktop\\Work\\Workshop\\workshop2\\src\\Entities\\Cim.cs",
-              "RelativeToolTip": "workshop2\\src\\Entities\\Cim.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-16T09:53:21.158Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "Role.cs",
-              "DocumentMoniker": "C:\\Users\\DotCom\\Desktop\\Work\\Workshop\\workshop2\\src\\Entities\\Role.cs",
-              "RelativeDocumentMoniker": "workshop2\\src\\Entities\\Role.cs",
-              "ToolTip": "C:\\Users\\DotCom\\Desktop\\Work\\Workshop\\workshop2\\src\\Entities\\Role.cs",
-              "RelativeToolTip": "workshop2\\src\\Entities\\Role.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-16T09:52:45.319Z"
             }
           ]
         }
