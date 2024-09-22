@@ -1,7 +1,8 @@
 namespace permissionAPI.DTOs
+    //collect data &&next step repo
 {
     public class UserDbo
-    {
+    { 
         public int UserID { get; set; }
         public string? Username { get; set; }
         public string? Password { get; set; }

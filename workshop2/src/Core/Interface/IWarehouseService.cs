@@ -6,5 +6,6 @@ namespace permissionAPI.src.Core.Interface
     {
         Task<List<DTOs.WarehouseDbo>> GetAllWarehouseAsync();
         Task<WarehouseRentalDTO> GetWarehouseByIdAsync(string warehouseName, DateTime rentalDateStart, string warehousestatus);
+        Task<WarehouseRentalDTO> getwarehosedetail(int warehouseid, DateTime rentalDateStart, string warehousestatus);
     }
 }

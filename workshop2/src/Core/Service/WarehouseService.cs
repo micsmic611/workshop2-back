@@ -57,7 +57,25 @@ namespace permissionAPI.src.Core.Service
                 throw new ApplicationException($"An error occurred while retrieving the warehouse data: {ex.Message}", ex);
             }
         }
+        public async Task<WarehouseRentalDTO> getwarehosedetail(int warehouseid, DateTime rentalDateStart, string warehousestatus)
+        {
+            try
+            {
+                var warehouseDto = await _WarehouseRepository.getwarehosedetail(warehouseid, rentalDateStart, warehousestatus);
 
+                if (warehouseDto == null)
+                {
+                    throw new KeyNotFoundException("Warehouse not found with the provided criteria.");
+                }
+
+                return warehouseDto;
+            }
+            catch (Exception ex)
+            {
+                // เพิ่มข้อความแสดงข้อผิดพลาดจาก exception ที่แท้จริง
+                throw new ApplicationException($"An error occurred while retrieving the warehouse data: {ex.Message}", ex);
+            }
+        }
 
 
 

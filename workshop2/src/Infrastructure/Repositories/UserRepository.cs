@@ -3,7 +3,7 @@ using permissionAPI.src.Entities;
 using permissionAPI.src.Infrastructure.Interface;
 using permissionAPI;
 //using permissionAPI.DTOs;
-
+//repo = select add delete update && same name function Interface repo next step goto service for business layer 
 namespace permissionAPI.src.Infrastructure.Repositories
 {
     public class UserRepository : IUserRepository
@@ -27,6 +27,7 @@ namespace permissionAPI.src.Infrastructure.Repositories
                 throw ex;
             }
         }
+        //ex function(requirement ,Username password)
         public async Task<List<UserDbo>> GetUserByIDAsync(String Username ,String Password)
         {
             var userData = new List<UserDbo>();

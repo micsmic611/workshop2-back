@@ -61,7 +61,40 @@ namespace permissionAPI.src.Infrastructure.Repositories
                 throw new ApplicationException($"An error occurred while retrieving the warehouse data: {ex.Message}", ex);
             }
         }
-        
+        public async Task<WarehouseRentalDTO> getwarehosedetail(int warehouseid, DateTime rentalDateStart, string warehousestatus)
+        {
+            try
+            {
+                var warehouse = await (from w in _dbContext.warehouse
+                                       join r in _dbContext.Rental
+                                       on w.warehouseid equals r.warehouseid
+                                       where w.warehouseid == warehouseid
+                                             && r.date_rental_start == rentalDateStart
+                                             && w.warehousstatus == warehousestatus
+                                       select new WarehouseRentalDTO
+                                       {
+                                           warehouseid = w.warehouseid,
+                                           warehouseaddress = w.warehouseaddress,
+                                           warehousename = w.warehousename,
+                                           warehousesize = w.warehousesize,
+                                           warehousstatus = w.warehousstatus,
+                                           date_rental_start = r.date_rental_start
+                                       }).FirstOrDefaultAsync();
+
+                if (warehouse == null)
+                {
+                    throw new KeyNotFoundException("Warehouse not found with the provided criteria.");
+                }
+
+                return warehouse;
+            }
+            catch (Exception ex)
+            {
+                // เพิ่มข้อความแสดงข้อผิดพลาดจาก exception ที่แท้จริง
+                throw new ApplicationException($"An error occurred while retrieving the warehouse data: {ex.Message}", ex);
+            }
+        }
+
 
     }
 }

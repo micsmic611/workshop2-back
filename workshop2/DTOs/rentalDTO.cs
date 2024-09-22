@@ -10,7 +10,14 @@
         public int warehouseid { get; set; }
         public string rentalstatus { get; set; }
 
-        // หากต้องการเชื่อมโยงกับ WarehouseDbo (Optional)
-        public WarehouseDbo? warehouse { get; set; }
+ 
+    }
+    public class RentalCreateDTO
+    {
+        public int WarehouseId { get; set; }
+        public string CompanyName { get; set; } // เปลี่ยนจาก CompanyId เป็น CompanyName
+        public DateTime RentalStart { get; set; }
+        public DateTime RentalFinish { get; set; }
+        public string Description { get; set; }
     }
 }
