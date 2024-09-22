@@ -2,6 +2,7 @@ using permissionAPI.DTOs;
 using permissionAPI.src.Core.Interface;
 using permissionAPI.src.Entities;
 using permissionAPI.src.Infrastructure.Interface;
+using workshop2.DTOs;
 
 namespace permissionAPI.src.Core.Service
 {
@@ -99,6 +100,31 @@ namespace permissionAPI.src.Core.Service
             }
         }
 
+        public async Task<List<EmployeeDTO>> GetAllEmpAsync()
+        {
+            try
+            {
+                var userData = await _UserRepository.GetAllEmpAsync();
+                var userReturn = userData.Select(s => new EmployeeDTO
+                {
+                    UserID = s.UserID,
+                    Username = s.Username,
+                    //Password = s.Password,
+                    //Lastname = s.Lastname,
+                    email = s.email,
+                    phone = s.phone,
+                    //address = s.address,
+                    RoleId = s.RoleId,
+                    status = s.status
+                }).ToList();
+
+                return userReturn;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
     }
 }
