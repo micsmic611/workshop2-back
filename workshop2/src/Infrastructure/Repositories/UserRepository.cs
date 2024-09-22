@@ -50,7 +50,21 @@ namespace permissionAPI.src.Infrastructure.Repositories
            catch(Exception ex){
             throw ex;
            }
-        }  
+        }
+
+        public async Task<List<UserDbo>> GetAllEmpAsync()
+        {
+            var userData = new List<UserDbo>();
+            try
+            {
+                userData = await _dbContext.User.Where(x => x.RoleId == 2 ).AsNoTracking().ToListAsync();
+                return userData;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
     }
 }

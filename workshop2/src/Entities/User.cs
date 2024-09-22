@@ -4,7 +4,7 @@ using System;
 
 namespace permissionAPI.src.Entities
 {
-    [Table("users")]
+    [Table("user")]
     public class UserDbo
     {
         [Key]
