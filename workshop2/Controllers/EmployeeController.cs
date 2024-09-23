@@ -40,5 +40,51 @@ namespace workshop2.Controllers
                 return BadRequest(err);
             }
         }
+
+        [HttpGet("GetEmpByName")]
+        public async Task<IActionResult> GetEmpByNameAsync(String Username)
+        {
+            var response = new BaseHttpResponse<List<EmployeeDTO>>();
+
+            try
+            {
+                var data = await _UserService.GetEmpByNameAsync(Username);
+                response.SetSuccess(data, "Success", "200");
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                ErrorData err = new ErrorData();
+                err.Code = "-2";
+                err.Message = ex.Message;
+                _logger.LogError(ex, "Error getting All User");
+                return BadRequest(err);
+            }
+        }
+
+        [HttpPost("AddEmp")]
+        public async Task<IActionResult> AddEmpAsync([FromBody] InputEmployeeDTO inputEmployeeDTO)
+        {
+            var response = new BaseHttpResponse<DTOs.EmployeeDTO>();
+
+            try
+            {
+                var data = await _UserService.AddEmpAsync(inputEmployeeDTO);
+                response.SetSuccess(data, "cim added successfully", "201");
+
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                var err = new ErrorData
+                {
+                    Code = "-2",
+                    Message = ex.Message
+                };
+                _logger.LogError(ex, "Error adding User");
+                response.SetError(err, ex.Message, "500");
+                return BadRequest(response);
+            }
+        }
     }
 }

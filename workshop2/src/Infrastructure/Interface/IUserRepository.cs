@@ -8,5 +8,9 @@ namespace permissionAPI.src.Infrastructure.Interface
         Task<UserDbo> AddUserAsync( UserDbo User);
         Task<List<UserDbo>> GetUserByIDAsync(String Username ,String Password);
         Task<List<UserDbo>> GetAllEmpAsync();
+        Task<List<UserDbo>> GetEmpByNameAsync(String Username);
+        Task<UserDbo> AddEmpAsync(UserDbo User);
+
+
     }
 }

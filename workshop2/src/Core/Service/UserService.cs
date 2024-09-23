@@ -126,5 +126,70 @@ namespace permissionAPI.src.Core.Service
             }
         }
 
+        public async Task<List<EmployeeDTO>> GetEmpByNameAsync(String Username)
+        {
+            try
+            {
+                var userData = await _UserRepository.GetEmpByNameAsync(Username);
+                var userReturn = userData.Select(s => new EmployeeDTO
+                {
+                    UserID = s.UserID,
+                    Username = s.Username,
+                    //Password = s.Password,
+                    //Lastname = s.Lastname,
+                    email = s.email,
+                    phone = s.phone,
+                    //address = s.address,
+                    RoleId = s.RoleId,
+                    status = s.status
+                }).ToList();
+
+                return userReturn;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+        public async Task<EmployeeDTO> AddEmpAsync(InputEmployeeDTO inputEmployeeDTO)
+        {
+            try
+            {
+                var employee = new Entities.UserDbo
+                {
+                    Username = inputEmployeeDTO.Username,
+                    Password = inputEmployeeDTO.Password,
+                    Lastname = inputEmployeeDTO.Lastname,
+                    email = inputEmployeeDTO.email,
+                    phone = inputEmployeeDTO.phone,
+                    address = inputEmployeeDTO.address,
+                    RoleId = inputEmployeeDTO.RoleId,
+                    status = inputEmployeeDTO.status
+                };
+
+                var addUser = await _UserRepository.AddEmpAsync(employee);
+
+                // แมปค่าเป็น EmployeeDTO
+                return new EmployeeDTO
+                {
+                    UserID = addUser.UserID,
+                    Username = addUser.Username,
+                    Password = addUser.Password,
+                    Lastname = addUser.Lastname,
+                    email = addUser.email,
+                    phone = addUser.phone,
+                    address = addUser.address,
+                    RoleId = addUser.RoleId,
+                    status = addUser.status
+                };
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("An error occurred while adding data.", ex);
+            }
+        }
+
     }
 }
