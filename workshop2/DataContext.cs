@@ -11,9 +11,7 @@ namespace permissionAPI
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
         }
-
         // Add configuration for other entities here
-
         
         public DbSet<RoleDbo> Role { get; set; }
 
@@ -24,10 +22,11 @@ namespace permissionAPI
         public DbSet<WarehouseDbo> warehouse { get; set; }
         public DbSet<RentalDbo> Rental { get; set; }
 
+        public DbSet<CompanyDbo> Company { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
             // Define configuration for number1Dbo if necessary
             modelBuilder.Entity<number1Dbo>().ToTable("number1");
         }
