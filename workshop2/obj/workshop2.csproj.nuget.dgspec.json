@@ -1,20 +1,42 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\DotCom\\Desktop\\Work\\Workshop\\workshop2\\workshop2.csproj": {}
+<<<<<<< HEAD
+    "D:\\GIt\\Workshop\\workshop2\\workshop2.csproj": {}
   },
   "projects": {
-    "C:\\Users\\DotCom\\Desktop\\Work\\Workshop\\workshop2\\workshop2.csproj": {
+    "D:\\GIt\\Workshop\\workshop2\\workshop2.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\DotCom\\Desktop\\Work\\Workshop\\workshop2\\workshop2.csproj",
+        "projectUniqueName": "D:\\GIt\\Workshop\\workshop2\\workshop2.csproj",
         "projectName": "workshop2",
-        "projectPath": "C:\\Users\\DotCom\\Desktop\\Work\\Workshop\\workshop2\\workshop2.csproj",
-        "packagesPath": "C:\\Users\\DotCom\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\DotCom\\Desktop\\Work\\Workshop\\workshop2\\obj\\",
+        "projectPath": "D:\\GIt\\Workshop\\workshop2\\workshop2.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "D:\\GIt\\Workshop\\workshop2\\obj\\",
+=======
+    "D:\\workshop2-back\\workshop2\\workshop2.csproj": {}
+  },
+  "projects": {
+    "D:\\workshop2-back\\workshop2\\workshop2.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\workshop2-back\\workshop2\\workshop2.csproj",
+        "projectName": "workshop2",
+        "projectPath": "D:\\workshop2-back\\workshop2\\workshop2.csproj",
+        "packagesPath": "C:\\Users\\tanapojluangviroj\\.nuget\\packages\\",
+        "outputPath": "D:\\workshop2-back\\workshop2\\obj\\",
+>>>>>>> 18cb3ca043b66208fe23b98c9e5d60976a1f390d
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\DotCom\\AppData\\Roaming\\NuGet\\NuGet.Config",
+<<<<<<< HEAD
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+=======
+          "C:\\Users\\tanapojluangviroj\\AppData\\Roaming\\NuGet\\NuGet.Config",
+>>>>>>> 18cb3ca043b66208fe23b98c9e5d60976a1f390d
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
