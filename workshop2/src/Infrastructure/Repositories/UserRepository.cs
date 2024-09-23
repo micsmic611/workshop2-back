@@ -17,7 +17,6 @@ namespace permissionAPI.src.Infrastructure.Repositories
 
         public async Task<List<UserDbo>> GetAllUserAsync()
         {
-
             try
             {
                 return await _dbContext.User.ToListAsync();
@@ -51,6 +50,9 @@ namespace permissionAPI.src.Infrastructure.Repositories
            catch(Exception ex){
             throw ex;
            }
+<<<<<<< HEAD
+        }  
+=======
         }
 
         public async Task<List<UserDbo>> GetAllEmpAsync()
@@ -67,5 +69,6 @@ namespace permissionAPI.src.Infrastructure.Repositories
             }
         }
 
+>>>>>>> 5a3bf3d2e7f73d9412dcc81f930784afa7d79403
     }
 }

@@ -9,7 +9,6 @@ namespace permissionAPI.src.Entities
     {
         [Key]
         [Required]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column("user_id", TypeName = "int")]
         public int UserID { get; set; }
 
@@ -18,7 +17,10 @@ namespace permissionAPI.src.Entities
 
         [Column("user_password", TypeName = "varchar(255)")]
         public string? Password { get; set; }
-        
+
+        [Column("user_firstname", TypeName = "varchar(255)")]
+        public string? Firstname { get; set; }
+
         [Column("user_lastname", TypeName = "varchar(255)")]
         public string? Lastname { get; set; }
 
