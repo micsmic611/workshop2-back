@@ -3,7 +3,10 @@ node_modules/
 
 # ละเว้นไฟล์ environment
 .env
-
+.vs/
+*.suo
+*.user
+*.cache
 # ละเว้นไฟล์ log
 *.log
 
