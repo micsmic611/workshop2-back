@@ -6,7 +6,7 @@
         public string? warehouseaddress { get; set; }
         public string? warehousename { get; set; }
         public decimal? warehousesize { get; set; }
-        public string? warehousstatus { get; set; }
+        public string? warehousestatus { get; set; }
     }
     
 }

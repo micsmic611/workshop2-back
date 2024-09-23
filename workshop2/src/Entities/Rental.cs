@@ -27,6 +27,7 @@ namespace permissionAPI.src.Entities
         [Column("date_rental_end", TypeName = "datetime")]
         public DateTime? date_rental_end { get; set; }
 
+
         [Required]
         [ForeignKey("warehouse")]
         [Column("warehouse_id", TypeName = "int")]
@@ -35,6 +36,9 @@ namespace permissionAPI.src.Entities
         [Required]
         [Column("rental_status", TypeName = "varchar(100)")]
         public string rentalstatus { get; set; }
+
+        [Column("Description", TypeName = "varchar(100")]
+        public string? Description { get; set; }
 
 
     }

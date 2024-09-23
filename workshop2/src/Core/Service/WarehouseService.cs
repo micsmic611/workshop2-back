@@ -26,7 +26,7 @@ namespace permissionAPI.src.Core.Service
                     warehousename = s.warehousename,
                     warehousesize = s.warehousesize,
                     warehouseaddress = s.warehouseaddress,
-                    warehousstatus = s.warehousstatus,
+                    warehousestatus = s.warehousstatus,
                     
                 }).ToList();
 
@@ -57,7 +57,7 @@ namespace permissionAPI.src.Core.Service
                 throw new ApplicationException($"An error occurred while retrieving the warehouse data: {ex.Message}", ex);
             }
         }
-        public async Task<WarehouseRentalDTO> getwarehosedetail(int warehouseid, DateTime rentalDateStart, string warehousestatus)
+        public async Task<WarehouseRentalDetailDTO> getwarehosedetail(int warehouseid, DateTime rentalDateStart, string warehousestatus)
         {
             try
             {

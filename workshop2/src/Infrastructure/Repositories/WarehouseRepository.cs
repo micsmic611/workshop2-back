@@ -44,9 +44,11 @@ namespace permissionAPI.src.Infrastructure.Repositories
                                            warehouseaddress = w.warehouseaddress,
                                            warehousename = w.warehousename,
                                            warehousesize = w.warehousesize,
-                                           warehousstatus = w.warehousstatus,
+                                           warehousestatus = w.warehousstatus,
                                            date_rental_start = r.date_rental_start
-                                       }).FirstOrDefaultAsync();
+                                           
+
+                                        }).FirstOrDefaultAsync();
 
                 if (warehouse == null)
                 {
@@ -61,24 +63,30 @@ namespace permissionAPI.src.Infrastructure.Repositories
                 throw new ApplicationException($"An error occurred while retrieving the warehouse data: {ex.Message}", ex);
             }
         }
-        public async Task<WarehouseRentalDTO> getwarehosedetail(int warehouseid, DateTime rentalDateStart, string warehousestatus)
+        public async Task<WarehouseRentalDetailDTO> getwarehosedetail(int warehouseid, DateTime rentalDateStart, string warehousestatus)
         {
             try
             {
                 var warehouse = await (from w in _dbContext.warehouse
                                        join r in _dbContext.Rental
                                        on w.warehouseid equals r.warehouseid
+                                       join u in _dbContext.User
+                                       on r.userid equals u.UserID
                                        where w.warehouseid == warehouseid
                                              && r.date_rental_start == rentalDateStart
                                              && w.warehousstatus == warehousestatus
-                                       select new WarehouseRentalDTO
+                                       select new WarehouseRentalDetailDTO
                                        {
                                            warehouseid = w.warehouseid,
                                            warehouseaddress = w.warehouseaddress,
                                            warehousename = w.warehousename,
                                            warehousesize = w.warehousesize,
-                                           warehousstatus = w.warehousstatus,
-                                           date_rental_start = r.date_rental_start
+                                           warehousestatus = w.warehousstatus,
+                                           rentalstatus = r.rentalstatus,
+                                           date_rental_start = r.date_rental_start,
+                                           date_rental_end = r.date_rental_end,
+                                           Description = r.Description,
+                                           Username = u.Username
                                        }).FirstOrDefaultAsync();
 
                 if (warehouse == null)
