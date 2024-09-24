@@ -8,5 +8,6 @@ namespace workshop2.src.Infrastructure.Interface
     {
         Task<List<CompanyforidDTO>> GetUserByIDAsync(string companyname);
         Task AddRentalAsync(RentalDTO rental);
+        Task<RentalDbo> UpdateRentalAsync(RentalDbo Rental);
     }
 }

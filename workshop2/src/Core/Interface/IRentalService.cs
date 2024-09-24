@@ -8,6 +8,6 @@ namespace workshop2.src.Core.Interface
     {
         Task<List<CompanyforidDTO>> GetUserByIDAsync(string companyname);
         Task AddRentalAsync(RentalDTO rental);
-
+        Task<Rentalforupdate> UpdateRentalAsync(Rentalforupdate Rentalforupdate);
     }
 }
