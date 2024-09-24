@@ -4,6 +4,10 @@ using permissionAPI.src.Core.Interface;
 using permissionAPI.src.Core.Service;
 using permissionAPI.src.Infrastructure.Interface;
 using permissionAPI.src.Infrastructure.Repositories;
+using workshop2.src.Core.Interface;
+using workshop2.src.Infrastructure.Interface;
+using workshop2.src.Infrastructure.Repositories;
+using workshop2.src.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,6 +32,9 @@ builder.Services.AddScoped<IWarehouseService, WarehouseService>();
 //company
 builder.Services.AddScoped<ICompanyRepository, CompanyRepository>();
 builder.Services.AddScoped<ICompanyService, CompanyService>();
+
+builder.Services.AddScoped<IRentalRepository, RentalRepository>();
+builder.Services.AddScoped<IRentalService, RentalService>();
 
 
 

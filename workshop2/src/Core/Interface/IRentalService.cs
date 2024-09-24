@@ -1,12 +1,13 @@
-﻿using workshop2.DTOs;
+﻿using permissionAPI.DTOs;
 using permissionAPI.src.Entities;
-using permissionAPI.DTOs;
+using workshop2.DTOs;
 
-namespace workshop2.src.Infrastructure.Interface
+namespace workshop2.src.Core.Interface
 {
-    public interface IRentalRepository
+    public interface IRentalService
     {
         Task<List<CompanyforidDTO>> GetUserByIDAsync(string companyname);
         Task AddRentalAsync(RentalDTO rental);
+
     }
 }

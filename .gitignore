@@ -25,4 +25,4 @@ obj/
 *.pdb
 *.exe
 *.dll
-*.appsettings.json
+appsettings.json
