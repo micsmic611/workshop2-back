@@ -25,4 +25,15 @@ namespace permissionAPI.DTOs
         public int? RoleId { get; set; }
         public string? status { get; set; }      
     }
+    public class LoginDto
+    {
+        public string? email { set; get; }
+        public string? Password { set; get; }
+    }
+    public class RegisterDto
+    {
+        public string Username { set; get; }
+        public string email { set; get; }
+        public string Password { set; get; }
+    }
 }
