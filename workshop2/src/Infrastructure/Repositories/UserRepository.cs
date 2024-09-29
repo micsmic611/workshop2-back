@@ -93,7 +93,57 @@ namespace permissionAPI.src.Infrastructure.Repositories
                 throw ex;
             }
         }
+        public async Task<UserDbo> AddUserAsync(string Username, string hashedPassword)
+        {
+            try
+            {
+                UserDbo user = new UserDbo
+                {
+                    Username = Username,
+                    Password = hashedPassword
+                };
 
+                _dbContext.User.Add(user);
+                await _dbContext.SaveChangesAsync();
 
+                return user;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occurred while adding the user.", ex);
+            }
+        }
+        //new
+        public async Task<UserDbo> Create(UserDbo user)
+        {
+            _dbContext.User.Add(user);
+            await _dbContext.SaveChangesAsync();
+            return user;
+        }
+
+        public async Task<UserDbo> Update(UserDbo user)
+        {
+            var existingUser = await _dbContext.User.FirstOrDefaultAsync(u => u.UserID == user.UserID);
+            if (existingUser == null)
+            {
+                throw new Exception("User not found.");
+            }
+
+            existingUser.Username = user.Username;
+            existingUser.email = user.email;
+            existingUser.Password = user.Password; // ????????????????????????????
+
+            await _dbContext.SaveChangesAsync();
+            return existingUser;
+        }
+        public async Task<UserDbo> GetByEmail(string email)
+        {
+            return await _dbContext.User.FirstOrDefaultAsync(u => u.email == email);
+        }
+
+        public async Task<UserDbo> GetById(int UserID)
+        {
+            return await _dbContext.User.FirstOrDefaultAsync(u => u.UserID == UserID);
+        }
     }
 }

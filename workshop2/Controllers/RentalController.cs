@@ -4,6 +4,7 @@ using workshop2.src.Core.Interface;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using permissionAPI.DTOs;
+using permissionAPI.src.Entities;
 
 namespace workshop2.Controllers
 {
@@ -47,6 +48,34 @@ namespace workshop2.Controllers
                 return CreatedAtAction(nameof(GetUserById), new { companyname = rentalDto.CompanyId }, rentalDto); // ส่งกลับ HTTP 201 Created
             }
             return BadRequest(ModelState); // ส่งกลับ HTTP 400 Bad Request ถ้ามีข้อผิดพลาด
+        }
+        [HttpPut("UpdateRental")]
+        public async Task<IActionResult> UpdateRentalAsync(int rentalid, [FromBody] Rentalforupdate Rentalforupdate)
+        {
+            var response = new BaseHttpResponse<Rentalforupdate>();
+
+            try
+            {
+                Rentalforupdate.rentalid = rentalid;
+
+                // บันทึกข้อมูลก่อนการอัปเดต
+                _logger.LogInformation("Updating Rental with ID: {RentalId}", rentalid);
+
+                var data = await _rentalService.UpdateRentalAsync(Rentalforupdate);
+                response.SetSuccess(data, "Rental updated successfully", "200");
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                var err = new ErrorData
+                {
+                    Code = "-2",
+                    Message = ex.Message
+                };
+                _logger.LogError(ex, "Error updating Rental with ID: {RentalId}. Inner exception: {InnerException}", rentalid, ex.InnerException?.Message);
+                response.SetError(err, ex.Message, "500");
+                return BadRequest(response);
+            }
         }
 
 

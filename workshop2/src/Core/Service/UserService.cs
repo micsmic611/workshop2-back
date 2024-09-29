@@ -2,6 +2,7 @@ using permissionAPI.DTOs;
 using permissionAPI.src.Core.Interface;
 using permissionAPI.src.Entities;
 using permissionAPI.src.Infrastructure.Interface;
+using permissionAPI.src.Infrastructure.Repositories;
 using workshop2.DTOs;
 
 namespace permissionAPI.src.Core.Service
@@ -190,6 +191,7 @@ namespace permissionAPI.src.Core.Service
                 throw new ApplicationException("An error occurred while adding data.", ex);
             }
         }
+        
 
     }
 }
