@@ -136,7 +136,7 @@ namespace permissionAPI.src.Core.Service
                     UserID = s.UserID,
                     Username = s.Username,
                     //Password = s.Password,
-                    //Lastname = s.Lastname,
+                    Lastname = s.Lastname,
                     email = s.email,
                     phone = s.phone,
                     //address = s.address,
