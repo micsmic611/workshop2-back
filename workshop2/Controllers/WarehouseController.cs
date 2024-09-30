@@ -76,6 +76,23 @@ namespace permissionAPI.Controllers
                 return StatusCode(500, new { message = ex.Message }); // ส่ง HTTP 500 เมื่อเกิดข้อผิดพลาดภายใน
             }
         }
+        [HttpGet("warehouserental")]
+        public async Task<IActionResult> GetWarehouseRental()
+        {
+            try
+            {
 
+                var warehouseRentalDto = await _WarehouseService.getwarehoserental();
+                return Ok(warehouseRentalDto); // ส่งผลลัพธ์กลับในรูปแบบ JSON
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(new { message = ex.Message }); // ส่ง HTTP 404 ถ้าไม่พบข้อมูล
+            }
+            catch (ApplicationException ex)
+            {
+                return StatusCode(500, new { message = ex.Message }); // ส่ง HTTP 500 เมื่อเกิดข้อผิดพลาดภายใน
+            }
+        }
     }
 }

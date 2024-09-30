@@ -2,6 +2,8 @@ using Microsoft.EntityFrameworkCore;
 using permissionAPI.src.Entities;
 using permissionAPI.src.Infrastructure.Interface;
 using permissionAPI;
+using workshop2.Controllers;
+using permissionAPI.Contollers;
 //using permissionAPI.DTOs;
 //repo = select add delete update && same name function Interface repo next step goto service for business layer 
 namespace permissionAPI.src.Infrastructure.Repositories
@@ -9,10 +11,11 @@ namespace permissionAPI.src.Infrastructure.Repositories
     public class UserRepository : IUserRepository
     {
         private readonly DataContext _dbContext;
-
-        public UserRepository(DataContext dbContext)
+        private readonly ILogger<UserController> _logger;
+        public UserRepository(DataContext dbContext, ILogger<UserController> logger)
         {
             _dbContext = dbContext;
+            _logger = logger;
         }
 
         public async Task<List<UserDbo>> GetAllUserAsync()
@@ -131,7 +134,7 @@ namespace permissionAPI.src.Infrastructure.Repositories
 
             existingUser.Username = user.Username;
             existingUser.email = user.email;
-            existingUser.Password = user.Password; // ????????????????????????????
+            existingUser.Password = user.Password; 
 
             await _dbContext.SaveChangesAsync();
             return existingUser;
@@ -145,5 +148,45 @@ namespace permissionAPI.src.Infrastructure.Repositories
         {
             return await _dbContext.User.FirstOrDefaultAsync(u => u.UserID == UserID);
         }
+        public async Task<UserDbo> UpdateUserAsync(UserDbo user)
+        {
+            using var transaction = await _dbContext.Database.BeginTransactionAsync();
+            try
+            {
+                // Log before finding the user
+                _logger.LogInformation("Attempting to update User with ID: {UserId}", user.UserID);
+
+                var existingUser = await _dbContext.User.FindAsync(user.UserID);
+                if (existingUser == null)
+                {
+                    _logger.LogError("User with ID {UserId} not found", user.UserID);
+                    throw new Exception($"User with ID {user.UserID} not found");
+                }
+
+                _logger.LogInformation("Found User with ID: {UserId}. Updating user details excluding password.", user.UserID);
+                existingUser.Username = user.Username;
+                existingUser.Firstname = user.Firstname;
+                existingUser.Lastname = user.Lastname;
+                existingUser.email = user.email;
+                existingUser.phone = user.phone;
+                existingUser.address = user.address;
+                _dbContext.User.Update(existingUser);
+
+
+                await _dbContext.SaveChangesAsync();
+
+                await transaction.CommitAsync();
+                _logger.LogInformation("Successfully updated User with ID: {UserId}", user.UserID);
+
+                return existingUser;
+            }
+            catch (Exception ex)
+            {
+                await transaction.RollbackAsync();  
+                _logger.LogError(ex, "Error occurred while updating User with ID: {UserId}. Inner exception: {InnerException}", user.UserID, ex.InnerException?.Message);
+                throw new Exception($"Error occurred while updating User with ID {user.UserID}", ex);
+            }
+        }
+
     }
 }

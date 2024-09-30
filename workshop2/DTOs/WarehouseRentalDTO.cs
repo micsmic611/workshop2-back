@@ -22,4 +22,18 @@
         public string? Description { get; set; }
         public string? Username { get; set; }
     }
+    public class WarehouseRentalDTOs
+    {
+        public int warehouseid { get; set; }
+        public string? warehousename { get; set; }
+        public string? warehouseaddress { get; set; }
+        public decimal? warehousesize { get; set; }
+        public string? warehousestatus { get; set; }
+        public int rentalid { get; set; }
+        public string? rentalstatus { get; set; }
+        public DateTime date_rental_start { get; set; }
+        public DateTime? date_rental_end { get; set; }
+        public string? Description { get; set; }
+       
+    }
 }
