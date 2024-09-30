@@ -17,6 +17,7 @@ namespace permissionAPI.src.Infrastructure.Interface
         Task<UserDbo> GetByEmail(string email);
         Task<UserDbo> GetById(int UserID);
         Task<UserDbo> UpdateUserAsync(UserDbo user);
+        Task<UserDbo> UpdateEmpAsync(UserDbo user);
 
 
     }

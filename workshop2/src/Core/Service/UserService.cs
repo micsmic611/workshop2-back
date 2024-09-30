@@ -5,7 +5,7 @@ using permissionAPI.src.Infrastructure.Interface;
 using permissionAPI.src.Infrastructure.Repositories;
 using System.ComponentModel.DataAnnotations;
 using workshop2.DTOs;
-using workshop2.src.Services;
+using workshop2.src.Services; 
 
 namespace permissionAPI.src.Core.Service
 {
@@ -199,9 +199,7 @@ namespace permissionAPI.src.Core.Service
                 throw new ApplicationException("An error occurred while adding data.", ex);
             }
         }
-<<<<<<< HEAD
 
-=======
         public async Task<Userforupdate> UpdateUserAsync(Userforupdate Userforupdate)
         {
             try
@@ -243,7 +241,46 @@ namespace permissionAPI.src.Core.Service
                 throw new Exception("Error occurred while updating Rental", ex);
             }
         }
->>>>>>> c8880e1a90d922b21cec404d22c712416c5d9034
 
+        public async Task<UpdateEmpDTO> UpdateEmpAsync(UpdateEmpDTO UpdateEmpDTO)
+        {
+            try
+            {
+                // ?????????????????????????
+                _logger.LogInformation("Received request to update User with ID: {UserID} ", UpdateEmpDTO.UserID);
+
+                var User = new Entities.UserDbo
+                {
+                    UserID = UpdateEmpDTO.UserID,
+                    Firstname = UpdateEmpDTO.Firstname,
+                    Lastname = UpdateEmpDTO.Lastname,
+                    email = UpdateEmpDTO.email,
+                    Username = UpdateEmpDTO.Username,
+                    address = UpdateEmpDTO.address,
+                    phone = UpdateEmpDTO.phone,
+                };
+
+
+                var updatedRental = await _UserRepository.UpdateEmpAsync(User);
+
+                _logger.LogInformation("Successfully updated User with ID: {UserID}", UpdateEmpDTO.UserID);
+
+                return new UpdateEmpDTO
+                {
+                    UserID = UpdateEmpDTO.UserID,
+                    Firstname = UpdateEmpDTO.Firstname,
+                    Lastname = UpdateEmpDTO.Lastname,
+                    Username = UpdateEmpDTO.Username,
+                    email = UpdateEmpDTO.email,
+                    address = UpdateEmpDTO.address,
+                    phone = UpdateEmpDTO.phone,
+                };
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error occurred while updating User with ID: {UserID}. Inner exception: {InnerException}", UpdateEmpDTO.UserID, ex.InnerException?.Message);
+                throw new Exception("Error occurred while updating Employee", ex);
+            }
+        }
     }
 }
