@@ -3,7 +3,9 @@ using permissionAPI.src.Core.Interface;
 using permissionAPI.src.Entities;
 using permissionAPI.src.Infrastructure.Interface;
 using permissionAPI.src.Infrastructure.Repositories;
+using System.ComponentModel.DataAnnotations;
 using workshop2.DTOs;
+using workshop2.src.Services;
 
 namespace permissionAPI.src.Core.Service
 {
@@ -11,10 +13,12 @@ namespace permissionAPI.src.Core.Service
     public class UserService : IUserService
     {
         private readonly IUserRepository _UserRepository;
+        private readonly ILogger<UserService> _logger;
 
-        public UserService(IUserRepository UserRepository)
+        public UserService(IUserRepository UserRepository, ILogger<UserService> logger)
         {
             _UserRepository = UserRepository;
+            _logger = logger;
         }
 
         public async Task<List<DTOs.UserDbo>> GetAllUserAsync()
@@ -195,7 +199,51 @@ namespace permissionAPI.src.Core.Service
                 throw new ApplicationException("An error occurred while adding data.", ex);
             }
         }
+<<<<<<< HEAD
 
+=======
+        public async Task<Userforupdate> UpdateUserAsync(Userforupdate Userforupdate)
+        {
+            try
+            {
+                // ?????????????????????????
+                _logger.LogInformation("Received request to update User with ID: {UserID} ", Userforupdate.UserID);
+
+                var User = new Entities.UserDbo
+                {
+                    UserID = Userforupdate.UserID,
+                    Firstname = Userforupdate.Firstname,
+                    Lastname = Userforupdate.Lastname,
+                    email = Userforupdate.email,
+                    Username = Userforupdate.Username,
+                    address = Userforupdate.address,
+                    phone = Userforupdate.phone,
+                };
+
+
+                var updatedRental = await _UserRepository.UpdateUserAsync(User);
+
+                // ???????????????????????????????
+                _logger.LogInformation("Successfully updated User with ID: {UserID}", Userforupdate.UserID);
+
+                return new Userforupdate
+                {
+                    UserID = Userforupdate.UserID,
+                    Firstname = Userforupdate.Firstname,
+                    Lastname = Userforupdate.Lastname,
+                    Username = Userforupdate.Username,
+                    email = Userforupdate.email,
+                    address = Userforupdate.address,
+                    phone = Userforupdate.phone,
+                };
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error occurred while updating User with ID: {UserID}. Inner exception: {InnerException}", Userforupdate.UserID, ex.InnerException?.Message);
+                throw new Exception("Error occurred while updating Rental", ex);
+            }
+        }
+>>>>>>> c8880e1a90d922b21cec404d22c712416c5d9034
 
     }
 }

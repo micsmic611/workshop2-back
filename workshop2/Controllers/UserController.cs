@@ -87,6 +87,34 @@ namespace permissionAPI.Contollers
                 return BadRequest(response);
             }
         }
+        [HttpPut("UpdateUser")]
+        public async Task<IActionResult> UpdateRentalAsync(int Userid, [FromBody] Userforupdate Userforupdate)
+        {
+            var response = new BaseHttpResponse<Userforupdate>();
+
+            try
+            {
+                Userforupdate.UserID = Userid;
+
+                // ?????????????????????????
+                _logger.LogInformation("Updating user with ID: {Userid}", Userid);
+
+                var data = await _UserService.UpdateUserAsync(Userforupdate);
+                response.SetSuccess(data, "User updated successfully", "200");
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                var err = new ErrorData
+                {
+                    Code = "-2",
+                    Message = ex.Message
+                };
+                _logger.LogError(ex, "Error updating User with ID: {Userid}. Inner exception: {InnerException}", Userid, ex.InnerException?.Message);
+                response.SetError(err, ex.Message, "500");
+                return BadRequest(response);
+            }
+        }
     }
 }
 
