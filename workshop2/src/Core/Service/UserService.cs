@@ -111,6 +111,7 @@ namespace permissionAPI.src.Core.Service
                     UserID = s.UserID,
                     Username = s.Username,
                     //Password = s.Password,
+                    //Firstname = s.Firstname,
                     //Lastname = s.Lastname,
                     email = s.email,
                     phone = s.phone,
@@ -137,6 +138,7 @@ namespace permissionAPI.src.Core.Service
                     UserID = s.UserID,
                     Username = s.Username,
                     //Password = s.Password,
+                    Firstname = s.Firstname,
                     Lastname = s.Lastname,
                     email = s.email,
                     phone = s.phone,
@@ -162,6 +164,7 @@ namespace permissionAPI.src.Core.Service
                 {
                     Username = inputEmployeeDTO.Username,
                     Password = inputEmployeeDTO.Password,
+                    Firstname = inputEmployeeDTO.Firstname,
                     Lastname = inputEmployeeDTO.Lastname,
                     email = inputEmployeeDTO.email,
                     phone = inputEmployeeDTO.phone,
@@ -178,6 +181,7 @@ namespace permissionAPI.src.Core.Service
                     UserID = addUser.UserID,
                     Username = addUser.Username,
                     Password = addUser.Password,
+                    Firstname = addUser.Firstname,
                     Lastname = addUser.Lastname,
                     email = addUser.email,
                     phone = addUser.phone,
@@ -191,7 +195,7 @@ namespace permissionAPI.src.Core.Service
                 throw new ApplicationException("An error occurred while adding data.", ex);
             }
         }
-        
+
 
     }
 }

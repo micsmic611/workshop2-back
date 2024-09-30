@@ -145,5 +145,21 @@ namespace permissionAPI.src.Infrastructure.Repositories
         {
             return await _dbContext.User.FirstOrDefaultAsync(u => u.UserID == UserID);
         }
+
+        public async Task<UserDbo> UpdateEmp(UserDbo user)
+        {
+            var existingUser = await _dbContext.User.FirstOrDefaultAsync(u => u.UserID == user.UserID);
+            if (existingUser == null)
+            {
+                throw new Exception("User not found.");
+            }
+
+            existingUser.Username = user.Username;
+            existingUser.email = user.email;
+            existingUser.Password = user.Password; // ????????????????????????????
+
+            await _dbContext.SaveChangesAsync();
+            return existingUser;
+        }
     }
 }
