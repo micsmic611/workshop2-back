@@ -33,4 +33,9 @@
         public string? company_firstname { get; set; }
         public string? company_lastname { get; set; }
     }
+
+    public class CompanyforidDTO
+    {
+        public int companyid { get; set; }
+    }
 }

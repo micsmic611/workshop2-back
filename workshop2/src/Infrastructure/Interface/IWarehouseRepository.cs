@@ -13,5 +13,6 @@ namespace permissionAPI.src.Infrastructure.Interface
 
         Task<WarehouseDbo> AddWarehouseAsync(WarehouseDbo Warehosue);
 
+        Task<List<WarehouseRentalDTOs>> getwarehoserentalal();
     }
 }

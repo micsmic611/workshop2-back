@@ -20,26 +20,7 @@ namespace workshop2.src.Infrastructure.Repositories
             _logger = logger;
         }
 
-        public async Task<List<CompanyforidDTO>> GetCompanyByIDAsync(string companyname)
-        {
-            try
-            {
-                var companyData = await _dbContext.Company
-                    .Where(x => x.CompanyName == companyname)
-                    .AsNoTracking()
-                    .Select(x => new CompanyforidDTO
-                    {
-                        companyid = x.CompanyID,
-                    })
-                    .ToListAsync();
-
-                return companyData;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+        
 
         public async Task AddRentalAsync(RentalDTO rental)
         {

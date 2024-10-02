@@ -1,3 +1,4 @@
+using auth.Helpers;
 using Microsoft.EntityFrameworkCore;
 using permissionAPI;
 using permissionAPI.src.Core.Interface;
@@ -37,7 +38,7 @@ builder.Services.AddScoped<IRentalRepository, RentalRepository>();
 builder.Services.AddScoped<IRentalService, RentalService>();
 
 
-
+builder.Services.AddScoped<JwtService>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 

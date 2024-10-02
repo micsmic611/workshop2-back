@@ -1,4 +1,5 @@
-﻿using permissionAPI.src.Entities;
+﻿using permissionAPI.DTOs;
+using permissionAPI.src.Entities;
 
 namespace permissionAPI.src.Infrastructure.Interface
 {
@@ -13,5 +14,8 @@ namespace permissionAPI.src.Infrastructure.Interface
         Task<CompanyDbo> AddCompanyAsync(CompanyDbo Company);
 
         Task<CompanyDbo> UpdateCompanyAsync(CompanyDbo Company);
+
+        Task<List<CompanyforidDTO>> GetCompanyByIDAsync(string companyname);
+
     }
 }

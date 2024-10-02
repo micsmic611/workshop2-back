@@ -18,10 +18,7 @@
         public string? rentalstatus { get; set; }
     }
 
-    public class CompanyforidDTO
-    {
-        public int companyid { get; set; }
-    }
+    
 
     public class RentalCreateDTO
     {

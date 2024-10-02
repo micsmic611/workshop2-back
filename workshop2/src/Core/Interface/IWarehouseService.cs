@@ -8,5 +8,6 @@ namespace permissionAPI.src.Core.Interface
         Task<WarehouseRentalDTO> GetWarehouseByIdAsync(string warehouseName, DateTime rentalDateStart, string warehousestatus);
         Task<WarehouseRentalDetailDTO> getwarehosedetail(int warehouseid, DateTime rentalDateStart, string warehousestatus);
         Task<DTOs.WarehouseDbo> AddWarehouseAsync(InputWarehosueDbo InputWarehosueDbo);
+        Task<List<WarehouseRentalDTOs>> getwarehoserental();
     }
 }

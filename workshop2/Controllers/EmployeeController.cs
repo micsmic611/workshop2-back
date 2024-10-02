@@ -86,5 +86,33 @@ namespace workshop2.Controllers
                 return BadRequest(response);
             }
         }
+
+        [HttpPut("UpdateEmp")]
+        public async Task<IActionResult> UpdateEmpAsync(int Userid, [FromBody] UpdateEmpDTO UpdateEmpDTO)
+        {
+            var response = new BaseHttpResponse<UpdateEmpDTO>();
+
+            try
+            {
+                UpdateEmpDTO.UserID = Userid;
+
+                _logger.LogInformation("Updating user with ID: {Userid}", Userid);
+
+                var data = await _UserService.UpdateEmpAsync(UpdateEmpDTO);
+                response.SetSuccess(data, "User updated successfully", "200");
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                var err = new ErrorData
+                {
+                    Code = "-2",
+                    Message = ex.Message
+                };
+                _logger.LogError(ex, "Error updating User with ID: {Userid}. Inner exception: {InnerException}", Userid, ex.InnerException?.Message);
+                response.SetError(err, ex.Message, "500");
+                return BadRequest(response);
+            }
+        }
     }
 }

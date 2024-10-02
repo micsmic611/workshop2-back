@@ -2,7 +2,10 @@ using permissionAPI.DTOs;
 using permissionAPI.src.Core.Interface;
 using permissionAPI.src.Entities;
 using permissionAPI.src.Infrastructure.Interface;
+using permissionAPI.src.Infrastructure.Repositories;
+using System.ComponentModel.DataAnnotations;
 using workshop2.DTOs;
+using workshop2.src.Services; 
 
 namespace permissionAPI.src.Core.Service
 {
@@ -10,10 +13,12 @@ namespace permissionAPI.src.Core.Service
     public class UserService : IUserService
     {
         private readonly IUserRepository _UserRepository;
+        private readonly ILogger<UserService> _logger;
 
-        public UserService(IUserRepository UserRepository)
+        public UserService(IUserRepository UserRepository, ILogger<UserService> logger)
         {
             _UserRepository = UserRepository;
+            _logger = logger;
         }
 
         public async Task<List<DTOs.UserDbo>> GetAllUserAsync()
@@ -110,6 +115,7 @@ namespace permissionAPI.src.Core.Service
                     UserID = s.UserID,
                     Username = s.Username,
                     //Password = s.Password,
+                    //Firstname = s.Firstname,
                     //Lastname = s.Lastname,
                     email = s.email,
                     phone = s.phone,
@@ -136,7 +142,8 @@ namespace permissionAPI.src.Core.Service
                     UserID = s.UserID,
                     Username = s.Username,
                     //Password = s.Password,
-                    //Lastname = s.Lastname,
+                    Firstname = s.Firstname,
+                    Lastname = s.Lastname,
                     email = s.email,
                     phone = s.phone,
                     //address = s.address,
@@ -161,6 +168,7 @@ namespace permissionAPI.src.Core.Service
                 {
                     Username = inputEmployeeDTO.Username,
                     Password = inputEmployeeDTO.Password,
+                    Firstname = inputEmployeeDTO.Firstname,
                     Lastname = inputEmployeeDTO.Lastname,
                     email = inputEmployeeDTO.email,
                     phone = inputEmployeeDTO.phone,
@@ -177,6 +185,7 @@ namespace permissionAPI.src.Core.Service
                     UserID = addUser.UserID,
                     Username = addUser.Username,
                     Password = addUser.Password,
+                    Firstname = addUser.Firstname,
                     Lastname = addUser.Lastname,
                     email = addUser.email,
                     phone = addUser.phone,
@@ -191,5 +200,87 @@ namespace permissionAPI.src.Core.Service
             }
         }
 
+        public async Task<Userforupdate> UpdateUserAsync(Userforupdate Userforupdate)
+        {
+            try
+            {
+                // ?????????????????????????
+                _logger.LogInformation("Received request to update User with ID: {UserID} ", Userforupdate.UserID);
+
+                var User = new Entities.UserDbo
+                {
+                    UserID = Userforupdate.UserID,
+                    Firstname = Userforupdate.Firstname,
+                    Lastname = Userforupdate.Lastname,
+                    email = Userforupdate.email,
+                    Username = Userforupdate.Username,
+                    address = Userforupdate.address,
+                    phone = Userforupdate.phone,
+                };
+
+
+                var updatedRental = await _UserRepository.UpdateUserAsync(User);
+
+                // ???????????????????????????????
+                _logger.LogInformation("Successfully updated User with ID: {UserID}", Userforupdate.UserID);
+
+                return new Userforupdate
+                {
+                    UserID = Userforupdate.UserID,
+                    Firstname = Userforupdate.Firstname,
+                    Lastname = Userforupdate.Lastname,
+                    Username = Userforupdate.Username,
+                    email = Userforupdate.email,
+                    address = Userforupdate.address,
+                    phone = Userforupdate.phone,
+                };
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error occurred while updating User with ID: {UserID}. Inner exception: {InnerException}", Userforupdate.UserID, ex.InnerException?.Message);
+                throw new Exception("Error occurred while updating Rental", ex);
+            }
+        }
+
+        public async Task<UpdateEmpDTO> UpdateEmpAsync(UpdateEmpDTO UpdateEmpDTO)
+        {
+            try
+            {
+                // ?????????????????????????
+                _logger.LogInformation("Received request to update User with ID: {UserID} ", UpdateEmpDTO.UserID);
+
+                var User = new Entities.UserDbo
+                {
+                    UserID = UpdateEmpDTO.UserID,
+                    Firstname = UpdateEmpDTO.Firstname,
+                    Lastname = UpdateEmpDTO.Lastname,
+                    email = UpdateEmpDTO.email,
+                    Username = UpdateEmpDTO.Username,
+                    address = UpdateEmpDTO.address,
+                    phone = UpdateEmpDTO.phone,
+                };
+
+
+                var updatedRental = await _UserRepository.UpdateEmpAsync(User);
+
+                _logger.LogInformation("Successfully updated User with ID: {UserID}", UpdateEmpDTO.UserID);
+
+                return new UpdateEmpDTO
+                {
+                    UserID = UpdateEmpDTO.UserID,
+                    Firstname = UpdateEmpDTO.Firstname,
+                    Lastname = UpdateEmpDTO.Lastname,
+                    Username = UpdateEmpDTO.Username,
+                    email = UpdateEmpDTO.email,
+                    address = UpdateEmpDTO.address,
+                    phone = UpdateEmpDTO.phone,
+                };
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error occurred while updating User with ID: {UserID}. Inner exception: {InnerException}", UpdateEmpDTO.UserID, ex.InnerException?.Message);
+                throw new Exception("Error occurred while updating Employee", ex);
+            }
+        }
     }
 }

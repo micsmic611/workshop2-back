@@ -39,8 +39,10 @@ namespace workshop2.Controllers
                 return BadRequest(new { Message = ex.Message });
             }
         }
+
         [HttpPost("RentalWarehouse")]
         public async Task<IActionResult> Create(RentalDTO rentalDto)
+
         {
             if (ModelState.IsValid)
             {
@@ -49,6 +51,7 @@ namespace workshop2.Controllers
             }
             return BadRequest(ModelState); // ส่งกลับ HTTP 400 Bad Request ถ้ามีข้อผิดพลาด
         }
+
         [HttpPut("UpdateRental")]
         public async Task<IActionResult> UpdateRentalAsync(int rentalid, [FromBody] Rentalforupdate Rentalforupdate)
         {

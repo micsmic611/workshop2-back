@@ -10,5 +10,7 @@ namespace permissionAPI.src.Core.Interface
         Task<List<EmployeeDTO>> GetAllEmpAsync();
         Task<List<EmployeeDTO>> GetEmpByNameAsync(String Username);
         Task<EmployeeDTO> AddEmpAsync(InputEmployeeDTO inputEmployeeDTO);
+        Task<Userforupdate> UpdateUserAsync(Userforupdate Userforupdate);
+        Task<UpdateEmpDTO> UpdateEmpAsync(UpdateEmpDTO UpdateEmpDTO);
     }
 }

@@ -117,6 +117,39 @@ namespace permissionAPI.src.Infrastructure.Repositories
             }
         }
 
+        public async Task<List<WarehouseRentalDTOs>> getwarehoserentalal()
+        {
+            try
+            {
+                var warehouse = await (from r in _dbContext.Rental
+                                       join w in _dbContext.warehouse
+                                       on r.warehouseid equals w.warehouseid
+                                       select new WarehouseRentalDTOs
+                                       {
+                                           warehouseid = w.warehouseid,
+                                           warehouseaddress = w.warehouseaddress,
+                                           warehousename = w.warehousename,
+                                           warehousesize = w.warehousesize,
+                                           warehousestatus = w.warehousstatus,
+                                           rentalid = r.rentalid,
+                                           rentalstatus = r.rentalstatus,
+                                           date_rental_start = r.date_rental_start,
+                                           date_rental_end = r.date_rental_end,
+                                           Description = r.Description,
+                                       }).ToListAsync();
+
+                if (warehouse == null)
+                {
+                    throw new KeyNotFoundException("Warehouse not found with the provided criteria.");
+                }
+
+                return warehouse;
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException($"An error occurred while retrieving the warehouse data: {ex.Message}", ex);
+            }
+        }
 
     }
 }
