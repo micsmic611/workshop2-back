@@ -21,12 +21,12 @@ namespace workshop2.Controllers
             _logger = logger;
         }
 
-        [HttpGet("GetUserById")]
-        public async Task<IActionResult> GetUserById(string companyname)
+        [HttpGet("GetCompanyById")]
+        public async Task<IActionResult> GetCompanyByID(string companyname)
         {
             try
             {
-                var result = await _rentalService.GetUserByIDAsync(companyname);
+                var result = await _rentalService.GetCompanyByIDAsync(companyname);
                 if (result == null || !result.Any())
                 {
                     return NotFound(new { Message = "ไม่พบข้อมูลบริษัทตามชื่อที่ระบุ" });
@@ -39,13 +39,13 @@ namespace workshop2.Controllers
                 return BadRequest(new { Message = ex.Message });
             }
         }
-        [HttpPost]
+        [HttpPost("RentalWarehouse")]
         public async Task<IActionResult> Create(RentalDTO rentalDto)
         {
             if (ModelState.IsValid)
             {
                 await _rentalService.AddRentalAsync(rentalDto);
-                return CreatedAtAction(nameof(GetUserById), new { companyname = rentalDto.CompanyId }, rentalDto); // ส่งกลับ HTTP 201 Created
+                return CreatedAtAction(nameof(GetCompanyByID), new { companyname = rentalDto.CompanyId }, rentalDto); // ส่งกลับ HTTP 201 Created
             }
             return BadRequest(ModelState); // ส่งกลับ HTTP 400 Bad Request ถ้ามีข้อผิดพลาด
         }

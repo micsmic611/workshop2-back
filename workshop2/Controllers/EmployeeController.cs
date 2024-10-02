@@ -70,7 +70,7 @@ namespace workshop2.Controllers
             try
             {
                 var data = await _UserService.AddEmpAsync(inputEmployeeDTO);
-                response.SetSuccess(data, "cim added successfully", "201");
+                response.SetSuccess(data, "emp added successfully", "201");
 
                 return Ok(response);
             }

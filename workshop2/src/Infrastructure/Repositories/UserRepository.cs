@@ -71,7 +71,10 @@ namespace permissionAPI.src.Infrastructure.Repositories
             var userData = new List<UserDbo>();
             try
             {
-                userData = await _dbContext.User.Where(x => x.RoleId == 2 && x.Username == Username).AsNoTracking().ToListAsync();
+                userData = await _dbContext.User
+                    .Where(x => x.RoleId == 2 && x.Username.Contains(Username))
+                    .AsNoTracking()
+                    .ToListAsync();
                 return userData;
             }
             catch (Exception ex)

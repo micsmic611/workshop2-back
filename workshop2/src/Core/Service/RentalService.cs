@@ -18,14 +18,13 @@ namespace workshop2.src.Services
             _logger = logger; // Injecting the logger
         }
 
-        public async Task<List<CompanyforidDTO>> GetUserByIDAsync(string companyname)
+        public async Task<List<CompanyforidDTO>> GetCompanyByIDAsync(string companyname)
         {
             if (string.IsNullOrWhiteSpace(companyname))
             {
                 throw new ArgumentNullException(nameof(companyname), "ชื่อบริษัทต้องไม่ว่างเปล่า");
             }
-
-            return await _rentalRepository.GetUserByIDAsync(companyname);
+            return await _rentalRepository.GetCompanyByIDAsync(companyname);
         }
         public async Task AddRentalAsync(RentalDTO rental)
         {

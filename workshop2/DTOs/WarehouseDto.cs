@@ -8,5 +8,13 @@
         public decimal? warehousesize { get; set; }
         public string? warehousestatus { get; set; }
     }
-    
+
+    public class InputWarehosueDbo
+    {
+        public string? warehousename { get; set; }
+        public string? warehouseaddress { get; set; }
+        public decimal? warehousesize { get; set; }
+        public string? warehousestatus { get; set; }
+
+    }
 }

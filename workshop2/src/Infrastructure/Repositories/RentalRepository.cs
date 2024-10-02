@@ -20,7 +20,7 @@ namespace workshop2.src.Infrastructure.Repositories
             _logger = logger;
         }
 
-        public async Task<List<CompanyforidDTO>> GetUserByIDAsync(string companyname)
+        public async Task<List<CompanyforidDTO>> GetCompanyByIDAsync(string companyname)
         {
             try
             {

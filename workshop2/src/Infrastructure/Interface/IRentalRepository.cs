@@ -6,7 +6,7 @@ namespace workshop2.src.Infrastructure.Interface
 {
     public interface IRentalRepository
     {
-        Task<List<CompanyforidDTO>> GetUserByIDAsync(string companyname);
+        Task<List<CompanyforidDTO>> GetCompanyByIDAsync(string companyname);
         Task AddRentalAsync(RentalDTO rental);
         Task<RentalDbo> UpdateRentalAsync(RentalDbo Rental);
     }

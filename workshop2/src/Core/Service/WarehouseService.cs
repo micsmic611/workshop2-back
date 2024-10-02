@@ -2,6 +2,8 @@
 using permissionAPI.src.Core.Interface;
 using permissionAPI.src.Entities;
 using permissionAPI.src.Infrastructure.Interface;
+using permissionAPI.src.Infrastructure.Repositories;
+using System;
 using workshop2.DTOs;
 
 namespace permissionAPI.src.Core.Service
@@ -76,9 +78,34 @@ namespace permissionAPI.src.Core.Service
                 throw new ApplicationException($"An error occurred while retrieving the warehouse data: {ex.Message}", ex);
             }
         }
+        public async Task<DTOs.WarehouseDbo> AddWarehouseAsync(InputWarehosueDbo InputWarehosueDbo)
+        {
+            try
+            {
+                var Warehouse = new Entities.WarehouseDbo
+                {
+                    warehousename = InputWarehosueDbo.warehousename,
+                    warehousesize = InputWarehosueDbo.warehousesize,
+                    warehouseaddress = InputWarehosueDbo.warehouseaddress,
+                    warehousstatus = "Active"
 
+                };
+                var addWarehouse = await _WarehouseRepository.AddWarehouseAsync(Warehouse);
+                return new DTOs.WarehouseDbo
+                {
+                    warehouseid = addWarehouse.warehouseid,
+                    warehousename = addWarehouse.warehousename,
+                    warehousesize = addWarehouse.warehousesize,
+                    warehouseaddress = addWarehouse.warehouseaddress,
+                    warehousestatus = "Active"
 
-
+                };
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("An error occurred while adding data.", ex);
+            }
+        }
 
 
     }

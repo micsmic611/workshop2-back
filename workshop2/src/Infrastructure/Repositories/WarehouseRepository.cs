@@ -103,6 +103,20 @@ namespace permissionAPI.src.Infrastructure.Repositories
             }
         }
 
+        public async Task<WarehouseDbo> AddWarehouseAsync(WarehouseDbo Warehosue)
+        {
+            try
+            {
+                _dbContext.warehouse.Add(Warehosue);
+                await _dbContext.SaveChangesAsync();
+                return Warehosue;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
 
     }
 }

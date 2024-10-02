@@ -71,7 +71,7 @@ namespace permissionAPI.Contollers
             try
             {
                 var data = await _UserService.AddUserAsync(inputUSerDbo);
-                response.SetSuccess(data, "cim added successfully", "201");
+                response.SetSuccess(data, "user added successfully", "201");
 
                 return Ok(response);
             }

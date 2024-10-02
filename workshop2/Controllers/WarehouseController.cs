@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using permissionAPI.DTOs;
 using permissionAPI.src.Core.Interface;
-using permissionAPI.src.Core.Service;
 
 namespace permissionAPI.Controllers
 {
@@ -64,7 +63,7 @@ namespace permissionAPI.Controllers
             try
             {
                 // เรียกใช้ฟังก์ชันจาก WarehouseService
-                var warehouseDto = await _WarehouseService.getwarehosedetail(warehouseid, rentalDateStart,warehousestatus);
+                var warehouseDto = await _WarehouseService.getwarehosedetail(warehouseid, rentalDateStart, warehousestatus);
                 return Ok(warehouseDto); // ส่งผลลัพธ์กลับในรูปแบบ JSON
             }
             catch (KeyNotFoundException ex)
@@ -77,5 +76,30 @@ namespace permissionAPI.Controllers
             }
         }
 
+
+        [HttpPost("AddWarehouse")]
+        public async Task<IActionResult> AddWarehouseAsync([FromBody] InputWarehosueDbo InputWarehosueDbo)
+        {
+            var response = new BaseHttpResponse<DTOs.WarehouseDbo>();
+
+            try
+            {
+                var data = await _WarehouseService.AddWarehouseAsync(InputWarehosueDbo);
+                response.SetSuccess(data, "warehouse added successfully", "201");
+
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                var err = new ErrorData
+                {
+                    Code = "-2",
+                    Message = ex.Message
+                };
+                _logger.LogError(ex, "Error adding warehouse");
+                response.SetError(err, ex.Message, "500");
+                return BadRequest(response);
+            }
+        }
     }
 }
