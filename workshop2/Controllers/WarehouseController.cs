@@ -92,7 +92,7 @@ namespace permissionAPI.Controllers
             {
                 return StatusCode(500, new { message = ex.Message }); // ส่ง HTTP 500 เมื่อเกิดข้อผิดพลาดภายใน
             }
-
+        }
         [HttpPost("AddWarehouse")]
         public async Task<IActionResult> AddWarehouseAsync([FromBody] InputWarehosueDbo InputWarehosueDbo)
         {
@@ -114,9 +114,9 @@ namespace permissionAPI.Controllers
                 };
                 _logger.LogError(ex, "Error adding warehouse");
                 response.SetError(err, ex.Message, "500");
-                return BadRequest(response);    
+                return BadRequest(response);
+            }
+
         }
-
-
     }
 }

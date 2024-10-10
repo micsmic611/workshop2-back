@@ -4,6 +4,7 @@ using workshop2.src.Core.Interface;
 using permissionAPI.DTOs;
 using permissionAPI.src.Entities;
 using Microsoft.Extensions.Logging;
+using permissionAPI.src.Infrastructure.Interface;
 
 namespace workshop2.src.Services
 {
@@ -11,11 +12,12 @@ namespace workshop2.src.Services
     {
         private readonly IRentalRepository _rentalRepository;
         private readonly ILogger<RentalService> _logger;
-
-        public RentalService(IRentalRepository rentalRepository, ILogger<RentalService> logger)
+        private readonly ICompanyRepository _companyRepository;
+        public RentalService(IRentalRepository rentalRepository, ILogger<RentalService> logger, ICompanyRepository companyRepository)
         {
             _rentalRepository = rentalRepository;
             _logger = logger; // Injecting the logger
+            _companyRepository = companyRepository;
         }
 
         public async Task<List<CompanyforidDTO>> GetCompanyByIDAsync(string companyname)
@@ -24,7 +26,7 @@ namespace workshop2.src.Services
             {
                 throw new ArgumentNullException(nameof(companyname), "ชื่อบริษัทต้องไม่ว่างเปล่า");
             }
-            return await _rentalRepository.GetCompanyByIDAsync(companyname);
+            return await _companyRepository.GetCompanyByIDAsync(companyname);
         }
         public async Task AddRentalAsync(RentalDTO rental)
         {

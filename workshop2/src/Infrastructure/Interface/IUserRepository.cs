@@ -14,7 +14,7 @@ namespace permissionAPI.src.Infrastructure.Interface
         Task<UserDbo> Create(UserDbo user);
         Task<UserDbo> Update(UserDbo user);
 
-        Task<UserDbo> GetByEmail(string email);
+        Task<UserDbo> GetByusername(string username);
         Task<UserDbo> GetById(int UserID);
         Task<UserDbo> UpdateUserAsync(UserDbo user);
         Task<UserDbo> UpdateEmpAsync(UserDbo user);

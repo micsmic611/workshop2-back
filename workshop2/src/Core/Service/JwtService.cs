@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
@@ -19,17 +20,24 @@ namespace auth.Helpers
             }
         }
 
-        public string Generate(int UserID)
+        public string Generate(int userID, int roleID)
         {
             var symmetricSecurityKey = new SymmetricSecurityKey(secureKey);
             var credentials = new SigningCredentials(symmetricSecurityKey, SecurityAlgorithms.HmacSha256Signature);
             var header = new JwtHeader(credentials);
 
-            var payload = new JwtPayload(UserID.ToString(), null, null, null, DateTime.Today.AddDays(1));
-            var securityToken = new JwtSecurityToken(header, payload);
+            // เพิ่ม userID และ roleID ลงใน payload
+            var payload = new JwtPayload
+    {
+        { "userId", userID },
+        { "roleId", roleID },
+        { "exp", DateTime.UtcNow.AddDays(1).ToString() } // ตั้งค่าหมดอายุ
+    };
 
+            var securityToken = new JwtSecurityToken(header, payload);
             return new JwtSecurityTokenHandler().WriteToken(securityToken);
         }
+
 
         public JwtSecurityToken Verify(string jwt)
         {

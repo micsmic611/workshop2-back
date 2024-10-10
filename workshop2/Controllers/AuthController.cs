@@ -38,7 +38,7 @@ namespace auth.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login(LoginDto dto)
         {
-            var user = await _repository.GetByEmail(dto.email); // ใช้ await ที่นี่
+            var user = await _repository.GetByusername(dto.Username);
             if (user == null)
             {
                 return Unauthorized("Invalid credentials.");
@@ -51,7 +51,7 @@ namespace auth.Controllers
             }
 
             // Generate JWT
-            var token = _jwtService.Generate(user.UserID);
+            var token = _jwtService.Generate(user.UserID, user.RoleId ?? 0); // ส่ง userID และ roleID
             return Ok(new { Token = token });
         }
 
@@ -80,9 +80,9 @@ namespace auth.Controllers
         }
 
         [HttpPost("reset-password")]
-        public async Task<IActionResult> ResetPassword(string email, string newPassword)
+        public async Task<IActionResult> ResetPassword(string username, string newPassword)
         {
-            var user = await _repository.GetByEmail(email);
+            var user = await _repository.GetByusername(username);
             if (user == null)
             {
                 return NotFound("User not found.");

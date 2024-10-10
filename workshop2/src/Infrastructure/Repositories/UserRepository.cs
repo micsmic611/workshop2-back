@@ -76,10 +76,7 @@ namespace permissionAPI.src.Infrastructure.Repositories
             var userData = new List<UserDbo>();
             try
             {
-                userData = await _dbContext.User
-                    .Where(x => x.RoleId == 2 && x.Username.Contains(Username))
-                    .AsNoTracking()
-                    .ToListAsync();
+                userData = await _dbContext.User.Where(x => x.RoleId == 2 && x.Username == Username).AsNoTracking().ToListAsync();
                 return userData;
             }
             catch (Exception ex)
@@ -144,9 +141,9 @@ namespace permissionAPI.src.Infrastructure.Repositories
             await _dbContext.SaveChangesAsync();
             return existingUser;
         }
-        public async Task<UserDbo> GetByEmail(string email)
+        public async Task<UserDbo> GetByusername(string username)
         {
-            return await _dbContext.User.FirstOrDefaultAsync(u => u.email == email);
+            return await _dbContext.User.FirstOrDefaultAsync(u => u.Username == username);
         }
 
         public async Task<UserDbo> GetById(int UserID)

@@ -27,7 +27,7 @@ namespace permissionAPI.DTOs
     }
     public class LoginDto
     {
-        public string? email { set; get; }
+        public string? Username { set; get; }
         public string? Password { set; get; }
     }
     public class RegisterDto

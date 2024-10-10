@@ -46,14 +46,11 @@ builder.Services.AddDbContext<DataContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // Add CORS policy
-builder.Services.AddCors(options =>
+builder.Services.AddCors(o =>
 {
-    options.AddPolicy("AllowAll", policyBuilder =>
-    {
-        policyBuilder.AllowAnyOrigin()
-                     .AllowAnyMethod()
-                     .AllowAnyHeader();
-    });
+    o.AddDefaultPolicy(builder => builder.AllowAnyOrigin()
+        .AllowAnyMethod()
+        .AllowAnyHeader());
 });
 
 var app = builder.Build();
@@ -65,7 +62,10 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseCors();
+app.UseCors(x => x
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader());
 
 app.UseHttpsRedirection();
 
