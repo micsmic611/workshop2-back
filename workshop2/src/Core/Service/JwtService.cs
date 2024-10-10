@@ -23,21 +23,24 @@ namespace auth.Helpers
         public string Generate(int userID, int roleID)
         {
             var symmetricSecurityKey = new SymmetricSecurityKey(secureKey);
-            var credentials = new SigningCredentials(symmetricSecurityKey, SecurityAlgorithms.HmacSha256Signature);
-            var header = new JwtHeader(credentials);
+            var credentials = new SigningCredentials(symmetricSecurityKey, SecurityAlgorithms.HmacSha256);
 
-            // เพิ่ม userID และ roleID ลงใน payload
-            var payload = new JwtPayload
-    {
-        { "userId", userID },
-        { "roleId", roleID },
-        { "exp", DateTime.UtcNow.AddDays(1).ToString() } // ตั้งค่าหมดอายุ
+            var claims = new[]
+            {
+        new Claim("userId", userID.ToString()),
+        new Claim("roleId", roleID.ToString())
     };
 
-            var securityToken = new JwtSecurityToken(header, payload);
-            return new JwtSecurityTokenHandler().WriteToken(securityToken);
-        }
+            var token = new JwtSecurityToken(
+                issuer: null,
+                audience: null,
+                claims: claims,
+                expires: DateTime.UtcNow.AddDays(1), // ตั้งค่าหมดอายุ
+                signingCredentials: credentials
+            );
 
+            return new JwtSecurityTokenHandler().WriteToken(token);
+        }
 
         public JwtSecurityToken Verify(string jwt)
         {
