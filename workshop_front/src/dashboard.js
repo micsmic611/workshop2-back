@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { jwtDecode } from "jwt-decode";
+import { jwtDecode } from "jwt-decode"; 
 import './dashboard.css'; // นำเข้าไฟล์ CSS ที่ปรับให้ตรงตามดีไซน์
 
 const Dashboard = () => {
@@ -7,6 +7,8 @@ const Dashboard = () => {
   const [payload, setPayload] = useState(null);
   const [userData, setUserData] = useState(null);
   const [warehouses, setWarehouses] = useState([]);
+  const [isEditing, setIsEditing] = useState(false);
+  const [editedUserData, setEditedUserData] = useState({});
 
   useEffect(() => {
     const storedToken = localStorage.getItem('token');
@@ -32,6 +34,7 @@ const Dashboard = () => {
             if (response.ok) {
               const data = await response.json();
               setUserData(data.data[0]);
+              setEditedUserData(data.data[0]);
             } else {
               console.error("Failed to fetch user data");
             }
@@ -70,40 +73,68 @@ const Dashboard = () => {
     }
   }, []);
 
+  const handleEditClick = () => {
+    setIsEditing(true);
+  };
+
+  const handleCancelClick = () => {
+    setIsEditing(false);
+    setEditedUserData(userData); // คืนค่าข้อมูลเดิม
+  };
+
+  const handleSaveClick = () => {
+    // TODO: เพิ่มฟังก์ชันการอัปเดตข้อมูลผู้ใช้ใน backend เมื่อคลิกยืนยัน
+    console.log('Save clicked', editedUserData);
+    setUserData(editedUserData);
+    setIsEditing(false);
+  };
+
+  const handleChange = (e) => {
+    setEditedUserData({ ...editedUserData, [e.target.name]: e.target.value });
+  };
+
   return (
     <div className="dashboard-container">
       <div className="sidebar">
         <div className="profile">
           <div className="avatar"></div>
           <div className="profile-info">
-            <p className="username">{userData ? `${userData.firstname} ${userData.lastname}` : 'Username'}</p>
+            <p className="username">Username</p>
             <p className="role">Employee - Warehouse</p>
           </div>
         </div>
         <div className="personal-info">
           <h2>ข้อมูลส่วนตัว</h2>
-          {userData ? (
+          {isEditing ? (
             <>
-              <p><strong>ชื่อ:</strong> {userData.firstname} {userData.lastname}</p>
-              <p><strong>อีเมล:</strong> {userData.email}</p>
-              <p><strong>เบอร์:</strong> {userData.phone || 'ไม่ระบุ'}</p>
-              <p><strong>ที่อยู่:</strong> {userData.address || 'ไม่ระบุ'}</p>
-              <button className="edit-button">แก้ไขข้อมูลส่วนตัว</button>
+              <p><strong>ชื่อ:</strong> <input type="text" name="firstname" value={editedUserData.firstname} onChange={handleChange} /></p>
+              <p><strong>นามสกุล:</strong> <input type="text" name="lastname" value={editedUserData.lastname} onChange={handleChange} /></p>
+              <p><strong>อีเมล:</strong> <input type="email" name="email" value={editedUserData.email} onChange={handleChange} /></p>
+              <p><strong>เบอร์:</strong> <input type="text" name="phone" value={editedUserData.phone} onChange={handleChange} /></p>
+              <p><strong>ที่อยู่:</strong> <input type="text" name="address" value={editedUserData.address} onChange={handleChange} /></p>
+              <button className="save-button" onClick={handleSaveClick}>ยืนยัน</button>
+              <button className="cancel-button" onClick={handleCancelClick}>ยกเลิก</button>
             </>
           ) : (
-            <p className="no-data">ไม่มีข้อมูลผู้ใช้</p>
+            <>
+              <p><strong>ชื่อ:</strong> {userData?.firstname} {userData?.lastname}</p>
+              <p><strong>อีเมล:</strong> {userData?.email}</p>
+              <p><strong>เบอร์:</strong> {userData?.phone || 'ไม่ระบุ'}</p>
+              <p><strong>ที่อยู่:</strong> {userData?.address || 'ไม่ระบุ'}</p>
+              <button className="edit-button" onClick={handleEditClick}>แก้ไขข้อมูลส่วนตัว</button>
+            </>
           )}
         </div>
         <button className="logout-button">ออกจากระบบ</button>
       </div>
-  
+
       <div className="main-content">
         <div className="navbar">
           <button className="nav-button">หน้าแรก</button>
           <button className="nav-button">ข้อมูลบริษัท</button>
           <button className="nav-button">รายงาน</button>
         </div>
-  
+        
         <div className="warehouse-search">
           <input type="text" placeholder="ชื่อโกดัง" />
           <input type="date" />
@@ -117,7 +148,7 @@ const Dashboard = () => {
           </div>
           <button className="search-button">ค้นหา</button>
         </div>
-  
+
         <div className="warehouse-list">
           <h2>โกดัง</h2>
           <table className="warehouse-table">
@@ -132,7 +163,7 @@ const Dashboard = () => {
               </tr>
             </thead>
             <tbody>
-              {warehouses.length > 0 ? (
+            {warehouses.length > 0 ? (
                 warehouses.map((warehouse) => (
                   <tr key={warehouse.warehouseid}>
                     <td>{warehouse.warehouseid}</td>
@@ -158,7 +189,6 @@ const Dashboard = () => {
       </div>
     </div>
   );
-  
 };
 
 export default Dashboard;
