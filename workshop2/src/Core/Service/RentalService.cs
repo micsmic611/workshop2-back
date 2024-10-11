@@ -13,12 +13,8 @@ namespace workshop2.src.Services
         private readonly IRentalRepository _rentalRepository;
         private readonly ILogger<RentalService> _logger;
         private readonly ICompanyRepository _companyRepository;
-<<<<<<< HEAD
 
         public RentalService(IRentalRepository rentalRepository, ILogger<RentalService> logger,ICompanyRepository companyRepository)
-=======
-        public RentalService(IRentalRepository rentalRepository, ILogger<RentalService> logger, ICompanyRepository companyRepository)
->>>>>>> cb996cfc4dd8a8940bd630c6d097a4049a2f5987
         {
             _rentalRepository = rentalRepository;
             _companyRepository = companyRepository;

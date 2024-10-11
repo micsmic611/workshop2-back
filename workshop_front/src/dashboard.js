@@ -20,7 +20,7 @@ const Dashboard = () => {
         setPayload(decoded);
 
         const userId = decoded.userId;
-
+        
         const fetchUserData = async () => {
           try {
             const response = await fetch(`https://localhost:7111/api/User/GetUserbyUserId?userid=${userId}`, {
@@ -45,7 +45,7 @@ const Dashboard = () => {
 
         const fetchWarehouseData = async () => {
           try {
-            const response = await fetch('https://localhost:7111/api/Warehouse/GetAllWarehouse', {
+            const response = await fetch('https://localhost:7111/api/Warehouse/warehouserental', {
               method: 'GET',
               headers: {
                 Authorization: `Bearer ${storedToken}`,
@@ -55,7 +55,7 @@ const Dashboard = () => {
 
             if (response.ok) {
               const data = await response.json();
-              setWarehouses(data.data);
+              setWarehouses(data); // ใช้ข้อมูลที่ได้รับตรงๆ
             } else {
               console.error("Failed to fetch warehouse data");
             }
@@ -92,9 +92,11 @@ const Dashboard = () => {
       phone: editedUserData.phone,
       address: editedUserData.address,
     };
+    
+    console.log('Data being sent:', userUpdateData); // ตรวจสอบข้อมูลที่กำลังส่ง
   
     try {
-      const response = await fetch(`https://localhost:7111/api/User/UpdateUser?Userid=${userUpdateData.userID}`, {
+      const response = await fetch(`https://localhost:7111/api/User/UpdateUser`, {
         method: 'PUT',
         headers: {
           Authorization: `Bearer ${token}`,
@@ -105,10 +107,9 @@ const Dashboard = () => {
   
       if (response.ok) {
         const updatedData = await response.json();
-        // อัปเดต userData ด้วยข้อมูลที่ได้รับจากการอัปเดต
-        setUserData(updatedData.data); // ใช้ค่าที่อัปเดตมาแสดงใน UI
-        setEditedUserData(updatedData.data); // อัปเดตค่า editedUserData ด้วยข้อมูลใหม่
-        setIsEditing(false); // สลับกลับไปยังโหมดแสดงข้อมูลปกติ
+        setUserData(updatedData.data); // อัปเดตข้อมูลผู้ใช้ที่แสดง
+        setEditedUserData(updatedData.data);
+        setIsEditing(false);
       } else {
         const errorData = await response.json();
         console.error('Failed to update user data:', errorData);
@@ -117,7 +118,6 @@ const Dashboard = () => {
       console.error('Error updating user data:', error);
     }
   };
-  
 
   const handleChange = (e) => {
     setEditedUserData({ ...editedUserData, [e.target.name]: e.target.value });
@@ -186,23 +186,25 @@ const Dashboard = () => {
               <tr>
                 <th>รหัสโกดัง</th>
                 <th>ชื่อโกดัง</th>
+                <th>ที่อยู่โกดัง</th>
                 <th>ขนาดพื้นที่</th>
                 <th>สถานะ</th>
-                <th>วันที่เข้า</th>
+                <th>วันที่เช่า</th>
                 <th>ดูข้อมูล</th>
               </tr>
             </thead>
             <tbody>
               {warehouses.length > 0 ? (
                 warehouses.map((warehouse) => (
-                  <tr key={warehouse.warehouseid}>
+                  <tr key={warehouse.rentalid}>
                     <td>{warehouse.warehouseid}</td>
                     <td>{warehouse.warehousename}</td>
+                    <td>{warehouse.warehouseaddress}</td>
                     <td>{warehouse.warehousesize}</td>
-                    <td className={warehouse.warehousestatus === 'ว่าง' ? 'text-green' : 'text-red'}>
+                    <td className={warehouse.warehousestatus === 'Active' ? 'text-green' : 'text-red'}>
                       {warehouse.warehousestatus}
                     </td>
-                    <td>{warehouse.date || '-'}</td>
+                    <td>{new Date(warehouse.date_rental_start).toLocaleDateString()} - {new Date(warehouse.date_rental_end).toLocaleDateString()}</td>
                     <td>
                       <button className="view-button">🔍</button>
                     </td>
@@ -210,7 +212,7 @@ const Dashboard = () => {
                 ))
               ) : (
                 <tr>
-                  <td colSpan="6" className="no-data">ไม่มีข้อมูลโกดัง</td>
+                  <td colSpan="7" className="no-data">ไม่มีข้อมูลโกดัง</td>
                 </tr>
               )}
             </tbody>
