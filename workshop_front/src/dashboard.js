@@ -84,8 +84,8 @@ const Dashboard = () => {
 
   const handleSaveClick = async () => {
     const userUpdateData = {
-      userID: userData.userID, // ใช้ userID จาก userData
-      username: userData.username, // username ที่ควรเก็บไว้จากข้อมูลผู้ใช้เดิม
+      userID: userData.userID,
+      username: userData.username,
       firstname: editedUserData.firstname,
       lastname: editedUserData.lastname,
       email: editedUserData.email,
@@ -93,10 +93,8 @@ const Dashboard = () => {
       address: editedUserData.address,
     };
   
-    console.log('Data being sent:', userUpdateData); // ตรวจสอบข้อมูลที่กำลังส่ง
-  
     try {
-      const response = await fetch(`https://localhost:7111/api/User/UpdateUser`, {
+      const response = await fetch(`https://localhost:7111/api/User/UpdateUser?Userid=${userUpdateData.userID}`, {
         method: 'PUT',
         headers: {
           Authorization: `Bearer ${token}`,
@@ -107,8 +105,10 @@ const Dashboard = () => {
   
       if (response.ok) {
         const updatedData = await response.json();
-        setUserData(updatedData);
-        setIsEditing(false);
+        // อัปเดต userData ด้วยข้อมูลที่ได้รับจากการอัปเดต
+        setUserData(updatedData.data); // ใช้ค่าที่อัปเดตมาแสดงใน UI
+        setEditedUserData(updatedData.data); // อัปเดตค่า editedUserData ด้วยข้อมูลใหม่
+        setIsEditing(false); // สลับกลับไปยังโหมดแสดงข้อมูลปกติ
       } else {
         const errorData = await response.json();
         console.error('Failed to update user data:', errorData);
@@ -118,7 +118,7 @@ const Dashboard = () => {
     }
   };
   
-  
+
   const handleChange = (e) => {
     setEditedUserData({ ...editedUserData, [e.target.name]: e.target.value });
   };
@@ -129,7 +129,7 @@ const Dashboard = () => {
         <div className="profile">
           <div className="avatar"></div>
           <div className="profile-info">
-            <p className="username">Username</p>
+            <p className="username">{userData?.username || 'Username'}</p>
             <p className="role">Employee - Warehouse</p>
           </div>
         </div>
@@ -193,7 +193,7 @@ const Dashboard = () => {
               </tr>
             </thead>
             <tbody>
-            {warehouses.length > 0 ? (
+              {warehouses.length > 0 ? (
                 warehouses.map((warehouse) => (
                   <tr key={warehouse.warehouseid}>
                     <td>{warehouse.warehouseid}</td>
