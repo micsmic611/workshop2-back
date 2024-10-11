@@ -82,12 +82,43 @@ const Dashboard = () => {
     setEditedUserData(userData); // คืนค่าข้อมูลเดิม
   };
 
-  const handleSaveClick = () => {
-    console.log('Save clicked', editedUserData);
-    setUserData(editedUserData);
-    setIsEditing(false);
+  const handleSaveClick = async () => {
+    const userUpdateData = {
+      userID: userData.userID, // ใช้ userID จาก userData
+      username: userData.username, // username ที่ควรเก็บไว้จากข้อมูลผู้ใช้เดิม
+      firstname: editedUserData.firstname,
+      lastname: editedUserData.lastname,
+      email: editedUserData.email,
+      phone: editedUserData.phone,
+      address: editedUserData.address,
+    };
+  
+    console.log('Data being sent:', userUpdateData); // ตรวจสอบข้อมูลที่กำลังส่ง
+  
+    try {
+      const response = await fetch(`https://localhost:7111/api/User/UpdateUser`, {
+        method: 'PUT',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(userUpdateData),
+      });
+  
+      if (response.ok) {
+        const updatedData = await response.json();
+        setUserData(updatedData);
+        setIsEditing(false);
+      } else {
+        const errorData = await response.json();
+        console.error('Failed to update user data:', errorData);
+      }
+    } catch (error) {
+      console.error('Error updating user data:', error);
+    }
   };
-
+  
+  
   const handleChange = (e) => {
     setEditedUserData({ ...editedUserData, [e.target.name]: e.target.value });
   };
