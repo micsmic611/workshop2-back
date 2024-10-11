@@ -1,0 +1,178 @@
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #e0f5e0; /* สีเขียวอ่อน */
+  margin: 0;
+  padding: 0;
+  height: 100vh; /* เต็มความสูงหน้าจอ */
+}
+
+.dashboard-container {
+  display: flex;
+  flex-direction: row;
+  width: 100vw; /* ความกว้างเต็มหน้าจอ */
+  height: 100vh; /* ความสูงเต็มหน้าจอ */
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar {
+  background-color: #2E8B57;
+  width: 300px; /* ความกว้างของ sidebar */
+  padding: 30px;
+  color: white;
+  height: 100%; /* ให้สูงเต็มที่ */
+  display: flex;
+  flex-direction: column;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+}
+
+.avatar {
+  width: 70px; 
+  height: 70px; 
+  background-color: #17e655; 
+  border-radius: 50%;
+  margin-right: 15px; 
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.personal-info {
+  margin-top: 30px; 
+}
+
+.edit-button{
+  background-color: #0cec6d; /*/
+  color: white; /* สีฟอนต์ */
+  border: none;
+  padding: 15px; /* เพิ่ม padding */
+  cursor: pointer; /* เปลี่ยนเป็นมือเมื่อ hover */
+  margin-top: 20px; /* ระยะห่างด้านบน */
+  border-radius: 5px; /* มุมโค้ง */
+  font-size: 16px; /* ขนาดฟอนต์ */
+  transition: background-color 0.3s; /* การเปลี่ยนสีเมื่อ hover */
+}
+.logout-button {
+  background-color: rgb(255, 7, 7); /* สีแดงสำหรับปุ่มออกจากระบบ */
+  color: white; /* สีฟอนต์ */
+  border: none;
+  padding: 15px; /* เพิ่ม padding */
+  cursor: pointer; /* เปลี่ยนเป็นมือเมื่อ hover */
+  margin-top: 20px; /* ระยะห่างด้านบน */
+  border-radius: 5px; /* มุมโค้ง */
+  font-size: 16px; /* ขนาดฟอนต์ */
+  transition: background-color 0.3s; /* การเปลี่ยนสีเมื่อ hover */
+}
+.save-button{
+  background-color: #05ee4b;
+  color: white;
+  border: none;
+  padding: 15px; /* เพิ่ม padding */
+  cursor: pointer;
+  margin-top: 15px; 
+  border-radius: 5px;
+  font-size: 16px; 
+  transition: background-color 0.3s; /* เพิ่มการเปลี่ยนสี */
+}
+.cancel-button{
+  background-color: #ff0000;
+  color: white;
+  border: none;
+  padding: 15px; /* เพิ่ม padding */
+  cursor: pointer;
+  margin-top: 15px; 
+  border-radius: 5px;
+  font-size: 16px; 
+  transition: background-color 0.3s; /* เพิ่มการเปลี่ยนสี */
+}
+.nav-button,
+.search-button,
+.view-button {
+  background-color: #4CAF50; /* สีเขียว */
+  color: white;
+  border: none;
+  padding: 15px; /* เพิ่ม padding */
+  cursor: pointer;
+  margin-top: 15px; 
+  border-radius: 5px;
+  font-size: 16px; 
+  transition: background-color 0.3s; /* เพิ่มการเปลี่ยนสี */
+}
+
+.edit-button:hover{
+  background-color: #0cec6d; /* สีเมื่อ hover */
+}
+.logout-button:hover{
+  background-color: rgb(255, 6, 6); /* สีเมื่อ hover */
+}
+.save-button:hover,
+.cancel-button:hover,
+.nav-button:hover,
+.search-button:hover,
+.view-button:hover {
+  background-color: #388E3C; /* สีเขียวเข้มเมื่อ hover */
+}
+
+.main-content {
+  flex: 1; 
+  padding: 30px; 
+  background-color: #f0f8f5;
+  overflow-y: auto; /* เพิ่ม scroll ถ้ามีเนื้อหามาก */
+}
+
+.navbar {
+  display: flex; 
+  justify-content: space-around; 
+  margin-bottom: 30px; 
+}
+
+.warehouse-search {
+  display: flex; 
+  align-items: center; 
+  justify-content: space-between; 
+  margin-bottom: 30px; 
+}
+
+.warehouse-search input {
+  padding: 12px; 
+  margin-right: 10px; 
+  border: 1px solid #ddd; 
+  border-radius: 5px; 
+  font-size: 16px; 
+}
+
+.warehouse-table {
+  width: 100%; 
+  border-collapse: collapse; 
+}
+
+.warehouse-table th, .warehouse-table td {
+  border: 1px solid #ddd; 
+  padding: 12px; 
+  text-align: center; 
+  font-size: 16px; 
+}
+
+.warehouse-table th {
+  background-color: #f2f2f2; 
+}
+
+.text-green {
+  color: green; 
+}
+
+.text-red {
+  color: red; 
+}
+
+.no-data {
+  text-align: center; 
+  color: #777; 
+  font-size: 18px; 
+}

@@ -47,7 +47,31 @@ namespace permissionAPI.src.Core.Service
                 throw new ApplicationException("An error occurred while getting the User data.", ex);
             }
         }
+        public async Task<List<Userdto>> GetUserByIDAsync(int userid)
+        {
+            try
+            {
+                var userData = await _UserRepository.GetUserByuserIDAsync(userid);
+                var userReturn = userData.Select(s => new DTOs.Userdto
+                {
+                    UserID = s.UserID,
+                    Username = s.Username,
+                    Firstname =s.Firstname,
+                    Lastname = s.Lastname,
+                    email = s.email,
+                    phone = s.phone,
+                    address = s.address,
+                    RoleId = s.RoleId,
+                    status = s.status
+                }).ToList();
 
+                return userReturn;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         public async Task<List<DTOs.UserDbo>> GetUserByIDAsync(String Username ,String Password)
                 {
                     try
