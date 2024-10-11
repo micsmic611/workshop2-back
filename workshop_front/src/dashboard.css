@@ -1,0 +1,54 @@
+/* Dashboard.css */
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f0f0; /* สีพื้นหลังของทั้งหน้า */
+    margin: 0;
+    padding: 0;
+  }
+  
+  .dashboard-container {
+    padding: 20px;
+    background-color: #f7f7f7; /* สีพื้นหลังของ dashboard */
+    border-radius: 10px;
+    max-width: 600px; /* ความกว้างสูงสุด */
+    margin: 20px auto; /* จัดกลางในแนวนอน */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* เงา */
+  }
+  
+  .dashboard-title {
+    text-align: center; /* จัดกลางข้อความ */
+    color: #333; /* สีข้อความ */
+  }
+  
+  .user-info {
+    background-color: #ffffff; /* สีพื้นหลังของข้อมูลผู้ใช้ */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* เงา */
+    margin-top: 20px; /* ระยะห่างด้านบน */
+  }
+  
+  .user-info p {
+    margin: 5px 0; /* ระยะห่างระหว่างย่อหน้า */
+  }
+  
+  .edit-button {
+    margin-top: 20px;
+    padding: 10px 15px;
+    background-color: #007BFF; /* สีพื้นหลังของปุ่ม */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer; /* เปลี่ยนเป็นมือเมื่อ hover */
+  }
+  
+  .edit-button:hover {
+    background-color: #0056b3; /* สีพื้นหลังเมื่อ hover */
+  }
+  
+  .no-data {
+    text-align: center; /* จัดกลางข้อความ */
+    color: #777; /* สีข้อความสำหรับข้อความที่ไม่มีข้อมูล */
+  }
+  

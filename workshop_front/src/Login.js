@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"; // นำเข้า useNavigate
 import { jwtDecode } from "jwt-decode"; // นำเข้า jwtDecode
 import "./Login.css"; // นำเข้าไฟล์ CSS
+
 import image1 from './images/image 1.png';
+
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -38,7 +40,13 @@ const Login = () => {
           console.log("Role ID:", roleId);
   
           // นำทางไปยัง Dashboard
-          navigate("/dashboard");
+          if (roleId === "1") {
+            navigate("/dashboard"); // ถ้า roleId เป็น 1 ไปหน้า dashboard
+          } else if (roleId === "2") {
+            navigate("/admin"); // ถ้า roleId เป็น 2 ไปอีกหน้านึง
+          } else {
+            console.error("Unknown roleId.");
+          }
         } catch (error) {
           console.error("Failed to decode token:", error); // จัดการข้อผิดพลาดการ decode
         }
@@ -49,7 +57,6 @@ const Login = () => {
       console.error("Login failed");
     }
   };
-  
   
 
   return (

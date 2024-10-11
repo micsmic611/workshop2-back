@@ -6,6 +6,7 @@ namespace permissionAPI.src.Core.Interface
     {
         Task<List<UserDbo>> GetAllUserAsync();
         Task<DTOs.UserDbo> AddUserAsync(InputUSerDbo inputUSerDbo);
+        Task<List<Userdto>> GetUserByIDAsync(int userid);
         Task<List<UserDbo>> GetUserByIDAsync(String Username ,String Password);
         Task<List<EmployeeDTO>> GetAllEmpAsync();
         Task<List<EmployeeDTO>> GetEmpByNameAsync(String Username);

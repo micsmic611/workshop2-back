@@ -40,7 +40,28 @@ namespace permissionAPI.Contollers
                 return BadRequest(err);
             }
         }
+        [HttpGet("GetUserbyUserId")]
+        public async Task<IActionResult> GetUserByIDAsync(int userid)
+        {
+            var response = new BaseHttpResponse<List<Userdto>>();
+            try
+            {
+                var data = await _UserService.GetUserByIDAsync(userid);
 
+                response.SetSuccess(data, "Success", "200");
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                ErrorData err = new ErrorData();
+                err.Code = "1-GetUser";
+                err.Message = ex.Message;
+                _logger.LogError(ex, "Error getting all carrier");
+                response.SetError(err, ex.Message, "500");
+
+                return BadRequest(response);
+            }
+        }
         [HttpGet("GetUserbyId")]
         public async Task<IActionResult> GetUserByIDAsync(String Username ,String Password)
         {

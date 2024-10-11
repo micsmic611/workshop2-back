@@ -5,6 +5,7 @@ using permissionAPI.src.Infrastructure.Interface;
 using permissionAPI.src.Entities;
 using BCrypt.Net;
 using auth.Helpers;
+using System.Net;
 
 namespace auth.Controllers
 {
@@ -28,6 +29,13 @@ namespace auth.Controllers
             {
                 Username = dto.Username,
                 email = dto.email,
+                Firstname =dto.Firstname,
+                Lastname =dto.Lastname,
+                phone=dto.phone,
+                address =dto.address,
+                RoleId= dto.RoleId = 1,
+                status = dto.status,
+
                 Password = BCrypt.Net.BCrypt.HashPassword(dto.Password)
             };
 

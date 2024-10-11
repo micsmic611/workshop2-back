@@ -31,6 +31,19 @@ namespace permissionAPI.src.Infrastructure.Repositories
                 throw ex;
             }
         }
+        public async Task<List<UserDbo>> GetUserByuserIDAsync( int userid)
+        {
+            var userData = new List<UserDbo>();
+            try
+            {
+                userData = await _dbContext.User.Where(x => x.UserID == userid).AsNoTracking().ToListAsync();
+                return userData;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         //ex function(requirement ,Username password)
         public async Task<List<UserDbo>> GetUserByIDAsync(String Username ,String Password)
         {
