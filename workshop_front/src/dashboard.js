@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { jwtDecode } from "jwt-decode"; 
+import { jwtDecode } from "jwt-decode";
 import './dashboard.css'; // นำเข้าไฟล์ CSS ที่ปรับให้ตรงตามดีไซน์
 
 const Dashboard = () => {
@@ -83,7 +83,6 @@ const Dashboard = () => {
   };
 
   const handleSaveClick = () => {
-    // TODO: เพิ่มฟังก์ชันการอัปเดตข้อมูลผู้ใช้ใน backend เมื่อคลิกยืนยัน
     console.log('Save clicked', editedUserData);
     setUserData(editedUserData);
     setIsEditing(false);
