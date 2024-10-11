@@ -1,26 +1,39 @@
+/* dashboard.css */
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f0f0f0; /* สีพื้นหลัง */
+  margin: 0;
+  padding: 0;
+}
+
 .dashboard-container {
   display: flex;
   flex-direction: row;
+  max-width: 1200px; /* ความกว้างสูงสุด */
+  margin: 20px auto; /* จัดกลาง */
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* เงา */
 }
 
 .sidebar {
-  background-color: #2E8B57;
-  width: 250px;
+  background-color: #2E8B57; /* สีพื้นหลังของ sidebar */
+  width: 250px; /* ความกว้างของ sidebar */
   padding: 20px;
-  color: white;
+  color: white; /* สีฟอนต์ */
 }
 
 .profile {
-  display: flex;
-  align-items: center;
+  display: flex; /* ใช้ flexbox */
+  align-items: center; /* จัดแนวกลาง */
 }
 
 .avatar {
   width: 50px;
   height: 50px;
-  background-color: #17e655;
-  border-radius: 50%;
-  margin-right: 10px;
+  background-color: #17e655; /* สีของ avatar */
+  border-radius: 50%; /* รูปภาพเป็นวงกลม */
+  margin-right: 10px; /* ระยะห่าง */
 }
 
 .profile-info {
@@ -29,76 +42,112 @@
 }
 
 .personal-info {
-  margin-top: 20px;
+  margin-top: 20px; /* ระยะห่างด้านบน */
 }
 
 .edit-button,
 .logout-button {
-  background-color: red;
-  color: white;
+  background-color: red; /* สีปุ่ม */
+  color: white; /* สีฟอนต์ */
   border: none;
   padding: 10px;
-  cursor: pointer;
-  margin-top: 10px;
+  cursor: pointer; /* เปลี่ยนเป็นมือเมื่อ hover */
+  margin-top: 10px; /* ระยะห่างด้านบน */
+  border-radius: 5px; /* มุมโค้ง */
+}
+
+.edit-button:hover, .logout-button:hover {
+  background-color: darkred; /* สีเมื่อ hover */
 }
 
 .main-content {
-  flex: 1;
-  padding: 20px;
+  flex: 1; /* ทำให้เนื้อหาหลักยืดเต็มที่ */
+  padding: 20px; /* padding */
 }
 
 .navbar {
-  display: flex;
-  justify-content: space-around;
-  margin-bottom: 20px;
+  display: flex; /* ใช้ flexbox */
+  justify-content: space-around; /* จัดให้มีระยะห่าง */
+  margin-bottom: 20px; /* ระยะห่างด้านล่าง */
 }
 
 .nav-button {
-  background-color: #6B8E23;
-  color: white;
+  background-color: #6B8E23; /* สีน้ำเงิน */
+  color: white; /* สีฟอนต์ */
   border: none;
-  padding: 10px;
-  cursor: pointer;
+  padding: 10px; /* padding */
+  cursor: pointer; /* เปลี่ยนเป็นมือเมื่อ hover */
+  border-radius: 5px; /* มุมโค้ง */
+}
+
+.nav-button:hover {
+  background-color: #4A7B1A; /* สีเมื่อ hover */
 }
 
 .warehouse-search {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 20px;
+  display: flex; /* ใช้ flexbox */
+  align-items: center; /* จัดกลาง */
+  justify-content: space-between; /* จัดระยะห่าง */
+  margin-bottom: 20px; /* ระยะห่างด้านล่าง */
+}
+
+.warehouse-search input {
+  padding: 10px; /* padding */
+  margin-right: 10px; /* ระยะห่างด้านขวา */
+  border: 1px solid #ddd; /* เส้นขอบ */
+  border-radius: 5px; /* มุมโค้ง */
 }
 
 .search-button {
-  background-color: #6B8E23;
-  color: rgb(255, 255, 255);
+  background-color: #6B8E23; /* สีน้ำเงิน */
+  color: white; /* สีฟอนต์ */
   border: none;
-  padding: 10px;
-  cursor: pointer;
+  padding: 10px; /* padding */
+  cursor: pointer; /* เปลี่ยนเป็นมือเมื่อ hover */
+  border-radius: 5px; /* มุมโค้ง */
+}
+
+.search-button:hover {
+  background-color: #4A7B1A; /* สีเมื่อ hover */
 }
 
 .warehouse-table {
-  width: 100%;
-  border-collapse: collapse;
+  width: 100%; /* ความกว้างเต็ม */
+  border-collapse: collapse; /* รวมเส้นขอบ */
 }
 
 .warehouse-table th, .warehouse-table td {
-  border: 1px solid #ddd;
-  padding: 8px;
-  text-align: center;
+  border: 1px solid #ddd; /* เส้นขอบ */
+  padding: 8px; /* padding */
+  text-align: center; /* จัดกลาง */
+}
+
+.warehouse-table th {
+  background-color: #f2f2f2; /* สีพื้นหลังของหัวตาราง */
 }
 
 .text-green {
-  color: green;
+  color: green; /* สีเขียว */
 }
 
 .text-red {
-  color: red;
+  color: red; /* สีแดง */
 }
 
 .view-button {
-  background-color: #3CB371;
-  color: white;
+  background-color: #3CB371; /* สีปุ่ม */
+  color: white; /* สีฟอนต์ */
   border: none;
-  padding: 5px;
-  cursor: pointer;
+  padding: 5px; /* padding */
+  cursor: pointer; /* เปลี่ยนเป็นมือเมื่อ hover */
+  border-radius: 5px; /* มุมโค้ง */
+}
+
+.view-button:hover {
+  background-color: #2E8B57; /* สีเมื่อ hover */
+}
+
+.no-data {
+  text-align: center; /* จัดกลางข้อความ */
+  color: #777; /* สีข้อความสำหรับข้อความที่ไม่มีข้อมูล */
 }

@@ -76,7 +76,7 @@ const Dashboard = () => {
         <div className="profile">
           <div className="avatar"></div>
           <div className="profile-info">
-            <p className="username">Username</p>
+            <p className="username">{userData ? `${userData.firstname} ${userData.lastname}` : 'Username'}</p>
             <p className="role">Employee - Warehouse</p>
           </div>
         </div>
@@ -96,14 +96,14 @@ const Dashboard = () => {
         </div>
         <button className="logout-button">ออกจากระบบ</button>
       </div>
-
+  
       <div className="main-content">
         <div className="navbar">
           <button className="nav-button">หน้าแรก</button>
           <button className="nav-button">ข้อมูลบริษัท</button>
           <button className="nav-button">รายงาน</button>
         </div>
-        
+  
         <div className="warehouse-search">
           <input type="text" placeholder="ชื่อโกดัง" />
           <input type="date" />
@@ -117,7 +117,7 @@ const Dashboard = () => {
           </div>
           <button className="search-button">ค้นหา</button>
         </div>
-
+  
         <div className="warehouse-list">
           <h2>โกดัง</h2>
           <table className="warehouse-table">
@@ -133,13 +133,13 @@ const Dashboard = () => {
             </thead>
             <tbody>
               {warehouses.length > 0 ? (
-                warehouses.map((warehouse, index) => (
-                  <tr key={index}>
-                    <td>{warehouse.id}</td>
-                    <td>{warehouse.name}</td>
-                    <td>{warehouse.size}</td>
-                    <td className={warehouse.status === 'ว่าง' ? 'text-green' : 'text-red'}>
-                      {warehouse.status}
+                warehouses.map((warehouse) => (
+                  <tr key={warehouse.warehouseid}>
+                    <td>{warehouse.warehouseid}</td>
+                    <td>{warehouse.warehousename}</td>
+                    <td>{warehouse.warehousesize}</td>
+                    <td className={warehouse.warehousestatus === 'ว่าง' ? 'text-green' : 'text-red'}>
+                      {warehouse.warehousestatus}
                     </td>
                     <td>{warehouse.date || '-'}</td>
                     <td>
@@ -158,6 +158,7 @@ const Dashboard = () => {
       </div>
     </div>
   );
+  
 };
 
 export default Dashboard;
