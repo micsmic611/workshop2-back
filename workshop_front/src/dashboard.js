@@ -18,9 +18,8 @@ const Dashboard = () => {
       try {
         const decoded = jwtDecode(storedToken);
         setPayload(decoded);
-
         const userId = decoded.userId;
-        
+
         const fetchUserData = async () => {
           try {
             const response = await fetch(`https://localhost:7111/api/User/GetUserbyUserId?userid=${userId}`, {
@@ -55,7 +54,7 @@ const Dashboard = () => {
 
             if (response.ok) {
               const data = await response.json();
-              setWarehouses(data); // ใช้ข้อมูลที่ได้รับตรงๆ
+              setWarehouses(data); // ใช้ข้อมูลที่ได้รับจาก API
             } else {
               console.error("Failed to fetch warehouse data");
             }
@@ -92,11 +91,9 @@ const Dashboard = () => {
       phone: editedUserData.phone,
       address: editedUserData.address,
     };
-    
-    console.log('Data being sent:', userUpdateData); // ตรวจสอบข้อมูลที่กำลังส่ง
   
     try {
-      const response = await fetch(`https://localhost:7111/api/User/UpdateUser`, {
+      const response = await fetch(`https://localhost:7111/api/User/UpdateUser?Userid=${userUpdateData.userID}`, {
         method: 'PUT',
         headers: {
           Authorization: `Bearer ${token}`,
@@ -107,9 +104,9 @@ const Dashboard = () => {
   
       if (response.ok) {
         const updatedData = await response.json();
-        setUserData(updatedData.data); // อัปเดตข้อมูลผู้ใช้ที่แสดง
-        setEditedUserData(updatedData.data);
-        setIsEditing(false);
+        setUserData(updatedData.data); // อัปเดต userData ด้วยข้อมูลที่ได้รับจากการอัปเดต
+        setEditedUserData(updatedData.data); // อัปเดตค่า editedUserData ด้วยข้อมูลใหม่
+        setIsEditing(false); // สลับกลับไปยังโหมดแสดงข้อมูลปกติ
       } else {
         const errorData = await response.json();
         console.error('Failed to update user data:', errorData);
@@ -186,7 +183,7 @@ const Dashboard = () => {
               <tr>
                 <th>รหัสโกดัง</th>
                 <th>ชื่อโกดัง</th>
-                <th>ที่อยู่โกดัง</th>
+                <th>ที่อยู่</th>
                 <th>ขนาดพื้นที่</th>
                 <th>สถานะ</th>
                 <th>วันที่เช่า</th>
@@ -201,7 +198,7 @@ const Dashboard = () => {
                     <td>{warehouse.warehousename}</td>
                     <td>{warehouse.warehouseaddress}</td>
                     <td>{warehouse.warehousesize}</td>
-                    <td className={warehouse.warehousestatus === 'Active' ? 'text-green' : 'text-red'}>
+                    <td className={warehouse.warehousestatus === 'Active' ? 'text-green' : warehouse.warehousestatus === 'Inactive' ? 'text-red' : 'text-orange'}>
                       {warehouse.warehousestatus}
                     </td>
                     <td>{new Date(warehouse.date_rental_start).toLocaleDateString()} - {new Date(warehouse.date_rental_end).toLocaleDateString()}</td>
