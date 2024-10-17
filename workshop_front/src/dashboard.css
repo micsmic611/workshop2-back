@@ -2,9 +2,11 @@
   display: flex;
   flex-direction: column;
   height: 100vh;
+  background-color: #FAFAD8;
 }
 
 .navbar {
+  background-color: #ADBC9D;
   display: flex; /* ใช้ flexbox */
   justify-content: center; /* จัดให้ปุ่มอยู่ตรงกลาง */
   gap: 200px; /* ระยะห่างระหว่างปุ่ม */
@@ -14,7 +16,7 @@
 }
 
 .nav-button {
-  background-color: #3f51b5; /* เปลี่ยนสีพื้นหลังของปุ่ม */
+  background-color: #47674F; /* เปลี่ยนสีพื้นหลังของปุ่ม */
   color: white; /* เปลี่ยนสีตัวอักษร */
   border: none; /* ไม่แสดงขอบ */
   border-radius: 5px; /* ทำมุมให้มน */
@@ -24,7 +26,7 @@
 }
 
 .nav-button:hover {
-  background-color: #303f9f; /* เปลี่ยนสีพื้นหลังเมื่อ hover */
+  background-color: #47674F; /* เปลี่ยนสีพื้นหลังเมื่อ hover */
 }
 
 .warehouse-list {
@@ -39,13 +41,13 @@
 
 .warehouse-table th,
 .warehouse-table td {
-  border: 1px solid #ddd;
+  border: 1px solid #47674F;
   padding: 8px;
   text-align: center;
 }
 
 .warehouse-table th {
-  background-color: #007bff;
+  background-color: #47674F;
   color: white;
 }
 
@@ -67,6 +69,7 @@
 }
 
 .drawer-container {
+  background-color: #4A8F59;
   width: 250px;
   padding: 20px;
 }
@@ -101,3 +104,10 @@
 .logout-button:hover {
   background-color: #c82333;
 }
+
+.custom-appbar {
+  background-color: #ADBC9D !important; /* Force the background color */
+}
+
+
+

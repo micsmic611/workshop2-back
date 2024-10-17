@@ -93,8 +93,8 @@ const Dashboard = () => {
   );
 
   return (
-    <div className="dashboard-container">
-      <AppBar position="static">
+    <div className="dashboard-container"> 
+      <AppBar position="static" className="custom-appbar">
         <Toolbar>
           <IconButton edge="start" color="inherit" onClick={toggleDrawer(true)} aria-label="menu">
             <MenuIcon />
