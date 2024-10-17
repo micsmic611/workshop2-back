@@ -1,0 +1,259 @@
+import React, { useEffect, useState } from 'react';
+import { jwtDecode } from "jwt-decode"; 
+import '../css/dashboard.css'; 
+import { Drawer, AppBar, Toolbar, IconButton } from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
+import WarehousePopup from './WarehousePopup'; // นำเข้า WarehousePopup
+
+const Dashboard = () => {
+  const [token, setToken] = useState('');
+  const [userData, setUserData] = useState(null);
+  const [warehouses, setWarehouses] = useState([]);
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+  const [editedUserData, setEditedUserData] = useState({});
+  const [searchParams, setSearchParams] = useState({
+    warehouseId: '',
+    rentalDateStart: '',
+    rentalstatus: ''
+  });
+  const [popupOpen, setPopupOpen] = useState(false); 
+  const [selectedWarehouse, setSelectedWarehouse] = useState(null); 
+
+  useEffect(() => {
+    const storedToken = localStorage.getItem('token');
+    if (storedToken) {
+      setToken(storedToken);
+      fetchUserData(storedToken);
+      fetchWarehouseData(storedToken); 
+    }
+  }, []);
+
+  const fetchUserData = async (storedToken) => {
+    try {
+      const decoded = jwtDecode(storedToken);
+      const userId = decoded.userId;
+
+      const response = await fetch(`https://localhost:7111/api/User/GetUserbyUserId?userid=${userId}`, {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${storedToken}`,
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setUserData(data.data[0]);
+      } else {
+        console.error("Failed to fetch user data");
+      }
+    } catch (error) {
+      console.error('Error decoding token:', error);
+    }
+  };
+
+  const fetchWarehouseData = async (storedToken, search = false) => {
+    try {
+      const url = search 
+        ? `https://localhost:7111/api/Warehouse/warehousedetail?warehouseid=${searchParams.warehouseId}&rentalDateStart=${searchParams.rentalDateStart}&rentalstatus=${encodeURIComponent(searchParams.rentalstatus)}`
+        : 'https://localhost:7111/api/Warehouse/warehouserental';
+      
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${storedToken}`,
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log('Fetched warehouses:', data);
+        setWarehouses(Array.isArray(data) ? data : [data]);
+      } else {
+        const errorMessage = await response.text();
+        console.error("Failed to fetch warehouse data:", errorMessage);
+      }
+    } catch (error) {
+      console.error("Error fetching warehouse data:", error);
+    }
+  };
+
+  const handleSearch = () => {
+    const storedToken = localStorage.getItem('token');
+    if (storedToken) {
+      fetchWarehouseData(storedToken, true); 
+    }
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setSearchParams({ ...searchParams, [name]: value });
+  };
+
+  const handleEditClick = () => {
+    setIsEditing(true);
+    setEditedUserData({
+      firstname: userData?.firstname || '',
+      lastname: userData?.lastname || '',
+      email: userData?.email || '',
+      phone: userData?.phone || '',
+      address: userData?.address || ''
+    });
+  };
+
+  const handleSaveClick = () => {
+    // ฟังก์ชันสำหรับการบันทึกข้อมูลผู้ใช้
+    // saveUserData(editedUserData);
+    setIsEditing(false);
+  };
+
+  const handleCancelClick = () => {
+    setIsEditing(false);
+  };
+
+  const toggleDrawer = (open) => () => {
+    if (!isEditing) {
+      setDrawerOpen(open);
+    }
+  };
+
+  const handleViewClick = (warehouse) => {
+    setSelectedWarehouse(warehouse);
+    setPopupOpen(true); 
+  };
+
+  const handleClosePopup = () => {
+    setPopupOpen(false);
+    setSelectedWarehouse(null);
+  };
+
+  return (
+    <div className="dashboard-container"> 
+      <AppBar position="static" className="custom-appbar">
+        <Toolbar>
+          <IconButton edge="start" color="inherit" onClick={toggleDrawer(true)} aria-label="menu">
+            <MenuIcon />
+          </IconButton>
+          <div className="button-container">
+            <button className="nav-button">หน้าแรก</button>
+            <button className="nav-button">ข้อมูลบริษัท</button>
+            <button className="nav-button">รายงาน</button>
+          </div>
+        </Toolbar>
+      </AppBar>
+
+      <Drawer anchor="left" open={drawerOpen} onClose={toggleDrawer(false)}>
+        <div className="drawer-container">
+          <div className="profile">
+            <div className="avatar"></div>
+            <div className="profile-info">
+              <p className="username">{userData?.username || 'Username'}</p>
+              <p className="role">Employee - Warehouse</p>
+            </div>
+          </div>
+          <div className="personal-info">
+            <h2>ข้อมูลส่วนตัว</h2>
+            {isEditing ? (
+              <>
+                <p><strong>ชื่อ:</strong> <input type="text" name="firstname" value={editedUserData.firstname} onChange={(e) => setEditedUserData({ ...editedUserData, firstname: e.target.value })} /></p>
+                <p><strong>นามสกุล:</strong> <input type="text" name="lastname" value={editedUserData.lastname} onChange={(e) => setEditedUserData({ ...editedUserData, lastname: e.target.value })} /></p>
+                <p><strong>อีเมล:</strong> <input type="email" name="email" value={editedUserData.email} onChange={(e) => setEditedUserData({ ...editedUserData, email: e.target.value })} /></p>
+                <p><strong>เบอร์:</strong> <input type="text" name="phone" value={editedUserData.phone} onChange={(e) => setEditedUserData({ ...editedUserData, phone: e.target.value })} /></p>
+                <p><strong>ที่อยู่:</strong> <input type="text" name="address" value={editedUserData.address} onChange={(e) => setEditedUserData({ ...editedUserData, address: e.target.value })} /></p>
+                <button className="save-button" onClick={handleSaveClick}>ยืนยัน</button>
+                <button className="cancel-button" onClick={handleCancelClick}>ยกเลิก</button>
+              </>
+            ) : (
+              <>
+                <p><strong>ชื่อ:</strong> {userData?.firstname} {userData?.lastname}</p>
+                <p><strong>อีเมล:</strong> {userData?.email}</p>
+                <p><strong>เบอร์:</strong> {userData?.phone || 'ไม่ระบุ'}</p>
+                <p><strong>ที่อยู่:</strong> {userData?.address || 'ไม่ระบุ'}</p>
+                <button className="edit-button" onClick={handleEditClick}>แก้ไขข้อมูล</button>
+              </>
+            )}
+          </div>
+        </div>
+      </Drawer>
+
+      <div className="search-container">
+        <h2>ค้นหาโกดัง</h2>
+        <input type="text" name="warehouseId" placeholder="รหัสโกดัง" value={searchParams.warehouseId} onChange={handleChange} />
+        <input type="date" name="rentalDateStart" value={searchParams.rentalDateStart} onChange={handleChange} />
+        <label>
+              <input 
+                type="radio" 
+                name="rentalstatus" 
+                value="active" 
+                checked={searchParams.rentalstatus === 'active'} 
+                onChange={handleChange} 
+              />
+              ว่าง
+            </label>
+            <label>
+              <input 
+                type="radio" 
+                name="rentalstatus" 
+                value="inactive" 
+                checked={searchParams.rentalstatus === 'inactive'} 
+                onChange={handleChange} 
+              />
+              ไม่ว่าง
+            </label>
+        <button className="search-button" onClick={handleSearch}>ค้นหา</button>
+      </div>
+
+      <div className="warehouse-container">
+        <h2>โกดังที่เช่า</h2>
+        <div className="table-container">
+          <table className="warehouse-table">
+            <thead>
+              <tr>
+                <th>รหัสโกดัง</th>
+                <th>ชื่อโกดัง</th>
+                <th>ที่อยู่</th>
+                <th>ขนาดพื้นที่</th>
+                <th>สถานะ</th>
+                <th>วันที่เช่า</th>
+                <th>ดูข้อมูล</th>
+              </tr>
+            </thead>
+            <tbody>
+              {warehouses.length > 0 ? (
+                warehouses.map((warehouse) => (
+                  <tr key={warehouse.rentalid}>
+                    <td>{warehouse.warehouseid}</td>
+                    <td>{warehouse.warehousename}</td>
+                    <td>{warehouse.warehouseaddress}</td>
+                    <td>{warehouse.warehousesize}</td>
+                    <td className={warehouse.rentalstatus === 'active' ? 'text-green' : 'text-red'}>
+                      {warehouse.rentalstatus}
+                    </td>
+                    <td>
+                      {new Date(warehouse.date_rental_start).toLocaleDateString()} - 
+                      {new Date(warehouse.date_rental_finish).toLocaleDateString()}
+                    </td>
+                    <td>
+                      <button className="view-button" onClick={() => handleViewClick(warehouse)}>ดู</button>
+                    </td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan="7" className="no-data">ไม่พบข้อมูลโกดัง</td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      {/* Popup Dialog สำหรับแสดงรายละเอียดโกดัง */}
+      <WarehousePopup open={popupOpen} onClose={handleClosePopup} warehouse={selectedWarehouse} /> {/* ใช้ WarehousePopup */}
+    </div>
+  );
+};
+
+export default Dashboard;
