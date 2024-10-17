@@ -5,6 +5,7 @@
   background-color: #FAFAD8;
 }
 
+
 .navbar {
   background-color: #ADBC9D;
   display: flex; /* ใช้ flexbox */
@@ -15,7 +16,7 @@
   width: 100%; /* ให้ navbar ขยายเต็มความกว้าง */
 }
 
-.nav-button {
+.nav-button,.search-button   {
   background-color: #47674F; /* เปลี่ยนสีพื้นหลังของปุ่ม */
   color: white; /* เปลี่ยนสีตัวอักษร */
   border: none; /* ไม่แสดงขอบ */
@@ -24,19 +25,55 @@
   cursor: pointer; /* เปลี่ยน cursor เมื่อชี้ไปที่ปุ่ม */
   transition: background-color 0.3s; /* เพิ่มการเปลี่ยนสีเมื่อ hover */
 }
-
+.edit-button{
+  background-color: #1aac0a; /* เปลี่ยนสีพื้นหลังของปุ่ม */
+  color: white; /* เปลี่ยนสีตัวอักษร */
+  border: none; /* ไม่แสดงขอบ */
+  border-radius: 5px; /* ทำมุมให้มน */
+  padding: 10px 15px; /* เพิ่ม padding สำหรับปุ่ม */
+  cursor: pointer; /* เปลี่ยน cursor เมื่อชี้ไปที่ปุ่ม */
+  transition: background-color 0.3s; /* เพิ่มการเปลี่ยนสีเมื่อ hover */
+}
+.save-button{
+  background-color: #1aac0a; /* เปลี่ยนสีพื้นหลังของปุ่ม */
+  color: white; /* เปลี่ยนสีตัวอักษร */
+  border: none; /* ไม่แสดงขอบ */
+  border-radius: 5px; /* ทำมุมให้มน */
+  padding: 10px 15px; /* เพิ่ม padding สำหรับปุ่ม */
+  cursor: pointer; /* เปลี่ยน cursor เมื่อชี้ไปที่ปุ่ม */
+  transition: background-color 0.3s; /* เพิ่มการเปลี่ยนสีเมื่อ hover */
+  margin-right: 10px;
+}
+.cancel-button{
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
 .nav-button:hover {
   background-color: #47674F; /* เปลี่ยนสีพื้นหลังเมื่อ hover */
 }
 
 .warehouse-list {
+  display: flex; /* ใช้ Flexbox */
+  flex-direction: column; /* จัดเรียงในแนวตั้ง */
   padding: 20px;
   flex-grow: 1;
 }
 
+h2 {
+  margin-bottom: 10px;
+  font-size: 24px;
+  color: #2c3e50;
+  margin-left: 10%;
+}
+
 .warehouse-table {
-  width: 100%;
+  width: 80%;
   border-collapse: collapse;
+  margin: auto;
 }
 
 .warehouse-table th,
@@ -72,6 +109,7 @@
   background-color: #4A8F59;
   width: 250px;
   padding: 20px;
+  height: 100%;
 }
 
 .profile {
@@ -99,6 +137,7 @@
   padding: 10px;
   cursor: pointer;
   border-radius: 5px;
+  margin-top: 20px;
 }
 
 .logout-button:hover {
@@ -109,5 +148,23 @@
   background-color: #ADBC9D !important; /* Force the background color */
 }
 
+.button-container {
+  display: flex;
+  justify-content: center; /* จัดให้อยู่ตรงกลาง */
+  gap: 100px; /* ระยะห่างระหว่างปุ่ม */
+  width: 100%; /* ขยายเต็มความกว้าง */
+}
 
+.status-filter {
+  display: flex;
+  justify-content: center; /* จัดให้อยู่ตรงกลาง */
+  gap: 100px; /* ระยะห่างระหว่างปุ่ม */
+}
+
+.warehouse-search { 
+  display: flex;
+  justify-content: center; /* จัดให้อยู่ตรงกลาง */
+  gap: 100px; /* ระยะห่างระหว่างปุ่ม */
+  margin-top: 20px; /* เพิ่มระยะห่างจาก navbar */
+}
 
