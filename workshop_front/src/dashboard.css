@@ -1,178 +1,103 @@
-body {
-  font-family: 'Arial', sans-serif;
-  background-color: #e0f5e0; /* สีเขียวอ่อน */
-  margin: 0;
-  padding: 0;
-  height: 100vh; /* เต็มความสูงหน้าจอ */
-}
-
 .dashboard-container {
   display: flex;
-  flex-direction: row;
-  width: 100vw; /* ความกว้างเต็มหน้าจอ */
-  height: 100vh; /* ความสูงเต็มหน้าจอ */
-  border-radius: 10px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  flex-direction: column;
+  height: 100vh;
 }
 
-.sidebar {
-  background-color: #2E8B57;
-  width: 300px; /* ความกว้างของ sidebar */
-  padding: 30px;
+.navbar {
+  display: flex; /* ใช้ flexbox */
+  justify-content: center; /* จัดให้ปุ่มอยู่ตรงกลาง */
+  gap: 200px; /* ระยะห่างระหว่างปุ่ม */
+  margin: 0; /* ลบ margin ของ navbar */
+  padding: 10px 0; /* เพิ่ม padding บน-ล่าง */
+  width: 100%; /* ให้ navbar ขยายเต็มความกว้าง */
+}
+
+.nav-button {
+  background-color: #3f51b5; /* เปลี่ยนสีพื้นหลังของปุ่ม */
+  color: white; /* เปลี่ยนสีตัวอักษร */
+  border: none; /* ไม่แสดงขอบ */
+  border-radius: 5px; /* ทำมุมให้มน */
+  padding: 10px 15px; /* เพิ่ม padding สำหรับปุ่ม */
+  cursor: pointer; /* เปลี่ยน cursor เมื่อชี้ไปที่ปุ่ม */
+  transition: background-color 0.3s; /* เพิ่มการเปลี่ยนสีเมื่อ hover */
+}
+
+.nav-button:hover {
+  background-color: #303f9f; /* เปลี่ยนสีพื้นหลังเมื่อ hover */
+}
+
+.warehouse-list {
+  padding: 20px;
+  flex-grow: 1;
+}
+
+.warehouse-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.warehouse-table th,
+.warehouse-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+.warehouse-table th {
+  background-color: #007bff;
   color: white;
-  height: 100%; /* ให้สูงเต็มที่ */
-  display: flex;
-  flex-direction: column;
+}
+
+.text-green {
+  color: green;
+}
+
+.text-red {
+  color: red;
+}
+
+.text-orange {
+  color: orange;
+}
+
+.no-data {
+  text-align: center;
+  color: gray;
+}
+
+.drawer-container {
+  width: 250px;
+  padding: 20px;
 }
 
 .profile {
   display: flex;
   align-items: center;
+  margin-bottom: 20px;
 }
 
 .avatar {
-  width: 70px; 
-  height: 70px; 
-  background-color: #17e655; 
+  width: 50px;
+  height: 50px;
+  background-color: #ccc;
   border-radius: 50%;
-  margin-right: 15px; 
+  margin-right: 10px;
 }
 
 .profile-info {
-  display: flex;
-  flex-direction: column;
+  flex-grow: 1;
 }
 
-.personal-info {
-  margin-top: 30px; 
-}
-
-.edit-button{
-  background-color: #0cec6d; /*/
-  color: white; /* สีฟอนต์ */
-  border: none;
-  padding: 15px; /* เพิ่ม padding */
-  cursor: pointer; /* เปลี่ยนเป็นมือเมื่อ hover */
-  margin-top: 20px; /* ระยะห่างด้านบน */
-  border-radius: 5px; /* มุมโค้ง */
-  font-size: 16px; /* ขนาดฟอนต์ */
-  transition: background-color 0.3s; /* การเปลี่ยนสีเมื่อ hover */
-}
 .logout-button {
-  background-color: rgb(255, 7, 7); /* สีแดงสำหรับปุ่มออกจากระบบ */
-  color: white; /* สีฟอนต์ */
-  border: none;
-  padding: 15px; /* เพิ่ม padding */
-  cursor: pointer; /* เปลี่ยนเป็นมือเมื่อ hover */
-  margin-top: 20px; /* ระยะห่างด้านบน */
-  border-radius: 5px; /* มุมโค้ง */
-  font-size: 16px; /* ขนาดฟอนต์ */
-  transition: background-color 0.3s; /* การเปลี่ยนสีเมื่อ hover */
-}
-.save-button{
-  background-color: #05ee4b;
+  background-color: #dc3545;
   color: white;
   border: none;
-  padding: 15px; /* เพิ่ม padding */
+  padding: 10px;
   cursor: pointer;
-  margin-top: 15px; 
   border-radius: 5px;
-  font-size: 16px; 
-  transition: background-color 0.3s; /* เพิ่มการเปลี่ยนสี */
-}
-.cancel-button{
-  background-color: #ff0000;
-  color: white;
-  border: none;
-  padding: 15px; /* เพิ่ม padding */
-  cursor: pointer;
-  margin-top: 15px; 
-  border-radius: 5px;
-  font-size: 16px; 
-  transition: background-color 0.3s; /* เพิ่มการเปลี่ยนสี */
-}
-.nav-button,
-.search-button,
-.view-button {
-  background-color: #4CAF50; /* สีเขียว */
-  color: white;
-  border: none;
-  padding: 15px; /* เพิ่ม padding */
-  cursor: pointer;
-  margin-top: 15px; 
-  border-radius: 5px;
-  font-size: 16px; 
-  transition: background-color 0.3s; /* เพิ่มการเปลี่ยนสี */
 }
 
-.edit-button:hover{
-  background-color: #0cec6d; /* สีเมื่อ hover */
-}
-.logout-button:hover{
-  background-color: rgb(255, 6, 6); /* สีเมื่อ hover */
-}
-.save-button:hover,
-.cancel-button:hover,
-.nav-button:hover,
-.search-button:hover,
-.view-button:hover {
-  background-color: #388E3C; /* สีเขียวเข้มเมื่อ hover */
-}
-
-.main-content {
-  flex: 1; 
-  padding: 30px; 
-  background-color: #f0f8f5;
-  overflow-y: auto; /* เพิ่ม scroll ถ้ามีเนื้อหามาก */
-}
-
-.navbar {
-  display: flex; 
-  justify-content: space-around; 
-  margin-bottom: 30px; 
-}
-
-.warehouse-search {
-  display: flex; 
-  align-items: center; 
-  justify-content: space-between; 
-  margin-bottom: 30px; 
-}
-
-.warehouse-search input {
-  padding: 12px; 
-  margin-right: 10px; 
-  border: 1px solid #ddd; 
-  border-radius: 5px; 
-  font-size: 16px; 
-}
-
-.warehouse-table {
-  width: 100%; 
-  border-collapse: collapse; 
-}
-
-.warehouse-table th, .warehouse-table td {
-  border: 1px solid #ddd; 
-  padding: 12px; 
-  text-align: center; 
-  font-size: 16px; 
-}
-
-.warehouse-table th {
-  background-color: #f2f2f2; 
-}
-
-.text-green {
-  color: green; 
-}
-
-.text-red {
-  color: red; 
-}
-
-.no-data {
-  text-align: center; 
-  color: #777; 
-  font-size: 18px; 
+.logout-button:hover {
+  background-color: #c82333;
 }
