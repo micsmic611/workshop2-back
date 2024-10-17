@@ -103,16 +103,48 @@ const Dashboard = () => {
     });
   };
 
-  const handleSaveClick = () => {
-    // ฟังก์ชันสำหรับการบันทึกข้อมูลผู้ใช้
-    // saveUserData(editedUserData);
-    setIsEditing(false);
-  };
+  const handleSaveClick = async () => {
+    const userUpdateData = {
+        userID: userData.userID,
+        username: userData.username,
+        firstname: editedUserData.firstname,
+        lastname: editedUserData.lastname,
+        email: editedUserData.email,
+        phone: editedUserData.phone,
+        address: editedUserData.address,
+    };
+
+    try {
+        const token = localStorage.getItem('token'); // ตรวจสอบการนำเข้า token
+        const response = await fetch(`https://localhost:7111/api/User/UpdateUser?UserId=${userUpdateData.userID}`, {
+            method: 'PUT',
+            headers: {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(userUpdateData), // ส่งข้อมูลที่ต้องการอัปเดต
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            console.log('User data updated successfully:', data);
+            // เรียกใช้งานฟังก์ชันเพื่อดึงข้อมูลผู้ใช้ใหม่
+            fetchUserData(token); // อัปเดตข้อมูลผู้ใช้ใหม่
+            setIsEditing(false); // ปิดโหมดแก้ไข
+        } else {
+            const errorMessage = await response.text();
+            console.error("Failed to save user data:", errorMessage);
+        }
+    } catch (error) {
+        console.error('Error saving user data:', error);
+    }
+};
+
 
   const handleCancelClick = () => {
     setIsEditing(false);
+    setEditedUserData(userData);
   };
-
   const toggleDrawer = (open) => () => {
     if (!isEditing) {
       setDrawerOpen(open);
@@ -128,6 +160,8 @@ const Dashboard = () => {
     setPopupOpen(false);
     setSelectedWarehouse(null);
   };
+
+  
 
   return (
     <div className="dashboard-container"> 
@@ -154,7 +188,7 @@ const Dashboard = () => {
             </div>
           </div>
           <div className="personal-info">
-            <h2>ข้อมูลส่วนตัว</h2>
+            <h3>ข้อมูลส่วนตัว</h3>
             {isEditing ? (
               <>
                 <p><strong>ชื่อ:</strong> <input type="text" name="firstname" value={editedUserData.firstname} onChange={(e) => setEditedUserData({ ...editedUserData, firstname: e.target.value })} /></p>
@@ -175,11 +209,12 @@ const Dashboard = () => {
               </>
             )}
           </div>
+          <button className="logout-button">ออกจากระบบ</button>
         </div>
       </Drawer>
 
       <div className="search-container">
-        <h2>ค้นหาโกดัง</h2>
+    <h1>ค้นหาโกดัง</h1>
         <input type="text" name="warehouseId" placeholder="รหัสโกดัง" value={searchParams.warehouseId} onChange={handleChange} />
         <input type="date" name="rentalDateStart" value={searchParams.rentalDateStart} onChange={handleChange} />
         <label>

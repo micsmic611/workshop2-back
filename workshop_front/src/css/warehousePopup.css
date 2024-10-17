@@ -1,0 +1,38 @@
+.warehouse-popup .MuiDialog-paper {
+  background-color: #f9f4d4; /* สีพื้นหลังแบบครีม */
+  padding: 20px;
+  border-radius: 10px;
+  width: 500px;
+  max-width: 90%;
+}
+
+.popup-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.row p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.MuiDialogTitle-root {
+  background-color: #f5e4a2;
+  padding: 10px;
+  border-radius: 5px 5px 0 0;
+  font-weight: bold;
+  text-align: center;
+}
+
+.MuiDialogActions-root {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
