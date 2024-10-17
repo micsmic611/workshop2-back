@@ -145,7 +145,6 @@ const Dashboard = () => {
     setIsEditing(false);
     setEditedUserData(userData);
   };
-
   const toggleDrawer = (open) => () => {
     if (!isEditing) {
       setDrawerOpen(open);
@@ -161,6 +160,8 @@ const Dashboard = () => {
     setPopupOpen(false);
     setSelectedWarehouse(null);
   };
+
+  
 
   return (
     <div className="dashboard-container"> 
@@ -187,7 +188,7 @@ const Dashboard = () => {
             </div>
           </div>
           <div className="personal-info">
-            <h2>ข้อมูลส่วนตัว</h2>
+            <h3>ข้อมูลส่วนตัว</h3>
             {isEditing ? (
               <>
                 <p><strong>ชื่อ:</strong> <input type="text" name="firstname" value={editedUserData.firstname} onChange={(e) => setEditedUserData({ ...editedUserData, firstname: e.target.value })} /></p>
@@ -205,7 +206,6 @@ const Dashboard = () => {
                 <p><strong>เบอร์:</strong> {userData?.phone || 'ไม่ระบุ'}</p>
                 <p><strong>ที่อยู่:</strong> {userData?.address || 'ไม่ระบุ'}</p>
                 <button className="edit-button" onClick={handleEditClick}>แก้ไขข้อมูล</button>
-               
               </>
             )}
           </div>
@@ -214,7 +214,7 @@ const Dashboard = () => {
       </Drawer>
 
       <div className="search-container">
-        <h2>ค้นหาโกดัง</h2>
+    <h1>ค้นหาโกดัง</h1>
         <input type="text" name="warehouseId" placeholder="รหัสโกดัง" value={searchParams.warehouseId} onChange={handleChange} />
         <input type="date" name="rentalDateStart" value={searchParams.rentalDateStart} onChange={handleChange} />
         <label>
@@ -283,16 +283,10 @@ const Dashboard = () => {
             </tbody>
           </table>
         </div>
-        <WarehousePopup 
-  open={popupOpen} 
-  onClose={() => setPopupOpen(false)} 
-  warehouseData={selectedWarehouse || {}} // ส่งข้อมูลโกดังที่เลือกไปยัง Popup
-/>
-      
       </div>
 
-      
-      
+      {/* Popup Dialog สำหรับแสดงรายละเอียดโกดัง */}
+      <WarehousePopup open={popupOpen} onClose={handleClosePopup} warehouse={selectedWarehouse} /> {/* ใช้ WarehousePopup */}
     </div>
   );
 };
