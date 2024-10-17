@@ -103,14 +103,47 @@ const Dashboard = () => {
     });
   };
 
-  const handleSaveClick = () => {
-    // ฟังก์ชันสำหรับการบันทึกข้อมูลผู้ใช้
-    // saveUserData(editedUserData);
-    setIsEditing(false);
-  };
+  const handleSaveClick = async () => {
+    const userUpdateData = {
+        userID: userData.userID,
+        username: userData.username,
+        firstname: editedUserData.firstname,
+        lastname: editedUserData.lastname,
+        email: editedUserData.email,
+        phone: editedUserData.phone,
+        address: editedUserData.address,
+    };
+
+    try {
+        const token = localStorage.getItem('token'); // ตรวจสอบการนำเข้า token
+        const response = await fetch(`https://localhost:7111/api/User/UpdateUser?UserId=${userUpdateData.userID}`, {
+            method: 'PUT',
+            headers: {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(userUpdateData), // ส่งข้อมูลที่ต้องการอัปเดต
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            console.log('User data updated successfully:', data);
+            // เรียกใช้งานฟังก์ชันเพื่อดึงข้อมูลผู้ใช้ใหม่
+            fetchUserData(token); // อัปเดตข้อมูลผู้ใช้ใหม่
+            setIsEditing(false); // ปิดโหมดแก้ไข
+        } else {
+            const errorMessage = await response.text();
+            console.error("Failed to save user data:", errorMessage);
+        }
+    } catch (error) {
+        console.error('Error saving user data:', error);
+    }
+};
+
 
   const handleCancelClick = () => {
     setIsEditing(false);
+    setEditedUserData(userData);
   };
 
   const toggleDrawer = (open) => () => {
@@ -172,9 +205,11 @@ const Dashboard = () => {
                 <p><strong>เบอร์:</strong> {userData?.phone || 'ไม่ระบุ'}</p>
                 <p><strong>ที่อยู่:</strong> {userData?.address || 'ไม่ระบุ'}</p>
                 <button className="edit-button" onClick={handleEditClick}>แก้ไขข้อมูล</button>
+               
               </>
             )}
           </div>
+          <button className="logout-button">ออกจากระบบ</button>
         </div>
       </Drawer>
 
@@ -248,10 +283,16 @@ const Dashboard = () => {
             </tbody>
           </table>
         </div>
+        <WarehousePopup 
+  open={popupOpen} 
+  onClose={() => setPopupOpen(false)} 
+  warehouseData={selectedWarehouse || {}} // ส่งข้อมูลโกดังที่เลือกไปยัง Popup
+/>
+      
       </div>
 
-      {/* Popup Dialog สำหรับแสดงรายละเอียดโกดัง */}
-      <WarehousePopup open={popupOpen} onClose={handleClosePopup} warehouse={selectedWarehouse} /> {/* ใช้ WarehousePopup */}
+      
+      
     </div>
   );
 };
