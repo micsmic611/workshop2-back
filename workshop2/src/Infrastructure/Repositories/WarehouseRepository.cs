@@ -63,7 +63,7 @@ namespace permissionAPI.src.Infrastructure.Repositories
                 throw new ApplicationException($"An error occurred while retrieving the warehouse data: {ex.Message}", ex);
             }
         }
-        public async Task<WarehouseRentalDetailDTO> getwarehosedetail(int warehouseid, DateTime rentalDateStart, string warehousestatus)
+        public async Task<WarehouseRentalDetailDTO> getwarehosedetail(int warehouseid, DateTime rentalDateStart, string rentalstatus)
         {
             try
             {
@@ -74,7 +74,7 @@ namespace permissionAPI.src.Infrastructure.Repositories
                                        on r.userid equals u.UserID
                                        where w.warehouseid == warehouseid
                                              && r.date_rental_start == rentalDateStart
-                                             && w.warehousstatus == warehousestatus
+                                             && r.rentalstatus == rentalstatus
                                        select new WarehouseRentalDetailDTO
                                        {
                                            warehouseid = w.warehouseid,
