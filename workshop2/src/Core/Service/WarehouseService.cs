@@ -59,11 +59,11 @@ namespace permissionAPI.src.Core.Service
                 throw new ApplicationException($"An error occurred while retrieving the warehouse data: {ex.Message}", ex);
             }
         }
-        public async Task<WarehouseRentalDetailDTO> getwarehosedetail(int warehouseid, DateTime rentalDateStart, string warehousestatus)
+        public async Task<WarehouseRentalDetailDTO> getwarehosedetail(int warehouseid, DateTime rentalDateStart, string rentalstatus)
         {
             try
             {
-                var warehouseDto = await _WarehouseRepository.getwarehosedetail(warehouseid, rentalDateStart, warehousestatus);
+                var warehouseDto = await _WarehouseRepository.getwarehosedetail(warehouseid, rentalDateStart, rentalstatus);
 
                 if (warehouseDto == null)
                 {
