@@ -3,17 +3,31 @@ import { jwtDecode } from "jwt-decode";
 import { Drawer, AppBar, Toolbar, Typography, IconButton } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 
-const Supervisor = () => { 
+const Supervisor = () => {
   const [token, setToken] = useState('');
   const [userData, setUserData] = useState(null);
   const [companydata, setCompanyData] = useState([]);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [editedUserData, setEditedUserData] = useState({});
   const [isEditing, setIsEditing] = useState(false);
+  const [searchCompanyName, setSearchCompanyName] = useState('');
 
   const handleCancelClick = () => {
     setIsEditing(false);
     setEditedUserData(userData);
+  };
+
+  const handleSearch = () => {
+    const storedToken = localStorage.getItem('token');
+    if (storedToken && searchCompanyName.trim() !== '') { // ตรวจสอบว่าชื่อบริษัทไม่ใช่ค่าว่าง
+      fetchCompanyData(storedToken, true);
+    } else {
+      console.error("กรุณากรอกชื่อบริษัทเพื่อทำการค้นหา");
+    }
+  };
+
+  const handleChange = (e) => {
+    setSearchCompanyName(e.target.value);  // อัปเดตค่าชื่อบริษัทที่ค้นหา
   };
 
   const handleEditClick = () => {
@@ -25,6 +39,33 @@ const Supervisor = () => {
       phone: userData?.phone || '',
       address: userData?.address || ''
     });
+  };
+
+  const fetchCompanyData = async (storedToken, search = false) => {
+    try {
+      let url = 'https://localhost:7111/api/Company/GetAllCompany';
+      if (search && searchCompanyName) {
+        // ตรวจสอบให้แน่ใจว่าค่าส่งใน query string ถูกต้อง
+        url = `https://localhost:7111/api/Company/GetCompanyByName?Companyname=${searchCompanyName}`; 
+      }
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${storedToken}`,
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log("Company data:", data);
+        setCompanyData(data.data);  // ดึงข้อมูลบริษัทที่ค้นหาได้
+      } else {
+        console.error("Failed to fetch Company data", response.status);
+      }
+    } catch (error) {
+      console.error("Error fetching Company data:", error);
+    }
   };
 
   const fetchUserData = async (storedToken) => {
@@ -88,7 +129,7 @@ const Supervisor = () => {
       console.error('Error saving user data:', error);
     }
   };
-  
+
   useEffect(() => {
     const storedToken = localStorage.getItem('token');
     if (storedToken) {
@@ -98,26 +139,7 @@ const Supervisor = () => {
         try {
           await fetchUserData(storedToken);
 
-          const fetchCompanyData = async () => {
-            try {
-              const response = await fetch('https://localhost:7111/api/Company/GetAllCompany', {
-                method: 'GET',
-                headers: {
-                  Authorization: `Bearer ${storedToken}`,
-                  'Content-Type': 'application/json',
-                },
-              });
-              if (response.ok) {
-                const data = await response.json();
-                console.log("Company data:", data);
-                setCompanyData(data.data);
-              } else {
-                console.error("Failed to fetch Company data", response.status);
-              }
-            } catch (error) {
-              console.error("Error fetching Company data:", error);
-            }
-          };
+
 
           await fetchCompanyData();
         } catch (error) {
@@ -183,6 +205,17 @@ const Supervisor = () => {
           <button className="logout-button">ออกจากระบบ</button>
         </div>
       </Drawer>
+      <div className="search-container">
+        <h1>ค้นหาชื่อบริษัท</h1>
+        <input
+          type="text"
+          name="company_name"
+          placeholder="ชื่อบริษัท"
+          value={searchCompanyName}
+          onChange={handleChange}  // เรียกใช้ฟังก์ชัน handleChange เมื่อมีการเปลี่ยนแปลงค่า
+        />
+        <button className="search-button" onClick={handleSearch}>ค้นหา</button>
+      </div>
       <div className="main-content">
         <div className="warehouse-list">
           <h2>รายชื่อบริษัท</h2>

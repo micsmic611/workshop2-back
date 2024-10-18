@@ -58,12 +58,12 @@ namespace permissionAPI.Controllers
             }
         }
         [HttpGet("warehousedetail")]
-        public async Task<IActionResult> GetWarehouseDetail(int warehouseid, DateTime rentalDateStart, string warehousestatus)
+        public async Task<IActionResult> GetWarehouseDetail(int warehouseid, DateTime rentalDateStart, string rentalstatus)
         {
             try
             {
                 // เรียกใช้ฟังก์ชันจาก WarehouseService
-                var warehouseDto = await _WarehouseService.getwarehosedetail(warehouseid, rentalDateStart, warehousestatus);
+                var warehouseDto = await _WarehouseService.getwarehosedetail(warehouseid, rentalDateStart, rentalstatus);
                 return Ok(warehouseDto); // ส่งผลลัพธ์กลับในรูปแบบ JSON
             }
             catch (KeyNotFoundException ex)
