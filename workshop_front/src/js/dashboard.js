@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { jwtDecode } from "jwt-decode";
-import '../css/dashboard.css';
+import { jwtDecode } from "jwt-decode"; 
+import '../css/dashboard.css'; 
 import { Drawer, AppBar, Toolbar, IconButton } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import WarehousePopup from './WarehousePopup'; // นำเข้า WarehousePopup
@@ -17,15 +17,15 @@ const Dashboard = () => {
     rentalDateStart: '',
     rentalstatus: ''
   });
-  const [popupOpen, setPopupOpen] = useState(false);
-  const [selectedWarehouse, setSelectedWarehouse] = useState(null);
+  const [popupOpen, setPopupOpen] = useState(false); 
+  const [selectedWarehouse, setSelectedWarehouse] = useState(null); 
 
   useEffect(() => {
     const storedToken = localStorage.getItem('token');
     if (storedToken) {
       setToken(storedToken);
       fetchUserData(storedToken);
-      fetchWarehouseData(storedToken);
+      fetchWarehouseData(storedToken); 
     }
   }, []);
 
@@ -55,17 +55,22 @@ const Dashboard = () => {
 
   const fetchWarehouseData = async (storedToken, search = false) => {
     try {
-      const url = search 
-        ? `https://localhost:7111/api/Warehouse/warehousedetail?warehouseid=${searchParams.warehouseId}&rentalDateStart=${searchParams.rentalDateStart}&rentalstatus=${encodeURIComponent(searchParams.rentalstatus)}`
-        : 'https://localhost:7111/api/Warehouse/warehouserental';
-      
-      const response = await fetch(url, {
-        method: 'GET',
-        headers: {
-          Authorization: `Bearer ${storedToken}`,
-          'Content-Type': 'application/json',
-        },
-      });
+        const { warehouseId, rentalDateStart, rentalstatus } = searchParams; // ดึงค่าจาก searchParams
+        
+        // สร้าง URL ตามเงื่อนไข
+        const url = search 
+            ? rentalDateStart // ถ้ามีวันที่เริ่มเช่า
+                ? `https://localhost:7111/api/Warehouse/GetWarehouseDetailsearch?warehousename=${warehouseId}&rentalstatus=${rentalstatus}&date_rental_start=${rentalDateStart}`
+                : `https://localhost:7111/api/Warehouse/warehousedetail?warehousename=${warehouseId}&rentalstatus=${rentalstatus}`
+            : 'https://localhost:7111/api/Warehouse/warehouserental';
+        
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                Authorization: `Bearer ${storedToken}`,
+                'Content-Type': 'application/json',
+            },
+        });
 
         if (response.ok) {
             const data = await response.json();
@@ -80,12 +85,25 @@ const Dashboard = () => {
     }
 };
 
-  const handleSearch = () => {
-    const storedToken = localStorage.getItem('token');
-    if (storedToken) {
+const handleSearch = () => {
+  const storedToken = localStorage.getItem('token');
+  if (storedToken) {
+      // เคลียร์ข้อมูลในตารางก่อนค้นหา
+      setWarehouses([]); 
+
+      // เรียก API ค้นหาโกดัง
       fetchWarehouseData(storedToken, true); 
-    }
-  };
+
+      // เคลียร์ค่าช่องกรอกข้อมูลให้กลับไปเป็นค่าเริ่มต้น
+      setSearchParams({
+          warehouseId: '', // รหัสโกดัง
+          rentalDateStart: '', // วันที่เริ่มเช่า
+          rentalstatus: '' // สถานะการเช่า
+      });
+  }
+};
+
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -105,40 +123,40 @@ const Dashboard = () => {
 
   const handleSaveClick = async () => {
     const userUpdateData = {
-      userID: userData.userID,
-      username: userData.username,
-      firstname: editedUserData.firstname,
-      lastname: editedUserData.lastname,
-      email: editedUserData.email,
-      phone: editedUserData.phone,
-      address: editedUserData.address,
+        userID: userData.userID,
+        username: userData.username,
+        firstname: editedUserData.firstname,
+        lastname: editedUserData.lastname,
+        email: editedUserData.email,
+        phone: editedUserData.phone,
+        address: editedUserData.address,
     };
 
     try {
-      const token = localStorage.getItem('token'); // ตรวจสอบการนำเข้า token
-      const response = await fetch(`https://localhost:7111/api/User/UpdateUser?UserId=${userUpdateData.userID}`, {
-        method: 'PUT',
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(userUpdateData), // ส่งข้อมูลที่ต้องการอัปเดต
-      });
+        const token = localStorage.getItem('token'); // ตรวจสอบการนำเข้า token
+        const response = await fetch(`https://localhost:7111/api/User/UpdateUser?UserId=${userUpdateData.userID}`, {
+            method: 'PUT',
+            headers: {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(userUpdateData), // ส่งข้อมูลที่ต้องการอัปเดต
+        });
 
-      if (response.ok) {
-        const data = await response.json();
-        console.log('User data updated successfully:', data);
-        // เรียกใช้งานฟังก์ชันเพื่อดึงข้อมูลผู้ใช้ใหม่
-        fetchUserData(token); // อัปเดตข้อมูลผู้ใช้ใหม่
-        setIsEditing(false); // ปิดโหมดแก้ไข
-      } else {
-        const errorMessage = await response.text();
-        console.error("Failed to save user data:", errorMessage);
-      }
+        if (response.ok) {
+            const data = await response.json();
+            console.log('User data updated successfully:', data);
+            // เรียกใช้งานฟังก์ชันเพื่อดึงข้อมูลผู้ใช้ใหม่
+            fetchUserData(token); // อัปเดตข้อมูลผู้ใช้ใหม่
+            setIsEditing(false); // ปิดโหมดแก้ไข
+        } else {
+            const errorMessage = await response.text();
+            console.error("Failed to save user data:", errorMessage);
+        }
     } catch (error) {
-      console.error('Error saving user data:', error);
+        console.error('Error saving user data:', error);
     }
-  };
+};
 
 
   const handleCancelClick = () => {
@@ -153,7 +171,7 @@ const Dashboard = () => {
 
   const handleViewClick = (warehouse) => {
     setSelectedWarehouse(warehouse);
-    setPopupOpen(true);
+    setPopupOpen(true); 
   };
 
   const handleClosePopup = () => {
@@ -161,10 +179,10 @@ const Dashboard = () => {
     setSelectedWarehouse(null);
   };
 
-
+  
 
   return (
-    <div className="dashboard-container">
+    <div className="dashboard-container"> 
       <AppBar position="static" className="custom-appbar">
         <Toolbar>
           <IconButton edge="start" color="inherit" onClick={toggleDrawer(true)} aria-label="menu">
@@ -209,38 +227,47 @@ const Dashboard = () => {
               </>
             )}
           </div>
-          <div class="logout-container">
-  <button class="logout-button">Logout</button>
-</div>
+          <button className="logout-button">ออกจากระบบ</button>
         </div>
       </Drawer>
 
       <div className="search-container">
     <h1>ค้นหาโกดัง</h1>
-        <input type="text" name="warehouseId" placeholder="รหัสโกดัง" value={searchParams.warehouseId} onChange={handleChange} />
-        <input type="date" name="rentalDateStart" value={searchParams.rentalDateStart} onChange={handleChange} />
-        <label>
-              <input 
-                type="radio" 
-                name="rentalstatus" 
-                value="active" 
-                checked={searchParams.rentalstatus === 'active'} 
-                onChange={handleChange} 
-              />
-              ว่าง
-            </label>
-            <label>
-              <input 
-                type="radio" 
-                name="rentalstatus" 
-                value="inactive" 
-                checked={searchParams.rentalstatus === 'inactive'} 
-                onChange={handleChange} 
-              />
-              ไม่ว่าง
-            </label>
-        <button className="search-button" onClick={handleSearch}>ค้นหา</button>
-      </div>
+    <input 
+        type="text" 
+        name="warehouseId" 
+        placeholder="รหัสโกดัง" 
+        value={searchParams.warehouseId} 
+        onChange={handleChange} 
+    />
+    <input 
+        type="date" 
+        name="rentalDateStart" 
+        value={searchParams.rentalDateStart} 
+        onChange={handleChange} 
+    />
+    <label>
+        <input 
+            type="radio" 
+            name="rentalstatus" 
+            value="active" 
+            checked={searchParams.rentalstatus === 'active'} 
+            onChange={handleChange} 
+        />
+        ว่าง
+    </label>
+    <label>
+        <input 
+            type="radio" 
+            name="rentalstatus" 
+            value="inactive" 
+            checked={searchParams.rentalstatus === 'inactive'} 
+            onChange={handleChange} 
+        />
+        ไม่ว่าง
+    </label>
+    <button className="search-button" onClick={handleSearch}>ค้นหา</button>
+</div>
 
       <div className="warehouse-container">
         <h2>โกดังที่เช่า</h2>
@@ -265,13 +292,16 @@ const Dashboard = () => {
                     <td>{warehouse.warehousename}</td>
                     <td>{warehouse.warehouseaddress}</td>
                     <td>{warehouse.warehousesize}</td>
-                    <td className={warehouse.rentalstatus === 'active' ? 'text-green' : 'text-red'}>
-                      {warehouse.rentalstatus}
-                    </td>
-                    <td>
-                      {new Date(warehouse.date_rental_start).toLocaleDateString()} - 
-                      {new Date(warehouse.date_rental_finish).toLocaleDateString()}
-                    </td>
+                    <td className={
+                      warehouse.rentalstatus === 'active' || !warehouse.rentalstatus ? 'text-green' : 'text-red'
+                  }>
+                      {warehouse.rentalstatus || 'active'}
+                  </td>
+                  <td>
+                  {warehouse.date_rental_start && warehouse.date_rental_end 
+                      ? `${new Date(warehouse.date_rental_start).toLocaleDateString()} - ${new Date(warehouse.date_rental_end).toLocaleDateString()}` 
+                      : 'ไม่มีคนเช่า'}
+                  </td>
                     <td>
                       <button className="view-button" onClick={() => handleViewClick(warehouse)}>ดู</button>
                     </td>

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"; // นำเข้า useNavigate
 import { jwtDecode } from "jwt-decode"; // นำเข้า jwtDecode
-import '../css/Login.css'; // นำเข้าไฟล์ CSS
+import "../css/Login.css"; // นำเข้าไฟล์ CSS
 
 import image1 from '../images/image 1.png';
 
@@ -41,9 +41,9 @@ const Login = () => {
   
           // นำทางไปยัง Dashboard
           if (roleId === "1") {
-            navigate("/dashboard"); // ถ้า roleId เป็น 1 ไปหน้า dashboard
+            navigate("/js/dashboard"); // ถ้า roleId เป็น 1 ไปหน้า dashboard
           } else if (roleId === "2") {
-            navigate("/supervisor"); // ถ้า roleId เป็น 2 ไปอีกหน้านึง
+            navigate("/js/admin"); // ถ้า roleId เป็น 2 ไปอีกหน้านึง
           } else {
             console.error("Unknown roleId.");
           }
