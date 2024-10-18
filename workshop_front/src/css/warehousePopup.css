@@ -1,38 +1,47 @@
 .warehouse-popup .MuiDialog-paper {
   background-color: #f9f4d4; /* สีพื้นหลังแบบครีม */
-  padding: 20px;
-  border-radius: 10px;
-  width: 500px;
-  max-width: 90%;
+  padding: 30px; /* เพิ่ม padding ให้มากขึ้น */
+  border-radius: 15px; /* ทำมุมให้มนขึ้น */
+  width: 600px; /* ขยายความกว้างของ popup */
+  max-width: 95%; /* ให้ขนาดไม่เกินหน้าจอ */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* เพิ่มเงาให้สวยงาม */
 }
 
 .popup-content {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 5px; /* ปรับให้ช่องว่างระหว่างองค์ประกอบใกล้กัน */
+  margin-top: 30px; /* เพิ่มระยะห่างด้านบน */
 }
+
 
 .row {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 8px;
+  margin-bottom: 5px; /* ลดระยะห่างระหว่างแถว */
 }
 
 .row p {
   margin: 0;
   font-size: 14px;
+  font-weight: bold; /* ทำให้ตัวหนังสือหนา */
 }
 
 .MuiDialogTitle-root {
-  background-color: #f5e4a2;
-  padding: 10px;
-  border-radius: 5px 5px 0 0;
+  background-color: #f5e4a2; /* สีพื้นหลังหัวข้อ */
+  padding: 15px; /* เพิ่ม padding */
+  border-radius: 10px 10px 0 0; /* มุมมนของหัวข้อ */
   font-weight: bold;
+  font-size: 18px; /* ขยายขนาดตัวอักษร */
   text-align: center;
+  color: #2c3e50; /* สีตัวอักษร */
 }
 
 .MuiDialogActions-root {
   display: flex;
   justify-content: space-between;
-  padding: 10px;
+  padding: 15px; /* เพิ่ม padding */
+  background-color: #f5e4a2; /* สีพื้นหลังของส่วนล่าง */
+  border-radius: 0 0 10px 10px; /* มุมมนด้านล่าง */
+  box-shadow: inset 0px -1px 5px rgba(0, 0, 0, 0.1); /* เงาด้านใน */
 }
