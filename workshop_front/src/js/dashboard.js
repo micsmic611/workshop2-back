@@ -209,7 +209,9 @@ const Dashboard = () => {
               </>
             )}
           </div>
-          <button className="logout-button">ออกจากระบบ</button>
+          <div class="logout-container">
+  <button class="logout-button">Logout</button>
+</div>
         </div>
       </Drawer>
 

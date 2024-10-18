@@ -129,10 +129,14 @@ h3 {
 }
 
 .drawer-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* จัดให้มีพื้นที่ระหว่าง */
   background-color: #4A8F59;
   width: 250px;
   padding: 20px;
   height: 100%;
+  box-sizing: border-box;
 }
 
 .profile {
@@ -153,17 +157,25 @@ h3 {
   flex-grow: 1;
 }
 
+.logout-container {
+  display: flex; /* ใช้ flexbox */
+  justify-content: center; /* จัดให้อยู่กึ่งกลางแนวนอน */
+  align-items: center; /* จัดให้อยู่กึ่งกลางแนวตั้ง */
+  height: 50%; /* ให้ container สูงเต็มหน้าจอ */
+}
+
 .logout-button {
   background-color: #dc3545;
   color: white;
   border: none;
-  padding: 15px 30px; /* เพิ่ม padding เพื่อให้ปุ่มใหญ่ขึ้น */
+  padding: 15px 30px;
   cursor: pointer;
   border-radius: 5px;
-  font-size: 18px; /* ปรับขนาดตัวอักษร */
-  margin-top: 210%; /* ลดระยะ margin เพื่อให้ไม่มากเกินไป */
-  margin-left: 18%; /* ปรับให้ปุ่มอยู่ตรงกลางมากขึ้น */
+  font-size: 18px;
+  align-self: center; /* จัดปุ่มให้อยู่กึ่งกลางแนวนอน */
+  margin-top: auto; /* ดันปุ่มลงไปข้างล่าง */
 }
+
 
 
 .logout-button:hover {
