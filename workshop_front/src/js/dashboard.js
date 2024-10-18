@@ -59,11 +59,13 @@ const Dashboard = () => {
         
         // สร้าง URL ตามเงื่อนไข
         const url = search 
-            ? rentalDateStart // ถ้ามีวันที่เริ่มเช่า
-                ? `https://localhost:7111/api/Warehouse/GetWarehouseDetailsearch?warehousename=${warehouseId}&rentalstatus=${rentalstatus}&date_rental_start=${rentalDateStart}`
-                : `https://localhost:7111/api/Warehouse/warehousedetail?warehousename=${warehouseId}&rentalstatus=${rentalstatus}`
-            : 'https://localhost:7111/api/Warehouse/warehouserental';
-        
+            ? (warehouseId || rentalstatus || rentalDateStart) // ถ้ามีค่าใดๆ
+                ? rentalDateStart // ถ้ามีวันที่เริ่มเช่า
+                    ? `https://localhost:7111/api/Warehouse/GetWarehouseDetailsearch?warehousename=${warehouseId}&rentalstatus=${rentalstatus}&date_rental_start=${rentalDateStart}`
+                    : `https://localhost:7111/api/Warehouse/warehousedetail?warehousename=${warehouseId}&rentalstatus=${rentalstatus}`
+                : 'https://localhost:7111/api/Warehouse/warehouserental' // ถ้าไม่มีข้อมูลให้ใช้ warehouserental
+            : 'https://localhost:7111/api/Warehouse/warehouserental'; // กรณีที่ไม่มีการค้นหา
+
         const response = await fetch(url, {
             method: 'GET',
             headers: {
@@ -98,12 +100,12 @@ const handleSearch = () => {
       setSearchParams({
           warehouseId: '', // รหัสโกดัง
           rentalDateStart: '', // วันที่เริ่มเช่า
-          rentalstatus: '' // สถานะการเช่า
+          rentalstatus: '' // สถานะการเช่า (ตั้งเป็นค่าว่างถ้าไม่ต้องการค่าเริ่มต้น)
       });
+  } else {
+      console.error("Token not found in localStorage.");
   }
 };
-
-
 
   const handleChange = (e) => {
     const { name, value } = e.target;
