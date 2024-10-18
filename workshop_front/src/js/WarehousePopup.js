@@ -12,7 +12,7 @@ const WarehousePopup = ({ open, onClose, warehouse }) => {
         <div className="popup-content">
           <div className="row">
             <p><strong>รหัสโกดัง:</strong> {warehouse.warehouseid}</p>
-            <p><strong>บริษัทที่เช่าโกดัง:</strong> {warehouse.company || 'ไม่ระบุ'}</p>
+            <p><strong>บริษัทที่เช่าโกดัง:</strong> {warehouse.companyName || 'ไม่ระบุ'}</p>
           </div>
           <div className="row">
             <p><strong>ชื่อโกดัง:</strong> {warehouse.warehousename}</p>
@@ -29,7 +29,7 @@ const WarehousePopup = ({ open, onClose, warehouse }) => {
             <strong>สิ้นสุดการเช่าโกดังวันที่:</strong> 
             {new Date(warehouse.date_rental_end).toLocaleDateString()}
           </p>
-          <p><strong>ชื่อพนักงาน:</strong> {warehouse.employeeName || 'ไม่ระบุ'}</p>
+          <p><strong>ชื่อพนักงาน:</strong> {warehouse.username || 'ไม่ระบุ'}</p>
           <p><strong>รายละเอียดโกดัง:</strong> {warehouse.description || 'ไม่มีข้อมูล'}</p>
         </div>
       </DialogContent>

@@ -9,10 +9,11 @@ namespace permissionAPI.src.Infrastructure.Interface
 
         Task<WarehouseRentalDTO> GetWarehouseByIdAsync(string warehouseName, DateTime rentalDateStart, string warehousestatus);
 
-        Task<WarehouseRentalDetailDTO> getwarehosedetail(int warehouseid, DateTime rentalDateStart, string rentalstatus);
+        Task<WarehouseRentalDetailDTO> getwarehosedetail(string warehousename, string rentalstatus);
+        Task<WarehouseRentalDetailDTO> getwarehosedetailsearch(string warehousename, string rentalstatus, DateTime date_rental_start);
 
         Task<WarehouseDbo> AddWarehouseAsync(WarehouseDbo Warehosue);
 
-        Task<List<WarehouseRentalDTOs>> getwarehoserentalal();
+        Task<List<WarehouseRentalDTOs>> GetAllWarehousesWithRentalAsync();
     }
 }

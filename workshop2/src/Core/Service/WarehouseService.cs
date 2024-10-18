@@ -59,11 +59,30 @@ namespace permissionAPI.src.Core.Service
                 throw new ApplicationException($"An error occurred while retrieving the warehouse data: {ex.Message}", ex);
             }
         }
-        public async Task<WarehouseRentalDetailDTO> getwarehosedetail(int warehouseid, DateTime rentalDateStart, string rentalstatus)
+        public async Task<WarehouseRentalDetailDTO> getwarehosedetail(string warehousename, string rentalstatus)
         {
             try
             {
-                var warehouseDto = await _WarehouseRepository.getwarehosedetail(warehouseid, rentalDateStart, rentalstatus);
+                var warehouseDto = await _WarehouseRepository.getwarehosedetail(warehousename, rentalstatus);
+
+                if (warehouseDto == null)
+                {
+                    throw new KeyNotFoundException("Warehouse not found with the provided criteria.");
+                }
+
+                return warehouseDto;
+            }
+            catch (Exception ex)
+            {
+                // เพิ่มข้อความแสดงข้อผิดพลาดจาก exception ที่แท้จริง
+                throw new ApplicationException($"An error occurred while retrieving the warehouse data: {ex.Message}", ex);
+            }
+        }
+        public async Task<WarehouseRentalDetailDTO> getwarehosedetailsearch(string warehousename, string rentalstatus, DateTime date_rental_start)
+        {
+            try
+            {
+                var warehouseDto = await _WarehouseRepository.getwarehosedetailsearch(warehousename, rentalstatus, date_rental_start);
 
                 if (warehouseDto == null)
                 {
@@ -104,28 +123,28 @@ namespace permissionAPI.src.Core.Service
             {
                 throw new ApplicationException("An error occurred while adding data.", ex);
             }
-        }    
-        public async Task<List<WarehouseRentalDTOs>> getwarehoserental()
+        }
+        public async Task<List<WarehouseRentalDTOs>> GetAllWarehousesWithRentalAsync()
         {
             try
             {
-                var warehouserentalDto = await _WarehouseRepository.getwarehoserentalal();
+                var warehouseRentals = await _WarehouseRepository.GetAllWarehousesWithRentalAsync();
 
-                if (warehouserentalDto == null)
+                if (warehouseRentals == null || !warehouseRentals.Any())
                 {
-                    throw new KeyNotFoundException("Warehouse not found with the provided criteria.");
+                    throw new KeyNotFoundException("No warehouses found.");
                 }
 
-                return warehouserentalDto;
+                return warehouseRentals;
             }
             catch (Exception ex)
             {
-                // เพิ่มข้อความแสดงข้อผิดพลาดจาก exception ที่แท้จริง
-                throw new ApplicationException($"An error occurred while retrieving the warehouse data: {ex.Message}", ex);
+                throw new ApplicationException($"An error occurred while retrieving the warehouse rentals: {ex.Message}", ex);
             }
         }
 
-                
+
+
 
 
     }

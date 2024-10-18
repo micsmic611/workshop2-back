@@ -55,37 +55,55 @@ const Dashboard = () => {
 
   const fetchWarehouseData = async (storedToken, search = false) => {
     try {
-      const url = search 
-        ? `https://localhost:7111/api/Warehouse/warehousedetail?warehouseid=${searchParams.warehouseId}&rentalDateStart=${searchParams.rentalDateStart}&rentalstatus=${encodeURIComponent(searchParams.rentalstatus)}`
-        : 'https://localhost:7111/api/Warehouse/warehouserental';
-      
-      const response = await fetch(url, {
-        method: 'GET',
-        headers: {
-          Authorization: `Bearer ${storedToken}`,
-          'Content-Type': 'application/json',
-        },
-      });
+        const { warehouseId, rentalDateStart, rentalstatus } = searchParams; // ดึงค่าจาก searchParams
+        
+        // สร้าง URL ตามเงื่อนไข
+        const url = search 
+            ? rentalDateStart // ถ้ามีวันที่เริ่มเช่า
+                ? `https://localhost:7111/api/Warehouse/GetWarehouseDetailsearch?warehousename=${warehouseId}&rentalstatus=${rentalstatus}&date_rental_start=${rentalDateStart}`
+                : `https://localhost:7111/api/Warehouse/warehousedetail?warehousename=${warehouseId}&rentalstatus=${rentalstatus}`
+            : 'https://localhost:7111/api/Warehouse/warehouserental';
+        
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                Authorization: `Bearer ${storedToken}`,
+                'Content-Type': 'application/json',
+            },
+        });
 
-      if (response.ok) {
-        const data = await response.json();
-        console.log('Fetched warehouses:', data);
-        setWarehouses(Array.isArray(data) ? data : [data]);
-      } else {
-        const errorMessage = await response.text();
-        console.error("Failed to fetch warehouse data:", errorMessage);
-      }
+        if (response.ok) {
+            const data = await response.json();
+            console.log('Fetched warehouses:', data);
+            setWarehouses(Array.isArray(data) ? data : [data]);
+        } else {
+            const errorMessage = await response.text();
+            console.error("Failed to fetch warehouse data:", errorMessage);
+        }
     } catch (error) {
-      console.error("Error fetching warehouse data:", error);
+        console.error("Error fetching warehouse data:", error);
     }
-  };
+};
 
-  const handleSearch = () => {
-    const storedToken = localStorage.getItem('token');
-    if (storedToken) {
+const handleSearch = () => {
+  const storedToken = localStorage.getItem('token');
+  if (storedToken) {
+      // เคลียร์ข้อมูลในตารางก่อนค้นหา
+      setWarehouses([]); 
+
+      // เรียก API ค้นหาโกดัง
       fetchWarehouseData(storedToken, true); 
-    }
-  };
+
+      // เคลียร์ค่าช่องกรอกข้อมูลให้กลับไปเป็นค่าเริ่มต้น
+      setSearchParams({
+          warehouseId: '', // รหัสโกดัง
+          rentalDateStart: '', // วันที่เริ่มเช่า
+          rentalstatus: '' // สถานะการเช่า
+      });
+  }
+};
+
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -215,30 +233,41 @@ const Dashboard = () => {
 
       <div className="search-container">
     <h1>ค้นหาโกดัง</h1>
-        <input type="text" name="warehouseId" placeholder="รหัสโกดัง" value={searchParams.warehouseId} onChange={handleChange} />
-        <input type="date" name="rentalDateStart" value={searchParams.rentalDateStart} onChange={handleChange} />
-        <label>
-              <input 
-                type="radio" 
-                name="rentalstatus" 
-                value="active" 
-                checked={searchParams.rentalstatus === 'active'} 
-                onChange={handleChange} 
-              />
-              ว่าง
-            </label>
-            <label>
-              <input 
-                type="radio" 
-                name="rentalstatus" 
-                value="inactive" 
-                checked={searchParams.rentalstatus === 'inactive'} 
-                onChange={handleChange} 
-              />
-              ไม่ว่าง
-            </label>
-        <button className="search-button" onClick={handleSearch}>ค้นหา</button>
-      </div>
+    <input 
+        type="text" 
+        name="warehouseId" 
+        placeholder="รหัสโกดัง" 
+        value={searchParams.warehouseId} 
+        onChange={handleChange} 
+    />
+    <input 
+        type="date" 
+        name="rentalDateStart" 
+        value={searchParams.rentalDateStart} 
+        onChange={handleChange} 
+    />
+    <label>
+        <input 
+            type="radio" 
+            name="rentalstatus" 
+            value="active" 
+            checked={searchParams.rentalstatus === 'active'} 
+            onChange={handleChange} 
+        />
+        ว่าง
+    </label>
+    <label>
+        <input 
+            type="radio" 
+            name="rentalstatus" 
+            value="inactive" 
+            checked={searchParams.rentalstatus === 'inactive'} 
+            onChange={handleChange} 
+        />
+        ไม่ว่าง
+    </label>
+    <button className="search-button" onClick={handleSearch}>ค้นหา</button>
+</div>
 
       <div className="warehouse-container">
         <h2>โกดังที่เช่า</h2>
@@ -263,13 +292,16 @@ const Dashboard = () => {
                     <td>{warehouse.warehousename}</td>
                     <td>{warehouse.warehouseaddress}</td>
                     <td>{warehouse.warehousesize}</td>
-                    <td className={warehouse.rentalstatus === 'active' ? 'text-green' : 'text-red'}>
-                      {warehouse.rentalstatus}
-                    </td>
-                    <td>
-                      {new Date(warehouse.date_rental_start).toLocaleDateString()} - 
-                      {new Date(warehouse.date_rental_finish).toLocaleDateString()}
-                    </td>
+                    <td className={
+                      warehouse.rentalstatus === 'active' || !warehouse.rentalstatus ? 'text-green' : 'text-red'
+                  }>
+                      {warehouse.rentalstatus || 'active'}
+                  </td>
+                  <td>
+                  {warehouse.date_rental_start && warehouse.date_rental_end 
+                      ? `${new Date(warehouse.date_rental_start).toLocaleDateString()} - ${new Date(warehouse.date_rental_end).toLocaleDateString()}` 
+                      : 'ไม่มีคนเช่า'}
+                  </td>
                     <td>
                       <button className="view-button" onClick={() => handleViewClick(warehouse)}>ดู</button>
                     </td>

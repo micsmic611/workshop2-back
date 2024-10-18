@@ -58,12 +58,31 @@ namespace permissionAPI.Controllers
             }
         }
         [HttpGet("warehousedetail")]
-        public async Task<IActionResult> GetWarehouseDetail(int warehouseid, DateTime rentalDateStart, string rentalstatus)
+        public async Task<IActionResult> GetWarehouseDetail(string warehousename, string rentalstatus)
         {
             try
             {
                 // เรียกใช้ฟังก์ชันจาก WarehouseService
-                var warehouseDto = await _WarehouseService.getwarehosedetail(warehouseid, rentalDateStart, rentalstatus);
+                var warehouseDto = await _WarehouseService.getwarehosedetail(warehousename, rentalstatus);
+                return Ok(warehouseDto); // ส่งผลลัพธ์กลับในรูปแบบ JSON
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(new { message = ex.Message }); // ส่ง HTTP 404 ถ้าไม่พบข้อมูล
+            }
+            catch (ApplicationException ex)
+            {
+                return StatusCode(500, new { message = ex.Message }); // ส่ง HTTP 500 เมื่อเกิดข้อผิดพลาดภายใน
+            }
+        }
+
+        [HttpGet("GetWarehouseDetailsearch")]
+        public async Task<IActionResult> GetWarehouseDetailsearch(string warehousename, string rentalstatus, DateTime date_rental_start)
+        {
+            try
+            {
+                // เรียกใช้ฟังก์ชันจาก WarehouseService
+                var warehouseDto = await _WarehouseService.getwarehosedetailsearch(warehousename, rentalstatus, date_rental_start);
                 return Ok(warehouseDto); // ส่งผลลัพธ์กลับในรูปแบบ JSON
             }
             catch (KeyNotFoundException ex)
@@ -76,13 +95,12 @@ namespace permissionAPI.Controllers
             }
         }
         [HttpGet("warehouserental")]
-        public async Task<IActionResult> GetWarehouseRental()
+        public async Task<IActionResult> GetAllWarehousesWithRental()
         {
             try
             {
-
-                var warehouseRentalDto = await _WarehouseService.getwarehoserental();
-                return Ok(warehouseRentalDto); // ส่งผลลัพธ์กลับในรูปแบบ JSON
+                var warehouseRentals = await _WarehouseService.GetAllWarehousesWithRentalAsync();
+                return Ok(warehouseRentals); // ส่งผลลัพธ์ในรูปแบบ JSON
             }
             catch (KeyNotFoundException ex)
             {
@@ -93,6 +111,7 @@ namespace permissionAPI.Controllers
                 return StatusCode(500, new { message = ex.Message }); // ส่ง HTTP 500 เมื่อเกิดข้อผิดพลาดภายใน
             }
         }
+
 
         [HttpPost("AddWarehouse")]
         public async Task<IActionResult> AddWarehouseAsync([FromBody] InputWarehosueDbo InputWarehosueDbo)
