@@ -155,6 +155,32 @@ namespace permissionAPI.src.Core.Service
                 throw ex;
             }
         }
+        public async Task<List<EmployeeDTO>> GetAlluser1Async()
+        {
+            try
+            {
+                var userData = await _UserRepository.GetAllUser1Async();
+                var userReturn = userData.Select(s => new EmployeeDTO
+                {
+                    UserID = s.UserID,
+                    Username = s.Username,
+                    //Password = s.Password,
+                    Firstname = s.Firstname,
+                    Lastname = s.Lastname,
+                    email = s.email,
+                    phone = s.phone,
+                    address = s.address,
+                    RoleId = s.RoleId,
+                    status = s.status
+                }).ToList();
+
+                return userReturn;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
         public async Task<List<EmployeeDTO>> GetEmpByNameAsync(String Username)
         {

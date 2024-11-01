@@ -7,6 +7,7 @@ import Supervisor from "./js/SupervisorCompany";
 import Rent from './js/Rent';
 import WarehousePopup from './js/WarehousePopup';
 import Admin from "./js/Supervisor"; // สมมุติว่า Supervisor คือคอมโพเนนต์ Admin
+import Report from './js/Report';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/supervisor/employee" element={<Employee />} />
         <Route path="/js/Rent" element={<Rent />} /> {/* ต้องมี Route ที่นี่ */}
         <Route path="/supervisor" element={<Admin />} />
+        <Route path="/report" element={<Report />} />
       </Routes>
     </Router>
   );
