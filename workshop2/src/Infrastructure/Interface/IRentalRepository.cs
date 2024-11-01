@@ -9,5 +9,8 @@ namespace workshop2.src.Infrastructure.Interface
         
         Task AddRentalAsync(RentalDTO rental);
         Task<RentalDbo> UpdateRentalAsync(RentalDbo Rental);
+        Task<RentalDbo> GetRentalByIdAsync(int rentalId);
+        Task UpdateRentalStatusAsync(int rentalId, string status);
+        Task AddCancelRentalAsync(cancelrentalDbo cancelRental);
     }
 }

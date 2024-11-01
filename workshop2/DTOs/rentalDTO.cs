@@ -28,4 +28,10 @@
         public DateTime RentalFinish { get; set; }
         public string? Description { get; set; }
     }
+    public class UpdateRentalStatusDto
+    {
+        public int RentalId { get; set; }
+        public int UserId { get; set; }
+        public string Description { get; set; }
+    }
 }

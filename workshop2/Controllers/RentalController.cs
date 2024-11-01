@@ -80,7 +80,12 @@ namespace workshop2.Controllers
                 return BadRequest(response);
             }
         }
-
+        [HttpPut("update-status")]
+        public async Task<IActionResult> UpdateRentalStatus([FromBody] UpdateRentalStatusDto dto)
+        {
+            await _rentalService.UpdateRentalStatusAndCancelAsync(dto);
+            return Ok("Rental status updated and cancel rental added.");
+        }
 
     }
 }

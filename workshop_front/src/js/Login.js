@@ -43,7 +43,7 @@ const Login = () => {
           if (roleId === "1") {
             navigate("/employee"); // ถ้า roleId เป็น 1 ไปหน้า dashboard
           } else if (roleId === "2") {
-            navigate("/supervisor/company"); // ถ้า roleId เป็น 2 ไปอีกหน้านึง
+            navigate("/Supervisor"); // ถ้า roleId เป็น 2 ไปอีกหน้านึง
           } else {
             console.error("Unknown roleId.");
           }

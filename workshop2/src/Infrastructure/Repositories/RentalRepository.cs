@@ -77,7 +77,27 @@ namespace workshop2.src.Infrastructure.Repositories
                 throw new Exception($"Error occurred while updating Rental with ID {Rental.rentalid}", ex);
             }
         }
+        public async Task<RentalDbo> GetRentalByIdAsync(int rentalId)
+        {
+            return await _dbContext.Set<RentalDbo>().FindAsync(rentalId);
+        }
 
+        public async Task UpdateRentalStatusAsync(int rentalId, string status)
+        {
+            var rental = await GetRentalByIdAsync(rentalId);
+            if (rental != null)
+            {
+                rental.rentalstatus = status;
+                await _dbContext.SaveChangesAsync();
+            }
+        }
 
+        public async Task AddCancelRentalAsync(cancelrentalDbo cancelRental)
+        {
+            await _dbContext.Set<cancelrentalDbo>().AddAsync(cancelRental);
+            await _dbContext.SaveChangesAsync();
+        }
     }
+
 }
+

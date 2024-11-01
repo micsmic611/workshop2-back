@@ -168,7 +168,6 @@ namespace permissionAPI.src.Infrastructure.Repositories
                 throw ex;
             }
         }
-
         public async Task<List<WarehouseRentalDTOs>> GetAllWarehousesWithRentalAsync()
         {
             try
@@ -180,7 +179,7 @@ namespace permissionAPI.src.Infrastructure.Repositories
                                         from r in rentalGroup.DefaultIfEmpty() // ใช้ Left Join
                                         join c in _dbContext.Company on r.companyid equals c.CompanyID into companyGroup
                                         from c in companyGroup.DefaultIfEmpty() // ใช้ Left Join สำหรับ company
-                                        where r == null || (r.rentalstatus != "inactive" || r.date_rental_end >= currentDate) // เงื่อนไขการกรอง
+                                        where r == null || (r.rentalstatus == null || (r.rentalstatus != "cancel" && r.date_rental_end >= currentDate)) // ปรับเงื่อนไขการกรอง
                                         select new WarehouseRentalDTOs
                                         {
                                             warehouseid = w.warehouseid,
@@ -189,13 +188,13 @@ namespace permissionAPI.src.Infrastructure.Repositories
                                             warehousesize = w.warehousesize,
                                             warehousestatus = w.warehousstatus,
                                             // ข้อมูลจาก Rental
-                                            rentalid = r.rentalid,
+                                            rentalid = r != null ? r.rentalid : (int?)null,
                                             companyid = r != null ? r.companyid : (int?)null,
                                             userid = r != null ? r.userid : (int?)null,
                                             date_rental_start = r != null ? r.date_rental_start : (DateTime?)null,
                                             date_rental_end = r != null ? r.date_rental_end : (DateTime?)null,
                                             rentalstatus = r != null ? r.rentalstatus : null,
-                                            Description = r !=null ? r.Description : null,
+                                            Description = r != null ? r.Description : null,
                                             // ข้อมูลจาก Company
                                             companyName = c != null ? c.CompanyName : null,
                                             companyFirstname = c != null ? c.CompanyFirstname : null,
@@ -212,7 +211,6 @@ namespace permissionAPI.src.Infrastructure.Repositories
                 throw new ApplicationException($"An error occurred while retrieving the warehouse data: {ex.Message}", ex);
             }
         }
-
 
     }
 }
