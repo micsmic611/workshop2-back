@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { jwtDecode } from "jwt-decode"; 
-import '../css/dashboard.css'; 
+import '../css/supervisor.css'; 
 import { Drawer, AppBar, Toolbar, IconButton } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Button } from '@mui/material';
@@ -308,7 +308,7 @@ const handleSearch = () => {
       <div>
   {/* ปุ่มเพิ่มโกดัง */}
   {roleId === '2' && (
-    <button onClick={() => setPopupOpen(true)}>เพิ่มโกดัง</button>
+    <button onClick={() => setPopupOpen(true)} className="addrental-button" >เพิ่มโกดัง</button>
   )}
 
   {/* ส่วนอื่น ๆ ของ Dashboard */}
