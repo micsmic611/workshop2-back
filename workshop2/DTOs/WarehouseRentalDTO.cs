@@ -51,6 +51,7 @@
         public DateTime? date_rental_start { get; set; }
         public DateTime? date_rental_end { get; set; }
         public string? rentalstatus { get; set; }
+        public string? Description { get; set; }
 
         // ข้อมูลจาก Company
         public string? companyName { get; set; }

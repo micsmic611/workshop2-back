@@ -194,6 +194,7 @@ namespace permissionAPI.src.Infrastructure.Repositories
                                             date_rental_start = r != null ? r.date_rental_start : (DateTime?)null,
                                             date_rental_end = r != null ? r.date_rental_end : (DateTime?)null,
                                             rentalstatus = r != null ? r.rentalstatus : null,
+                                            Description = r !=null ? r.Description : null,
                                             // ข้อมูลจาก Company
                                             companyName = c != null ? c.CompanyName : null,
                                             companyFirstname = c != null ? c.CompanyFirstname : null,

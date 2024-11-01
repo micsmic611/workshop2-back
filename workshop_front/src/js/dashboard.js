@@ -41,7 +41,7 @@ const Dashboard = () => {
           'Content-Type': 'application/json',
         },
       });
-
+    //<img src="";
       if (response.ok) {
         const data = await response.json();
         setUserData(data.data[0]);
@@ -53,20 +53,10 @@ const Dashboard = () => {
     }
   };
 
-  const fetchWarehouseData = async (storedToken, search = false) => {
+  const fetchWarehouseData = async (storedToken, isSearch = false) => {
+    // ...
     try {
-        const { warehouseId, rentalDateStart, rentalstatus } = searchParams; // ดึงค่าจาก searchParams
-        
-        // สร้าง URL ตามเงื่อนไข
-        const url = search 
-            ? (warehouseId || rentalstatus || rentalDateStart) // ถ้ามีค่าใดๆ
-                ? rentalDateStart // ถ้ามีวันที่เริ่มเช่า
-                    ? `https://localhost:7111/api/Warehouse/GetWarehouseDetailsearch?warehousename=${warehouseId}&rentalstatus=${rentalstatus}&date_rental_start=${rentalDateStart}`
-                    : `https://localhost:7111/api/Warehouse/warehousedetail?warehousename=${warehouseId}&rentalstatus=${rentalstatus}`
-                : 'https://localhost:7111/api/Warehouse/warehouserental' // ถ้าไม่มีข้อมูลให้ใช้ warehouserental
-            : 'https://localhost:7111/api/Warehouse/warehouserental'; // กรณีที่ไม่มีการค้นหา
-
-        const response = await fetch(url, {
+        const response = await fetch('https://localhost:7111/api/Warehouse/warehouserental', {
             method: 'GET',
             headers: {
                 Authorization: `Bearer ${storedToken}`,
@@ -76,8 +66,28 @@ const Dashboard = () => {
 
         if (response.ok) {
             const data = await response.json();
-            console.log('Fetched warehouses:', data);
-            setWarehouses(Array.isArray(data) ? data : [data]);
+            let filteredData = data;
+
+            if (isSearch) {
+                const warehouseIdParam = searchParams.warehouseId ? Number(searchParams.warehouseId) : null;
+                const rentalDateStart = searchParams.rentalDateStart; // '10/1/2024'
+                const rentalstatus = searchParams.rentalstatus;
+
+                // แปลงวันที่จาก 'MM/DD/YYYY' เป็น 'YYYY-MM-DD'
+                const rentalDateStartFormatted = rentalDateStart ? 
+                    new Date(rentalDateStart).toISOString().slice(0, 10) : null;
+
+                filteredData = data.filter(warehouse => {
+                    const matchesWarehouseId = warehouseIdParam ? warehouse.warehouseid === warehouseIdParam : true;
+                    const matchesRentalDateStart = rentalDateStartFormatted ? 
+                        (warehouse.date_rental_start && warehouse.date_rental_start.slice(0, 10) === rentalDateStartFormatted) : true;
+                    const matchesRentalStatus = rentalstatus ? warehouse.rentalstatus === rentalstatus : true;
+
+                    return matchesWarehouseId && matchesRentalDateStart && matchesRentalStatus;
+                });
+            }
+
+            setWarehouses(filteredData);
         } else {
             const errorMessage = await response.text();
             console.error("Failed to fetch warehouse data:", errorMessage);
@@ -86,6 +96,7 @@ const Dashboard = () => {
         console.error("Error fetching warehouse data:", error);
     }
 };
+
 
 const handleSearch = () => {
   const storedToken = localStorage.getItem('token');
@@ -144,7 +155,6 @@ const handleSearch = () => {
             },
             body: JSON.stringify(userUpdateData), // ส่งข้อมูลที่ต้องการอัปเดต
         });
-
         if (response.ok) {
             const data = await response.json();
             console.log('User data updated successfully:', data);
