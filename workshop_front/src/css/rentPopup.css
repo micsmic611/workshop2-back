@@ -1,0 +1,48 @@
+/* rentPopup.css */
+
+.rent-popup .MuiDialogTitle-root {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #3f51b5;
+    text-align: center;
+  }
+  
+  .rent-popup .MuiDialogContent-root {
+    padding: 20px;
+    background-color: #f9f9f9;
+  }
+  
+  .rent-popup .popup-content {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .rent-popup .popup-content .MuiTextField-root {
+    margin-bottom: 15px;
+  }
+  
+  .rent-popup .MuiDialogActions-root {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+  }
+  
+  .rent-popup .MuiButton-containedPrimary {
+    background-color: #4caf50;
+    color: white;
+  }
+  
+  .rent-popup .MuiButton-containedPrimary:hover {
+    background-color: #388e3c;
+  }
+  
+  .rent-popup .MuiButton-outlinedSecondary {
+    color: #f50057;
+    border-color: #f50057;
+  }
+  
+  .rent-popup .MuiButton-outlinedSecondary:hover {
+    border-color: #c51162;
+    color: #c51162;
+  }
+  
