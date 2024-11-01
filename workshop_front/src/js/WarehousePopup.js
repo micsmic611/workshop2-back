@@ -110,10 +110,10 @@ const WarehousePopup = ({ open, onClose, warehouse }) => {
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleCancelRent} color="primary">
+          <Button onClick={handleCancelRent} className="MuiButton-textprimary">
             ยืนยัน
           </Button>
-          <Button onClick={closeCancelDialog} color="secondary">
+          <Button onClick={closeCancelDialog} className="MuiButton-textSecondary">
             ยกเลิก
           </Button>
         </DialogActions>

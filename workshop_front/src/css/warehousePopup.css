@@ -45,3 +45,51 @@
   border-radius: 0 0 10px 10px; /* มุมมนด้านล่าง */
   box-shadow: inset 0px -1px 5px rgba(0, 0, 0, 0.1); /* เงาด้านใน */
 }
+
+.MuiButton-containedPrimary{
+  color: #ffffff !important;
+  border-color: #2AB048 !important;
+  background-color: #2AB048 !important;
+}
+
+.MuiButton-containedPrimary:hover{
+  color: #ffffff !important;
+  border-color: #2AB048 !important;
+  background-color: #2AB048 !important;
+}
+
+.MuiButton-outlinedSecondary {
+  color: #ffffff !important;
+  border-color: #ff0000 !important;
+  background-color: #ff0000 !important;
+}
+
+.MuiButton-outlinedSecondary:hover {
+  background-color: #ff0000 !important;
+  border-color: #ff0000 !important;
+  color: #ffffff !important;
+}
+
+.color-secondary{
+  color: #ffffff !important;
+  border-color: #ff0000 !important;
+  background-color: #ff0000 !important;
+}
+
+.MuiButton-textSecondary{
+  color: #ffffff !important;
+  border-color: #ff0000 !important;
+  background-color: #ff0000 !important;
+}
+
+.MuiButton-textprimary{
+  color: #ffffff !important;
+  border-color: #2AB048 !important;
+  background-color: #2AB048 !important;
+}
+
+.MuiButton-textprimary:hover{
+  color: #ffffff !important;
+  border-color: #2AB048 !important;
+  background-color: #2AB048 !important;
+}
