@@ -47,22 +47,26 @@
 }
 .save-button, .cancel-button {
   color: white; /* เปลี่ยนสีตัวอักษร */
-  border: black; /* ไม่แสดงขอบ */
+  border: none; /* ไม่แสดงขอบ */
   border-radius: 5px; /* ทำมุมให้มน */
-  padding: 10px 20px; /* เพิ่ม padding ให้ใหญ่ขึ้น */
-  font-size: 18px; /* ขนาดตัวอักษรใหญ่ขึ้น */
+  padding: 10px 20px; /* เพิ่ม padding ให้ปุ่มใหญ่ขึ้น */
+  font-size: 16px; /* ขนาดตัวอักษร */
   cursor: pointer; /* เปลี่ยน cursor เมื่อชี้ไปที่ปุ่ม */
   transition: background-color 0.3s; /* เพิ่มการเปลี่ยนสีเมื่อ hover */
-  width: 100px; /* กำหนดความกว้างของปุ่ม */
+  width: 50%; /* กำหนดความกว้างของปุ่มเป็นเปอร์เซ็นต์เพื่อให้ปุ่มเท่ากัน */
 }
 
 .save-button {
   background-color: #1aac0a; /* สีพื้นหลังของปุ่มยืนยัน */
 }
 
+
+
 .cancel-button {
   background-color: #dc3545; /* สีพื้นหลังของปุ่มยกเลิก */
 }
+
+
 
 .nav-button:hover {
   background-color: #47674F; /* เปลี่ยนสีพื้นหลังเมื่อ hover */
@@ -129,10 +133,14 @@ h3 {
 }
 
 .drawer-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* จัดให้มีพื้นที่ระหว่าง */
   background-color: #4A8F59;
   width: 250px;
   padding: 20px;
   height: 100%;
+  box-sizing: border-box;
 }
 
 .profile {
@@ -153,17 +161,25 @@ h3 {
   flex-grow: 1;
 }
 
+.logout-container {
+  display: flex; /* ใช้ flexbox */
+  justify-content: center; /* จัดให้อยู่กึ่งกลางแนวนอน */
+  align-items: center; /* จัดให้อยู่กึ่งกลางแนวตั้ง */
+  height: 50%; /* ให้ container สูงเต็มหน้าจอ */
+}
+
 .logout-button {
   background-color: #dc3545;
   color: white;
   border: none;
-  padding: 15px 30px; /* เพิ่ม padding เพื่อให้ปุ่มใหญ่ขึ้น */
+  padding: 15px 30px;
   cursor: pointer;
   border-radius: 5px;
-  font-size: 18px; /* ปรับขนาดตัวอักษร */
-  margin-top: 210%; /* ลดระยะ margin เพื่อให้ไม่มากเกินไป */
-  margin-left: 18%; /* ปรับให้ปุ่มอยู่ตรงกลางมากขึ้น */
+  font-size: 18px;
+  align-self: center; /* จัดปุ่มให้อยู่กึ่งกลางแนวนอน */
+  margin-top: auto; /* ดันปุ่มลงไปข้างล่าง */
 }
+
 
 
 .logout-button:hover {

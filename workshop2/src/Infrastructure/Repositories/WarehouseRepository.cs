@@ -63,32 +63,39 @@ namespace permissionAPI.src.Infrastructure.Repositories
                 throw new ApplicationException($"An error occurred while retrieving the warehouse data: {ex.Message}", ex);
             }
         }
-        public async Task<WarehouseRentalDetailDTO> getwarehosedetail(int warehouseid, DateTime rentalDateStart, string rentalstatus)
+        public async Task<WarehouseRentalDetailDTO> getwarehosedetail(string warehousename, string rentalstatus)
         {
             try
             {
+                // เริ่มต้น query
                 var warehouse = await (from w in _dbContext.warehouse
-                                       join r in _dbContext.Rental
-                                       on w.warehouseid equals r.warehouseid
-                                       join u in _dbContext.User
-                                       on r.userid equals u.UserID
-                                       where w.warehouseid == warehouseid
-                                             && r.date_rental_start == rentalDateStart
-                                             && r.rentalstatus == rentalstatus
-                                       select new WarehouseRentalDetailDTO
-                                       {
-                                           warehouseid = w.warehouseid,
-                                           warehouseaddress = w.warehouseaddress,
-                                           warehousename = w.warehousename,
-                                           warehousesize = w.warehousesize,
-                                           warehousestatus = w.warehousstatus,
-                                           rentalstatus = r.rentalstatus,
-                                           date_rental_start = r.date_rental_start,
-                                           date_rental_end = r.date_rental_end,
-                                           Description = r.Description,
-                                           Username = u.Username
-                                       }).FirstOrDefaultAsync();
+                            join r in _dbContext.Rental on w.warehouseid equals r.warehouseid
+                            join u in _dbContext.User on r.userid equals u.UserID
+                            join c in _dbContext.Company on r.companyid equals c.CompanyID
+                            where w.warehousename == warehousename && r.rentalstatus == rentalstatus
+                            select new WarehouseRentalDetailDTO
+                             {
+                                warehouseid = w.warehouseid,
+                                warehouseaddress = w.warehouseaddress,
+                                warehousename = w.warehousename,
+                                warehousesize = w.warehousesize,
+                                warehousestatus = w.warehousstatus, // แก้ไขตรงนี้จาก r เป็น w
+                                rentalstatus = r.rentalstatus,
+                                date_rental_start = r.date_rental_start,
+                                date_rental_end = r.date_rental_end,
+                                Description = r.Description,
+                                userid=u.UserID,
+                                Username = u.Username,
+                                companyid = c.CompanyID,
+                                companyName = c.CompanyName,
+                                companyFirstname = c.CompanyFirstname,
+                                companyLastname = c.CompanyLastname,
+                                companyEmail = c.CompanyEmail,
+                                companyPhone = c.CompanyPhone,
+                                companyAddress = c.CompanyAddress
+                            }).FirstOrDefaultAsync();
 
+                // เช็คว่า warehouse ที่ได้เป็น null หรือไม่
                 if (warehouse == null)
                 {
                     throw new KeyNotFoundException("Warehouse not found with the provided criteria.");
@@ -98,10 +105,55 @@ namespace permissionAPI.src.Infrastructure.Repositories
             }
             catch (Exception ex)
             {
-                // เพิ่มข้อความแสดงข้อผิดพลาดจาก exception ที่แท้จริง
                 throw new ApplicationException($"An error occurred while retrieving the warehouse data: {ex.Message}", ex);
             }
         }
+        public async Task<WarehouseRentalDetailDTO> getwarehosedetailsearch(string warehousename, string rentalstatus,DateTime date_rental_start)
+        {
+            try
+            {
+                // เริ่มต้น query
+                var warehouse = await (from w in _dbContext.warehouse
+                                       join r in _dbContext.Rental on w.warehouseid equals r.warehouseid
+                                       join u in _dbContext.User on r.userid equals u.UserID
+                                       join c in _dbContext.Company on r.companyid equals c.CompanyID
+                                       where w.warehousename == warehousename && r.rentalstatus == rentalstatus && r.date_rental_start==date_rental_start
+                                       select new WarehouseRentalDetailDTO
+                                       {
+                                           warehouseid = w.warehouseid,
+                                           warehouseaddress = w.warehouseaddress,
+                                           warehousename = w.warehousename,
+                                           warehousesize = w.warehousesize,
+                                           warehousestatus = w.warehousstatus, // แก้ไขตรงนี้จาก r เป็น w
+                                           rentalstatus = r.rentalstatus,
+                                           date_rental_start = r.date_rental_start,
+                                           date_rental_end = r.date_rental_end,
+                                           Description = r.Description,
+                                           userid = u.UserID,
+                                           Username = u.Username,
+                                           companyid = c.CompanyID,
+                                           companyName = c.CompanyName,
+                                           companyFirstname = c.CompanyFirstname,
+                                           companyLastname = c.CompanyLastname,
+                                           companyEmail = c.CompanyEmail,
+                                           companyPhone = c.CompanyPhone,
+                                           companyAddress = c.CompanyAddress
+                                       }).FirstOrDefaultAsync();
+
+                // เช็คว่า warehouse ที่ได้เป็น null หรือไม่
+                if (warehouse == null)
+                {
+                    throw new KeyNotFoundException("Warehouse not found with the provided criteria.");
+                }
+
+                return warehouse;
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException($"An error occurred while retrieving the warehouse data: {ex.Message}", ex);
+            }
+        }
+
 
         public async Task<WarehouseDbo> AddWarehouseAsync(WarehouseDbo Warehosue)
         {
@@ -117,39 +169,49 @@ namespace permissionAPI.src.Infrastructure.Repositories
             }
         }
 
-        public async Task<List<WarehouseRentalDTOs>> getwarehoserentalal()
+        public async Task<List<WarehouseRentalDTOs>> GetAllWarehousesWithRentalAsync()
         {
             try
             {
-                var warehouse = await (from r in _dbContext.Rental
-                                       join w in _dbContext.warehouse
-                                       on r.warehouseid equals w.warehouseid
-                                       select new WarehouseRentalDTOs
-                                       {
-                                           warehouseid = w.warehouseid,
-                                           warehouseaddress = w.warehouseaddress,
-                                           warehousename = w.warehousename,
-                                           warehousesize = w.warehousesize,
-                                           warehousestatus = w.warehousstatus,
-                                           rentalid = r.rentalid,
-                                           rentalstatus = r.rentalstatus,
-                                           date_rental_start = r.date_rental_start,
-                                           date_rental_end = r.date_rental_end,
-                                           Description = r.Description,
-                                       }).ToListAsync();
+                var currentDate = DateTime.Now; // กำหนดวันที่ปัจจุบัน
 
-                if (warehouse == null)
-                {
-                    throw new KeyNotFoundException("Warehouse not found with the provided criteria.");
-                }
+                var warehouses = await (from w in _dbContext.warehouse
+                                        join r in _dbContext.Rental on w.warehouseid equals r.warehouseid into rentalGroup
+                                        from r in rentalGroup.DefaultIfEmpty() // ใช้ Left Join
+                                        join c in _dbContext.Company on r.companyid equals c.CompanyID into companyGroup
+                                        from c in companyGroup.DefaultIfEmpty() // ใช้ Left Join สำหรับ company
+                                        where r == null || (r.rentalstatus != "inactive" || r.date_rental_end >= currentDate) // เงื่อนไขการกรอง
+                                        select new WarehouseRentalDTOs
+                                        {
+                                            warehouseid = w.warehouseid,
+                                            warehousename = w.warehousename,
+                                            warehouseaddress = w.warehouseaddress,
+                                            warehousesize = w.warehousesize,
+                                            warehousestatus = w.warehousstatus,
+                                            // ข้อมูลจาก Rental
+                                            companyid = r != null ? r.companyid : (int?)null,
+                                            userid = r != null ? r.userid : (int?)null,
+                                            date_rental_start = r != null ? r.date_rental_start : (DateTime?)null,
+                                            date_rental_end = r != null ? r.date_rental_end : (DateTime?)null,
+                                            rentalstatus = r != null ? r.rentalstatus : null,
+                                            Description = r !=null ? r.Description : null,
+                                            // ข้อมูลจาก Company
+                                            companyName = c != null ? c.CompanyName : null,
+                                            companyFirstname = c != null ? c.CompanyFirstname : null,
+                                            companyLastname = c != null ? c.CompanyLastname : null,
+                                            companyEmail = c != null ? c.CompanyEmail : null,
+                                            companyPhone = c != null ? c.CompanyPhone : null,
+                                            companyAddress = c != null ? c.CompanyAddress : null,
+                                        }).ToListAsync();
 
-                return warehouse;
+                return warehouses;
             }
             catch (Exception ex)
             {
                 throw new ApplicationException($"An error occurred while retrieving the warehouse data: {ex.Message}", ex);
             }
         }
+
 
     }
 }
