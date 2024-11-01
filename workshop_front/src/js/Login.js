@@ -41,9 +41,9 @@ const Login = () => {
   
           // นำทางไปยัง Dashboard
           if (roleId === "1") {
-            navigate("/js/dashboard"); // ถ้า roleId เป็น 1 ไปหน้า dashboard
+            navigate("/employee"); // ถ้า roleId เป็น 1 ไปหน้า dashboard
           } else if (roleId === "2") {
-            navigate("/js/Supervisor"); // ถ้า roleId เป็น 2 ไปอีกหน้านึง
+            navigate("/supervisor/company"); // ถ้า roleId เป็น 2 ไปอีกหน้านึง
           } else {
             console.error("Unknown roleId.");
           }
@@ -58,7 +58,6 @@ const Login = () => {
     }
   };
   
-
   return (
     <div className="login-container">
       <div className="login-box">

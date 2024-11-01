@@ -104,7 +104,7 @@ namespace permissionAPI.src.Infrastructure.Repositories
                 existingCompany.CompanyAddress = Company.CompanyAddress;
                 existingCompany.CompanyEmail = Company.CompanyEmail;
                 existingCompany.CompanyPhone = Company.CompanyPhone;
-                existingCompany.CompanyFirstname = Company.CompanyPhone;
+                existingCompany.CompanyFirstname = Company.CompanyFirstname;
                 existingCompany.CompanyLastname = Company.CompanyLastname;
 
                 _dbContext.Company.Update(existingCompany);

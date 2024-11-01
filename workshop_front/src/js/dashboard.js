@@ -18,9 +18,12 @@ const Dashboard = () => {
     rentalDateStart: '',
     rentalstatus: ''
   });
+
   const [popupOpen, setPopupOpen] = useState(false); 
   const [selectedWarehouse, setSelectedWarehouse] = useState(null); 
   const [roleId, setRoleId] = useState(null);
+
+
   useEffect(() => {
     const storedToken = localStorage.getItem('token');
     if (storedToken) {
@@ -34,7 +37,7 @@ const Dashboard = () => {
       console.log("State roleId:", roleId); // ตรวจสอบค่า roleId ใน state หลัง setRoleId
 
       fetchUserData(storedToken);
-      fetchWarehouseData(storedToken); 
+      fetchWarehouseData(storedToken);
     }
   }, []);
 
@@ -93,9 +96,10 @@ const Dashboard = () => {
                     const matchesRentalStatus = rentalstatus ? warehouse.rentalstatus === rentalstatus : true;
 
                     return matchesWarehouseId && matchesRentalDateStart && matchesRentalStatus;
+
                 });
             }
-
+            
             setWarehouses(filteredData);
         } else {
             const errorMessage = await response.text();
@@ -145,13 +149,13 @@ const handleSearch = () => {
 
   const handleSaveClick = async () => {
     const userUpdateData = {
-        userID: userData.userID,
-        username: userData.username,
-        firstname: editedUserData.firstname,
-        lastname: editedUserData.lastname,
-        email: editedUserData.email,
-        phone: editedUserData.phone,
-        address: editedUserData.address,
+      userID: userData.userID,
+      username: userData.username,
+      firstname: editedUserData.firstname,
+      lastname: editedUserData.lastname,
+      email: editedUserData.email,
+      phone: editedUserData.phone,
+      address: editedUserData.address,
     };
 
     try {
@@ -175,9 +179,9 @@ const handleSearch = () => {
             console.error("Failed to save user data:", errorMessage);
         }
     } catch (error) {
-        console.error('Error saving user data:', error);
+      console.error('Error saving user data:', error);
     }
-};
+  };
 
 
   const handleCancelClick = () => {
@@ -192,7 +196,7 @@ const handleSearch = () => {
 
   const handleViewClick = (warehouse) => {
     setSelectedWarehouse(warehouse);
-    setPopupOpen(true); 
+    setPopupOpen(true);
   };
 
   const handleClosePopup = () => {
@@ -207,7 +211,7 @@ const handleSearch = () => {
 
 
   return (
-    <div className="dashboard-container"> 
+    <div className="dashboard-container">
       <AppBar position="static" className="custom-appbar">
         <Toolbar>
           <IconButton edge="start" color="inherit" onClick={toggleDrawer(true)} aria-label="menu">
