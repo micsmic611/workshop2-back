@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Login from "./js/Login"; // นำเข้าหน้า Login
 import Dashboard from "./js/dashboard"; // นำเข้าหน้า Dashboard
-import Employee from "./js/Employee";
+import Employee from "./js/SupervisorEmployee";
 import Supervisor from "./js/SupervisorCompany";
 import Rent from './js/Rent';
 import WarehousePopup from './js/WarehousePopup';
