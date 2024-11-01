@@ -4,64 +4,61 @@ import { jwtDecode } from "jwt-decode";
 import { Drawer, AppBar, Toolbar, Typography, IconButton, Dialog, DialogActions, DialogContent, DialogTitle, TextField, Button } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 
-
-
-const Supervisor = () => {
-
+function EmployeePage() {
   const navigate = useNavigate();
-  const handleEmployeeClick = () => {
-    navigate("/supervisor/employee");
+  const handleCompanyClick = () => {
+    navigate("/supervisor/company");
   };
 
   const [token, setToken] = useState('');
   const [userData, setUserData] = useState(null);
-  const [companydata, setCompanyData] = useState([]);
+  const [employeedata, setEmployeeData] = useState([]);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [editedUserData, setEditedUserData] = useState({});
   const [isEditing, setIsEditing] = useState(false);
-  const [searchCompanyName, setSearchCompanyName] = useState('');
+  const [searchEmployeeName, setSearchEmployeeName] = useState('');
   const [addDialogOpen, setAddDialogOpen] = useState(false);
-  const [newCompanyData, setNewCompanyData] = useState({
-    company_name: '',
-    company_address: '',
-    company_email: '',
-    company_phone: '',
-    company_firstname: '',
-    company_lastname: '',
+  const [newEmployeeData, setNewEmployeeData] = useState({
+    username: '',
+    firstname: '',
+    lastname: '',
+    email: '',
+    phone: '',
+    address: '',
+    status: '',
   });
   const [detailDialogOpen, setDetailDialogOpen] = useState(false);
-  const [companyDetail, setCompanyDetail] = useState(null);
+  const [employeeDetail, setEmployeeDetail] = useState(null);
   const [isEditingDetail, setIsEditingDetail] = useState(false);
-  const [editedCompanyData, setEditedCompanyData] = useState({});
-
+  const [editedEmployeeData, setEditedEmployeeData] = useState({});
 
   const handleEditDetailClick = () => {
     setIsEditingDetail(true);
-    setEditedCompanyData({
-      company_name: companyDetail.company_name,
-      company_address: companyDetail.company_address,
-      company_email: companyDetail.company_email,
-      company_phone: companyDetail.company_phone,
-      company_firstname: companyDetail.company_firstname,
-      company_lastname: companyDetail.company_lastname,
+    setEditedEmployeeData({
+      firstname: employeeDetail.firstname,
+      lastname: employeeDetail.lastname,
+      email: employeeDetail.email,
+      phone: employeeDetail.phone,
+      address: employeeDetail.address,
+      status: employeeDetail.status,
     });
   };
 
-  const handleSaveCompanyChanges = async () => {
+  const handleSaveEmployeeChanges = async () => {
     try {
-      const response = await fetch(`https://localhost:7111/api/Company/UpdateCompany?companyid=${companyDetail.company_id}`, {
+      const response = await fetch(`https://localhost:7111/api/Employee/UpdateEmp?Userid=${employeeDetail.userID}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(editedCompanyData),
+        body: JSON.stringify(editedEmployeeData),
       });
 
       if (response.ok) {
         const data = await response.json();
         console.log('อัปเดตข้อมูลบริษัทเรียบร้อย:', data);
         // รีเฟรชข้อมูลบริษัท
-        fetchCompanyData(token);
+        fetchEmployeeData(token);
         handleDetailDialogClose(); // ปิด dialog
       } else {
         console.error("ไม่สามารถบันทึกการเปลี่ยนแปลงได้", response.status);
@@ -71,9 +68,9 @@ const Supervisor = () => {
     }
   };
 
-  const handleCompanyDetailChange = (e) => {
+  const handleEmployeeDetailChange = (e) => {
     const { name, value } = e.target;
-    setEditedCompanyData((prevData) => ({ ...prevData, [name]: value }));
+    setEditedEmployeeData((prevData) => ({ ...prevData, [name]: value }));
   };
 
   const handleCancelClick = () => {
@@ -83,23 +80,23 @@ const Supervisor = () => {
 
   const handleSearch = () => {
     const storedToken = localStorage.getItem('token');
-    if (storedToken && searchCompanyName.trim() !== '') { // ตรวจสอบว่าชื่อบริษัทไม่ใช่ค่าว่าง
-      fetchCompanyData(storedToken, true);
+    if (storedToken && searchEmployeeName.trim() !== '') { // ตรวจสอบว่าชื่อบริษัทไม่ใช่ค่าว่าง
+      fetchEmployeeData(storedToken, true);
     } else {
       console.error("กรุณากรอกชื่อบริษัทเพื่อทำการค้นหา");
     }
   };
 
-  const handleAddCompanyClick = () => {
+  const handleAddEmployeeClick = () => {
     setAddDialogOpen(true);
   };
 
-  const handleAddCompanyClose = () => {
+  const handleAddEmployeeClose = () => {
     setAddDialogOpen(false);
   };
 
   const handleChange = (e) => {
-    setSearchCompanyName(e.target.value);  // อัปเดตค่าชื่อบริษัทที่ค้นหา
+    setSearchEmployeeName(e.target.value);  // อัปเดตค่าชื่อบริษัทที่ค้นหา
   };
 
   const handleEditClick = () => {
@@ -113,14 +110,12 @@ const Supervisor = () => {
     });
   };
 
-
-
-  const fetchCompanyData = async (storedToken, search = false) => {
+  const fetchEmployeeData = async (storedToken, search = false) => {
     try {
-      let url = 'https://localhost:7111/api/Company/GetAllCompany';
-      if (search && searchCompanyName) {
+      let url = 'https://localhost:7111/api/Employee/GetAllEmp';
+      if (search && searchEmployeeName) {
         // ตรวจสอบให้แน่ใจว่าค่าส่งใน query string ถูกต้อง
-        url = `https://localhost:7111/api/Company/GetCompanyByName?Companyname=${searchCompanyName}`;
+        url = `https://localhost:7111/api/Employee/GetEmpByName?Username=${searchEmployeeName}`;
       }
       const response = await fetch(url, {
         method: 'GET',
@@ -133,7 +128,7 @@ const Supervisor = () => {
       if (response.ok) {
         const data = await response.json();
         console.log("Company data:", data);
-        setCompanyData(data.data);  // ดึงข้อมูลบริษัทที่ค้นหาได้
+        setEmployeeData(data.data);  // ดึงข้อมูลบริษัทที่ค้นหาได้
       } else {
         console.error("Failed to fetch Company data", response.status);
       }
@@ -142,22 +137,21 @@ const Supervisor = () => {
     }
   };
 
-
-  const handleAddCompanySave = async () => {
+  const handleAddEmployeeSave = async () => {
     try {
-      const response = await fetch('https://localhost:7111/api/Company/AddCompany', {
+      const response = await fetch('https://localhost:7111/api/Employee/AddEmp', {
         method: 'POST',
         headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(newCompanyData),
+        body: JSON.stringify(newEmployeeData),
       });
 
       if (response.ok) {
         const data = await response.json();
-        console.log("Company added:", data);
-        fetchCompanyData(token); // อัปเดตข้อมูลบริษัท
+        console.log("Employee added:", data);
+        fetchEmployeeData(token); // อัปเดตข้อมูลบริษัท
         setAddDialogOpen(false);
       } else {
         console.error("Failed to add company", response.status);
@@ -167,9 +161,9 @@ const Supervisor = () => {
     }
   };
 
-  const handleViewClick = async (company_id) => {
+  const handleViewClick = async (username) => {
     try {
-      const response = await fetch(`https://localhost:7111/api/Company/GetCompanyDetailByID?Companyid=${company_id}`, {
+      const response = await fetch(`https://localhost:7111/api/Employee/GetEmpByName?Username=${username}`, {
         method: 'GET',
         headers: {
           Authorization: `Bearer ${token}`,
@@ -179,7 +173,7 @@ const Supervisor = () => {
 
       if (response.ok) {
         const data = await response.json();
-        setCompanyDetail(data.data[0]); // Assuming data is in an array
+        setEmployeeDetail(data.data[0]); // Assuming data is in an array
         setDetailDialogOpen(true);
       } else {
         console.error("Failed to fetch company details", response.status);
@@ -191,36 +185,13 @@ const Supervisor = () => {
 
   const handleDetailDialogClose = () => {
     setDetailDialogOpen(false);
-    setCompanyDetail(null);
+    setEmployeeDetail(null);
   };
 
-  const handleDetailUpdate = async (companyId, companyData) => {
-    try {
-      const response = await fetch(`https://localhost:7111/api/Company/UpdateCompany?companyid=${companyId}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(companyData),
-      });
-
-      if (!response.ok) {
-        throw new Error(`Error: ${response.status} - ${response.statusText}`);
-      }
-
-      const data = await response.json();
-      console.log('Company updated successfully:', data);
-      // คุณสามารถทำการอัปเดต UI ได้ที่นี่
-    } catch (error) {
-      console.error('Error updating company:', error);
-    }
-  };
-
-  const handleNewCompanyChange = (e) => {
+  const handleNewEmployeeChange = (e) => {
     const { name, value } = e.target;
-    setNewCompanyData((prevData) => ({ ...prevData, [name]: value }));
+    setNewEmployeeData((prevData) => ({ ...prevData, [name]: value }));
   };
-
 
   const fetchUserData = async (storedToken) => {
     try {
@@ -292,7 +263,7 @@ const Supervisor = () => {
       const fetchData = async () => {
         try {
           await fetchUserData(storedToken);
-          await fetchCompanyData();
+          await fetchEmployeeData();
         } catch (error) {
           console.error('Error decoding token:', error);
         }
@@ -318,8 +289,8 @@ const Supervisor = () => {
           </IconButton>
           <div className="navbar">
             <button className="nav-button">หน้าแรก</button>
-            <button className="nav-button">ข้อมูลบริษัท</button>
-            <button className="nav-button" onClick={handleEmployeeClick}>พนักงาน</button>
+            <button className="nav-button" onClick={handleCompanyClick}>ข้อมูลบริษัท</button>
+            <button className="nav-button" >พนักงาน</button>
             <button className="nav-button">รายงาน</button>
           </div>
         </Toolbar>
@@ -360,168 +331,159 @@ const Supervisor = () => {
         </div>
       </Drawer>
       <div className="search-container">
-        <h1>ค้นหาชื่อบริษัท</h1>
+        <h1>ค้นหาชื่อพนักงาน</h1>
         <input
           type="text"
           name="company_name"
-          placeholder="ชื่อบริษัท"
-          value={searchCompanyName}
+          placeholder="ชื่อพนักงาน"
+          value={searchEmployeeName}
           onChange={handleChange}  // เรียกใช้ฟังก์ชัน handleChange เมื่อมีการเปลี่ยนแปลงค่า
         />
         <button className="search-button" onClick={handleSearch}>ค้นหา</button>
-        <button className="add-button" onClick={handleAddCompanyClick}>เพิ่มข้อมูลบริษัท</button>
+        <button className="add-button" onClick={handleAddEmployeeClick}>เพิ่มข้อมูลพนักงาน</button>
       </div>
 
       <div className="main-content">
         <div className="warehouse-list">
-          <h2>รายชื่อบริษัท</h2>
+          <h2>รายชื่อพนักงาน</h2>
           <table className="warehouse-table">
             <thead>
               <tr>
-                <th>รหัสบริษัท</th>
-                <th>ชื่อบริษัท</th>
-                <th>อีเมล</th>
+                <th>รหัสพนักงาน</th>
                 <th>ชื่อผู้ติดต่อ</th>
+                <th>เบอร์โทร</th>
+                <th>อีเมล</th>
                 <th>ดูข้อมูล</th>
               </tr>
             </thead>
             <tbody>
-              {companydata && companydata.length > 0 ? (
-                companydata.map((company) => (
-                  <tr key={company.company_id}>
-                    <td>{company.company_id}</td>
-                    <td>{company.company_name}</td>
-                    <td>{company.company_email}</td>
-                    <td>{company.company_phone}</td>
+              {employeedata && employeedata.length > 0 ? (
+                employeedata.map((employee) => (
+                  <tr key={employee.userID}>
+                    <td>{employee.userID}</td>
+                    <td>{employee.firstname}</td>
+                    <td>{employee.email}</td>
+                    <td>{employee.phone}</td>
                     <td>
-                      <button onClick={() => handleViewClick(company.company_id)}>ดู</button>
+                      <button onClick={() => handleViewClick(employee.firstname)}>ดู</button>
                     </td>
                   </tr>
                 ))
               ) : (
                 <tr>
-                  <td colSpan="7" className="no-data">ไม่พบข้อมูลบริษัท</td>
+                  <td colSpan="7" className="no-data">ไม่พบข้อมูลพนักงาน</td>
                 </tr>
               )}
             </tbody>
           </table>
-          <Dialog open={addDialogOpen} onClose={handleAddCompanyClose}>
-            <DialogTitle>เพิ่มข้อมูลบริษัท</DialogTitle>
+          <Dialog open={addDialogOpen} onClose={handleAddEmployeeClose}>
+            <DialogTitle>เพิ่มข้อมูลพนักงาน</DialogTitle>
             <DialogContent>
               <TextField
-                label="ชื่อบริษัท"
-                name="company_name"
-                value={newCompanyData.company_name}
-                onChange={handleNewCompanyChange}
+                label="ชื่อจริง"
+                name="firstname"
+                value={newEmployeeData.firstname}
+                onChange={handleNewEmployeeChange}
                 fullWidth
                 margin="dense"
               />
               <TextField
-                label="ที่อยู่บริษัท"
-                name="company_address"
-                value={newCompanyData.company_address}
-                onChange={handleNewCompanyChange}
-                fullWidth
-                margin="dense"
-                variant="outlined"
-              />
-              <TextField
-                label="อีเมลบริษัท"
-                name="company_email"
-                value={newCompanyData.company_email}
-                onChange={handleNewCompanyChange}
-                fullWidth
-                margin="dense"
-              />
-              <TextField
-                label="เบอร์โทรบริษัท"
-                name="company_phone"
-                value={newCompanyData.company_phone}
-                onChange={handleNewCompanyChange}
-                fullWidth
-                margin="dense"
-              />
-              <TextField
-                label="ชื่อผู้ติดต่อ"
-                name="company_firstname"
-                value={newCompanyData.company_firstname}
-                onChange={handleNewCompanyChange}
+                label="นามสกุล"
+                name="lastname"
+                value={newEmployeeData.lastname}
+                onChange={handleNewEmployeeChange}
                 fullWidth
                 margin="dense"
                 variant="outlined"
               />
               <TextField
-                label="นามสกุลผู้ติดต่อ"
-                name="company_lastname"
-                value={newCompanyData.company_lastname}
-                onChange={handleNewCompanyChange}
+                label="อีเมล"
+                name="email"
+                value={newEmployeeData.email}
+                onChange={handleNewEmployeeChange}
+                fullWidth
+                margin="dense"
+              />
+              <TextField
+                label="เบอร์โทร"
+                name="phone"
+                value={newEmployeeData.phone}
+                onChange={handleNewEmployeeChange}
+                fullWidth
+                margin="dense"
+              />
+              <TextField
+                label="ที่อยู่"
+                name="address"
+                value={newEmployeeData.address}
+                onChange={handleNewEmployeeChange}
                 fullWidth
                 margin="dense"
                 variant="outlined"
               />
             </DialogContent>
             <DialogActions>
-              <Button onClick={handleAddCompanyClose} color="secondary">ยกเลิก</Button>
-              <Button onClick={handleAddCompanySave} color="primary">บันทึก</Button>
+              <Button onClick={handleAddEmployeeClose} color="secondary">ยกเลิก</Button>
+              <Button onClick={handleAddEmployeeSave} color="primary">บันทึก</Button>
             </DialogActions>
           </Dialog>
           <Dialog open={detailDialogOpen} onClose={handleDetailDialogClose}>
-            <DialogTitle>รายละเอียดบริษัท</DialogTitle>
+            <DialogTitle>รายละเอียดพนักงาน</DialogTitle>
             <DialogContent>
-              {companyDetail ? (
+              {employeeDetail ? (
                 <>
                   {isEditingDetail ? (
                     <>
                       <TextField
-                        label="ชื่อบริษัท"
-                        name="company_name"
-                        value={editedCompanyData.company_name}
-                        onChange={handleCompanyDetailChange}
+                        label="ชื่อจริง"
+                        name="firstname"
+                        value={editedEmployeeData.firstname}
+                        onChange={handleEmployeeDetailChange}
                         fullWidth
+                        margin="dense"
                       />
                       <TextField
-                        label="ที่อยู่"
-                        name="company_address"
-                        value={editedCompanyData.company_address}
-                        onChange={handleCompanyDetailChange}
+                        label="นามสกุล"
+                        name="lastname"
+                        value={editedEmployeeData.lastname}
+                        onChange={handleEmployeeDetailChange}
                         fullWidth
+                        margin="dense"
+                        variant="outlined"
                       />
                       <TextField
                         label="อีเมล"
-                        name="company_email"
-                        value={editedCompanyData.company_email}
-                        onChange={handleCompanyDetailChange}
+                        name="email"
+                        value={editedEmployeeData.email}
+                        onChange={handleEmployeeDetailChange}
                         fullWidth
+                        margin="dense"
                       />
                       <TextField
                         label="เบอร์โทร"
-                        name="company_phone"
-                        value={editedCompanyData.company_phone}
-                        onChange={handleCompanyDetailChange}
+                        name="phone"
+                        value={editedEmployeeData.phone}
+                        onChange={handleEmployeeDetailChange}
                         fullWidth
+                        margin="dense"
                       />
                       <TextField
-                        label="ผู้ติดต่อ"
-                        name="company_firstname"
-                        value={editedCompanyData.company_firstname}
-                        onChange={handleCompanyDetailChange}
+                        label="ที่อยู่"
+                        name="address"
+                        value={editedEmployeeData.address}
+                        onChange={handleEmployeeDetailChange}
                         fullWidth
-                      />
-                      <TextField
-                        label="นามสกุลผู้ติดต่อ"
-                        name="company_lastname"
-                        value={editedCompanyData.company_lastname}
-                        onChange={handleCompanyDetailChange}
-                        fullWidth
+                        margin="dense"
+                        variant="outlined"
                       />
                     </>
                   ) : (
                     <>
-                      <Typography>ชื่อบริษัท: {companyDetail.company_name}</Typography>
-                      <Typography>ที่อยู่: {companyDetail.company_address}</Typography>
-                      <Typography>อีเมล: {companyDetail.company_email}</Typography>
-                      <Typography>เบอร์โทร: {companyDetail.company_phone}</Typography>
-                      <Typography>ผู้ติดต่อ: {companyDetail.company_firstname} {companyDetail.company_lastname}</Typography>
+                      <Typography>ชื่อจริง: {employeeDetail.firstname}</Typography>
+                      <Typography>นามสกุล: {employeeDetail.lastname}</Typography>
+                      <Typography>อีเมล: {employeeDetail.email}</Typography>
+                      <Typography>ที่อยู่: {employeeDetail.address}</Typography>
+                      <Typography>เบอร์โทร: {employeeDetail.phone}</Typography>
                     </>
                   )}
                 </>
@@ -532,14 +494,13 @@ const Supervisor = () => {
             <DialogActions>
               {isEditingDetail ? (
                 <>
-                  <Button className="save-button" onClick={handleSaveCompanyChanges}>บันทึกข้อมูล</Button>
+                  <Button className="save-button" onClick={handleSaveEmployeeChanges}>บันทึกข้อมูล</Button>
                   <Button onClick={() => setIsEditingDetail(false)} color="primary">ยกเลิก</Button>
                 </>
               ) : (
                 <>
                   <Button className="edit-button" onClick={handleEditDetailClick}>แก้ไขข้อมูล</Button>
                   <Button onClick={() => setDetailDialogOpen(false)} color="primary">ยกเลิก</Button>
-
                 </>
               )}
             </DialogActions>
@@ -550,4 +511,4 @@ const Supervisor = () => {
   );
 };
 
-export default Supervisor;
+export default EmployeePage;

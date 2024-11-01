@@ -40,6 +40,26 @@ namespace workshop2.Controllers
                 return BadRequest(err);
             }
         }
+        [HttpGet("GetAllUser1")]
+        public async Task<IActionResult> GetAllUser1()
+        {
+            var response = new BaseHttpResponse<List<EmployeeDTO>>();
+
+            try
+            {
+                var data = await _UserService.GetAlluser1Async();
+                response.SetSuccess(data, "Success", "200");
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                ErrorData err = new ErrorData();
+                err.Code = "-2";
+                err.Message = ex.Message;
+                _logger.LogError(ex, "Error getting All User");
+                return BadRequest(err);
+            }
+        }
 
         [HttpGet("GetEmpByName")]
         public async Task<IActionResult> GetEmpByNameAsync(String Username)

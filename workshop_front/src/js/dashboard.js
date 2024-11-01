@@ -93,7 +93,8 @@ const Dashboard = () => {
                     const matchesWarehouseId = warehouseIdParam ? warehouse.warehouseid === warehouseIdParam : true;
                     const matchesRentalDateStart = rentalDateStartFormatted ? 
                         (warehouse.date_rental_start && warehouse.date_rental_start.slice(0, 10) === rentalDateStartFormatted) : true;
-                    const matchesRentalStatus = rentalstatus ? warehouse.rentalstatus === rentalstatus : true;
+                        const matchesRentalStatus = rentalstatus ? 
+                        (warehouse.rentalstatus === rentalstatus || (rentalstatus === 'active' && (warehouse.rentalstatus === null || warehouse.rentalstatus === ''))) : true;
 
                     return matchesWarehouseId && matchesRentalDateStart && matchesRentalStatus;
 
