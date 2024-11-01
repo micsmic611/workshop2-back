@@ -9,5 +9,6 @@ namespace workshop2.src.Core.Interface
         Task<List<CompanyforidDTO>> GetCompanyByIDAsync(string companyname);
         Task AddRentalAsync(RentalDTO rental);
         Task<Rentalforupdate> UpdateRentalAsync(Rentalforupdate Rentalforupdate);
+        Task UpdateRentalStatusAndCancelAsync(UpdateRentalStatusDto dto);
     }
 }

@@ -1,17 +1,59 @@
 import React, { useState } from 'react';
-import { Dialog, DialogTitle, DialogContent, DialogActions, Button } from '@mui/material';
+import { Dialog, DialogTitle, DialogContent, DialogActions, Button ,TextField  } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import Rent from './Rent'; // Import the Rent dialog component
 import '../css/warehousePopup.css';
 
 const WarehousePopup = ({ open, onClose, warehouse }) => {
   const [rentDialogOpen, setRentDialogOpen] = useState(false);
+  const [cancelDialogOpen, setCancelDialogOpen] = useState(false);
+  const [description, setDescription] = useState(''); // State สำหรับ description
 
   const openRentDialog = () => setRentDialogOpen(true);
   const closeRentDialog = () => setRentDialogOpen(false);
+  const openCancelDialog = () => setCancelDialogOpen(true);
+  const closeCancelDialog = () => {
+    setCancelDialogOpen(false);
+    setDescription(''); // Clear description when closing
+  };
+  const handleCancelRent = async () => {
+    const userId =warehouse.warehouseid; // แทนที่ด้วย userId ที่ถูกต้อง
+    const rentalId = warehouse.rentalId; // Assuming rentalId is part of warehouse
 
+    const requestBody = {
+      rentalId,
+      userId,
+      description,
+    };
+    try {
+      const response = await fetch('https://localhost:7111/api/Rental/update-status', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(requestBody),
+      });
+      if (response.ok) { // ตรวจสอบว่า response เป็น 200 OK
+        const result = await response.json();
+        console.log('Cancellation successful:', result);
+        closeCancelDialog(); // ปิด dialog สำหรับการยกเลิก
+        onClose(); // ปิด popup โกดัง
+      }
+      else if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      
+      const result = await response.json();
+      console.log('Cancellation successful:', result);
+      closeCancelDialog(); // Close dialog on success
+      onClose(); // Close warehouse popup if needed
+    } catch (error) {
+      console.error('Error canceling rental:', error);
+    }
+  };
   if (!warehouse) return null;
-
+  const isRentalStatusNull = warehouse.rentalstatus === null;
+  const isRentalStatusInactive = warehouse.rentalstatus === 'inactive';
   return (
     <>
       <Dialog open={open} onClose={onClose} className="warehouse-popup">
@@ -36,15 +78,46 @@ const WarehousePopup = ({ open, onClose, warehouse }) => {
           </div>
         </DialogContent>
         <DialogActions>
-          <Button variant="contained" color="primary" onClick={openRentDialog}>
+          <Button 
+            variant="contained" 
+            color="primary" 
+            onClick={openRentDialog} 
+            disabled={isRentalStatusInactive} // Disable if rental status is inactive
+          >
             เช่า
           </Button>
-          <Button variant="outlined" color="secondary" onClick={onClose}>
+          <Button 
+            variant="outlined" 
+            color="secondary" 
+            onClick={openCancelDialog} 
+            disabled={isRentalStatusNull} // Disable if rental status is null
+          >
             ยกเลิกการเช่า
           </Button>
         </DialogActions>
       </Dialog>
       <Rent open={rentDialogOpen} onClose={closeRentDialog} warehouse={warehouse} />
+      {/* Cancel Dialog */}
+      <Dialog open={cancelDialogOpen} onClose={closeCancelDialog}>
+        <DialogTitle>ยกเลิกการเช่าโกดัง</DialogTitle>
+        <DialogContent>
+          <TextField 
+            label="รายละเอียดการยกเลิก" 
+            variant="outlined" 
+            fullWidth 
+            value={description} 
+            onChange={(e) => setDescription(e.target.value)} 
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleCancelRent} color="primary">
+            ยืนยัน
+          </Button>
+          <Button onClick={closeCancelDialog} color="secondary">
+            ยกเลิก
+          </Button>
+        </DialogActions>
+      </Dialog>
     </>
   );
 };

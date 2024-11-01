@@ -3,6 +3,7 @@ import { jwtDecode } from "jwt-decode";
 import '../css/dashboard.css'; 
 import { Drawer, AppBar, Toolbar, IconButton } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
+import { Button } from '@mui/material';
 import WarehousePopup from './WarehousePopup'; // นำเข้า WarehousePopup
 
 const Dashboard = () => {
@@ -19,11 +20,19 @@ const Dashboard = () => {
   });
   const [popupOpen, setPopupOpen] = useState(false); 
   const [selectedWarehouse, setSelectedWarehouse] = useState(null); 
-
+  const [roleId, setRoleId] = useState(null);
   useEffect(() => {
     const storedToken = localStorage.getItem('token');
     if (storedToken) {
-      setToken(storedToken);
+      const decoded = jwtDecode(storedToken);
+      console.log('Decoded token:', decoded); // ดีบักค่า decoded
+      if (decoded.roleId) {
+        setRoleId(decoded.roleId); // ตั้งค่า roleId ใน state
+        console.log('Setting roleId:', decoded.roleId);
+      }
+      console.log("Decoded roleId:", decoded.roleId); // ตรวจสอบค่า roleId หลังถอดรหัส
+      console.log("State roleId:", roleId); // ตรวจสอบค่า roleId ใน state หลัง setRoleId
+
       fetchUserData(storedToken);
       fetchWarehouseData(storedToken); 
     }
@@ -33,7 +42,7 @@ const Dashboard = () => {
     try {
       const decoded = jwtDecode(storedToken);
       const userId = decoded.userId;
-      const roleId = decoded.roleId;
+
       const response = await fetch(`https://localhost:7111/api/User/GetUserbyUserId?userid=${userId}`, {
         method: 'GET',
         headers: {
@@ -191,7 +200,11 @@ const handleSearch = () => {
     setSelectedWarehouse(null);
   };
 
-  
+  const handleAddWarehouse = () => {
+    // Logic to handle adding a warehouse
+    console.log('Add Warehouse button clicked');
+  };
+
 
   return (
     <div className="dashboard-container"> 
@@ -243,43 +256,49 @@ const handleSearch = () => {
         </div>
       </Drawer>
 
-      <div className="search-container">
-    <h1>ค้นหาโกดัง</h1>
-    <input 
-        type="text" 
-        name="warehouseId" 
-        placeholder="รหัสโกดัง" 
-        value={searchParams.warehouseId} 
-        onChange={handleChange} 
-    />
-    <input 
-        type="date" 
-        name="rentalDateStart" 
-        value={searchParams.rentalDateStart} 
-        onChange={handleChange} 
-    />
-    <label>
-        <input 
-            type="radio" 
-            name="rentalstatus" 
-            value="active" 
-            checked={searchParams.rentalstatus === 'active'} 
-            onChange={handleChange} 
-        />
-        ว่าง
-    </label>
-    <label>
-        <input 
-            type="radio" 
-            name="rentalstatus" 
-            value="inactive" 
-            checked={searchParams.rentalstatus === 'inactive'} 
-            onChange={handleChange} 
-        />
-        ไม่ว่าง
-    </label>
-    <button className="search-button" onClick={handleSearch}>ค้นหา</button>
-</div>
+          <div className="search-container">
+      <h1>ค้นหาโกดัง</h1>
+      <input 
+          type="text" 
+          name="warehouseId" 
+          placeholder="รหัสโกดัง" 
+          value={searchParams.warehouseId} 
+          onChange={handleChange} 
+      />
+      <input 
+          type="date" 
+          name="rentalDateStart" 
+          value={searchParams.rentalDateStart} 
+          onChange={handleChange} 
+      />
+      <label>
+          <input 
+              type="radio" 
+              name="rentalstatus" 
+              value="active" 
+              checked={searchParams.rentalstatus === 'active'} 
+              onChange={handleChange} 
+          />
+          ว่าง
+      </label>
+      <label>
+          <input 
+              type="radio" 
+              name="rentalstatus" 
+              value="inactive" 
+              checked={searchParams.rentalstatus === 'inactive'} 
+              onChange={handleChange} 
+          />
+          ไม่ว่าง
+      </label>
+      <button className="search-button" onClick={handleSearch}>ค้นหา</button>
+      <div>
+        {/* แสดงปุ่มเพิ่มโกดังเมื่อ roleId เท่ากับ 2 */}
+        {roleId === 2 && (
+          <button className="add-warehouse-button" onClick={handleAddWarehouse}>เพิ่มโกดัง</button>
+        )}
+      </div>
+    </div>
 
       <div className="warehouse-container">
         <h2>โกดังที่เช่า</h2>

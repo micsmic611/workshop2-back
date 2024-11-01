@@ -23,6 +23,8 @@ namespace permissionAPI
         public DbSet<RentalDbo> Rental { get; set; }
 
         public DbSet<CompanyDbo> Company { get; set; }
+        public DbSet<cancelrentalDbo> cancelrental { get; set; }
+        
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

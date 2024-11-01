@@ -70,6 +70,26 @@ namespace workshop2.src.Services
                 throw new Exception("Error occurred while updating Rental", ex);
             }
         }
+        public async Task UpdateRentalStatusAndCancelAsync(UpdateRentalStatusDto dto)
+        {
+            var rental = await _rentalRepository.GetRentalByIdAsync(dto.RentalId);
+            if (rental != null)
+            {
+                // Update rental status to "cancel"
+                await _rentalRepository.UpdateRentalStatusAsync(dto.RentalId, "cancel");
 
+                // Add to cancel_rental table
+                var cancelRental = new cancelrentalDbo
+                {
+                    company_id = rental.companyid,
+                    user_id = dto.UserId,
+                    date_cancel_rental = DateTime.Now, // หรือกำหนดค่าให้เหมาะสม
+                    description = dto.Description,
+                    warehouse_id = rental.warehouseid
+                };
+
+                await _rentalRepository.AddCancelRentalAsync(cancelRental);
+            }
+        }
     }
 }
