@@ -230,8 +230,8 @@ const handleSearch = () => {
           </IconButton>
           <div className="button-container">
             <button className="nav-button">หน้าแรก</button>
-            <button className="nav-button">ข้อมูลบริษัท</button>
-            <button className="nav-button">พนักงาน</button>
+            <button className="nav-button"onClick={() => navigate('/supervisor/company')}>ข้อมูลบริษัท</button>
+            <button className="nav-button"onClick={() => navigate('/supervisor/employee')}>พนักงาน</button>
             <button className="nav-button" onClick={() => navigate('/report')}>ไปยังรายงาน</button>
           </div>
         </Toolbar>

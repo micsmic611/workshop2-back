@@ -4,7 +4,7 @@ import { Drawer, AppBar, Toolbar, IconButton } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Button } from '@mui/material';
 import { jwtDecode } from "jwt-decode"; 
-
+import '../css/report.css'; 
 const SomeComponent = () => {
     const [token, setToken] = useState('');
     const [userData, setUserData] = useState(null);
@@ -270,10 +270,10 @@ const SomeComponent = () => {
             <MenuIcon />
           </IconButton>
           <div className="button-container">
-            <button className="nav-button">หน้าแรก</button>
-            <button className="nav-button">ข้อมูลบริษัท</button>
-            <button className="nav-button">พนักงาน</button>
-            <button className="nav-button" onClick={() => navigate('/report')}>ไปยังรายงาน</button>
+          <button className="nav-button"onClick={() => navigate('/supervisor')}>หน้าแรก</button>
+            <button className="nav-button"onClick={() => navigate('/supervisor/employee')}>ข้อมูลบริษัท</button>
+            <button className="nav-button" onClick={() => navigate('/supervisor/company')}>พนักงาน</button>
+            <button className="nav-button"onClick={() => navigate('/report')}>รายงาน</button>
           </div>
         </Toolbar>
       </AppBar>
@@ -315,24 +315,29 @@ const SomeComponent = () => {
       <div className="report">
         <h1>Report</h1>
       </div>
-        <div className="personal-info">
-                        <h3>ข้อมูลโกดัง</h3>
-                        <p>มีโกดังทั้งหมด: {totalWarehouses} แห่ง</p>                
-        </div>
-     <div className="personal-info">
-     <h3>ข้อมูล</h3>
-     <p>โกดังสถานะ Active: {activeCount} แห่ง</p>              
-     </div>
-     <h3>ข้อมูล</h3>
-     <div className="personal-info">   
-     <p>โกดังสถานะ Inactive: {inactiveCount} แห่ง</p>
-      </div>
-      <div className="personal-info">   
-      <p>ข้อมูลบริษัททั้งหมด: {companies.length}</p> {/* Display total count of companies */}
-      </div>
-      <div className="personal-info">   
-      <p>ข้อมูลหัวหน้าทั้งหมด: {Emp.length}</p> {/* Display total count of companies */}
-      </div>
+      <div className="info-container">
+    <div className="personal-info">
+        <h3>ข้อมูลโกดัง</h3>
+        <p>มีโกดังทั้งหมด: {totalWarehouses} แห่ง</p>                
+    </div>
+    <div className="personal-info">
+        <h3>ข้อมูลโกดังสถานะ Active</h3>
+        <p>มีโกดังสถานะ Active: {activeCount} แห่ง</p>              
+    </div>
+    <div className="personal-info">   
+        <h3>ข้อมูลโกดังสถานะ Inactive</h3>
+        <p>มีโกดังสถานะ Inactive: {inactiveCount} แห่ง</p>
+    </div>
+    <div className="personal-info">   
+        <h3>ข้อมูลบริษัท</h3> 
+        <p>มีข้อมูลบริษัททั้งหมด: {companies.length}</p> {/* Display total count of companies */}
+    </div>
+    <div className="personal-info">   
+        <h3>ข้อมูลหัวหน้า</h3> 
+        <p>มีข้อมูลหัวหน้าทั้งหมด: {Emp.length}</p> {/* Display total count of companies */}
+    </div>
+</div>
+
       {/*<div className="personal-info">   
       <p>โกดังที่ถูกทั้งหมด: {rentalactiveCount}</p> {/* Display total count of companies */}
       {/* </div> */}

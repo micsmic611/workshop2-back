@@ -5,7 +5,7 @@ import { Drawer, AppBar, Toolbar, IconButton } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Button } from '@mui/material';
 import WarehousePopup from './WarehousePopup'; // นำเข้า WarehousePopup
-
+import { useNavigate } from 'react-router-dom';
 const Dashboard = () => {
   const [token, setToken] = useState('');
   const [userData, setUserData] = useState(null);
@@ -18,7 +18,7 @@ const Dashboard = () => {
     rentalDateStart: '',
     rentalstatus: ''
   });
-
+  const navigate = useNavigate();
   const [popupOpen, setPopupOpen] = useState(false); 
   const [selectedWarehouse, setSelectedWarehouse] = useState(null); 
   const [roleId, setRoleId] = useState(null);

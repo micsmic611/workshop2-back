@@ -1,0 +1,14 @@
+.info-container {
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap to the next line */
+    gap: 16px; /* Space between items */
+}
+
+.personal-info {
+    flex: 1 1 calc(33.33% - 16px); /* Each item takes up 1/3 of the row, minus gap */
+    box-sizing: border-box; /* Include padding and border in element's total width */
+    text-align: center;
+}
+.report {
+    text-align: center; /* Center the text inside the div */
+}

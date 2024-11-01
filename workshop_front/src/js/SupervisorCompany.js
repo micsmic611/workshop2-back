@@ -7,12 +7,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 
 
 const Supervisor = () => {
-
-  const navigate = useNavigate();
-  const handleEmployeeClick = () => {
-    navigate("/supervisor/employee");
-  };
-
+ 
   const [token, setToken] = useState('');
   const [userData, setUserData] = useState(null);
   const [companydata, setCompanyData] = useState([]);
@@ -29,6 +24,7 @@ const Supervisor = () => {
     company_firstname: '',
     company_lastname: '',
   });
+  const navigate = useNavigate();
   const [detailDialogOpen, setDetailDialogOpen] = useState(false);
   const [companyDetail, setCompanyDetail] = useState(null);
   const [isEditingDetail, setIsEditingDetail] = useState(false);
@@ -317,10 +313,10 @@ const Supervisor = () => {
             <MenuIcon />
           </IconButton>
           <div className="navbar">
-            <button className="nav-button">หน้าแรก</button>
-            <button className="nav-button">ข้อมูลบริษัท</button>
-            <button className="nav-button" onClick={handleEmployeeClick}>พนักงาน</button>
-            <button className="nav-button">รายงาน</button>
+            <button className="nav-button"onClick={() => navigate('/supervisor')}>หน้าแรก</button>
+            <button className="nav-button"onClick={() => navigate('/supervisor/employee')}>ข้อมูลบริษัท</button>
+            <button className="nav-button" onClick={() => navigate('/supervisor/company')}>พนักงาน</button>
+            <button className="nav-button"onClick={() => navigate('/report')}>รายงาน</button>
           </div>
         </Toolbar>
       </AppBar>
