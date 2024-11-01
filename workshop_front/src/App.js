@@ -1,8 +1,10 @@
-import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Login from "./js/Login"; // นำเข้าหน้า Login
-import Dashboard from "./js/dashboard"; // นำเข้าหน้า Dashboard
-import Supervisor from "./js/Supervisor";
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Login from './js/Login';
+import Dashboard from './js/dashboard';
+import Supervisor from './js/Supervisor';
+import Rent from './js/Rent';
+import WarehousePopup from './js/WarehousePopup';
 
 function App() {
   return (
@@ -11,6 +13,7 @@ function App() {
         <Route path="/" element={<Login />} />
         <Route path="/js/dashboard" element={<Dashboard />} />
         <Route path="/js/Supervisor" element={<Supervisor />} />
+        <Route path="/js/Rent" element={<Rent />} /> {/* ต้องมี Route ที่นี่ */}
       </Routes>
     </Router>
   );

@@ -33,7 +33,7 @@ const Dashboard = () => {
     try {
       const decoded = jwtDecode(storedToken);
       const userId = decoded.userId;
-
+      const roleId = decoded.roleId;
       const response = await fetch(`https://localhost:7111/api/User/GetUserbyUserId?userid=${userId}`, {
         method: 'GET',
         headers: {

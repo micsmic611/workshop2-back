@@ -189,6 +189,7 @@ namespace permissionAPI.src.Infrastructure.Repositories
                                             warehousesize = w.warehousesize,
                                             warehousestatus = w.warehousstatus,
                                             // ข้อมูลจาก Rental
+                                            rentalid = r.rentalid,
                                             companyid = r != null ? r.companyid : (int?)null,
                                             userid = r != null ? r.userid : (int?)null,
                                             date_rental_start = r != null ? r.date_rental_start : (DateTime?)null,
