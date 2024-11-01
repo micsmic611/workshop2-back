@@ -137,13 +137,13 @@ namespace permissionAPI.src.Core.Service
                 var userReturn = userData.Select(s => new EmployeeDTO
                 {
                     UserID = s.UserID,
-                    Username = s.Username,
+                    //Username = s.Username,
                     //Password = s.Password,
-                    //Firstname = s.Firstname,
-                    //Lastname = s.Lastname,
+                    Firstname = s.Firstname,
+                    Lastname = s.Lastname,
                     email = s.email,
                     phone = s.phone,
-                    //address = s.address,
+                    address = s.address,
                     RoleId = s.RoleId,
                     status = s.status
                 }).ToList();
@@ -196,7 +196,7 @@ namespace permissionAPI.src.Core.Service
                     Lastname = s.Lastname,
                     email = s.email,
                     phone = s.phone,
-                    //address = s.address,
+                    address = s.address,
                     RoleId = s.RoleId,
                     status = s.status
                 }).ToList();
@@ -216,15 +216,15 @@ namespace permissionAPI.src.Core.Service
             {
                 var employee = new Entities.UserDbo
                 {
-                    Username = inputEmployeeDTO.Username,
-                    Password = inputEmployeeDTO.Password,
+                    Username = inputEmployeeDTO.Firstname,
+                    Password = BCrypt.Net.BCrypt.HashPassword(inputEmployeeDTO.Firstname), // เข้ารหัสรหัสผ่าน
                     Firstname = inputEmployeeDTO.Firstname,
                     Lastname = inputEmployeeDTO.Lastname,
                     email = inputEmployeeDTO.email,
                     phone = inputEmployeeDTO.phone,
                     address = inputEmployeeDTO.address,
-                    RoleId = inputEmployeeDTO.RoleId,
-                    status = inputEmployeeDTO.status
+                    RoleId = 1, // ตั้งค่า RoleId เป็น 1
+                    status = 1.ToString()
                 };
 
                 var addUser = await _UserRepository.AddEmpAsync(employee);
@@ -305,7 +305,6 @@ namespace permissionAPI.src.Core.Service
                     Firstname = UpdateEmpDTO.Firstname,
                     Lastname = UpdateEmpDTO.Lastname,
                     email = UpdateEmpDTO.email,
-                    Username = UpdateEmpDTO.Username,
                     address = UpdateEmpDTO.address,
                     phone = UpdateEmpDTO.phone,
                 };
@@ -320,7 +319,6 @@ namespace permissionAPI.src.Core.Service
                     UserID = UpdateEmpDTO.UserID,
                     Firstname = UpdateEmpDTO.Firstname,
                     Lastname = UpdateEmpDTO.Lastname,
-                    Username = UpdateEmpDTO.Username,
                     email = UpdateEmpDTO.email,
                     address = UpdateEmpDTO.address,
                     phone = UpdateEmpDTO.phone,

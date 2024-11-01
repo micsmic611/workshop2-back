@@ -75,7 +75,7 @@ namespace permissionAPI.src.Infrastructure.Repositories
             var userData = new List<UserDbo>();
             try
             {
-                userData = await _dbContext.User.Where(x => x.RoleId == 2 ).AsNoTracking().ToListAsync();
+                userData = await _dbContext.User.Where(x => x.RoleId == 1 ).AsNoTracking().ToListAsync();
                 return userData;
             }
             catch (Exception ex)
@@ -102,7 +102,7 @@ namespace permissionAPI.src.Infrastructure.Repositories
             var userData = new List<UserDbo>();
             try
             {
-                userData = await _dbContext.User.Where(x => x.RoleId == 2 && x.Username == Username).AsNoTracking().ToListAsync();
+                userData = await _dbContext.User.Where(x => x.RoleId == 1 && x.Firstname == Username).AsNoTracking().ToListAsync();
                 return userData;
             }
             catch (Exception ex)
@@ -233,7 +233,6 @@ namespace permissionAPI.src.Infrastructure.Repositories
                 }
 
                 _logger.LogInformation("Found User with ID: {UserId}. Updating user details excluding password.", user.UserID);
-                existingUser.Username = user.Username;
                 existingUser.Firstname = user.Firstname;
                 existingUser.Lastname = user.Lastname;
                 existingUser.email = user.email;
