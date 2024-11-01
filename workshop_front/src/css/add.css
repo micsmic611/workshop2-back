@@ -1,0 +1,21 @@
+/* styles.css */
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #ccc;
+    z-index: 1000; /* เพื่อให้ popup อยู่ด้านบน */
+  }
+  
+  .popup h2 {
+    margin: 0 0 10px;
+  }
+  
+  .popup label {
+    display: block;
+    margin-bottom: 10px;
+  }
+  

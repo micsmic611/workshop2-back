@@ -46,7 +46,7 @@
         public string? warehousestatus { get; set; }
 
         // ข้อมูลจาก Rental
-        public int rentalid { get; set; }
+        public int? rentalid { get; set; }
         public int? companyid { get; set; }
         public int? userid { get; set; }
         public DateTime? date_rental_start { get; set; }

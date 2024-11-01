@@ -5,6 +5,7 @@ import { Drawer, AppBar, Toolbar, IconButton } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Button } from '@mui/material';
 import WarehousePopup from './WarehousePopup'; // นำเข้า WarehousePopup
+import AddWarehouse from './AddWarehouse';
 
 const Dashboard = () => {
   const [token, setToken] = useState('');
@@ -18,7 +19,7 @@ const Dashboard = () => {
     rentalDateStart: '',
     rentalstatus: ''
   });
-
+  const [showPopup, setShowPopup] = useState(false);
   const [popupOpen, setPopupOpen] = useState(false); 
   const [selectedWarehouse, setSelectedWarehouse] = useState(null); 
   const [roleId, setRoleId] = useState(null);
@@ -33,14 +34,22 @@ const Dashboard = () => {
         setRoleId(decoded.roleId); // ตั้งค่า roleId ใน state
         console.log('Setting roleId:', decoded.roleId);
       }
-      console.log("Decoded roleId:", decoded.roleId); // ตรวจสอบค่า roleId หลังถอดรหัส
-      console.log("State roleId:", roleId); // ตรวจสอบค่า roleId ใน state หลัง setRoleId
-
       fetchUserData(storedToken);
       fetchWarehouseData(storedToken);
     }
   }, []);
+  useEffect(() => {
+    // ตรวจสอบ roleId หลังจากที่ถูกอัปเดต
+    if (roleId !== null) {
+        console.log("Updated state roleId:", roleId);
 
+        // ฟังก์ชันหรือการตั้งค่าที่จำเป็นต้องใช้งาน roleId สามารถเรียกใช้ตรงนี้ได้
+        if (roleId === 2) {
+            // ทำให้ปุ่มเพิ่มโกดังแสดงหรือกำหนดค่าอื่น ๆ
+            setShowPopup(true);  // หรือฟังก์ชันที่ใช้งานตาม roleId
+        }
+    }
+}, [roleId]);
   const fetchUserData = async (storedToken) => {
     try {
       const decoded = jwtDecode(storedToken);
@@ -205,8 +214,7 @@ const handleSearch = () => {
   };
 
   const handleAddWarehouse = () => {
-    // Logic to handle adding a warehouse
-    console.log('Add Warehouse button clicked');
+    setShowPopup(true); // เปิด popup
   };
 
 
@@ -298,11 +306,16 @@ const handleSearch = () => {
       </label>
       <button className="search-button" onClick={handleSearch}>ค้นหา</button>
       <div>
-        {/* แสดงปุ่มเพิ่มโกดังเมื่อ roleId เท่ากับ 2 */}
-        {roleId === 2 && (
-          <button className="add-warehouse-button" onClick={handleAddWarehouse}>เพิ่มโกดัง</button>
-        )}
-      </div>
+  {/* ปุ่มเพิ่มโกดัง */}
+  {roleId === '2' && (
+    <button onClick={() => setPopupOpen(true)}>เพิ่มโกดัง</button>
+  )}
+
+  {/* ส่วนอื่น ๆ ของ Dashboard */}
+  {popupOpen && (
+    <AddWarehouse onClose={() => setPopupOpen(false)} />
+  )}
+</div>
     </div>
 
       <div className="warehouse-container">
