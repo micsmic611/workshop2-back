@@ -232,6 +232,15 @@ h3 {
   cursor: pointer;
 }
 
+.add-button {
+  background-color: #656ADE;
+  color: white;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
 .personal-info {
   background-color: #ADBC9D; /* สีพื้นหลัง */
   border-radius: 10px; /* มุมมน */

@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { jwtDecode } from "jwt-decode"; 
 import '../css/dashboard.css'; 
-import { jwtDecode } from "jwt-decode";
-import '../css/dashboard.css';
 import { Drawer, AppBar, Toolbar, IconButton } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import WarehousePopup from './WarehousePopup'; // นำเข้า WarehousePopup
@@ -19,10 +17,10 @@ const Dashboard = () => {
     rentalDateStart: '',
     rentalstatus: ''
   });
+
   const [popupOpen, setPopupOpen] = useState(false); 
   const [selectedWarehouse, setSelectedWarehouse] = useState(null); 
-  const [popupOpen, setPopupOpen] = useState(false);
-  const [selectedWarehouse, setSelectedWarehouse] = useState(null);
+
 
   useEffect(() => {
     const storedToken = localStorage.getItem('token');
@@ -88,9 +86,10 @@ const Dashboard = () => {
                     const matchesRentalStatus = rentalstatus ? warehouse.rentalstatus === rentalstatus : true;
 
                     return matchesWarehouseId && matchesRentalDateStart && matchesRentalStatus;
+
                 });
             }
-
+            
             setWarehouses(filteredData);
         } else {
             const errorMessage = await response.text();
@@ -276,8 +275,8 @@ const handleSearch = () => {
         <input 
             type="radio" 
             name="rentalstatus" 
-            value="inactive" 
-            checked={searchParams.rentalstatus === 'inactive'} 
+            value="not active" 
+            checked={searchParams.rentalstatus === 'not active'} 
             onChange={handleChange} 
         />
         ไม่ว่าง
