@@ -307,7 +307,10 @@ const MainCompany = () => {
   const toggleDrawer = (open) => () => {
     setDrawerOpen(open);
   };
-
+  const handleLogout = () => {
+    localStorage.removeItem("token"); // ลบ token ออกจาก local storage
+    navigate("/"); // นำทางไปที่หน้า login
+  };
 
 
 
@@ -358,7 +361,7 @@ const MainCompany = () => {
               </>
             )}
           </div>
-          <button className="logout-button">ออกจากระบบ</button>
+          <button onClick={handleLogout} className="logout-button">ออกจากระบบ</button>
         </div>
       </Drawer>
       <div className="search-container">

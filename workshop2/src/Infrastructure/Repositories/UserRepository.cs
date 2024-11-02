@@ -75,7 +75,7 @@ namespace permissionAPI.src.Infrastructure.Repositories
             var userData = new List<UserDbo>();
             try
             {
-                userData = await _dbContext.User.Where(x => x.RoleId == 1 ).AsNoTracking().ToListAsync();
+                userData = await _dbContext.User.Where(x => x.RoleId == 1 && x.status == "1").AsNoTracking().ToListAsync();
                 return userData;
             }
             catch (Exception ex)
@@ -83,6 +83,7 @@ namespace permissionAPI.src.Infrastructure.Repositories
                 throw ex;
             }
         }
+
         public async Task<List<UserDbo>> GetAllUser1Async()
         {
             var userData = new List<UserDbo>();
@@ -166,6 +167,16 @@ namespace permissionAPI.src.Infrastructure.Repositories
 
             await _dbContext.SaveChangesAsync();
             return existingUser;
+        }
+        public async Task<bool> UpdateUserStatus(int userId)
+        {
+            var user = await _dbContext.User.FindAsync(userId);
+            if (user == null) return false;
+
+            user.status = "0"; // ??????????????? 0
+            _dbContext.User.Update(user);
+            await _dbContext.SaveChangesAsync();
+            return true;
         }
         public async Task<UserDbo> GetByusername(string username)
         {

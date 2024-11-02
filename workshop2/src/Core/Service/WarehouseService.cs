@@ -1,4 +1,5 @@
-﻿using permissionAPI.DTOs;
+﻿using Microsoft.EntityFrameworkCore;
+using permissionAPI.DTOs;
 using permissionAPI.src.Core.Interface;
 using permissionAPI.src.Entities;
 using permissionAPI.src.Infrastructure.Interface;
@@ -11,10 +12,12 @@ namespace permissionAPI.src.Core.Service
     public class WarehouseService : IWarehouseService
     {
         private readonly IWarehouseRepository _WarehouseRepository;
+        private readonly DataContext _dbContext;
 
-        public WarehouseService(IWarehouseRepository WarehouseRepository)
+        public WarehouseService(IWarehouseRepository WarehouseRepository, DataContext dbContext)
         {
             _WarehouseRepository = WarehouseRepository;
+            _dbContext = dbContext;
         }
 
         public async Task<List<DTOs.WarehouseDbo>> GetAllWarehouseAsync()
@@ -142,7 +145,16 @@ namespace permissionAPI.src.Core.Service
                 throw new ApplicationException($"An error occurred while retrieving the warehouse rentals: {ex.Message}", ex);
             }
         }
+        public async Task<bool> UpdateWarehouseNameAsync(int warehouseId, UpdateWarehouseDto updateDto)
+        {
+            var warehouse = await _dbContext.warehouse.FirstOrDefaultAsync(w => w.warehouseid == warehouseId);
+            if (warehouse == null)
+                return false;
 
+            warehouse.warehousename = updateDto.warehousename;
+            await _dbContext.SaveChangesAsync();
+            return true;
+        }
 
 
 

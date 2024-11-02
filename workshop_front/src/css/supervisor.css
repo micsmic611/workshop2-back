@@ -315,12 +315,12 @@ h1 {
     color: #000000; /* สีของตัวอักษร */
 }
 
-.personal-info {
+.personal-info-report {
     background-color: #ADBC9D; /* สีพื้นหลัง */
     border-radius: 10px; /* มุมมน */
     padding: 20px; /* ระยะห่างภายใน */
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* เงาเล็กน้อย */
     margin: 20px auto; /* จัดกึ่งกลางและเพิ่มระยะห่างด้านบนล่าง */
     max-width: 500px; /* กำหนดความกว้างสูงสุด */
-    text-align: center; /* จัดเนื้อหาให้อยู่ตรงกลาง */
+    text-align: left; /* จัดเนื้อหาให้อยู่ตรงกลาง */
 }
