@@ -4,6 +4,7 @@ import '../css/dashboard.css';
 import { Drawer, AppBar, Toolbar, IconButton } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import WarehousePopup from './WarehousePopup'; // นำเข้า WarehousePopup
+import { useNavigate } from 'react-router-dom';
 
 const Dashboard = () => {
   const [token, setToken] = useState('');
@@ -19,6 +20,7 @@ const Dashboard = () => {
   });
   const [popupOpen, setPopupOpen] = useState(false); 
   const [selectedWarehouse, setSelectedWarehouse] = useState(null); 
+  const navigate = useNavigate();
 
   useEffect(() => {
     const storedToken = localStorage.getItem('token');
