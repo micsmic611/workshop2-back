@@ -13,10 +13,9 @@
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  width: 90%; /* ขยายให้ครอบคลุม 90% ของหน้าจอ */
-  max-width: 1200px; /* กำหนดขนาดสูงสุด */
-  height: 80%; /* เพิ่มความสูงให้ครอบคลุม 80% ของหน้าจอ */
-  min-height: 600px; /* กำหนดความสูงขั้นต่ำเพื่อไม่ให้กล่องเล็กเกินไป */
+  width: 90%;
+  max-width: 800px; /* จำกัดความกว้างสูงสุดของกล่อง */
+  height: auto;
 }
 
 .login-image img {
@@ -31,6 +30,8 @@
   flex-direction: column;
   justify-content: center;
   flex: 1; /* ให้ใช้พื้นที่ที่เหลืออยู่ */
+  background-color: #FAFAD8;
+  margin-top: -50px;
 }
 
 h2 {
@@ -42,6 +43,7 @@ h2 {
 p {
   margin-bottom: 20px;
   color: #000000;
+  text-align: justify;
 }
 
 .login-input {
@@ -79,3 +81,4 @@ p {
 .reset-link:hover {
   text-decoration: underline;
 }
+

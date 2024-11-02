@@ -53,8 +53,8 @@ const AddWarehouse = ({ onClose }) => {
           <option value="inactive">Inactive</option>
         </select>
       </label>
-      <button onClick={handleAddWarehouse}>เพิ่มโกดัง</button>
-      <button onClick={onClose}>ปิด</button>
+      <button onClick={handleAddWarehouse} class="A1">เพิ่มโกดัง</button>
+      <button onClick={onClose} class="A2">ปิด</button>
     </div>
   );
 };
