@@ -271,13 +271,13 @@ const SomeComponent = () => {
           </IconButton>
           <div className="button-container">
           <button className="nav-button"onClick={() => navigate('/supervisor')}>หน้าแรก</button>
-            <button className="nav-button"onClick={() => navigate('/supervisor/employee')}>ข้อมูลบริษัท</button>
-            <button className="nav-button" onClick={() => navigate('/supervisor/company')}>พนักงาน</button>
+            <button className="nav-button"onClick={() => navigate('/supervisor/company')}>ข้อมูลบริษัท</button>
+            <button className="nav-button" onClick={() => navigate('/supervisor/employee')}>พนักงาน</button>
             <button className="nav-button"onClick={() => navigate('/report')}>รายงาน</button>
           </div>
         </Toolbar>
       </AppBar>
-
+      
       <Drawer anchor="left" open={drawerOpen} onClose={toggleDrawer(false)}>
         <div className="drawer-container">
           <div className="profile">

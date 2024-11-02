@@ -175,9 +175,9 @@ const Dashboard = () => {
             <MenuIcon />
           </IconButton>
           <div className="button-container">
-            <button className="nav-button">หน้าแรก</button>
-            <button className="nav-button">ข้อมูลบริษัท</button>
-            <button className="nav-button">รายงาน</button>
+          <button className="nav-button"onClick={() => navigate('/employee')}>หน้าแรก</button>
+            <button className="nav-button"onClick={() => navigate('/js/Employee')}>ข้อมูลบริษัท</button>
+            {/* <button className="nav-button"onClick={() => navigate('/reportแ')}>รายงาน</button> */}
           </div>
         </Toolbar>
       </AppBar>

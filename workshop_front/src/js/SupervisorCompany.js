@@ -79,10 +79,17 @@ const Supervisor = () => {
 
   const handleSearch = () => {
     const storedToken = localStorage.getItem('token');
-    if (storedToken && searchCompanyName.trim() !== '') { // ตรวจสอบว่าชื่อบริษัทไม่ใช่ค่าว่าง
-      fetchCompanyData(storedToken, true);
+    
+    if (storedToken) {
+      if (searchCompanyName.trim() === '') {
+        // ถ้า searchCompanyName เป็นค่าว่าง ให้เรียกข้อมูลทั้งหมด
+        fetchCompanyData(storedToken); // ดึงข้อมูลทั้งหมด
+      } else {
+        // ถ้ามีชื่อบริษัทให้ค้นหา
+        fetchCompanyData(storedToken, true);
+      }
     } else {
-      console.error("กรุณากรอกชื่อบริษัทเพื่อทำการค้นหา");
+      console.error("กรุณาเข้าสู่ระบบ");
     }
   };
 
@@ -114,10 +121,11 @@ const Supervisor = () => {
   const fetchCompanyData = async (storedToken, search = false) => {
     try {
       let url = 'https://localhost:7111/api/Company/GetAllCompany';
-      if (search && searchCompanyName) {
-        // ตรวจสอบให้แน่ใจว่าค่าส่งใน query string ถูกต้อง
+      
+      if (search && searchCompanyName && searchCompanyName.trim() !== '') {
         url = `https://localhost:7111/api/Company/GetCompanyByName?Companyname=${searchCompanyName}`;
       }
+  
       const response = await fetch(url, {
         method: 'GET',
         headers: {
@@ -125,7 +133,7 @@ const Supervisor = () => {
           'Content-Type': 'application/json',
         },
       });
-
+  
       if (response.ok) {
         const data = await response.json();
         console.log("Company data:", data);
@@ -137,8 +145,6 @@ const Supervisor = () => {
       console.error("Error fetching Company data:", error);
     }
   };
-
-
   const handleAddCompanySave = async () => {
     try {
       const response = await fetch('https://localhost:7111/api/Company/AddCompany', {
@@ -314,8 +320,8 @@ const Supervisor = () => {
           </IconButton>
           <div className="navbar">
             <button className="nav-button"onClick={() => navigate('/supervisor')}>หน้าแรก</button>
-            <button className="nav-button"onClick={() => navigate('/supervisor/employee')}>ข้อมูลบริษัท</button>
-            <button className="nav-button" onClick={() => navigate('/supervisor/company')}>พนักงาน</button>
+            <button className="nav-button"onClick={() => navigate('/supervisor/company')}>ข้อมูลบริษัท</button>
+            <button className="nav-button" onClick={() => navigate('/supervisor/employee')}>พนักงาน</button>
             <button className="nav-button"onClick={() => navigate('/report')}>รายงาน</button>
           </div>
         </Toolbar>
@@ -474,6 +480,8 @@ const Supervisor = () => {
                         value={editedCompanyData.company_name}
                         onChange={handleCompanyDetailChange}
                         fullWidth
+                                        margin="dense"
+                variant="outlined"
                       />
                       <TextField
                         label="ที่อยู่"
@@ -481,6 +489,8 @@ const Supervisor = () => {
                         value={editedCompanyData.company_address}
                         onChange={handleCompanyDetailChange}
                         fullWidth
+                                        margin="dense"
+                variant="outlined"
                       />
                       <TextField
                         label="อีเมล"
@@ -488,6 +498,8 @@ const Supervisor = () => {
                         value={editedCompanyData.company_email}
                         onChange={handleCompanyDetailChange}
                         fullWidth
+                                        margin="dense"
+                variant="outlined"
                       />
                       <TextField
                         label="เบอร์โทร"
@@ -495,6 +507,8 @@ const Supervisor = () => {
                         value={editedCompanyData.company_phone}
                         onChange={handleCompanyDetailChange}
                         fullWidth
+                                        margin="dense"
+                variant="outlined"
                       />
                       <TextField
                         label="ผู้ติดต่อ"
@@ -502,6 +516,8 @@ const Supervisor = () => {
                         value={editedCompanyData.company_firstname}
                         onChange={handleCompanyDetailChange}
                         fullWidth
+                                        margin="dense"
+                variant="outlined"
                       />
                       <TextField
                         label="นามสกุลผู้ติดต่อ"
@@ -509,6 +525,8 @@ const Supervisor = () => {
                         value={editedCompanyData.company_lastname}
                         onChange={handleCompanyDetailChange}
                         fullWidth
+                                        margin="dense"
+                variant="outlined"
                       />
                     </>
                   ) : (
