@@ -236,6 +236,10 @@ const SomeComponent = () => {
             console.error('Error fetching User data:', error);
         }
     };
+    const handleLogout = () => {
+      localStorage.removeItem("token"); // ลบ token ออกจาก local storage
+      navigate("/"); // นำทางไปที่หน้า login
+    };
     // const fetchrental = async (storedToken) => {
     //     try {
     //         const response = await fetch('https://localhost:7111/api/Warehouse/warehouserental', {
@@ -309,7 +313,7 @@ const SomeComponent = () => {
               </>
             )}
           </div>
-          <button className="logout-button">ออกจากระบบ</button>
+          <button onClick={handleLogout} className="logout-button">ออกจากระบบ</button>
         </div>
       </Drawer>
       <div className="report">

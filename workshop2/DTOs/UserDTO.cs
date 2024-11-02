@@ -14,6 +14,11 @@ namespace permissionAPI.DTOs
         public string? status { get; set; }
 
     }
+
+    public class UpdateStatusDto
+    {
+        public int UserID { get; set; }
+    }
     public class Userdto
     {
         public int UserID { get; set; }

@@ -209,7 +209,10 @@ const handleSearch = () => {
     // Logic to handle adding a warehouse
     console.log('Add Warehouse button clicked');
   };
-
+  const handleLogout = () => {
+    localStorage.removeItem("token"); // ลบ token ออกจาก local storage
+    navigate("/"); // นำทางไปที่หน้า login
+  };
 
   return (
     <div className="dashboard-container">
@@ -257,7 +260,7 @@ const handleSearch = () => {
               </>
             )}
           </div>
-          <button className="logout-button">ออกจากระบบ</button>
+          <button onClick={handleLogout} className="logout-button">ออกจากระบบ</button>
         </div>
       </Drawer>
 
