@@ -18,15 +18,15 @@
   .nav-button {
     background-color: #47674F; /* สีพื้นหลังของปุ่ม */
     color: white; /* สีตัวอักษร */
-    border: none; /* ไม่แสดงขอบ */
+    border: 2px solid #ffffff; /* ไม่แสดงขอบ */
     border-radius: 5px; /* ทำมุมให้มน */
     padding: 10px 20px; /* เพิ่ม padding ให้ปุ่มใหญ่ขึ้น */
     font-size: 18px; /* ขนาดตัวอักษรใหญ่ขึ้น */
     cursor: pointer; /* เปลี่ยน cursor เมื่อชี้ไปที่ปุ่ม */
-    transition: background-color 0.3s; /* เพิ่มการเปลี่ยนสีเมื่อ hover */
+    transition: background-color 0.3s, box-shadow 0.3s, border-color 0.3s; /* เพิ่มการเปลี่ยนสีและเงาเมื่อ hover */
     width: 200px; /* ขยายความกว้างของปุ่ม */
-  }
-  
+}
+
   .search-button   {
     background-color: #47674F; /* เปลี่ยนสีพื้นหลังของปุ่ม */
     color: white; /* เปลี่ยนสีตัวอักษร */
@@ -69,8 +69,10 @@
   
   
   .nav-button:hover {
-    background-color: #47674F; /* เปลี่ยนสีพื้นหลังเมื่อ hover */
-  }
+    background-color: #0a881fd7; /* เปลี่ยนสีพื้นหลังเมื่อ hover */
+    box-shadow: 0px 4px 10px #47674F; /* เพิ่มเงา */
+    border-color: #8BAA91;
+}
   
   .warehouse-list {
     display: flex; /* ใช้ Flexbox */
@@ -247,7 +249,7 @@
   }
   
   .add-button {
-    background-color: #656ADE;
+    background-color: #47674F;
     color: white;
     padding: 8px 15px;
     border: none;
@@ -255,17 +257,18 @@
     cursor: pointer;
   }
   
-  .personal-info {
+  .personal-info-super {
     background-color: #ADBC9D; /* สีพื้นหลัง */
     border-radius: 10px; /* มุมมน */
     padding: 20px; /* ระยะห่างภายใน */
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* เงาเล็กน้อย */
-    margin: 0px auto; /* จัดกึ่งกลาง */
+    margin: 20px auto; /* จัดกึ่งกลางและเพิ่มระยะห่างด้านบนล่าง */
     max-width: 500px; /* กำหนดความกว้างสูงสุด */
+    text-align: left; /* จัดเนื้อหาให้อยู่ตรงกลาง */
   }
   
-  .personal-info input[type="text"],
-  .personal-info input[type="email"] {
+  .personal-info-super input[type="text"],
+  .personal-info-super input[type="email"] {
     width: 100%; /* ความกว้างเต็ม */
     padding: 10px; /* ระยะห่างภายใน */
     margin: 0px; /* ระยะห่างระหว่าง input */
@@ -276,13 +279,40 @@
     margin-bottom: -10px;
   }
 
-.addrental-button{
-    background-color: #47674F;
-    color: white;
-    padding: 8px 15px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+  .warehouse-header {
+    display: flex;
+    align-items: center; /* จัดให้อยู่ตรงกลางในแนวแกน y */
+    justify-content: space-between; /* เพิ่มระยะห่างระหว่างหัวข้อและปุ่ม */
+    margin-bottom: 10px; /* เพิ่มช่องว่างด้านล่าง */
+}
+
+.warehouse-header h2 {
+    margin: 0; /* ลดระยะห่างรอบๆ หัวข้อ */
+}
+
+.W1{
+  margin-bottom: 10px;
+  font-size: 24px; /* ขนาดตัวอักษร */
+  color: #000000; /* สีดำ */
+  margin-left: 10%;
+  font-weight: bold;
+}
+
+.addrental-button {
+  padding: 8px 16px;
+  background-color: #47674F;
+  color: #fff;
+  border: 2px solid #ffffff;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 77%;
+  margin-bottom: 10px; /* เพิ่มระยะห่างด้านล่าง */
+  transition: background-color 0.3s, box-shadow 0.3s border-color 0.3s ; /*  เพิ่มการเปลี่ยนแปลง */
+}
+
+.addrental-button:hover {
+  background-color: #0a881fd7; /* เปลี่ยนสีพื้นหลังเมื่อ hover */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* เพิ่มเงา */
 }
 
 h1 {
@@ -292,12 +322,3 @@ h1 {
     color: #000000; /* สีของตัวอักษร */
 }
 
-.personal-info-report {
-    background-color: #ADBC9D; /* สีพื้นหลัง */
-    border-radius: 10px; /* มุมมน */
-    padding: 20px; /* ระยะห่างภายใน */
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* เงาเล็กน้อย */
-    margin: 20px auto; /* จัดกึ่งกลางและเพิ่มระยะห่างด้านบนล่าง */
-    max-width: 500px; /* กำหนดความกว้างสูงสุด */
-    text-align: left; /* จัดเนื้อหาให้อยู่ตรงกลาง */
-}

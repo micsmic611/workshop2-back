@@ -55,39 +55,72 @@ const Dashboard = () => {
     }
   };
 
-  const fetchWarehouseData = async (storedToken, search = false) => {
+  const fetchWarehouseData = async (storedToken, isSearch = false) => {
+    // ...
     try {
-      const url = search 
-        ? `https://localhost:7111/api/Warehouse/warehousedetail?warehouseid=${searchParams.warehouseId}&rentalDateStart=${searchParams.rentalDateStart}&rentalstatus=${encodeURIComponent(searchParams.rentalstatus)}`
-        : 'https://localhost:7111/api/Warehouse/warehouserental';
-      
-      const response = await fetch(url, {
-        method: 'GET',
-        headers: {
-          Authorization: `Bearer ${storedToken}`,
-          'Content-Type': 'application/json',
-        },
-      });
+        const response = await fetch('https://localhost:7111/api/Warehouse/warehouserental', {
+            method: 'GET',
+            headers: {
+                Authorization: `Bearer ${storedToken}`,
+                'Content-Type': 'application/json',
+            },
+        });
 
-      if (response.ok) {
-        const data = await response.json();
-        console.log('Fetched warehouses:', data);
-        setWarehouses(Array.isArray(data) ? data : [data]);
-      } else {
-        const errorMessage = await response.text();
-        console.error("Failed to fetch warehouse data:", errorMessage);
-      }
+        if (response.ok) {
+            const data = await response.json();
+            let filteredData = data;
+
+            if (isSearch) {
+                const warehouseIdParam = searchParams.warehouseId ? Number(searchParams.warehouseId) : null;
+                const rentalDateStart = searchParams.rentalDateStart; // '10/1/2024'
+                const rentalstatus = searchParams.rentalstatus;
+
+                // แปลงวันที่จาก 'MM/DD/YYYY' เป็น 'YYYY-MM-DD'
+                const rentalDateStartFormatted = rentalDateStart ? 
+                    new Date(rentalDateStart).toISOString().slice(0, 10) : null;
+
+                filteredData = data.filter(warehouse => {
+                    const matchesWarehouseId = warehouseIdParam ? warehouse.warehouseid === warehouseIdParam : true;
+                    const matchesRentalDateStart = rentalDateStartFormatted ? 
+                        (warehouse.date_rental_start && warehouse.date_rental_start.slice(0, 10) === rentalDateStartFormatted) : true;
+                        const matchesRentalStatus = rentalstatus ? 
+                        (warehouse.rentalstatus === rentalstatus || (rentalstatus === 'active' && (warehouse.rentalstatus === null || warehouse.rentalstatus === ''))) : true;
+
+                    return matchesWarehouseId && matchesRentalDateStart && matchesRentalStatus;
+
+                });
+            }
+            
+            setWarehouses(filteredData);
+        } else {
+            const errorMessage = await response.text();
+            console.error("Failed to fetch warehouse data:", errorMessage);
+        }
     } catch (error) {
-      console.error("Error fetching warehouse data:", error);
+        console.error("Error fetching warehouse data:", error);
     }
-  };
+};
 
-  const handleSearch = () => {
-    const storedToken = localStorage.getItem('token');
-    if (storedToken) {
+
+const handleSearch = () => {
+  const storedToken = localStorage.getItem('token');
+  if (storedToken) {
+      // เคลียร์ข้อมูลในตารางก่อนค้นหา
+      setWarehouses([]); 
+
+      // เรียก API ค้นหาโกดัง
       fetchWarehouseData(storedToken, true); 
-    }
-  };
+
+      // เคลียร์ค่าช่องกรอกข้อมูลให้กลับไปเป็นค่าเริ่มต้น
+      setSearchParams({
+          warehouseId: '', // รหัสโกดัง
+          rentalDateStart: '', // วันที่เริ่มเช่า
+          rentalstatus: '' // สถานะการเช่า (ตั้งเป็นค่าว่างถ้าไม่ต้องการค่าเริ่มต้น)
+      });
+  } else {
+      console.error("Token not found in localStorage.");
+  }
+};
 
   const handleChange = (e) => {
     const { name, value } = e.target;

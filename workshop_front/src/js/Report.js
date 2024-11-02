@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Drawer, AppBar, Toolbar, IconButton, Typography, Box} from '@mui/material';
+import { Drawer, AppBar, Toolbar, IconButton, Typography, Box } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { PieChart } from '@mui/x-charts/PieChart';
 import { jwtDecode } from "jwt-decode";
@@ -244,7 +244,6 @@ const SomeComponent = () => {
     navigate("/"); // นำทางไปที่หน้า login
   };
 
-  // const fetchrental = async (storedToken) => {
   //     try {
   //         const response = await fetch('https://localhost:7111/api/Warehouse/warehouserental', {
   //             method: 'GET',
@@ -325,41 +324,48 @@ const SomeComponent = () => {
         <h1>Report</h1>
       </div>
       <div className="info-container">
-        <div className="personal-info">
-          <h3>โกดังทั้งหมด: {totalWarehouses} แห่ง</h3>
+        <div className="personal-inforepot">
+          <h3>โกดังทั้งหมด <br></br> <span className="white-text">{totalWarehouses}</span> แห่ง</h3>
         </div>
-        <div className="personal-info">
-          <h3>โกดังที่พร้อมให้เช่า: {activeCount} แห่ง</h3>
+        <div className="personal-inforepot">
+          <h3>โกดังที่พร้อมให้เช่า <br></br> <span className="white-text">{activeCount}</span> แห่ง</h3>
         </div>
-        <div className="personal-info">
-          <h3>โกดังที่ไม่พร้อมให้เช่า: {inactiveCount} แห่ง</h3>
+        <div className="personal-inforepot">
+          <h3>โกดังที่ไม่พร้อมให้เช่า <br></br> <span className="white-text">{inactiveCount}</span> แห่ง</h3>
         </div>
-        <div className="personal-info">
-          <h3>รายชื่อบริษัททั้งหมด: {companies.length} บริษัท</h3>
+        <div className="personal-inforepot">
+          <h3>รายชื่อบริษัททั้งหมด <br></br> <span className="white-text">{companies.length}</span> บริษัท</h3>
         </div>
-        <div className="personal-info">
-          <h3>พนักงานทั้งหมด: {User1.length} คน</h3>
+        <div className="personal-inforepot">
+          <h3>พนักงานทั้งหมด <br></br> <span className="white-text">{User1.length}</span> คน</h3>
         </div>
-        <div className="personal-info">
-          <h3>พนักงานที่ทำงาน: {Emp.length} คน</h3>
+        <div className="personal-inforepot">
+          <h3>พนักงานที่ทำงาน <br></br> <span className="white-text">{Emp.length}</span> คน</h3>
         </div>
-        <div className="personal-info">
-          <h3>พนักงานที่พักงาน: {User1.filter(user => user.status === "0").length} คน</h3>
+        <div className="personal-inforepot">
+          <h3>พนักงานที่พักงาน <br></br> <span className="white-text">{User1.filter(user => user.status === "0").length}</span> คน</h3>
         </div>
-        <div className="personal-info">
-          <h3>หัวหน้าพนักงาน: {User1.filter(user => user.roleId === 2).length} คน</h3>
+        <div className="personal-inforepot">
+          <h3>หัวหน้าพนักงาน <br></br> <span className="white-text">{User1.filter(user => user.roleId === 2).length}</span> คน</h3>
         </div>
+      </div>
+      <br />
+      <br />
+      <div className="title-container-report">
+        <div className="left">
+          <Typography variant="h6" align="center">
+            พนักงานทั้งหมด
+          </Typography>
+        </div>
+        <div className="right">
+          <Typography variant="h6" align="center">
+            โกดังทั้งหมด
+          </Typography>
+        </div>
+      </div>
 
-        <br />
-        <br />
-
-        <Typography variant="h6" align="center">
-
-          พนักงาน
-        </Typography>
-
+      <div className="pie-chart-container">
         <PieChart
-
           series={[
             {
               data: [
@@ -372,22 +378,13 @@ const SomeComponent = () => {
               cornerRadius: 5,
               startAngle: -45,
               endAngle: 325,
-              
-
             },
           ]}
-          width={600}
+          width={1000}
           height={300}
         />
-        <br />
-        <br />
 
-
-        <Typography variant="h6" align="center">
-
-          โกดัง
-        </Typography>
-        <PieChart 
+        <PieChart
           colors={['blue', 'green']} // Use palette
           series={[
             {
@@ -397,18 +394,15 @@ const SomeComponent = () => {
               ],
               innerRadius: 30,
               outerRadius: 100,
-              cornerRadius: 5,
+              cornerRadius: 10,
               startAngle: -45,
               endAngle: 325,
             },
           ]}
-          width={600}
-          height={300}
+          width={1000}
+          height={200}
         />
       </div>
-      {/*<div className="personal-info">   
-      <p>โกดังที่ถูกทั้งหมด: {rentalactiveCount}</p> {/* Display total count of companies */}
-      {/* </div> */}
     </div>
   );
 };
