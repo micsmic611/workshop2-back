@@ -5,7 +5,7 @@ import { Drawer, AppBar, Toolbar, IconButton } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Button } from '@mui/material';
 import WarehousePopup from './WarehousePopup'; // นำเข้า WarehousePopup
-
+import { useNavigate } from 'react-router-dom';
 const Dashboard = () => {
   const [token, setToken] = useState('');
   const [userData, setUserData] = useState(null);
@@ -18,7 +18,7 @@ const Dashboard = () => {
     rentalDateStart: '',
     rentalstatus: ''
   });
-
+  const navigate = useNavigate();
   const [popupOpen, setPopupOpen] = useState(false); 
   const [selectedWarehouse, setSelectedWarehouse] = useState(null); 
   const [roleId, setRoleId] = useState(null);
@@ -93,7 +93,8 @@ const Dashboard = () => {
                     const matchesWarehouseId = warehouseIdParam ? warehouse.warehouseid === warehouseIdParam : true;
                     const matchesRentalDateStart = rentalDateStartFormatted ? 
                         (warehouse.date_rental_start && warehouse.date_rental_start.slice(0, 10) === rentalDateStartFormatted) : true;
-                    const matchesRentalStatus = rentalstatus ? warehouse.rentalstatus === rentalstatus : true;
+                        const matchesRentalStatus = rentalstatus ? 
+                        (warehouse.rentalstatus === rentalstatus || (rentalstatus === 'active' && (warehouse.rentalstatus === null || warehouse.rentalstatus === ''))) : true;
 
                     return matchesWarehouseId && matchesRentalDateStart && matchesRentalStatus;
 

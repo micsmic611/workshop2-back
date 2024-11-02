@@ -83,6 +83,19 @@ namespace permissionAPI.src.Infrastructure.Repositories
                 throw ex;
             }
         }
+        public async Task<List<UserDbo>> GetAllUser1Async()
+        {
+            var userData = new List<UserDbo>();
+            try
+            {
+                userData = await _dbContext.User.Where(x => x.RoleId == 1).AsNoTracking().ToListAsync();
+                return userData;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
         public async Task<List<UserDbo>> GetEmpByNameAsync(String Username)
         {

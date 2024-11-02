@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { jwtDecode } from "jwt-decode"; 
-import '../css/dashboard.css'; 
+import '../css/supervisor.css'; 
 import { Drawer, AppBar, Toolbar, IconButton } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Button } from '@mui/material';
 import WarehousePopup from './WarehousePopup'; // นำเข้า WarehousePopup
 import AddWarehouse from './AddWarehouse';
+import { useNavigate } from 'react-router-dom';
 
 const Dashboard = () => {
   const [token, setToken] = useState('');
@@ -19,6 +20,7 @@ const Dashboard = () => {
     rentalDateStart: '',
     rentalstatus: ''
   });
+  const navigate = useNavigate();
   const [showPopup, setShowPopup] = useState(false);
   const [popupOpen, setPopupOpen] = useState(false); 
   const [selectedWarehouse, setSelectedWarehouse] = useState(null); 
@@ -102,7 +104,8 @@ const Dashboard = () => {
                     const matchesWarehouseId = warehouseIdParam ? warehouse.warehouseid === warehouseIdParam : true;
                     const matchesRentalDateStart = rentalDateStartFormatted ? 
                         (warehouse.date_rental_start && warehouse.date_rental_start.slice(0, 10) === rentalDateStartFormatted) : true;
-                    const matchesRentalStatus = rentalstatus ? warehouse.rentalstatus === rentalstatus : true;
+                        const matchesRentalStatus = rentalstatus ? 
+                        (warehouse.rentalstatus === rentalstatus || (rentalstatus === 'active' && (warehouse.rentalstatus === null || warehouse.rentalstatus === ''))) : true;
 
                     return matchesWarehouseId && matchesRentalDateStart && matchesRentalStatus;
 
@@ -227,9 +230,9 @@ const handleSearch = () => {
           </IconButton>
           <div className="button-container">
             <button className="nav-button">หน้าแรก</button>
-            <button className="nav-button">ข้อมูลบริษัท</button>
-            <button className="nav-button">พนักงาน</button>
-            <button className="nav-button">รายงาน</button>
+            <button className="nav-button"onClick={() => navigate('/supervisor/company')}>ข้อมูลบริษัท</button>
+            <button className="nav-button"onClick={() => navigate('/supervisor/employee')}>พนักงาน</button>
+            <button className="nav-button" onClick={() => navigate('/report')}>ยังรายงาน</button>
           </div>
         </Toolbar>
       </AppBar>
@@ -308,7 +311,7 @@ const handleSearch = () => {
       <div>
   {/* ปุ่มเพิ่มโกดัง */}
   {roleId === '2' && (
-    <button onClick={() => setPopupOpen(true)}>เพิ่มโกดัง</button>
+    <button onClick={() => setPopupOpen(true)} className="addrental-button" >เพิ่มโกดัง</button>
   )}
 
   {/* ส่วนอื่น ๆ ของ Dashboard */}

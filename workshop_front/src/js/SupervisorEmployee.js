@@ -6,9 +6,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 
 function EmployeePage() {
   const navigate = useNavigate();
-  const handleCompanyClick = () => {
-    navigate("/supervisor/company");
-  };
+
 
   const [token, setToken] = useState('');
   const [userData, setUserData] = useState(null);
@@ -288,10 +286,10 @@ function EmployeePage() {
             <MenuIcon />
           </IconButton>
           <div className="navbar">
-            <button className="nav-button">หน้าแรก</button>
-            <button className="nav-button" onClick={handleCompanyClick}>ข้อมูลบริษัท</button>
-            <button className="nav-button" >พนักงาน</button>
-            <button className="nav-button">รายงาน</button>
+            <button className="nav-button" onClick={() => navigate('/supervisor')}>หน้าแรก</button>
+            <button className="nav-button" onClick={() => navigate('/supervisor/company')}>ข้อมูลบริษัท</button>
+            <button className="nav-button" onClick={() => navigate('/supervisor/employee')}>พนักงาน</button>
+            <button className="nav-button" onClick={() => navigate('/report')}>รายงาน</button>
           </div>
         </Toolbar>
       </AppBar>
