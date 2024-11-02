@@ -480,6 +480,8 @@ const Supervisor = () => {
                         value={editedCompanyData.company_name}
                         onChange={handleCompanyDetailChange}
                         fullWidth
+                                        margin="dense"
+                variant="outlined"
                       />
                       <TextField
                         label="ที่อยู่"
@@ -487,6 +489,8 @@ const Supervisor = () => {
                         value={editedCompanyData.company_address}
                         onChange={handleCompanyDetailChange}
                         fullWidth
+                                        margin="dense"
+                variant="outlined"
                       />
                       <TextField
                         label="อีเมล"
@@ -494,6 +498,8 @@ const Supervisor = () => {
                         value={editedCompanyData.company_email}
                         onChange={handleCompanyDetailChange}
                         fullWidth
+                                        margin="dense"
+                variant="outlined"
                       />
                       <TextField
                         label="เบอร์โทร"
@@ -501,6 +507,8 @@ const Supervisor = () => {
                         value={editedCompanyData.company_phone}
                         onChange={handleCompanyDetailChange}
                         fullWidth
+                                        margin="dense"
+                variant="outlined"
                       />
                       <TextField
                         label="ผู้ติดต่อ"
@@ -508,6 +516,8 @@ const Supervisor = () => {
                         value={editedCompanyData.company_firstname}
                         onChange={handleCompanyDetailChange}
                         fullWidth
+                                        margin="dense"
+                variant="outlined"
                       />
                       <TextField
                         label="นามสกุลผู้ติดต่อ"
@@ -515,6 +525,8 @@ const Supervisor = () => {
                         value={editedCompanyData.company_lastname}
                         onChange={handleCompanyDetailChange}
                         fullWidth
+                                        margin="dense"
+                variant="outlined"
                       />
                     </>
                   ) : (

@@ -20,25 +20,25 @@ const Login = () => {
       },
       body: JSON.stringify({ username, password }),
     });
-  
+
     if (response.ok) {
       const data = await response.json();
       console.log("Received token:", data.token); // ตรวจสอบโทเคนที่ได้รับ
-  
+
       // ตรวจสอบว่าโทเคนมีค่าที่ถูกต้องหรือไม่
       if (data.token && data.token.split('.').length === 3) {
         // บันทึกโทเคนลงใน localStorage
         localStorage.setItem("token", data.token);
-        
+
         try {
           const decodedToken = jwtDecode(data.token); // แปลง token
           const userId = decodedToken.userId;
           const roleId = decodedToken.roleId;
-  
+
           // เก็บค่า userId และ roleId ใน state หรือ local storage
           console.log("User ID:", userId);
           console.log("Role ID:", roleId);
-  
+
           // นำทางไปยัง Dashboard
           if (roleId === "1") {
             navigate("/employee"); // ถ้า roleId เป็น 1 ไปหน้า dashboard
@@ -57,7 +57,7 @@ const Login = () => {
       console.error("Login failed");
     }
   };
-  
+
   return (
     <div className="login-container">
       <div className="login-box">
@@ -85,7 +85,6 @@ const Login = () => {
           />
           <button className="login-button" onClick={handleLogin}>Log in</button>
           <div className="login-footer">
-            <p>Forgot Password <a href="/reset-password" className="reset-link"> Reset</a></p>
           </div>
         </div>
       </div>

@@ -26,3 +26,4 @@ obj/
 *.exe
 *.dll
 appsettings.json
+/workshop2/appsettings.json
