@@ -339,7 +339,7 @@ const Supervisor = () => {
               <p className="role">Supervisor - Warehouse</p>
             </div>
           </div>
-          <div className="personal-info">
+          <div className="personal-info-super">
             <h2>ข้อมูลส่วนตัว</h2>
             {isEditing ? (
               <>

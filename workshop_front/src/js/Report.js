@@ -278,7 +278,7 @@ const SomeComponent = () => {
           <IconButton edge="start" color="inherit" onClick={toggleDrawer(true)} aria-label="menu">
             <MenuIcon />
           </IconButton>
-          <div className="button-container">
+          <div className="button-container-report">
             <button className="nav-button" onClick={() => navigate('/supervisor')}>หน้าแรก</button>
             <button className="nav-button" onClick={() => navigate('/supervisor/company')}>ข้อมูลบริษัท</button>
             <button className="nav-button" onClick={() => navigate('/supervisor/employee')}>พนักงาน</button>
@@ -296,8 +296,8 @@ const SomeComponent = () => {
               <p className="role">Employee - Warehouse</p>
             </div>
           </div>
-          <div className="personal-info">
-            <h3>ข้อมูลส่วนตัว</h3>
+          <div className="personal-info-report">
+            <h7>ข้อมูลส่วนตัว</h7>
             {isEditing ? (
               <>
                 <p><strong>ชื่อ:</strong> <input type="text" name="firstname" value={editedUserData.firstname} onChange={(e) => setEditedUserData({ ...editedUserData, firstname: e.target.value })} /></p>
@@ -324,29 +324,29 @@ const SomeComponent = () => {
       <div className="report">
         <h1>Report</h1>
       </div>
-      <div className="info-container">
-        <div className="personal-info">
+      <div className="info-container-report">
+        <div className="personal-inforepot">
           <h3>โกดังทั้งหมด: {totalWarehouses} แห่ง</h3>
         </div>
-        <div className="personal-info">
+        <div className="personal-inforepot">
           <h3>โกดังที่พร้อมให้เช่า: {activeCount} แห่ง</h3>
         </div>
-        <div className="personal-info">
+        <div className="personal-inforepot">
           <h3>โกดังที่ไม่พร้อมให้เช่า: {inactiveCount} แห่ง</h3>
         </div>
-        <div className="personal-info">
+        <div className="personal-inforepot">
           <h3>รายชื่อบริษัททั้งหมด: {companies.length} บริษัท</h3>
         </div>
-        <div className="personal-info">
+        <div className="personal-inforepot">
           <h3>พนักงานทั้งหมด: {User1.length} คน</h3>
         </div>
-        <div className="personal-info">
+        <div className="personal-inforepot">
           <h3>พนักงานที่ทำงาน: {Emp.length} คน</h3>
         </div>
-        <div className="personal-info">
+        <div className="personal-inforepot">
           <h3>พนักงานที่พักงาน: {User1.filter(user => user.status === "0").length} คน</h3>
         </div>
-        <div className="personal-info">
+        <div className="personal-inforepot">
           <h3>หัวหน้าพนักงาน: {User1.filter(user => user.roleId === 2).length} คน</h3>
         </div>
 

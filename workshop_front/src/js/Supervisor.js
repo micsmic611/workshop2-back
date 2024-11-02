@@ -249,7 +249,7 @@ const handleSearch = () => {
               <p className="role">Employee - Warehouse</p>
             </div>
           </div>
-          <div className="personal-info">
+          <div className="personal-info-super">
             <h3>ข้อมูลส่วนตัว</h3>
             {isEditing ? (
               <>
