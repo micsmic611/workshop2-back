@@ -309,10 +309,6 @@ const handleSearch = () => {
       </label>
       <button className="search-button" onClick={handleSearch}>ค้นหา</button>
       <div>
-  {/* ปุ่มเพิ่มโกดัง */}
-  {roleId === '2' && (
-    <button onClick={() => setPopupOpen(true)} className="addrental-button" >เพิ่มโกดัง</button>
-  )}
 
   {/* ส่วนอื่น ๆ ของ Dashboard */}
   {popupOpen && (
@@ -322,7 +318,11 @@ const handleSearch = () => {
     </div>
 
       <div className="warehouse-container">
-        <h2>โกดังที่เช่า</h2>
+        <div className="W1"> 
+         โกดังที่เช่า
+        {roleId === '2' && (
+            <button onClick={() => setPopupOpen(true)} className="addrental-button">เพิ่มโกดัง</button>
+        )}</div>
         <div className="table-container">
           <table className="warehouse-table">
             <thead>

@@ -179,7 +179,7 @@ namespace permissionAPI.src.Infrastructure.Repositories
                                         from r in rentalGroup.DefaultIfEmpty() // ใช้ Left Join
                                         join c in _dbContext.Company on r.companyid equals c.CompanyID into companyGroup
                                         from c in companyGroup.DefaultIfEmpty() // ใช้ Left Join สำหรับ company
-                                        where r == null || (r.rentalstatus == "inactive" && r.date_rental_end >= currentDate)
+                                        where r == null || (r.rentalstatus != "inactive" || r.date_rental_end >= currentDate)
                                         select new WarehouseRentalDTOs
                                         {
                                             warehouseid = w.warehouseid,

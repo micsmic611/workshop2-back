@@ -27,6 +27,10 @@
   width: 200px; /* ขยายความกว้างของปุ่ม */
 }
 
+.nav-button:hover{
+  background-color: #ff0000;
+}
+
 .search-button   {
   background-color: #47674F; /* เปลี่ยนสีพื้นหลังของปุ่ม */
   color: white; /* เปลี่ยนสีตัวอักษร */
