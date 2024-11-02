@@ -351,8 +351,8 @@ function EmployeePage() {
               <tr>
                 <th>รหัสพนักงาน</th>
                 <th>ชื่อผู้ติดต่อ</th>
-                <th>เบอร์โทร</th>
                 <th>อีเมล</th>
+                <th>เบอร์โทร</th>
                 <th>ดูข้อมูล</th>
               </tr>
             </thead>
