@@ -83,6 +83,7 @@ namespace permissionAPI.src.Infrastructure.Repositories
                 throw ex;
             }
         }
+
         public async Task<List<UserDbo>> GetAllUser1Async()
         {
             var userData = new List<UserDbo>();
