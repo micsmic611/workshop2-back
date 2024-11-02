@@ -11,5 +11,6 @@ namespace permissionAPI.src.Core.Interface
         Task<WarehouseRentalDetailDTO> getwarehosedetailsearch(string warehousename, string rentalstatus, DateTime date_rental_start);
         Task<DTOs.WarehouseDbo> AddWarehouseAsync(InputWarehosueDbo InputWarehosueDbo);
         Task<List<WarehouseRentalDTOs>> GetAllWarehousesWithRentalAsync();
+        Task<bool> UpdateWarehouseNameAsync(int warehouseId, UpdateWarehouseDto updateDto);
     }
 }
