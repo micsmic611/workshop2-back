@@ -5,6 +5,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { Button } from '@mui/material';
 import { jwtDecode } from "jwt-decode"; 
 import '../css/report.css'; 
+
 const SomeComponent = () => {
     const [token, setToken] = useState('');
     const [userData, setUserData] = useState(null);
@@ -21,6 +22,7 @@ const SomeComponent = () => {
       rentalDateStart: '',
       rentalstatus: ''
     });
+
     const navigate = useNavigate();
     const [showPopup, setShowPopup] = useState(false);
     const [popupOpen, setPopupOpen] = useState(false); 
@@ -58,6 +60,7 @@ const SomeComponent = () => {
           }
       }
   }, [roleId]);
+
     const fetchUserData = async (storedToken) => {
       try {
         const decoded = jwtDecode(storedToken);
@@ -236,6 +239,7 @@ const SomeComponent = () => {
             console.error('Error fetching User data:', error);
         }
     };
+
     // const fetchrental = async (storedToken) => {
     //     try {
     //         const response = await fetch('https://localhost:7111/api/Warehouse/warehouserental', {
@@ -259,6 +263,7 @@ const SomeComponent = () => {
     // };
     // const rentalactiveCount = rental.filter(rental => rental.rentalstatus.toLowerCase() === 'active'||'').length;
     //const rentalinactiveCount = rental.filter(warehouse => rental.rentalstatus.toLowerCase() === 'inactive'||'').length;
+    
     const totalWarehouses = warehouses.length;
     const activeCount = warehouses.filter(warehouse => warehouse.warehousestatus.toLowerCase() === 'active').length;
     const inactiveCount = warehouses.filter(warehouse => warehouse.warehousestatus.toLowerCase() === 'inactive').length;
