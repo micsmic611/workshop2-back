@@ -239,7 +239,10 @@ const SomeComponent = () => {
             console.error('Error fetching User data:', error);
         }
     };
-
+    const handleLogout = () => {
+      localStorage.removeItem("token"); // ลบ token ออกจาก local storage
+      navigate("/"); // นำทางไปที่หน้า login
+    };
     // const fetchrental = async (storedToken) => {
     //     try {
     //         const response = await fetch('https://localhost:7111/api/Warehouse/warehouserental', {
@@ -282,7 +285,7 @@ const SomeComponent = () => {
           </div>
         </Toolbar>
       </AppBar>
-
+      
       <Drawer anchor="left" open={drawerOpen} onClose={toggleDrawer(false)}>
         <div className="drawer-container">
           <div className="profile">
@@ -314,7 +317,7 @@ const SomeComponent = () => {
               </>
             )}
           </div>
-          <button className="logout-button">ออกจากระบบ</button>
+          <button onClick={handleLogout} className="logout-button">ออกจากระบบ</button>
         </div>
       </Drawer>
       <div className="report">
@@ -322,16 +325,15 @@ const SomeComponent = () => {
       </div>
       <div className="info-container">
     <div className="personal-info">
-        <h3>ข้อมูลโกดัง</h3>
-        <p>มีโกดังทั้งหมด: {totalWarehouses} แห่ง</p>                
+        <h3>มีโกดังทั้งหมด: {totalWarehouses} แห่ง</h3>        
     </div>
     <div className="personal-info">
         <h3>ข้อมูลโกดังสถานะ Active</h3>
         <p>มีโกดังสถานะ Active: {activeCount} แห่ง</p>              
     </div>
     <div className="personal-info">   
-        <h3>ข้อมูลโกดังสถานะ Inactive</h3>
-        <p>มีโกดังสถานะ Inactive: {inactiveCount} แห่ง</p>
+        <h3>มีโกดังสถานะ Inactive: {inactiveCount} แห่ง</h3>
+        <p></p>
     </div>
     <div className="personal-info">   
         <h3>ข้อมูลบริษัท</h3> 

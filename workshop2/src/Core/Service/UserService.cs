@@ -181,7 +181,10 @@ namespace permissionAPI.src.Core.Service
                 throw ex;
             }
         }
-
+        public async Task<bool> UpdateStatusToZero(int userId)
+        {
+            return await _UserRepository.UpdateUserStatus(userId);
+        }
         public async Task<List<EmployeeDTO>> GetEmpByNameAsync(String Username)
         {
             try

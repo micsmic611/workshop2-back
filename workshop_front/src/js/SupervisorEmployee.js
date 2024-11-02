@@ -29,7 +29,9 @@ function EmployeePage() {
   const [employeeDetail, setEmployeeDetail] = useState(null);
   const [isEditingDetail, setIsEditingDetail] = useState(false);
   const [editedEmployeeData, setEditedEmployeeData] = useState({});
-
+  const toggleDrawer = (isOpen) => () => {
+    setDrawerOpen(isOpen);
+  };
   const handleEditDetailClick = () => {
     setIsEditingDetail(true);
     setEditedEmployeeData({
@@ -270,13 +272,30 @@ function EmployeePage() {
       fetchData();
     }
   }, []);
+  const handleUpdateClick = async (userID) => {
+    try {
+        const response = await fetch('https://localhost:7111/api/User/UpdateStatus', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ userID: userID  }),
+        });
 
-  const toggleDrawer = (open) => () => {
-    setDrawerOpen(open);
-  };
-
-
-
+        if (response.ok) {
+            alert('พักงานสำเร็จ');
+        } else {
+            alert('ไม่สามารถพักงานได้');
+        }
+    } catch (error) {
+        console.error('เกิดข้อผิดพลาด:', error);
+        alert('ไม่สามารถพักงานได้');
+    }
+};
+const handleLogout = () => {
+  localStorage.removeItem("token"); // ลบ token ออกจาก local storage
+  navigate("/"); // นำทางไปที่หน้า login
+};
 
   return (
     <div className="dashboard-container" >
@@ -325,7 +344,7 @@ function EmployeePage() {
               </>
             )}
           </div>
-          <button className="logout-button">ออกจากระบบ</button>
+          <button onClick={handleLogout} className="logout-button">ออกจากระบบ</button>
         </div>
       </Drawer>
       <div className="search-container">
@@ -497,6 +516,7 @@ function EmployeePage() {
                 </>
               ) : (
                 <>
+                  <button className="edit-button" onClick={() => handleUpdateClick(employeeDetail.userID)}>พักงาน</button>
                   <Button className="edit-button" onClick={handleEditDetailClick}>แก้ไขข้อมูล</Button>
                   <Button onClick={() => setDetailDialogOpen(false)} color="primary">ยกเลิก</Button>
                 </>

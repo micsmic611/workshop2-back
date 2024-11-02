@@ -47,7 +47,7 @@ namespace auth.Controllers
         public async Task<IActionResult> Login(LoginDto dto)
         {
             var user = await _repository.GetByusername(dto.Username);
-            if (user == null)
+            if (user == null || user.status != "1")
             {
                 return Unauthorized("Invalid credentials.");
             }

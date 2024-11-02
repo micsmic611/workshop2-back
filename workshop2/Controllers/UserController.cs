@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using permissionAPI.DTOs;
 using permissionAPI.src.Core.Interface;
+using permissionAPI.src.Core.Service;
 
 
 namespace permissionAPI.Contollers
@@ -19,7 +20,15 @@ namespace permissionAPI.Contollers
             _logger = logger;
 
         }
+        [HttpPost("UpdateStatus")]
+        public async Task<IActionResult> UpdateStatus([FromBody] UpdateStatusDto dto)
+        {
+            var result = await _UserService.UpdateStatusToZero(dto.UserID);
+            if (!result)
+                return NotFound("User not found");
 
+            return Ok("User status updated to 0 successfully");
+        }
         [HttpGet("GetAllUser")]
         public async Task<IActionResult> GetAllUserAsync()
         {

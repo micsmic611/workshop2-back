@@ -219,7 +219,10 @@ const handleSearch = () => {
   const handleAddWarehouse = () => {
     setShowPopup(true); // เปิด popup
   };
-
+  const handleLogout = () => {
+    localStorage.removeItem("token"); // ลบ token ออกจาก local storage
+    navigate("/"); // นำทางไปที่หน้า login
+  };
 
   return (
     <div className="dashboard-container">
@@ -250,11 +253,11 @@ const handleSearch = () => {
             <h3>ข้อมูลส่วนตัว</h3>
             {isEditing ? (
               <>
-                <p><strong>ชื่อ:</strong> <input type="text" name="firstname" value={editedUserData.firstname} onChange={(e) => setEditedUserData({ ...editedUserData, firstname: e.target.value })} /></p>
-                <p><strong>นามสกุล:</strong> <input type="text" name="lastname" value={editedUserData.lastname} onChange={(e) => setEditedUserData({ ...editedUserData, lastname: e.target.value })} /></p>
-                <p><strong>อีเมล:</strong> <input type="email" name="email" value={editedUserData.email} onChange={(e) => setEditedUserData({ ...editedUserData, email: e.target.value })} /></p>
-                <p><strong>เบอร์:</strong> <input type="text" name="phone" value={editedUserData.phone} onChange={(e) => setEditedUserData({ ...editedUserData, phone: e.target.value })} /></p>
-                <p><strong>ที่อยู่:</strong> <input type="text" name="address" value={editedUserData.address} onChange={(e) => setEditedUserData({ ...editedUserData, address: e.target.value })} /></p>
+                <p><strong>ชื่อ</strong> <input type="text" name="firstname" value={editedUserData.firstname} onChange={(e) => setEditedUserData({ ...editedUserData, firstname: e.target.value })} /></p>
+                <p><strong>นามสกุล</strong> <input type="text" name="lastname" value={editedUserData.lastname} onChange={(e) => setEditedUserData({ ...editedUserData, lastname: e.target.value })} /></p>
+                <p><strong>อีเมล</strong> <input type="email" name="email" value={editedUserData.email} onChange={(e) => setEditedUserData({ ...editedUserData, email: e.target.value })} /></p>
+                <p><strong>เบอร์</strong> <input type="text" name="phone" value={editedUserData.phone} onChange={(e) => setEditedUserData({ ...editedUserData, phone: e.target.value })} /></p>
+                <p><strong>ที่อยู่</strong> <input type="text" name="address" value={editedUserData.address} onChange={(e) => setEditedUserData({ ...editedUserData, address: e.target.value })} /></p>
                 <button className="save-button" onClick={handleSaveClick}>ยืนยัน</button>
                 <button className="cancel-button" onClick={handleCancelClick}>ยกเลิก</button>
               </>
@@ -268,7 +271,7 @@ const handleSearch = () => {
               </>
             )}
           </div>
-          <button className="logout-button">ออกจากระบบ</button>
+          <button onClick={handleLogout} className="logout-button">ออกจากระบบ</button>
         </div>
       </Drawer>
 

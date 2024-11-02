@@ -14,5 +14,6 @@ namespace permissionAPI.src.Core.Interface
         Task<Userforupdate> UpdateUserAsync(Userforupdate Userforupdate);
         Task<UpdateEmpDTO> UpdateEmpAsync(UpdateEmpDTO UpdateEmpDTO);
         Task<List<EmployeeDTO>> GetAlluser1Async();
+        Task<bool> UpdateStatusToZero(int userId);
     }
 }

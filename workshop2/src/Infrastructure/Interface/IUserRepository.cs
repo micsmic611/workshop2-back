@@ -21,5 +21,6 @@ namespace permissionAPI.src.Infrastructure.Interface
         Task<UserDbo> UpdateEmpAsync(UserDbo user);
 
         Task<List<UserDbo>> GetAllUser1Async();
+        Task<bool> UpdateUserStatus(int userId);
     }
 }

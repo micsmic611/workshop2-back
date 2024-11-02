@@ -53,7 +53,7 @@ const WarehousePopup = ({ open, onClose, warehouse }) => {
   };
   if (!warehouse) return null;
   const isRentalStatusNull = warehouse.rentalstatus === null;
-  const isRentalStatusInactive = warehouse.rentalstatus === 'inactive';
+  const isRentalStatusInactive = warehouse.rentalstatus === 'inactive'||warehouse.rentalstatus === 'cancel';
   return (
     <>
       <Dialog open={open} onClose={onClose} className="warehouse-popup">
