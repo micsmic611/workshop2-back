@@ -36,7 +36,8 @@ namespace permissionAPI.src.Core.Service
                     email = s.email,
                     phone =s.phone,
                     address =s.address,
-                    RoleId =s.RoleId
+                    RoleId =s.RoleId,
+                    status = s.status
                 }).ToList();
 
                 return UserReturn;
