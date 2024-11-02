@@ -410,7 +410,6 @@ const SomeComponent = () => {
       <p>โกดังที่ถูกทั้งหมด: {rentalactiveCount}</p> {/* Display total count of companies */}
       {/* </div> */}
     </div>
-
   );
 };
 

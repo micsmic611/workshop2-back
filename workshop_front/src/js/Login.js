@@ -59,31 +59,33 @@ const Login = () => {
   };
 
   return (
-    <div className="login-container">
-      <div className="login-box">
-        <div className="login-image">
-          <img src={image1} alt="Warehouse" />
-        </div>
-        <div className="login-form">
-          <h4>Warehouse Management System</h4>
-          <p>Hi! Let's get Started in Warehouse Management </p>
-          {error && <p className="error-message">{error}</p>} {/* แสดงข้อความข้อผิดพลาด */}
-          <input
-            type="text"
-            placeholder="Username"
-            className="login-input"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)} // เพิ่มการจัดการการเปลี่ยนแปลง
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            className="login-input"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)} // เพิ่มการจัดการการเปลี่ยนแปลง
-          />
-          <button className="login-button" onClick={handleLogin}>Log in</button>
-          <div className="login-footer">
+    <div className="body-login">
+      <div className="login-container">
+        <div className="login-box">
+          <div className="login-image">
+            <img src={image1} alt="Warehouse" />
+          </div>
+          <div className="login-form">
+            <h4>Warehouse Management System</h4>
+            <p>Hi! Let's get Started in Warehouse Management </p>
+            {error && <p className="error-message">{error}</p>} {/* แสดงข้อความข้อผิดพลาด */}
+            <input
+              type="text"
+              placeholder="Username"
+              className="login-input"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)} // เพิ่มการจัดการการเปลี่ยนแปลง
+            />
+            <input
+              type="password"
+              placeholder="Password"
+              className="login-input"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)} // เพิ่มการจัดการการเปลี่ยนแปลง
+            />
+            <button className="login-button" onClick={handleLogin}>Log in</button>
+            <div className="login-footer">
+            </div>
           </div>
         </div>
       </div>

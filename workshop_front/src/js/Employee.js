@@ -5,7 +5,7 @@ import { Drawer, AppBar, Toolbar, Typography, IconButton, Dialog, DialogActions,
 import MenuIcon from '@mui/icons-material/Menu';
 
 const MainCompany = () => {
- 
+
   const [token, setToken] = useState('');
   const [userData, setUserData] = useState(null);
   const [companydata, setCompanyData] = useState([]);
@@ -77,7 +77,7 @@ const MainCompany = () => {
 
   const handleSearch = () => {
     const storedToken = localStorage.getItem('token');
-    
+
     if (storedToken) {
       if (searchCompanyName.trim() === '') {
         // ถ้า searchCompanyName เป็นค่าว่าง ให้เรียกข้อมูลทั้งหมด
@@ -119,11 +119,11 @@ const MainCompany = () => {
   const fetchCompanyData = async (storedToken, search = false) => {
     try {
       let url = 'https://localhost:7111/api/Company/GetAllCompany';
-      
+
       if (search && searchCompanyName && searchCompanyName.trim() !== '') {
         url = `https://localhost:7111/api/Company/GetCompanyByName?Companyname=${searchCompanyName}`;
       }
-  
+
       const response = await fetch(url, {
         method: 'GET',
         headers: {
@@ -131,7 +131,7 @@ const MainCompany = () => {
           'Content-Type': 'application/json',
         },
       });
-  
+
       if (response.ok) {
         const data = await response.json();
         console.log("Company data:", data);
@@ -322,8 +322,8 @@ const MainCompany = () => {
             <MenuIcon />
           </IconButton>
           <div className="navbar">
-            <button className="nav-button"onClick={() => navigate('/employee')}>หน้าแรก</button>
-            <button className="nav-button"onClick={() => navigate('/js/Employee')}>ข้อมูลบริษัท</button>
+            <button className="nav-button" onClick={() => navigate('/employee')}>หน้าแรก</button>
+            <button className="nav-button" onClick={() => navigate('/employee/company')}>ข้อมูลบริษัท</button>
             {/* <button className="nav-button" onClick={() => navigate('/supervisor/company')}>พนักงาน</button> */}
             {/* <button className="nav-button"onClick={() => navigate('/report')}>รายงาน</button> */}
           </div>
@@ -364,8 +364,8 @@ const MainCompany = () => {
           <button onClick={handleLogout} className="logout-button">ออกจากระบบ</button>
         </div>
       </Drawer>
+      <h1>ค้นหาชื่อบริษัท</h1>
       <div className="search-container">
-        <h1>ค้นหาชื่อบริษัท</h1>
         <input
           type="text"
           name="company_name"
@@ -374,8 +374,10 @@ const MainCompany = () => {
           onChange={handleChange}  // เรียกใช้ฟังก์ชัน handleChange เมื่อมีการเปลี่ยนแปลงค่า
         />
         <button className="search-button" onClick={handleSearch}>ค้นหา</button>
+
         {/* <button className="add-button" onClick={handleAddCompanyClick}>เพิ่มข้อมูลบริษัท</button> */}
       </div>
+
 
       <div className="main-content">
         <div className="warehouse-list">

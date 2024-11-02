@@ -212,11 +212,11 @@
   }
   
   
-  .search-container{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px; /* ระยะห่างระหว่างองค์ประกอบแต่ละอัน */
+  .search-container {
+    display: flex; /* ใช้ Flexbox สำหรับการจัดเรียง */
+    justify-content: center; /* จัดให้อยู่ตรงกลาง */
+    align-items: center; /* จัดแนวกลางในแนวตั้ง */
+    gap: 10px; /* ช่องว่างระหว่างช่อง input และปุ่ม */
   }
   
   .search-container input[type="text"],
@@ -231,13 +231,19 @@
     margin-right: 10px; /* เพิ่มระยะห่างระหว่าง label และ input */
   }
   
-  .search-button {
-    background-color: #47674F;
-    color: white;
-    padding: 8px 15px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+  .search-button   {
+    background-color: #47674F; /* เปลี่ยนสีพื้นหลังของปุ่ม */
+    color: white; /* เปลี่ยนสีตัวอักษร */
+    border: none; /* ไม่แสดงขอบ */
+    border-radius: 5px; /* ทำมุมให้มน */
+    padding: 10px 15px; /* เพิ่ม padding สำหรับปุ่ม */
+    margin-left: 10px;
+    cursor: pointer; /* เปลี่ยน cursor เมื่อชี้ไปที่ปุ่ม */
+    transition: background-color 0.3s; /* เพิ่มการเปลี่ยนสีเมื่อ hover */
+  }
+
+  .search-button:hover {
+    background-color: #0a8b50; /* เปลี่ยนสีเมื่อชี้ไปที่ปุ่ม */
   }
   
   .add-button {

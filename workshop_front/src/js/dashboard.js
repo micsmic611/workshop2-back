@@ -181,7 +181,7 @@ const Dashboard = () => {
           </IconButton>
           <div className="button-container">
           <button className="nav-button"onClick={() => navigate('/employee')}>หน้าแรก</button>
-            <button className="nav-button"onClick={() => navigate('/js/Employee')}>ข้อมูลบริษัท</button>
+            <button className="nav-button"onClick={() => navigate('/employee/company')}>ข้อมูลบริษัท</button>
             {/* <button className="nav-button"onClick={() => navigate('/reportแ')}>รายงาน</button> */}
           </div>
         </Toolbar>
@@ -214,16 +214,18 @@ const Dashboard = () => {
                 <p><strong>อีเมล:</strong> {userData?.email}</p>
                 <p><strong>เบอร์:</strong> {userData?.phone || 'ไม่ระบุ'}</p>
                 <p><strong>ที่อยู่:</strong> {userData?.address || 'ไม่ระบุ'}</p>
+   
                 <button className="edit-button" onClick={handleEditClick}>แก้ไขข้อมูล</button>
               </>
             )}
           </div>
+          <br></br>
           <button onClick={handleLogout} className="logout-button">ออกจากระบบ</button>
         </div>
       </Drawer>
-
+      <h1>ค้นหาโกดัง</h1>
       <div className="search-container">
-    <h1>ค้นหาโกดัง</h1>
+    
       <input 
           type="text" 
           name="warehouseId" 
@@ -260,7 +262,6 @@ const Dashboard = () => {
         <button className="search-button" onClick={handleSearch}>ค้นหา</button>
 
       </div>
-
       <div className="warehouse-container">
         <h2>โกดังที่เช่า</h2>
         <div className="table-container">

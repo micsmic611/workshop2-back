@@ -206,12 +206,7 @@ h3 {
   background-color: #4A8F59;
 }
 
-.search-container{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px; /* ระยะห่างระหว่างองค์ประกอบแต่ละอัน */
-}
+
 
 .search-container input[type="text"],
 .search-container input[type="date"] {
