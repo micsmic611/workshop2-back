@@ -287,8 +287,8 @@ function EmployeePage() {
           </IconButton>
           <div className="navbar">
           <button className="nav-button"onClick={() => navigate('/supervisor')}>หน้าแรก</button>
-            <button className="nav-button"onClick={() => navigate('/supervisor/employee')}>ข้อมูลบริษัท</button>
-            <button className="nav-button" onClick={() => navigate('/supervisor/company')}>พนักงาน</button>
+            <button className="nav-button"onClick={() => navigate('/supervisor/company')}>ข้อมูลบริษัท</button>
+            <button className="nav-button" onClick={() => navigate('/supervisor/employee')}>พนักงาน</button>
             <button className="nav-button"onClick={() => navigate('/report')}>รายงาน</button>
           </div>
         </Toolbar>

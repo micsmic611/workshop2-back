@@ -232,7 +232,7 @@ const handleSearch = () => {
             <button className="nav-button">หน้าแรก</button>
             <button className="nav-button"onClick={() => navigate('/supervisor/company')}>ข้อมูลบริษัท</button>
             <button className="nav-button"onClick={() => navigate('/supervisor/employee')}>พนักงาน</button>
-            <button className="nav-button" onClick={() => navigate('/report')}>ไปยังรายงาน</button>
+            <button className="nav-button" onClick={() => navigate('/report')}>รายงาน</button>
           </div>
         </Toolbar>
       </AppBar>
