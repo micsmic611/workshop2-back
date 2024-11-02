@@ -17,4 +17,8 @@
         public string? warehousestatus { get; set; }
 
     }
+    public class UpdateWarehouseDto
+    {
+        public string? warehousename { get; set; }
+    }
 }

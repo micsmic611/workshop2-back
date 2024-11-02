@@ -28,6 +28,15 @@ namespace permissionAPI.src.Infrastructure.Repositories
                 throw ex;
             }
         }
+        public async Task<WarehouseDbo?> GetWarehouseByIdAsync(int warehouseId)
+        {
+            return await _dbContext.warehouse.FirstOrDefaultAsync(w => w.warehouseid == warehouseId);
+        }
+
+        public async Task SaveAsync()
+        {
+            await _dbContext.SaveChangesAsync();
+        }
         public async Task<WarehouseRentalDTO> GetWarehouseByIdAsync(string warehouseName, DateTime rentalDateStart, string warehousestatus)
         {
             try

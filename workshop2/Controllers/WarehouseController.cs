@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using permissionAPI.DTOs;
 using permissionAPI.src.Core.Interface;
+using permissionAPI.src.Core.Service;
 
 namespace permissionAPI.Controllers
 {
@@ -136,7 +137,16 @@ namespace permissionAPI.Controllers
                 response.SetError(err, ex.Message, "500");
                 return BadRequest(response);
             }
-
         }
+            [HttpPut("{warehouseId}")]
+            public async Task<IActionResult> UpdateWarehouseName(int warehouseId, [FromBody] UpdateWarehouseDto updateDto)
+            {
+                var updated = await _WarehouseService.UpdateWarehouseNameAsync(warehouseId, updateDto);
+                if (!updated)
+                    return NotFound(new { message = "Warehouse not found" });
+
+                return Ok(new { message = "Warehouse name updated successfully" });
+            }
+
     }
 }
