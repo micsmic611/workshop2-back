@@ -65,9 +65,8 @@ const Login = () => {
           <img src={image1} alt="Warehouse" />
         </div>
         <div className="login-form">
-          <h2>Log in</h2>
-          <p>Hi! Let's get started </p>
-          <p>in Warehouse management</p>
+          <h4>Warehouse Management System</h4>
+          <p>Hi! Let's get Started in Warehouse Management </p>
           {error && <p className="error-message">{error}</p>} {/* แสดงข้อความข้อผิดพลาด */}
           <input
             type="text"
