@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-route
 import { jwtDecode } from "jwt-decode";
 import { Drawer, AppBar, Toolbar, Typography, IconButton, Dialog, DialogActions, DialogContent, DialogTitle, TextField, Button } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
+import SearchIcon from '@mui/icons-material/Search';
+
 
 function EmployeePage() {
   const navigate = useNavigate();
@@ -274,28 +276,28 @@ function EmployeePage() {
   }, []);
   const handleUpdateClick = async (userID) => {
     try {
-        const response = await fetch('https://localhost:7111/api/User/UpdateStatus', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ userID: userID  }),
-        });
+      const response = await fetch('https://localhost:7111/api/User/UpdateStatus', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ userID: userID }),
+      });
 
-        if (response.ok) {
-            alert('พักงานสำเร็จ');
-        } else {
-            alert('ไม่สามารถพักงานได้');
-        }
-    } catch (error) {
-        console.error('เกิดข้อผิดพลาด:', error);
+      if (response.ok) {
+        alert('พักงานสำเร็จ');
+      } else {
         alert('ไม่สามารถพักงานได้');
+      }
+    } catch (error) {
+      console.error('เกิดข้อผิดพลาด:', error);
+      alert('ไม่สามารถพักงานได้');
     }
-};
-const handleLogout = () => {
-  localStorage.removeItem("token"); // ลบ token ออกจาก local storage
-  navigate("/"); // นำทางไปที่หน้า login
-};
+  };
+  const handleLogout = () => {
+    localStorage.removeItem("token"); // ลบ token ออกจาก local storage
+    navigate("/"); // นำทางไปที่หน้า login
+  };
 
   return (
     <div className="dashboard-container" >
@@ -382,7 +384,9 @@ const handleLogout = () => {
                     <td>{employee.email}</td>
                     <td>{employee.phone}</td>
                     <td>
-                      <button onClick={() => handleViewClick(employee.firstname)}>ดู</button>
+                      <button className="view-button" onClick={() => handleViewClick(employee.firstname)}>
+                        <SearchIcon />
+                      </button>
                     </td>
                   </tr>
                 ))

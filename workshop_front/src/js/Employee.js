@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-route
 import { jwtDecode } from "jwt-decode";
 import { Drawer, AppBar, Toolbar, Typography, IconButton, Dialog, DialogActions, DialogContent, DialogTitle, TextField, Button } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
+import SearchIcon from '@mui/icons-material/Search';
+
 
 const MainCompany = () => {
 
@@ -401,7 +403,9 @@ const MainCompany = () => {
                     <td>{company.company_email}</td>
                     <td>{company.company_phone}</td>
                     <td>
-                      <button onClick={() => handleViewClick(company.company_id)}>ดู</button>
+                      <button className="view-button" onClick={() => handleViewClick(company.company_id)}>
+                        <SearchIcon />
+                      </button>
                     </td>
                   </tr>
                 ))
