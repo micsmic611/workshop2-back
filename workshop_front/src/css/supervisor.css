@@ -66,7 +66,10 @@
     background-color: #dc3545; /* สีพื้นหลังของปุ่มยกเลิก */
   }
   
-  
+  .cancelemp1{
+    background-color: #dc3545;
+  }
+
   
   .nav-button:hover {
     background-color: #0a881fd7; /* เปลี่ยนสีพื้นหลังเมื่อ hover */
@@ -338,3 +341,61 @@ h1 {
   background-color: #2AB048 !important;
 }
 
+.compopup .MuiDialog-paper{
+  background-color: #f9f4d4; /* สีพื้นหลังแบบครีม */
+  padding: 30px; /* เพิ่ม padding ให้มากขึ้น */
+  border-radius: 15px; /* ทำมุมให้มนขึ้น */
+  width: 600px; /* ขยายความกว้างของ popup */
+  max-width: 95%; /* ให้ขนาดไม่เกินหน้าจอ */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* เพิ่มเงาให้สวยงาม */
+}
+
+.company-details {
+  padding: 20px;
+  background-color: #f9f4d4; /* พื้นหลังสีอ่อน */
+  border-radius: 8px; /* ขอบมน */
+  color: #333; /* สีตัวอักษร */
+}
+
+.company-details .MuiTypography-root {
+  font-size: 1rem; /* ขนาดตัวอักษร */
+  margin-bottom: 10px; /* เว้นระยะห่างระหว่างบรรทัด */
+}
+
+.company-details .MuiTypography-root:first-of-type {
+  font-weight: bold; /* ทำให้ชื่อบริษัทหนาขึ้น */
+  font-size: 1.1rem; /* ขยายขนาดตัวอักษร */
+  color: #000000; /* สีตัวอักษรสีเขียวเข้ม */
+}
+
+.company-details .label {
+  font-weight: bold; /* ทำให้ label หนาขึ้น */
+  color: #666; /* สีเทาเข้ม */
+}
+
+.company-details .value {
+  color: #000; /* สีข้อความปกติ */
+}
+.stopjob-button{
+  background-color: #ff8800; /* เปลี่ยนสีพื้นหลังของปุ่ม */
+  color: white; /* เปลี่ยนสีตัวอักษร */
+  border: none; /* ไม่แสดงขอบ */
+  border-radius: 5px; /* ทำมุมให้มน */
+  padding: 10px 15px; /* เพิ่ม padding สำหรับปุ่ม */
+  cursor: pointer; /* เปลี่ยน cursor เมื่อชี้ไปที่ปุ่ม */
+  transition: background-color 0.3s; /* เพิ่มการเปลี่ยนสีเมื่อ hover */
+}
+
+:root {
+  --variant-textColor: #ffffff; /* กำหนดตัวแปรสีข้อความ */
+}
+
+.css-15fu35s-MuiDialogActions-root {
+  color: var(--variant-textColor); /* ใช้ตัวแปรสีข้อความ */
+}
+
+.css-15fu35s-MuiDialogActions-root > :not(style) ~ :not(style) {
+  margin-left: 8px;
+  background-color: red;
+  color: var(--variant-textColor); /* ใช้ตัวแปรสีข้อความ */
+}

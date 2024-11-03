@@ -515,14 +515,14 @@ function EmployeePage() {
             <DialogActions>
               {isEditingDetail ? (
                 <>
-                  <Button className="save-button" onClick={handleSaveEmployeeChanges}>บันทึกข้อมูล</Button>
-                  <Button onClick={() => setIsEditingDetail(false)} color="primary">ยกเลิก</Button>
+                  <Button className="MuiButton-textprimary" onClick={handleSaveEmployeeChanges}>บันทึกข้อมูล</Button>
+                  <Button onClick={() => setIsEditingDetail(false)} >ยกเลิก</Button>
                 </>
               ) : (
                 <>
-                  <button className="edit-button" onClick={() => handleUpdateClick(employeeDetail.userID)}>พักงาน</button>
-                  <Button className="edit-button" onClick={handleEditDetailClick}>แก้ไขข้อมูล</Button>
-                  <Button onClick={() => setDetailDialogOpen(false)} color="primary">ยกเลิก</Button>
+                  <button className="stopjob-button" onClick={() => handleUpdateClick(employeeDetail.userID)}>พักงาน</button>
+                  <Button className="custom-button" onClick={handleEditDetailClick}>แก้ไขข้อมูล</Button>
+                  <Button onClick={() => setDetailDialogOpen(false)} className="MuiButton-outlinedSecondary">ยกเลิก</Button>
                 </>
               )}
             </DialogActions>
