@@ -1,12 +1,40 @@
+
 .info-container {
-    display: flex;
-    flex-wrap: wrap; /* Allow items to wrap to the next line */
-    gap: 16px; /* Space between items */
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* แถวแรกมี 5 คอลัมน์ */
+    grid-template-areas: 
+        "item1 item2 item3 item4 item5"
+        ". item6 item7 item8 ."; /* แถวที่สองอยู่ตรงกลาง */
+    grid-gap: 16px; /* เพิ่มระยะห่างระหว่างบล็อก */
+    margin-bottom: 20px; /* ระยะห่างระหว่างแถว */
+}
+
+.info-container > div:nth-child(1) { grid-area: item1; }
+.info-container > div:nth-child(2) { grid-area: item2; }
+.info-container > div:nth-child(3) { grid-area: item3; }
+.info-container > div:nth-child(4) { grid-area: item4; }
+.info-container > div:nth-child(5) { grid-area: item5; }
+.info-container > div:nth-child(6) { grid-area: item6; }
+.info-container > div:nth-child(7) { grid-area: item7; }
+.info-container > div:nth-child(8) { grid-area: item8; }
+
+.row-top {
+    grid-column: span 5; /* กำหนดให้แถวบนมี 5 บล็อก */
+}
+
+.row-bottom {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* แถวล่างมี 3 คอลัมน์ */
+    grid-gap: 20px; /* ระยะห่างระหว่างบล็อก */
 }
 
 .report {
     text-align: center; /* Center the text inside the div */
 }
+
+.white-text {
+    color: rgba(255, 255, 255, 0.868); /* กำหนดสีเป็นขาว */
+  }
 .dashboard-container {
     display: flex;
     flex-direction: column;
@@ -62,9 +90,31 @@ h2 {
 .personal-inforepot{
     background-color: #ADBC9D; /* สีพื้นหลัง */
     border-radius: 10px; /* มุมมน */
-    padding: 20px; /* ระยะห่างภายใน */
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* เงาเล็กน้อย */
+    padding: 30px; /* ระยะห่างภายใน */
     margin: 20px auto; /* จัดกึ่งกลางและเพิ่มระยะห่างด้านบนล่าง */
-    max-width: 500px; /* กำหนดความกว้างสูงสุด */
-    text-align: left; /* จัดเนื้อหาให้อยู่ตรงกลาง */
+    text-align: center; /* จัดเนื้อหาให้อยู่ตรงกลาง */
+}
+
+.pie-chart-container {
+    display: flex;
+    justify-content: space-around; /* ปรับให้ PieCharts อยู่ห่างกันเล็กน้อย */
+    align-items: center; /* จัดแนวตั้งให้อยู่กลาง */
+  }
+
+.title-container-report {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px; /* เพิ่มระยะห่างจากขอบ */
+  width: 100%;
+}
+
+.title-container-report .left,
+.title-container-report .right {
+  flex: 1; /* แบ่งพื้นที่ครึ่งหนึ่ง */
+  display: flex;
+  justify-content: center; /* จัดข้อความไว้ตรงกลางของแต่ละฝั่ง */
+}
+
+body{
+    background-color: #FAFAD8;
 }
