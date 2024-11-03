@@ -322,3 +322,19 @@ h1 {
     color: #000000; /* สีของตัวอักษร */
 }
 
+.css-kw13he-MuiDialogContent-root {
+  background: #FAFAD8;
+}
+
+.savebutton {
+  color: #ffffff !important;
+  border-color: #2AB048 !important;
+  background-color: #2AB048 !important;
+}
+
+.savebutton:hover {
+  color: #ffffff !important;
+  border-color: #2AB048 !important;
+  background-color: #2AB048 !important;
+}
+
