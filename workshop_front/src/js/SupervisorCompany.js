@@ -3,11 +3,11 @@ import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-route
 import { jwtDecode } from "jwt-decode";
 import { Drawer, AppBar, Toolbar, Typography, IconButton, Dialog, DialogActions, DialogContent, DialogTitle, TextField, Button } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-
+import SearchIcon from '@mui/icons-material/Search';
 
 
 const Supervisor = () => {
- 
+
   const [token, setToken] = useState('');
   const [userData, setUserData] = useState(null);
   const [companydata, setCompanyData] = useState([]);
@@ -58,6 +58,7 @@ const Supervisor = () => {
         console.log('อัปเดตข้อมูลบริษัทเรียบร้อย:', data);
         // รีเฟรชข้อมูลบริษัท
         fetchCompanyData(token);
+        setIsEditingDetail(false)
         handleDetailDialogClose(); // ปิด dialog
       } else {
         console.error("ไม่สามารถบันทึกการเปลี่ยนแปลงได้", response.status);
@@ -79,7 +80,7 @@ const Supervisor = () => {
 
   const handleSearch = () => {
     const storedToken = localStorage.getItem('token');
-    
+
     if (storedToken) {
       if (searchCompanyName.trim() === '') {
         // ถ้า searchCompanyName เป็นค่าว่าง ให้เรียกข้อมูลทั้งหมด
@@ -121,11 +122,11 @@ const Supervisor = () => {
   const fetchCompanyData = async (storedToken, search = false) => {
     try {
       let url = 'https://localhost:7111/api/Company/GetAllCompany';
-      
+
       if (search && searchCompanyName && searchCompanyName.trim() !== '') {
         url = `https://localhost:7111/api/Company/GetCompanyByName?Companyname=${searchCompanyName}`;
       }
-  
+
       const response = await fetch(url, {
         method: 'GET',
         headers: {
@@ -133,7 +134,7 @@ const Supervisor = () => {
           'Content-Type': 'application/json',
         },
       });
-  
+
       if (response.ok) {
         const data = await response.json();
         console.log("Company data:", data);
@@ -251,6 +252,7 @@ const Supervisor = () => {
   };
 
   const handleSaveClick = async () => {
+    setIsEditing(false);
     const userUpdateData = {
       userID: userData.userID,
       username: userData.username,
@@ -322,10 +324,10 @@ const Supervisor = () => {
             <MenuIcon />
           </IconButton>
           <div className="navbar">
-            <button className="nav-button"onClick={() => navigate('/supervisor')}>หน้าแรก</button>
-            <button className="nav-button"onClick={() => navigate('/supervisor/company')}>ข้อมูลบริษัท</button>
+            <button className="nav-button" onClick={() => navigate('/supervisor')}>หน้าแรก</button>
+            <button className="nav-button" onClick={() => navigate('/supervisor/company')}>ข้อมูลบริษัท</button>
             <button className="nav-button" onClick={() => navigate('/supervisor/employee')}>พนักงาน</button>
-            <button className="nav-button"onClick={() => navigate('/report')}>รายงาน</button>
+            <button className="nav-button" onClick={() => navigate('/report')}>รายงาน</button>
           </div>
         </Toolbar>
       </AppBar>
@@ -399,7 +401,9 @@ const Supervisor = () => {
                     <td>{company.company_email}</td>
                     <td>{company.company_phone}</td>
                     <td>
-                      <button onClick={() => handleViewClick(company.company_id)}>ดู</button>
+                      <button className="view-button" onClick={() => handleViewClick(company.company_id)}>
+                        <SearchIcon />
+                      </button>
                     </td>
                   </tr>
                 ))
@@ -483,8 +487,8 @@ const Supervisor = () => {
                         value={editedCompanyData.company_name}
                         onChange={handleCompanyDetailChange}
                         fullWidth
-                                        margin="dense"
-                variant="outlined"
+                        margin="dense"
+                        variant="outlined"
                       />
                       <TextField
                         label="ที่อยู่"
@@ -492,8 +496,8 @@ const Supervisor = () => {
                         value={editedCompanyData.company_address}
                         onChange={handleCompanyDetailChange}
                         fullWidth
-                                        margin="dense"
-                variant="outlined"
+                        margin="dense"
+                        variant="outlined"
                       />
                       <TextField
                         label="อีเมล"
@@ -501,8 +505,8 @@ const Supervisor = () => {
                         value={editedCompanyData.company_email}
                         onChange={handleCompanyDetailChange}
                         fullWidth
-                                        margin="dense"
-                variant="outlined"
+                        margin="dense"
+                        variant="outlined"
                       />
                       <TextField
                         label="เบอร์โทร"
@@ -510,8 +514,8 @@ const Supervisor = () => {
                         value={editedCompanyData.company_phone}
                         onChange={handleCompanyDetailChange}
                         fullWidth
-                                        margin="dense"
-                variant="outlined"
+                        margin="dense"
+                        variant="outlined"
                       />
                       <TextField
                         label="ผู้ติดต่อ"
@@ -519,8 +523,8 @@ const Supervisor = () => {
                         value={editedCompanyData.company_firstname}
                         onChange={handleCompanyDetailChange}
                         fullWidth
-                                        margin="dense"
-                variant="outlined"
+                        margin="dense"
+                        variant="outlined"
                       />
                       <TextField
                         label="นามสกุลผู้ติดต่อ"
@@ -528,8 +532,8 @@ const Supervisor = () => {
                         value={editedCompanyData.company_lastname}
                         onChange={handleCompanyDetailChange}
                         fullWidth
-                                        margin="dense"
-                variant="outlined"
+                        margin="dense"
+                        variant="outlined"
                       />
                     </>
                   ) : (

@@ -114,3 +114,7 @@ h2 {
   display: flex;
   justify-content: center; /* จัดข้อความไว้ตรงกลางของแต่ละฝั่ง */
 }
+
+body{
+    background-color: #FAFAD8;
+}
