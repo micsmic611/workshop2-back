@@ -124,12 +124,11 @@ const WarehousePopup = ({ open, onClose, warehouse }) => {
         {/* Show the edit button only if the rental status is not "inactive" */}
         {warehouse.rentalstatus !== 'inactive' && (
           <Button 
-            variant="outlined" 
-            color="secondary" 
-            onClick={openEditDialog} // เรียกใช้ฟังก์ชันเปิด popup แก้ไขข้อมูล
-          >
-            แก้ไขข้อมูล
-          </Button>
+          onClick={openEditDialog} 
+          className="custom-button"
+        >
+          แก้ไขข้อมูล
+        </Button>        
         )}
       </DialogActions>
       </Dialog>

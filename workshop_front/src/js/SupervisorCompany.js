@@ -410,7 +410,7 @@ const Supervisor = () => {
               )}
             </tbody>
           </table>
-          <Dialog open={addDialogOpen} onClose={handleAddCompanyClose}>
+            <Dialog open={addDialogOpen} onClose={handleAddCompanyClose}>
             <DialogTitle>เพิ่มข้อมูลบริษัท</DialogTitle>
             <DialogContent>
               <TextField
@@ -466,8 +466,8 @@ const Supervisor = () => {
               />
             </DialogContent>
             <DialogActions>
+              <Button onClick={handleAddCompanySave} className="savebutton">บันทึก</Button>
               <Button onClick={handleAddCompanyClose} color="secondary">ยกเลิก</Button>
-              <Button onClick={handleAddCompanySave} color="primary">บันทึก</Button>
             </DialogActions>
           </Dialog>
           <Dialog open={detailDialogOpen} onClose={handleDetailDialogClose}>

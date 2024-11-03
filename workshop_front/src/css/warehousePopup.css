@@ -94,3 +94,15 @@
   background-color: #2AB048 !important;
 }
 
+.custom-button {
+  color: #ffffff !important;
+  background-color: #656ADE !important; /* สีพื้นหลังเมื่อ hover */
+  border-color: #ffffff !important ; 
+}
+
+.custom-button:hover {
+  color: #ffffff;
+  background-color: #656ADE; /* สีพื้นหลังเมื่อ hover */
+  border-color: #ffffff; /* สีขอบเมื่อ hover */
+}
+
