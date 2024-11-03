@@ -58,6 +58,7 @@ const Supervisor = () => {
         console.log('อัปเดตข้อมูลบริษัทเรียบร้อย:', data);
         // รีเฟรชข้อมูลบริษัท
         fetchCompanyData(token);
+        setIsEditingDetail(false)
         handleDetailDialogClose(); // ปิด dialog
       } else {
         console.error("ไม่สามารถบันทึกการเปลี่ยนแปลงได้", response.status);
@@ -251,6 +252,7 @@ const Supervisor = () => {
   };
 
   const handleSaveClick = async () => {
+    setIsEditing(false);
     const userUpdateData = {
       userID: userData.userID,
       username: userData.username,

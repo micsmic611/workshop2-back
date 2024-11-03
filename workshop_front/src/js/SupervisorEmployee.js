@@ -61,6 +61,7 @@ function EmployeePage() {
         console.log('อัปเดตข้อมูลบริษัทเรียบร้อย:', data);
         // รีเฟรชข้อมูลบริษัท
         fetchEmployeeData(token);
+        setIsEditingDetail(false)
         handleDetailDialogClose(); // ปิด dialog
       } else {
         console.error("ไม่สามารถบันทึกการเปลี่ยนแปลงได้", response.status);
