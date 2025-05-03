@@ -445,8 +445,8 @@ function EmployeePage() {
               />
             </DialogContent>
             <DialogActions>
-              <Button onClick={handleAddEmployeeClose} color="secondary">ยกเลิก</Button>
-              <Button onClick={handleAddEmployeeSave} color="primary">บันทึก</Button>
+            <Button onClick={handleAddEmployeeSave} className="MuiButton-textprimary">บันทึก</Button>
+            <Button onClick={handleAddEmployeeClose} color="secondary">ยกเลิก</Button>
             </DialogActions>
           </Dialog>
           <Dialog open={detailDialogOpen} onClose={handleDetailDialogClose}>

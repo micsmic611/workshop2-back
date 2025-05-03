@@ -528,11 +528,13 @@ const MainCompany = () => {
                     </>
                   ) : (
                     <>
-                      <Typography>ชื่อบริษัท: {companyDetail.company_name}</Typography>
-                      <Typography>ที่อยู่: {companyDetail.company_address}</Typography>
-                      <Typography>อีเมล: {companyDetail.company_email}</Typography>
-                      <Typography>เบอร์โทร: {companyDetail.company_phone}</Typography>
-                      <Typography>ผู้ติดต่อ: {companyDetail.company_firstname} {companyDetail.company_lastname}</Typography>
+                      <div className="company-details">
+                          <Typography><span class="label">ชื่อบริษัท:</span> {companyDetail.company_name}</Typography>
+                          <Typography><span class="label">ที่อยู่:</span> {companyDetail.company_address}</Typography>
+                           <Typography><span class="label">อีเมล:</span> {companyDetail.company_email}</Typography>
+                          <Typography><span class="label">เบอร์โทร:</span> {companyDetail.company_phone}</Typography>
+                          <Typography><span class="label">ผู้ติดต่อ:</span> {companyDetail.company_firstname} {companyDetail.company_lastname}</Typography>
+                          </div>
                     </>
                   )}
                 </>
@@ -543,13 +545,14 @@ const MainCompany = () => {
             <DialogActions>
               {isEditingDetail ? (
                 <>
-                  <Button className="save-button" onClick={handleSaveCompanyChanges}>บันทึกข้อมูล</Button>
-                  <Button onClick={() => setIsEditingDetail(false)} color="primary">ยกเลิก</Button>
+                  <Button className="MuiButton-textprimary" onClick={handleSaveCompanyChanges}>บันทึกข้อมูล</Button>
+                  <Button onClick={() => setIsEditingDetail(false)} >ยกเลิก</Button>
+                  
                 </>
               ) : (
                 <>
-                  <Button className="edit-button" onClick={handleEditDetailClick}>แก้ไขข้อมูล</Button>
-                  <Button onClick={() => setDetailDialogOpen(false)} color="primary">ยกเลิก</Button>
+<Button className="custom-button" onClick={handleEditDetailClick}>แก้ไขข้อมูล</Button>
+<Button onClick={() => setDetailDialogOpen(false)} className="MuiButton-outlinedSecondary">ยกเลิก</Button>
 
                 </>
               )}

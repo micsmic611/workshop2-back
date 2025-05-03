@@ -84,7 +84,7 @@ const WarehousePopup = ({ open, onClose, warehouse }) => {
   return (
     <>
       <Dialog open={open} onClose={onClose} className="warehouse-popup">
-        <DialogTitle>📦 popup - การเช่าโกดัง</DialogTitle>
+        <DialogTitle>📦การเช่าโกดัง</DialogTitle>
         <DialogContent>
           <div className="popup-content">
             <div className="row">
