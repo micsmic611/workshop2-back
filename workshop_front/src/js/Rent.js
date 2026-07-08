@@ -26,12 +26,18 @@ const Rent = ({ open, onClose, warehouse }) => {
   useEffect(() => {
     const fetchCompanies = async () => {
       try {
-        const response = await fetch('https://localhost:7111/api/Company/GetAllCompany');
+        const token = localStorage.getItem('token');
+        const response = await fetch('http://localhost:5000/api/companies', {
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          }
+        });
         const data = await response.json();
-        if (data.responseCode === '200') {
+        if (data.data) {
           setCompanies(data.data);
         } else {
-          console.error('Error fetching companies:', data.responseMessage);
+          console.error('Error fetching companies');
         }
       } catch (error) {
         console.error('Error fetching companies:', error);
@@ -52,23 +58,25 @@ const Rent = ({ open, onClose, warehouse }) => {
     const userId = decodedToken.userId; // ดึง userId
 
     const rentalPayload = {
-      warehouseId: rentalData.warehouseid, // แก้ชื่อฟิลด์เป็น warehouseId
-      userId: userId, // userId ที่ดึงมาจาก token
-      rentalStart: rentalData.rentalStartDate, // แก้ชื่อฟิลด์เป็น rentalStart
-      rentalFinish: rentalData.rentalEndDate, // แก้ชื่อฟิลด์เป็น rentalFinish
-      companyId: rentalData.companyId, // companyId ตามที่เลือกจาก dropdown
-      description: rentalData.description, // รายละเอียดการเช่า
-      rentalstatus: 'inactive' // สถานะการเช่า
+      warehouse_id: rentalData.warehouseid,
+      user_id: userId,
+      company_id: rentalData.companyId,
+      date_rental_start: rentalData.rentalStartDate,
+      date_rental_end: rentalData.rentalEndDate,
+      rental_status: 'inactive',
+      description: rentalData.description
     };
     
 
     try {
-      const response = await fetch('https://localhost:7111/api/Rental/RentalWarehouse', {
+      const token = localStorage.getItem('token');
+      const response = await fetch('http://localhost:5000/api/rentals', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
         },
-        body: JSON.stringify(rentalPayload), // ส่งข้อมูลเป็น JSON
+        body: JSON.stringify(rentalPayload),
       });
 
       if (response.ok) {

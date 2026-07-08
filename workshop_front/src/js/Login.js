@@ -13,48 +13,62 @@ const Login = () => {
   const navigate = useNavigate(); // สร้างตัวแปร navigate
 
   const handleLogin = async () => {
-    const response = await fetch("https://localhost:7111/api/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ username, password }),
-    });
+    try {
+      setError(""); // ล้างข้อความ error เก่า
+      
+      const response = await fetch("http://localhost:5000/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ user_name: username, user_password: password }),
+      });
 
-    if (response.ok) {
-      const data = await response.json();
-      console.log("Received token:", data.token); // ตรวจสอบโทเคนที่ได้รับ
+      if (response.ok) {
+        const data = await response.json();
+        console.log("Received token:", data.token); // ตรวจสอบโทเคนที่ได้รับ
 
-      // ตรวจสอบว่าโทเคนมีค่าที่ถูกต้องหรือไม่
-      if (data.token && data.token.split('.').length === 3) {
-        // บันทึกโทเคนลงใน localStorage
-        localStorage.setItem("token", data.token);
+        // ตรวจสอบว่าโทเคนมีค่าที่ถูกต้องหรือไม่
+        if (data.token && data.token.split('.').length === 3) {
+          // บันทึกโทเคนลงใน localStorage
+          localStorage.setItem("token", data.token);
 
-        try {
-          const decodedToken = jwtDecode(data.token); // แปลง token
-          const userId = decodedToken.userId;
-          const roleId = decodedToken.roleId;
+          try {
+            const decodedToken = jwtDecode(data.token); // แปลง token
+            const userId = decodedToken.userId;
+            const roleId = decodedToken.roleId;
 
-          // เก็บค่า userId และ roleId ใน state หรือ local storage
-          console.log("User ID:", userId);
-          console.log("Role ID:", roleId);
+            // เก็บค่า userId และ roleId ใน state หรือ local storage
+            console.log("User ID:", userId);
+            console.log("Role ID:", roleId);
 
-          // นำทางไปยัง Dashboard
-          if (roleId === "1") {
-            navigate("/employee"); // ถ้า roleId เป็น 1 ไปหน้า dashboard
-          } else if (roleId === "2") {
-            navigate("/Supervisor"); // ถ้า roleId เป็น 2 ไปอีกหน้านึง
-          } else {
-            console.error("Unknown roleId.");
+            // นำทางไปยัง Dashboard
+            if (roleId === 1) {
+              navigate("/employee"); // ถ้า roleId เป็น 1 ไปหน้า dashboard
+            } else if (roleId === 2) {
+              navigate("/Supervisor"); // ถ้า roleId เป็น 2 ไปอีกหน้านึง
+            } else if (roleId === 3) {
+              navigate("/Supervisor"); // Admin ไปหน้า Supervisor
+            } else {
+              console.error("Unknown roleId.");
+              setError("Unknown role. Please contact administrator.");
+            }
+          } catch (error) {
+            console.error("Failed to decode token:", error); // จัดการข้อผิดพลาดการ decode
+            setError("Failed to decode authentication token.");
           }
-        } catch (error) {
-          console.error("Failed to decode token:", error); // จัดการข้อผิดพลาดการ decode
+        } else {
+          console.error("Invalid token format.");
+          setError("Invalid authentication token received.");
         }
       } else {
-        console.error("Invalid token format.");
+        const errorData = await response.json();
+        console.error("Login failed:", errorData);
+        setError(errorData.error || "Invalid username or password");
       }
-    } else {
-      console.error("Login failed");
+    } catch (error) {
+      console.error("Login error:", error);
+      setError("Cannot connect to server. Please check if the backend is running on http://localhost:5000");
     }
   };
 

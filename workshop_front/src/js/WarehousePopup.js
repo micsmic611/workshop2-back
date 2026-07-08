@@ -34,12 +34,14 @@ const WarehousePopup = ({ open, onClose, warehouse }) => {
       description,
     };
     try {
-      const response = await fetch('https://localhost:7111/api/Rental/update-status', {
-        method: 'PUT',
+      const token = localStorage.getItem('token');
+      const response = await fetch(`http://localhost:5000/api/rentals/${rentalId}/cancel`, {
+        method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
         },
-        body: JSON.stringify(requestBody),
+        body: JSON.stringify({ description }),
       });
       if (response.ok) {
         const result = await response.json();
@@ -56,12 +58,14 @@ const WarehousePopup = ({ open, onClose, warehouse }) => {
 
   const handleEditWarehouse = async () => {
     try {
-      const response = await fetch(`https://localhost:7111/api/Warehouse/${warehouse.warehouseid}`, {
+      const token = localStorage.getItem('token');
+      const response = await fetch(`http://localhost:5000/api/warehouses/${warehouse.warehouseid}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
         },
-        body: JSON.stringify({ warehousename: editWarehouseName }),
+        body: JSON.stringify({ warehouse_name: editWarehouseName }),
       });
 
       if (response.ok) {

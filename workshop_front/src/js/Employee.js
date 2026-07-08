@@ -45,10 +45,11 @@ const MainCompany = () => {
 
   const handleSaveCompanyChanges = async () => {
     try {
-      const response = await fetch(`https://localhost:7111/api/Company/UpdateCompany?companyid=${companyDetail.company_id}`, {
+      const response = await fetch(`http://localhost:5000/api/companies/${companyDetail.company_id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
         },
         body: JSON.stringify(editedCompanyData),
       });
@@ -108,11 +109,11 @@ const MainCompany = () => {
   const handleEditClick = () => {
     setIsEditing(true);
     setEditedUserData({
-      firstname: userData?.firstname || '',
-      lastname: userData?.lastname || '',
-      email: userData?.email || '',
-      phone: userData?.phone || '',
-      address: userData?.address || ''
+      firstname: userData?.user_firstname || '',
+      lastname: userData?.user_lastname || '',
+      email: userData?.user_email || '',
+      phone: userData?.user_phone || '',
+      address: userData?.user_address || ''
     });
   };
 
@@ -120,11 +121,7 @@ const MainCompany = () => {
 
   const fetchCompanyData = async (storedToken, search = false) => {
     try {
-      let url = 'https://localhost:7111/api/Company/GetAllCompany';
-
-      if (search && searchCompanyName && searchCompanyName.trim() !== '') {
-        url = `https://localhost:7111/api/Company/GetCompanyByName?Companyname=${searchCompanyName}`;
-      }
+      const url = 'http://localhost:5000/api/companies';
 
       const response = await fetch(url, {
         method: 'GET',
@@ -137,7 +134,14 @@ const MainCompany = () => {
       if (response.ok) {
         const data = await response.json();
         console.log("Company data:", data);
-        setCompanyData(data.data);  // ดึงข้อมูลบริษัทที่ค้นหาได้
+        let companies = data.data;
+        // Filter by name if searching
+        if (search && searchCompanyName) {
+          companies = companies.filter(comp => 
+            comp.company_name?.toLowerCase().includes(searchCompanyName.toLowerCase())
+          );
+        }
+        setCompanyData(companies);
       } else {
         console.error("Failed to fetch Company data", response.status);
       }
@@ -149,7 +153,7 @@ const MainCompany = () => {
 
   const handleAddCompanySave = async () => {
     try {
-      const response = await fetch('https://localhost:7111/api/Company/AddCompany', {
+      const response = await fetch('http://localhost:5000/api/companies', {
         method: 'POST',
         headers: {
           Authorization: `Bearer ${token}`,
@@ -171,25 +175,13 @@ const MainCompany = () => {
     }
   };
 
-  const handleViewClick = async (company_id) => {
-    try {
-      const response = await fetch(`https://localhost:7111/api/Company/GetCompanyDetailByID?Companyid=${company_id}`, {
-        method: 'GET',
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json',
-        },
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        setCompanyDetail(data.data[0]); // Assuming data is in an array
-        setDetailDialogOpen(true);
-      } else {
-        console.error("Failed to fetch company details", response.status);
-      }
-    } catch (error) {
-      console.error("Error fetching company details:", error);
+  const handleViewClick = (company_id) => {
+    const company = companydata.find(comp => comp.company_id === company_id);
+    if (company) {
+      setCompanyDetail(company);
+      setDetailDialogOpen(true);
+    } else {
+      console.error("Company not found in loaded data");
     }
   };
 
@@ -200,7 +192,7 @@ const MainCompany = () => {
 
   const handleDetailUpdate = async (companyId, companyData) => {
     try {
-      const response = await fetch(`https://localhost:7111/api/Company/UpdateCompany?companyid=${companyId}`, {
+      const response = await fetch(`http://localhost:5000/api/Company/UpdateCompany?companyid=${companyId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -232,7 +224,7 @@ const MainCompany = () => {
       const userId = decoded.userId;
       console.log("Decoded token:", decoded);
 
-      const response = await fetch(`https://localhost:7111/api/User/GetUserbyUserId?userid=${userId}`, {
+      const response = await fetch(`http://localhost:5000/api/User/GetUserbyUserId?userid=${userId}`, {
         method: 'GET',
         headers: {
           Authorization: `Bearer ${storedToken}`,
@@ -265,7 +257,7 @@ const MainCompany = () => {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`https://localhost:7111/api/User/UpdateUser?UserId=${userUpdateData.userID}`, {
+      const response = await fetch(`http://localhost:5000/api/User/UpdateUser?UserId=${userUpdateData.userID}`, {
         method: 'PUT',
         headers: {
           Authorization: `Bearer ${token}`,
@@ -337,7 +329,7 @@ const MainCompany = () => {
           <div className="profile">
             <div className="avatar"></div>
             <div className="profile-info">
-              <p className="username">{userData?.username || 'Username'}</p>
+              <p className="username">{userData?.user_name || 'Username'}</p>
               <p className="role">Supervisor - Warehouse</p>
             </div>
           </div>
@@ -355,10 +347,10 @@ const MainCompany = () => {
               </>
             ) : (
               <>
-                <p><strong>ชื่อ:</strong> {userData?.firstname} {userData?.lastname}</p>
-                <p><strong>อีเมล:</strong> {userData?.email}</p>
-                <p><strong>เบอร์:</strong> {userData?.phone || 'ไม่ระบุ'}</p>
-                <p><strong>ที่อยู่:</strong> {userData?.address || 'ไม่ระบุ'}</p>
+                <p><strong>ชื่อ:</strong> {userData?.user_firstname} {userData?.user_lastname}</p>
+                <p><strong>อีเมล:</strong> {userData?.user_email}</p>
+                <p><strong>เบอร์:</strong> {userData?.user_phone || 'ไม่ระบุ'}</p>
+                <p><strong>ที่อยู่:</strong> {userData?.user_address || 'ไม่ระบุ'}</p>
                 <button className="edit-button" onClick={handleEditClick}>แก้ไขข้อมูลส่วนตัว</button>
               </>
             )}
