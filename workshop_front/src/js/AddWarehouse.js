@@ -9,25 +9,29 @@ const AddWarehouse = ({ onClose }) => {
   const [warehousestatus, setWarehouseStatus] = useState("active");
 
   const handleAddWarehouse = async () => {
-    const response = await fetch("https://localhost:7111/api/Warehouse/AddWarehouse", {
+    const token = localStorage.getItem('token');
+    const response = await fetch("http://localhost:5000/api/warehouses", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
       },
       body: JSON.stringify({
-        warehousename,
-        warehouseaddress,
-        warehousesize,
-        warehousestatus,
+        warehouse_name: warehousename,
+        warehouse_address: warehouseaddress,
+        warehouse_size: parseFloat(warehousesize),
+        warehouse_status: warehousestatus,
       }),
     });
 
     if (response.ok) {
+      const data = await response.json();
       alert('เพิ่มโกดังสำเร็จ');
-      onClose(); // ปิด popup หลังจากเพิ่มโกดังสำเร็จ
-      // คุณสามารถนำทางกลับไปยังหน้าที่ต้องการได้ที่นี่ (ถ้าต้องการ)
+      onClose();
+      window.location.reload(); // Refresh to show new warehouse
     } else {
-      alert('เกิดข้อผิดพลาดในการเพิ่มโกดัง');
+      const error = await response.json();
+      alert(error.error || 'เกิดข้อผิดพลาดในการเพิ่มโกดัง');
     }
   };
 

@@ -19,13 +19,12 @@ function EmployeePage() {
   const [searchEmployeeName, setSearchEmployeeName] = useState('');
   const [addDialogOpen, setAddDialogOpen] = useState(false);
   const [newEmployeeData, setNewEmployeeData] = useState({
-    username: '',
-    firstname: '',
-    lastname: '',
-    email: '',
-    phone: '',
-    address: '',
-    status: '',
+    user_name: '',
+    user_firstname: '',
+    user_lastname: '',
+    user_email: '',
+    user_phone: '',
+    user_address: '',
   });
   const [detailDialogOpen, setDetailDialogOpen] = useState(false);
   const [employeeDetail, setEmployeeDetail] = useState(null);
@@ -37,21 +36,21 @@ function EmployeePage() {
   const handleEditDetailClick = () => {
     setIsEditingDetail(true);
     setEditedEmployeeData({
-      firstname: employeeDetail.firstname,
-      lastname: employeeDetail.lastname,
-      email: employeeDetail.email,
-      phone: employeeDetail.phone,
-      address: employeeDetail.address,
-      status: employeeDetail.status,
+      user_firstname: employeeDetail.user_firstname,
+      user_lastname: employeeDetail.user_lastname,
+      user_email: employeeDetail.user_email,
+      user_phone: employeeDetail.user_phone,
+      user_address: employeeDetail.user_address,
     });
   };
 
   const handleSaveEmployeeChanges = async () => {
     try {
-      const response = await fetch(`https://localhost:7111/api/Employee/UpdateEmp?Userid=${employeeDetail.userID}`, {
+      const response = await fetch(`http://localhost:5000/api/employees/${employeeDetail.user_id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
         },
         body: JSON.stringify(editedEmployeeData),
       });
@@ -105,21 +104,17 @@ function EmployeePage() {
   const handleEditClick = () => {
     setIsEditing(true);
     setEditedUserData({
-      firstname: userData?.firstname || '',
-      lastname: userData?.lastname || '',
-      email: userData?.email || '',
-      phone: userData?.phone || '',
-      address: userData?.address || ''
+      firstname: userData?.user_firstname || '',
+      lastname: userData?.user_lastname || '',
+      email: userData?.user_email || '',
+      phone: userData?.user_phone || '',
+      address: userData?.user_address || ''
     });
   };
 
   const fetchEmployeeData = async (storedToken, search = false) => {
     try {
-      let url = 'https://localhost:7111/api/Employee/GetAllEmp';
-      if (search && searchEmployeeName) {
-        // ตรวจสอบให้แน่ใจว่าค่าส่งใน query string ถูกต้อง
-        url = `https://localhost:7111/api/Employee/GetEmpByName?Username=${searchEmployeeName}`;
-      }
+      const url = 'http://localhost:5000/api/employees';
       const response = await fetch(url, {
         method: 'GET',
         headers: {
@@ -130,8 +125,17 @@ function EmployeePage() {
 
       if (response.ok) {
         const data = await response.json();
-        console.log("Company data:", data);
-        setEmployeeData(data.data);  // ดึงข้อมูลบริษัทที่ค้นหาได้
+        console.log("Employee data:", data);
+        let employees = data.data;
+        // Filter by name if searching
+        if (search && searchEmployeeName) {
+          employees = employees.filter(emp => 
+            emp.user_firstname?.toLowerCase().includes(searchEmployeeName.toLowerCase()) ||
+            emp.user_lastname?.toLowerCase().includes(searchEmployeeName.toLowerCase()) ||
+            emp.user_name?.toLowerCase().includes(searchEmployeeName.toLowerCase())
+          );
+        }
+        setEmployeeData(employees);
       } else {
         console.error("Failed to fetch Company data", response.status);
       }
@@ -142,7 +146,7 @@ function EmployeePage() {
 
   const handleAddEmployeeSave = async () => {
     try {
-      const response = await fetch('https://localhost:7111/api/Employee/AddEmp', {
+      const response = await fetch('http://localhost:5000/api/employees', {
         method: 'POST',
         headers: {
           Authorization: `Bearer ${token}`,
@@ -164,25 +168,14 @@ function EmployeePage() {
     }
   };
 
-  const handleViewClick = async (username) => {
-    try {
-      const response = await fetch(`https://localhost:7111/api/Employee/GetEmpByName?Username=${username}`, {
-        method: 'GET',
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json',
-        },
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        setEmployeeDetail(data.data[0]); // Assuming data is in an array
-        setDetailDialogOpen(true);
-      } else {
-        console.error("Failed to fetch company details", response.status);
-      }
-    } catch (error) {
-      console.error("Error fetching company details:", error);
+  const handleViewClick = (userId) => {
+    // Find employee from already loaded data
+    const employee = employeedata.find(emp => emp.user_id === userId);
+    if (employee) {
+      setEmployeeDetail(employee);
+      setDetailDialogOpen(true);
+    } else {
+      console.error("Employee not found in loaded data");
     }
   };
 
@@ -202,7 +195,7 @@ function EmployeePage() {
       const userId = decoded.userId;
       console.log("Decoded token:", decoded);
 
-      const response = await fetch(`https://localhost:7111/api/User/GetUserbyUserId?userid=${userId}`, {
+      const response = await fetch(`http://localhost:5000/api/auth/user`, {
         method: 'GET',
         headers: {
           Authorization: `Bearer ${storedToken}`,
@@ -213,7 +206,7 @@ function EmployeePage() {
       if (response.ok) {
         const data = await response.json();
         console.log("User data:", data);
-        setUserData(data.data[0]);
+        setUserData(data.data);
       } else {
         console.error("Failed to fetch user data", response.status);
       }
@@ -224,18 +217,16 @@ function EmployeePage() {
 
   const handleSaveClick = async () => {
     const userUpdateData = {
-      userID: userData.userID,
-      username: userData.username,
-      firstname: editedUserData.firstname,
-      lastname: editedUserData.lastname,
-      email: editedUserData.email,
-      phone: editedUserData.phone,
-      address: editedUserData.address,
+      user_firstname: editedUserData.firstname,
+      user_lastname: editedUserData.lastname,
+      user_email: editedUserData.email,
+      user_phone: editedUserData.phone,
+      user_address: editedUserData.address,
     };
 
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`https://localhost:7111/api/User/UpdateUser?UserId=${userUpdateData.userID}`, {
+      const response = await fetch(`http://localhost:5000/api/users/${userData.user_id}`, {
         method: 'PUT',
         headers: {
           Authorization: `Bearer ${token}`,
@@ -266,7 +257,7 @@ function EmployeePage() {
       const fetchData = async () => {
         try {
           await fetchUserData(storedToken);
-          await fetchEmployeeData();
+          await fetchEmployeeData(storedToken);
         } catch (error) {
           console.error('Error decoding token:', error);
         }
@@ -275,18 +266,21 @@ function EmployeePage() {
       fetchData();
     }
   }, []);
-  const handleUpdateClick = async (userID) => {
+  const handleUpdateClick = async (userId) => {
     try {
-      const response = await fetch('https://localhost:7111/api/User/UpdateStatus', {
-        method: 'POST',
+      const response = await fetch(`http://localhost:5000/api/employees/${userId}`, {
+        method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
         },
-        body: JSON.stringify({ userID: userID }),
       });
 
       if (response.ok) {
         alert('พักงานสำเร็จ');
+        // Refresh employee list
+        fetchEmployeeData(token);
+        handleDetailDialogClose();
       } else {
         alert('ไม่สามารถพักงานได้');
       }
@@ -321,7 +315,7 @@ function EmployeePage() {
           <div className="profile">
             <div className="avatar"></div>
             <div className="profile-info">
-              <p className="username">{userData?.username || 'Username'}</p>
+              <p className="username">{userData?.user_name || 'Username'}</p>
               <p className="role">Supervisor - Warehouse</p>
             </div>
           </div>
@@ -339,10 +333,10 @@ function EmployeePage() {
               </>
             ) : (
               <>
-                <p><strong>ชื่อ:</strong> {userData?.firstname} {userData?.lastname}</p>
-                <p><strong>อีเมล:</strong> {userData?.email}</p>
-                <p><strong>เบอร์:</strong> {userData?.phone || 'ไม่ระบุ'}</p>
-                <p><strong>ที่อยู่:</strong> {userData?.address || 'ไม่ระบุ'}</p>
+                <p><strong>ชื่อ:</strong> {userData?.user_firstname} {userData?.user_lastname}</p>
+                <p><strong>อีเมล:</strong> {userData?.user_email}</p>
+                <p><strong>เบอร์:</strong> {userData?.user_phone || 'ไม่ระบุ'}</p>
+                <p><strong>ที่อยู่:</strong> {userData?.user_address || 'ไม่ระบุ'}</p>
                 <button className="edit-button" onClick={handleEditClick}>แก้ไขข้อมูลส่วนตัว</button>
               </>
             )}
@@ -379,13 +373,13 @@ function EmployeePage() {
             <tbody>
               {employeedata && employeedata.length > 0 ? (
                 employeedata.map((employee) => (
-                  <tr key={employee.userID}>
-                    <td>{employee.userID}</td>
-                    <td>{employee.firstname}</td>
-                    <td>{employee.email}</td>
-                    <td>{employee.phone}</td>
+                  <tr key={employee.user_id}>
+                    <td>{employee.user_id}</td>
+                    <td>{employee.user_firstname} {employee.user_lastname}</td>
+                    <td>{employee.user_email}</td>
+                    <td>{employee.user_phone}</td>
                     <td>
-                      <button className="view-button" onClick={() => handleViewClick(employee.firstname)}>
+                      <button className="view-button" onClick={() => handleViewClick(employee.user_id)}>
                         <SearchIcon />
                       </button>
                     </td>
@@ -402,17 +396,25 @@ function EmployeePage() {
             <DialogTitle>เพิ่มข้อมูลพนักงาน</DialogTitle>
             <DialogContent>
               <TextField
+                label="ชื่อผู้ใช้"
+                name="user_name"
+                value={newEmployeeData.user_name}
+                onChange={handleNewEmployeeChange}
+                fullWidth
+                margin="dense"
+              />
+              <TextField
                 label="ชื่อจริง"
-                name="firstname"
-                value={newEmployeeData.firstname}
+                name="user_firstname"
+                value={newEmployeeData.user_firstname}
                 onChange={handleNewEmployeeChange}
                 fullWidth
                 margin="dense"
               />
               <TextField
                 label="นามสกุล"
-                name="lastname"
-                value={newEmployeeData.lastname}
+                name="user_lastname"
+                value={newEmployeeData.user_lastname}
                 onChange={handleNewEmployeeChange}
                 fullWidth
                 margin="dense"
@@ -420,24 +422,24 @@ function EmployeePage() {
               />
               <TextField
                 label="อีเมล"
-                name="email"
-                value={newEmployeeData.email}
+                name="user_email"
+                value={newEmployeeData.user_email}
                 onChange={handleNewEmployeeChange}
                 fullWidth
                 margin="dense"
               />
               <TextField
                 label="เบอร์โทร"
-                name="phone"
-                value={newEmployeeData.phone}
+                name="user_phone"
+                value={newEmployeeData.user_phone}
                 onChange={handleNewEmployeeChange}
                 fullWidth
                 margin="dense"
               />
               <TextField
                 label="ที่อยู่"
-                name="address"
-                value={newEmployeeData.address}
+                name="user_address"
+                value={newEmployeeData.user_address}
                 onChange={handleNewEmployeeChange}
                 fullWidth
                 margin="dense"
@@ -458,16 +460,16 @@ function EmployeePage() {
                     <>
                       <TextField
                         label="ชื่อจริง"
-                        name="firstname"
-                        value={editedEmployeeData.firstname}
+                        name="user_firstname"
+                        value={editedEmployeeData.user_firstname}
                         onChange={handleEmployeeDetailChange}
                         fullWidth
                         margin="dense"
                       />
                       <TextField
                         label="นามสกุล"
-                        name="lastname"
-                        value={editedEmployeeData.lastname}
+                        name="user_lastname"
+                        value={editedEmployeeData.user_lastname}
                         onChange={handleEmployeeDetailChange}
                         fullWidth
                         margin="dense"
@@ -475,24 +477,24 @@ function EmployeePage() {
                       />
                       <TextField
                         label="อีเมล"
-                        name="email"
-                        value={editedEmployeeData.email}
+                        name="user_email"
+                        value={editedEmployeeData.user_email}
                         onChange={handleEmployeeDetailChange}
                         fullWidth
                         margin="dense"
                       />
                       <TextField
                         label="เบอร์โทร"
-                        name="phone"
-                        value={editedEmployeeData.phone}
+                        name="user_phone"
+                        value={editedEmployeeData.user_phone}
                         onChange={handleEmployeeDetailChange}
                         fullWidth
                         margin="dense"
                       />
                       <TextField
                         label="ที่อยู่"
-                        name="address"
-                        value={editedEmployeeData.address}
+                        name="user_address"
+                        value={editedEmployeeData.user_address}
                         onChange={handleEmployeeDetailChange}
                         fullWidth
                         margin="dense"
@@ -501,11 +503,11 @@ function EmployeePage() {
                     </>
                   ) : (
                     <>
-                      <Typography>ชื่อจริง: {employeeDetail.firstname}</Typography>
-                      <Typography>นามสกุล: {employeeDetail.lastname}</Typography>
-                      <Typography>อีเมล: {employeeDetail.email}</Typography>
-                      <Typography>ที่อยู่: {employeeDetail.address}</Typography>
-                      <Typography>เบอร์โทร: {employeeDetail.phone}</Typography>
+                      <Typography>ชื่อจริง: {employeeDetail.user_firstname}</Typography>
+                      <Typography>นามสกุล: {employeeDetail.user_lastname}</Typography>
+                      <Typography>อีเมล: {employeeDetail.user_email}</Typography>
+                      <Typography>ที่อยู่: {employeeDetail.user_address}</Typography>
+                      <Typography>เบอร์โทร: {employeeDetail.user_phone}</Typography>
                     </>
                   )}
                 </>
@@ -521,7 +523,7 @@ function EmployeePage() {
                 </>
               ) : (
                 <>
-                  <button className="stopjob-button" onClick={() => handleUpdateClick(employeeDetail.userID)}>พักงาน</button>
+                  <button className="stopjob-button" onClick={() => handleUpdateClick(employeeDetail.user_id)}>พักงาน</button>
                   <Button className="custom-button" onClick={handleEditDetailClick}>แก้ไขข้อมูล</Button>
                   <Button onClick={() => setDetailDialogOpen(false)} className="MuiButton-outlinedSecondary">ยกเลิก</Button>
                 </>

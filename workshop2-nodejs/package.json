@@ -1,0 +1,39 @@
+{
+  "name": "workshop2-nodejs",
+  "version": "1.0.0",
+  "description": "Warehouse Rental Management System - Node.js Express TypeScript MySQL",
+  "main": "dist/server.js",
+  "scripts": {
+    "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "db:sync": "ts-node src/scripts/syncDb.ts",
+    "db:sync:force": "ts-node src/scripts/syncDb.ts --force",
+    "db:seed": "ts-node src/scripts/seedData.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["warehouse", "rental", "management", "express", "typescript", "mysql", "sequelize"],
+  "author": "Workshop2 Team",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "express-validator": "^7.3.2",
+    "jsonwebtoken": "^9.0.3",
+    "mysql2": "^3.22.6",
+    "sequelize": "^6.37.8"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/node": "^26.1.1",
+    "nodemon": "^3.1.14",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^6.0.3"
+  }
+}

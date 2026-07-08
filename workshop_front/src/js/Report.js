@@ -66,7 +66,7 @@ const SomeComponent = () => {
       const decoded = jwtDecode(storedToken);
       const userId = decoded.userId;
 
-      const response = await fetch(`https://localhost:7111/api/User/GetUserbyUserId?userid=${userId}`, {
+      const response = await fetch(`http://localhost:5000/api/auth/user`, {
         method: 'GET',
         headers: {
           Authorization: `Bearer ${storedToken}`,
@@ -87,34 +87,32 @@ const SomeComponent = () => {
   const handleEditClick = () => {
     setIsEditing(true);
     setEditedUserData({
-      firstname: userData?.firstname || '',
-      lastname: userData?.lastname || '',
-      email: userData?.email || '',
-      phone: userData?.phone || '',
-      address: userData?.address || ''
+      firstname: userData?.user_firstname || '',
+      lastname: userData?.user_lastname || '',
+      email: userData?.user_email || '',
+      phone: userData?.user_phone || '',
+      address: userData?.user_address || ''
     });
   };
 
   const handleSaveClick = async () => {
     const userUpdateData = {
-      userID: userData.userID,
-      username: userData.username,
-      firstname: editedUserData.firstname,
-      lastname: editedUserData.lastname,
-      email: editedUserData.email,
-      phone: editedUserData.phone,
-      address: editedUserData.address,
+      user_firstname: editedUserData.firstname,
+      user_lastname: editedUserData.lastname,
+      user_email: editedUserData.email,
+      user_phone: editedUserData.phone,
+      user_address: editedUserData.address,
     };
 
     try {
-      const token = localStorage.getItem('token'); // ตรวจสอบการนำเข้า token
-      const response = await fetch(`https://localhost:7111/api/User/UpdateUser?UserId=${userUpdateData.userID}`, {
+      const token = localStorage.getItem('token');
+      const response = await fetch(`http://localhost:5000/api/users/${userData.user_id}`, {
         method: 'PUT',
         headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(userUpdateData), // ส่งข้อมูลที่ต้องการอัปเดต
+        body: JSON.stringify(userUpdateData),
       });
       if (response.ok) {
         const data = await response.json();
@@ -158,7 +156,7 @@ const SomeComponent = () => {
 
   const fetchWarehouseData = async (storedToken) => {
     try {
-      const response = await fetch('https://localhost:7111/api/Warehouse/GetAllWarehouse', {
+      const response = await fetch('http://localhost:5000/api/warehouses', {
         method: 'GET',
         headers: {
           Authorization: `Bearer ${storedToken}`,
@@ -178,7 +176,7 @@ const SomeComponent = () => {
   };
   const fetchCompanyData = async (storedToken) => {
     try {
-      const response = await fetch('https://localhost:7111/api/Company/GetAllCompany', {
+      const response = await fetch('http://localhost:5000/api/companies', {
         method: 'GET',
         headers: {
           Authorization: `Bearer ${storedToken}`,
@@ -199,7 +197,7 @@ const SomeComponent = () => {
   };
   const fetchEmpData = async (storedToken) => {
     try {
-      const response = await fetch('https://localhost:7111/api/Employee/GetAllEmp', {
+      const response = await fetch('http://localhost:5000/api/employees', {
         method: 'GET',
         headers: {
           Authorization: `Bearer ${storedToken}`,
@@ -220,7 +218,7 @@ const SomeComponent = () => {
   };
   const fetchUSer1Data = async (storedToken) => {
     try {
-      const response = await fetch('https://localhost:7111/api/User/GetAllUser', {
+      const response = await fetch('http://localhost:5000/api/users', {
         method: 'GET',
         headers: {
           Authorization: `Bearer ${storedToken}`,
@@ -245,7 +243,7 @@ const SomeComponent = () => {
   };
 
   //     try {
-  //         const response = await fetch('https://localhost:7111/api/Warehouse/warehouserental', {
+  //         const response = await fetch('http://localhost:5000/api/Warehouse/warehouserental', {
   //             method: 'GET',
   //             headers: {
   //                 Authorization: `Bearer ${storedToken}`,
@@ -291,7 +289,7 @@ const SomeComponent = () => {
           <div className="profile">
             <div className="avatar"></div>
             <div className="profile-info">
-              <p className="username">{userData?.username || 'Username'}</p>
+              <p className="username">{userData?.user_name || 'Username'}</p>
               <p className="role">Employee - Warehouse</p>
             </div>
           </div>
@@ -309,10 +307,10 @@ const SomeComponent = () => {
               </>
             ) : (
               <>
-                <p><strong>ชื่อ:</strong> {userData?.firstname} {userData?.lastname}</p>
-                <p><strong>อีเมล:</strong> {userData?.email}</p>
-                <p><strong>เบอร์:</strong> {userData?.phone || 'ไม่ระบุ'}</p>
-                <p><strong>ที่อยู่:</strong> {userData?.address || 'ไม่ระบุ'}</p>
+                <p><strong>ชื่อ:</strong> {userData?.user_firstname} {userData?.user_lastname}</p>
+                <p><strong>อีเมล:</strong> {userData?.user_email}</p>
+                <p><strong>เบอร์:</strong> {userData?.user_phone || 'ไม่ระบุ'}</p>
+                <p><strong>ที่อยู่:</strong> {userData?.user_address || 'ไม่ระบุ'}</p>
                 <button className="edit-button" onClick={handleEditClick}>แก้ไขข้อมูล</button>
               </>
             )}
