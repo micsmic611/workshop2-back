@@ -4,48 +4,50 @@ import dns from 'dns';
 
 dotenv.config();
 
-// Force DNS to use IPv4 only
+// Force IPv4 DNS resolution globally
 dns.setDefaultResultOrder('ipv4first');
 
-// Build connection URI for Supabase Pooler
-const buildConnectionUri = (): string => {
-  const host = process.env.DB_HOST || 'localhost';
-  const port = process.env.DB_PORT || '5432';
-  const dbName = process.env.DB_NAME || 'postgres';
-  const user = process.env.DB_USER || 'postgres';
-  const password = process.env.DB_PASSWORD || '';
-  const projectId = process.env.SUPABASE_PROJECT_ID;
-  
-  let uri = `postgres://${user}:${password}@${host}:${port}/${dbName}`;
-  
-  // Add project ID for Supabase pooler
-  if (projectId) {
-    uri += `?application_name=${projectId}`;
+// Override dns.lookup to force IPv4 only
+const originalLookup = dns.lookup;
+dns.lookup = ((hostname: string, options: any, callback: any) => {
+  if (typeof options === 'function') {
+    callback = options;
+    options = { family: 4 };
+  } else if (typeof options === 'object') {
+    options = { ...options, family: 4 };
+  } else {
+    options = { family: 4 };
   }
-  
-  return uri;
-};
+  return originalLookup(hostname, options, callback);
+}) as any;
 
-const sequelize = new Sequelize(buildConnectionUri(), {
-  dialect: 'postgres',
-  logging: process.env.NODE_ENV === 'development' ? console.log : false,
-  dialectOptions: {
-    ssl: process.env.NODE_ENV === 'production' ? {
-      require: true,
-      rejectUnauthorized: false
-    } : false
-  },
-  pool: {
-    max: 5,
-    min: 0,
-    acquire: 30000,
-    idle: 10000
-  },
-  define: {
-    timestamps: false,
-    freezeTableName: true
+const sequelize = new Sequelize(
+  process.env.DB_NAME || 'postgres',
+  process.env.DB_USER || 'postgres',
+  process.env.DB_PASSWORD || '',
+  {
+    host: process.env.DB_HOST || 'localhost',
+    port: parseInt(process.env.DB_PORT || '5432'),
+    dialect: 'postgres',
+    logging: process.env.NODE_ENV === 'development' ? console.log : false,
+    dialectOptions: {
+      ssl: process.env.NODE_ENV === 'production' ? {
+        require: true,
+        rejectUnauthorized: false
+      } : false
+    },
+    pool: {
+      max: 5,
+      min: 0,
+      acquire: 30000,
+      idle: 10000
+    },
+    define: {
+      timestamps: false,
+      freezeTableName: true
+    }
   }
-});
+);
 
 // Test database connection
 export const testConnection = async (): Promise<void> => {
