@@ -1,7 +1,12 @@
 import { Sequelize } from 'sequelize';
 import dotenv from 'dotenv';
+import dns from 'dns';
+import { promisify } from 'util';
 
 dotenv.config();
+
+// Force DNS to use IPv4 only
+dns.setDefaultResultOrder('ipv4first');
 
 const sequelize = new Sequelize(
   process.env.DB_NAME || 'postgres',
@@ -16,9 +21,7 @@ const sequelize = new Sequelize(
       ssl: process.env.NODE_ENV === 'production' ? {
         require: true,
         rejectUnauthorized: false
-      } : false,
-      // Force IPv4 to avoid ENETUNREACH error on Render
-      family: 4
+      } : false
     },
     pool: {
       max: 5,
