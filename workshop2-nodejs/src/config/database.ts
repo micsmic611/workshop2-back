@@ -21,7 +21,10 @@ const sequelize = new Sequelize(
       ssl: process.env.NODE_ENV === 'production' ? {
         require: true,
         rejectUnauthorized: false
-      } : false
+      } : false,
+      // Add project identifier for Supabase Pooler
+      application_name: process.env.SUPABASE_PROJECT_ID || undefined,
+      options: process.env.SUPABASE_PROJECT_ID ? `project=${process.env.SUPABASE_PROJECT_ID}` : undefined
     },
     pool: {
       max: 5,
