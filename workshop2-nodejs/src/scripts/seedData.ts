@@ -65,6 +65,22 @@ const seedData = async () => {
     });
     console.log(`✅ Employee user created (ID: ${employeeUser.user_id})`);
 
+    // 5. Create Cim User
+    console.log('👤 Creating cim user...');
+    const cimPassword = await bcrypt.hash('cimmic6104', 10);
+    const cimUser = await User.create({
+      user_name: 'cim',
+      user_password: cimPassword,
+      user_firstname: 'cim',
+      user_lastname: 'mic',
+      user_email: 'cim@gmail.com',
+      user_phone: '0924304641',
+      user_address: 'cim',
+      role_id: 1,
+      user_status: 'active'
+    });
+    console.log(`✅ Cim user created (ID: ${cimUser.user_id})`);
+
     console.log('\n🎉 Database seeding completed successfully!\n');
     console.log('📝 Created Users:');
     console.log('┌─────────────┬──────────────┬──────────────────┬──────────┐');
@@ -73,6 +89,7 @@ const seedData = async () => {
     console.log('│ admin       │ admin123     │ Admin            │ 3        │');
     console.log('│ supervisor  │ supervisor123│ Supervisor       │ 2        │');
     console.log('│ employee    │ Employee     │ Employee         │ 1        │');
+    console.log('│ cim         │ cimmic6104   │ Employee         │ 1        │');
     console.log('└─────────────┴──────────────┴──────────────────┴──────────┘');
     console.log('\n💡 Use these credentials to login at: http://localhost:5000/api/auth/login\n');
 

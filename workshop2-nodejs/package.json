@@ -7,6 +7,7 @@
     "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
     "build": "tsc",
     "start": "node dist/server.js",
+    "postinstall": "npm run build",
     "db:sync": "ts-node src/scripts/syncDb.ts",
     "db:sync:force": "ts-node src/scripts/syncDb.ts --force",
     "db:seed": "ts-node src/scripts/seedData.ts",
@@ -23,7 +24,8 @@
     "express": "^5.2.1",
     "express-validator": "^7.3.2",
     "jsonwebtoken": "^9.0.3",
-    "mysql2": "^3.22.6",
+    "pg": "^8.11.3",
+    "pg-hstore": "^2.3.4",
     "sequelize": "^6.37.8"
   },
   "devDependencies": {

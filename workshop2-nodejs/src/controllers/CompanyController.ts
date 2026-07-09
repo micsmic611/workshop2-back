@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { validationResult } from 'express-validator';
 import companyService from '../services/CompanyService';
+import { getParamAsNumber } from '../utils/paramHelper';
 
 export class CompanyController {
   // POST /api/companies
@@ -38,7 +39,7 @@ export class CompanyController {
         return;
       }
 
-      const company = await companyService.getCompanyById(parseInt(req.params.id));
+      const company = await companyService.getCompanyById(getParamAsNumber(req.params.id));
       res.status(200).json({ data: company });
     } catch (error: any) {
       res.status(404).json({ error: error.message });
@@ -54,7 +55,7 @@ export class CompanyController {
         return;
       }
 
-      const company = await companyService.updateCompany(parseInt(req.params.id), req.body);
+      const company = await companyService.updateCompany(getParamAsNumber(req.params.id), req.body);
       res.status(200).json({ message: 'Company updated successfully', data: company });
     } catch (error: any) {
       res.status(400).json({ error: error.message });
@@ -70,7 +71,7 @@ export class CompanyController {
         return;
       }
 
-      await companyService.deleteCompany(parseInt(req.params.id));
+      await companyService.deleteCompany(getParamAsNumber(req.params.id));
       res.status(200).json({ message: 'Company deleted successfully' });
     } catch (error: any) {
       res.status(404).json({ error: error.message });

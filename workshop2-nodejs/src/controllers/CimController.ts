@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { validationResult } from 'express-validator';
 import cimService from '../services/CimService';
+import { getParamAsNumber } from '../utils/paramHelper';
 
 export class CimController {
   // POST /api/cim
@@ -38,7 +39,7 @@ export class CimController {
         return;
       }
 
-      const cim = await cimService.getCimById(parseInt(req.params.id));
+      const cim = await cimService.getCimById(getParamAsNumber(req.params.id));
       res.status(200).json({ data: cim });
     } catch (error: any) {
       res.status(404).json({ error: error.message });
@@ -54,7 +55,7 @@ export class CimController {
         return;
       }
 
-      const cim = await cimService.updateCim(parseInt(req.params.id), req.body);
+      const cim = await cimService.updateCim(getParamAsNumber(req.params.id), req.body);
       res.status(200).json({ message: 'CIM record updated successfully', data: cim });
     } catch (error: any) {
       res.status(400).json({ error: error.message });
@@ -70,7 +71,7 @@ export class CimController {
         return;
       }
 
-      await cimService.deleteCim(parseInt(req.params.id));
+      await cimService.deleteCim(getParamAsNumber(req.params.id));
       res.status(200).json({ message: 'CIM record deleted successfully' });
     } catch (error: any) {
       res.status(404).json({ error: error.message });

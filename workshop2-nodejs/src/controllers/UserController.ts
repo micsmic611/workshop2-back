@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { validationResult } from 'express-validator';
 import userService from '../services/UserService';
+import { getParamAsNumber } from '../utils/paramHelper';
 
 export class UserController {
   // POST /api/users
@@ -38,7 +39,7 @@ export class UserController {
         return;
       }
 
-      const user = await userService.getUserById(parseInt(req.params.id));
+      const user = await userService.getUserById(getParamAsNumber(req.params.id));
       res.status(200).json({ data: user });
     } catch (error: any) {
       res.status(404).json({ error: error.message });
@@ -54,7 +55,7 @@ export class UserController {
         return;
       }
 
-      const user = await userService.updateUser(parseInt(req.params.id), req.body);
+      const user = await userService.updateUser(getParamAsNumber(req.params.id), req.body);
       res.status(200).json({ message: 'User updated successfully', data: user });
     } catch (error: any) {
       res.status(400).json({ error: error.message });
@@ -70,7 +71,7 @@ export class UserController {
         return;
       }
 
-      await userService.deleteUser(parseInt(req.params.id));
+      await userService.deleteUser(getParamAsNumber(req.params.id));
       res.status(200).json({ message: 'User deleted successfully' });
     } catch (error: any) {
       res.status(404).json({ error: error.message });
@@ -80,7 +81,7 @@ export class UserController {
   // GET /api/users/role/:roleId
   async getUsersByRole(req: Request, res: Response): Promise<void> {
     try {
-      const users = await userService.getUsersByRole(parseInt(req.params.roleId));
+      const users = await userService.getUsersByRole(getParamAsNumber(req.params.roleId));
       res.status(200).json({ data: users });
     } catch (error: any) {
       res.status(500).json({ error: error.message });

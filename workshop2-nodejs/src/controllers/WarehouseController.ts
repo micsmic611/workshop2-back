@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { validationResult } from 'express-validator';
 import warehouseService from '../services/WarehouseService';
+import { getParamAsNumber } from '../utils/paramHelper';
 
 export class WarehouseController {
   // POST /api/warehouses
@@ -38,7 +39,7 @@ export class WarehouseController {
         return;
       }
 
-      const warehouse = await warehouseService.getWarehouseById(parseInt(req.params.id));
+      const warehouse = await warehouseService.getWarehouseById(getParamAsNumber(req.params.id));
       res.status(200).json({ data: warehouse });
     } catch (error: any) {
       res.status(404).json({ error: error.message });
@@ -54,7 +55,7 @@ export class WarehouseController {
         return;
       }
 
-      const warehouse = await warehouseService.getWarehouseWithRentalInfo(parseInt(req.params.id));
+      const warehouse = await warehouseService.getWarehouseWithRentalInfo(getParamAsNumber(req.params.id));
       res.status(200).json({ data: warehouse });
     } catch (error: any) {
       res.status(404).json({ error: error.message });
@@ -70,7 +71,7 @@ export class WarehouseController {
         return;
       }
 
-      const warehouse = await warehouseService.updateWarehouse(parseInt(req.params.id), req.body);
+      const warehouse = await warehouseService.updateWarehouse(getParamAsNumber(req.params.id), req.body);
       res.status(200).json({ message: 'Warehouse updated successfully', data: warehouse });
     } catch (error: any) {
       res.status(400).json({ error: error.message });
@@ -86,7 +87,7 @@ export class WarehouseController {
         return;
       }
 
-      await warehouseService.deleteWarehouse(parseInt(req.params.id));
+      await warehouseService.deleteWarehouse(getParamAsNumber(req.params.id));
       res.status(200).json({ message: 'Warehouse deleted successfully' });
     } catch (error: any) {
       res.status(404).json({ error: error.message });

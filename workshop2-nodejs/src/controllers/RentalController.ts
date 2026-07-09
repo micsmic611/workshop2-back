@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { validationResult } from 'express-validator';
 import rentalService from '../services/RentalService';
+import { getParamAsNumber } from '../utils/paramHelper';
 
 export class RentalController {
   // POST /api/rentals
@@ -38,7 +39,7 @@ export class RentalController {
         return;
       }
 
-      const rental = await rentalService.getRentalById(parseInt(req.params.id));
+      const rental = await rentalService.getRentalById(getParamAsNumber(req.params.id));
       res.status(200).json({ data: rental });
     } catch (error: any) {
       res.status(404).json({ error: error.message });
@@ -54,7 +55,7 @@ export class RentalController {
         return;
       }
 
-      const rental = await rentalService.updateRental(parseInt(req.params.id), req.body);
+      const rental = await rentalService.updateRental(getParamAsNumber(req.params.id), req.body);
       res.status(200).json({ message: 'Rental updated successfully', data: rental });
     } catch (error: any) {
       res.status(400).json({ error: error.message });
@@ -77,7 +78,7 @@ export class RentalController {
 
       const { description } = req.body;
       const result = await rentalService.cancelRental(
-        parseInt(req.params.id),
+        getParamAsNumber(req.params.id),
         req.user.userId,
         description
       );
@@ -94,7 +95,7 @@ export class RentalController {
   // GET /api/rentals/company/:companyId
   async getRentalsByCompany(req: Request, res: Response): Promise<void> {
     try {
-      const rentals = await rentalService.getRentalsByCompany(parseInt(req.params.companyId));
+      const rentals = await rentalService.getRentalsByCompany(getParamAsNumber(req.params.companyId));
       res.status(200).json({ data: rentals });
     } catch (error: any) {
       res.status(500).json({ error: error.message });
