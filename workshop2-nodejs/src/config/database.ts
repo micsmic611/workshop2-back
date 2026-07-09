@@ -16,7 +16,9 @@ const sequelize = new Sequelize(
       ssl: process.env.NODE_ENV === 'production' ? {
         require: true,
         rejectUnauthorized: false
-      } : false
+      } : false,
+      // Force IPv4 to avoid ENETUNREACH error on Render
+      family: 4
     },
     pool: {
       max: 5,
