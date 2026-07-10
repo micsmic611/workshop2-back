@@ -46,7 +46,7 @@ function EmployeePage() {
 
   const handleSaveEmployeeChanges = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/api/employees/${employeeDetail.user_id}`, {
+      const response = await fetch(`https://workshop2-back.onrender.com/api/employees/${employeeDetail.user_id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -114,7 +114,7 @@ function EmployeePage() {
 
   const fetchEmployeeData = async (storedToken, search = false) => {
     try {
-      const url = 'http://localhost:5000/api/employees';
+      const url = 'https://workshop2-back.onrender.com/api/employees';
       const response = await fetch(url, {
         method: 'GET',
         headers: {
@@ -146,7 +146,7 @@ function EmployeePage() {
 
   const handleAddEmployeeSave = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/employees', {
+      const response = await fetch('https://workshop2-back.onrender.com/api/employees', {
         method: 'POST',
         headers: {
           Authorization: `Bearer ${token}`,
@@ -195,7 +195,7 @@ function EmployeePage() {
       const userId = decoded.userId;
       console.log("Decoded token:", decoded);
 
-      const response = await fetch(`http://localhost:5000/api/auth/user`, {
+      const response = await fetch(`https://workshop2-back.onrender.com/api/auth/user`, {
         method: 'GET',
         headers: {
           Authorization: `Bearer ${storedToken}`,
@@ -226,7 +226,7 @@ function EmployeePage() {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:5000/api/users/${userData.user_id}`, {
+      const response = await fetch(`https://workshop2-back.onrender.com/api/users/${userData.user_id}`, {
         method: 'PUT',
         headers: {
           Authorization: `Bearer ${token}`,
@@ -268,7 +268,7 @@ function EmployeePage() {
   }, []);
   const handleUpdateClick = async (userId) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/employees/${userId}`, {
+      const response = await fetch(`https://workshop2-back.onrender.com/api/employees/${userId}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',

@@ -38,7 +38,7 @@ const Dashboard = () => {
       const decoded = jwtDecode(storedToken);
       const userId = decoded.userId;
 
-      const response = await fetch(`http://localhost:5000/api/auth/user`, {
+      const response = await fetch(`https://workshop2-back.onrender.com/api/auth/user`, {
         method: 'GET',
         headers: {
           Authorization: `Bearer ${storedToken}`,
@@ -60,7 +60,7 @@ const Dashboard = () => {
   const fetchWarehouseData = async (storedToken, isSearch = false) => {
     // ...
     try {
-      const response = await fetch('http://localhost:5000/api/warehouses', {
+      const response = await fetch('https://workshop2-back.onrender.com/api/warehouses', {
         method: 'GET',
         headers: {
           Authorization: `Bearer ${storedToken}`,
@@ -151,7 +151,7 @@ const Dashboard = () => {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:5000/api/users/${userData.user_id}`, {
+      const response = await fetch(`https://workshop2-back.onrender.com/api/users/${userData.user_id}`, {
         method: 'PUT',
         headers: {
           Authorization: `Bearer ${token}`,

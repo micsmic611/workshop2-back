@@ -35,7 +35,7 @@ const WarehousePopup = ({ open, onClose, warehouse }) => {
     };
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:5000/api/rentals/${rentalId}/cancel`, {
+      const response = await fetch(`https://workshop2-back.onrender.com/api/rentals/${rentalId}/cancel`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -59,7 +59,7 @@ const WarehousePopup = ({ open, onClose, warehouse }) => {
   const handleEditWarehouse = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:5000/api/warehouses/${warehouse.warehouseid}`, {
+      const response = await fetch(`https://workshop2-back.onrender.com/api/warehouses/${warehouse.warehouseid}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

@@ -45,7 +45,7 @@ const MainCompany = () => {
 
   const handleSaveCompanyChanges = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/api/companies/${companyDetail.company_id}`, {
+      const response = await fetch(`https://workshop2-back.onrender.com/api/companies/${companyDetail.company_id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -121,7 +121,7 @@ const MainCompany = () => {
 
   const fetchCompanyData = async (storedToken, search = false) => {
     try {
-      const url = 'http://localhost:5000/api/companies';
+      const url = 'https://workshop2-back.onrender.com/api/companies';
 
       const response = await fetch(url, {
         method: 'GET',
@@ -153,7 +153,7 @@ const MainCompany = () => {
 
   const handleAddCompanySave = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/companies', {
+      const response = await fetch('https://workshop2-back.onrender.com/api/companies', {
         method: 'POST',
         headers: {
           Authorization: `Bearer ${token}`,
@@ -192,7 +192,7 @@ const MainCompany = () => {
 
   const handleDetailUpdate = async (companyId, companyData) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/Company/UpdateCompany?companyid=${companyId}`, {
+      const response = await fetch(`https://workshop2-back.onrender.com/api/Company/UpdateCompany?companyid=${companyId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -224,7 +224,7 @@ const MainCompany = () => {
       const userId = decoded.userId;
       console.log("Decoded token:", decoded);
 
-      const response = await fetch(`http://localhost:5000/api/User/GetUserbyUserId?userid=${userId}`, {
+      const response = await fetch(`https://workshop2-back.onrender.com/api/User/GetUserbyUserId?userid=${userId}`, {
         method: 'GET',
         headers: {
           Authorization: `Bearer ${storedToken}`,
@@ -257,7 +257,7 @@ const MainCompany = () => {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:5000/api/User/UpdateUser?UserId=${userUpdateData.userID}`, {
+      const response = await fetch(`https://workshop2-back.onrender.com/api/User/UpdateUser?UserId=${userUpdateData.userID}`, {
         method: 'PUT',
         headers: {
           Authorization: `Bearer ${token}`,

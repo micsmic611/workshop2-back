@@ -16,7 +16,7 @@ const Login = () => {
     try {
       setError(""); // ล้างข้อความ error เก่า
       
-      const response = await fetch("http://localhost:5000/api/auth/login", {
+      const response = await fetch("https://workshop2-back.onrender.com/api/auth/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -68,7 +68,7 @@ const Login = () => {
       }
     } catch (error) {
       console.error("Login error:", error);
-      setError("Cannot connect to server. Please check if the backend is running on http://localhost:5000");
+      setError("Cannot connect to server. Please check if the backend is running on https://workshop2-back.onrender.com");
     }
   };
 

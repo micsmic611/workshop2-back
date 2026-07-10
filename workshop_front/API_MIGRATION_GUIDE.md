@@ -6,7 +6,7 @@
 
 | เดิม (C# Backend) | ใหม่ (Node.js Backend) | วิธีใช้ |
 |-------------------|------------------------|---------|
-| `http://localhost:5000` | `http://localhost:5000` | เปลี่ยนจาก HTTPS เป็น HTTP |
+| `https://workshop2-back.onrender.com` | `https://workshop2-back.onrender.com` | เปลี่ยนจาก HTTPS เป็น HTTP |
 | `/api/login` | `/api/auth/login` | ย้าย auth endpoints ไปยัง `/api/auth/*` |
 | `/api/User/*` | `/api/users/*` | lowercase + plural |
 | `/api/Warehouse/*` | `/api/warehouses/*` | lowercase + plural |
@@ -21,11 +21,11 @@
 ### 1. Login (✅ อัพเดทแล้ว)
 ```javascript
 // เดิม
-POST http://localhost:5000/api/login
+POST https://workshop2-back.onrender.com/api/login
 Body: { username, password }
 
 // ใหม่
-POST http://localhost:5000/api/auth/login
+POST https://workshop2-back.onrender.com/api/auth/login
 Body: { user_name, user_password }
 Response: { token, user: {...} }
 ```
@@ -33,10 +33,10 @@ Response: { token, user: {...} }
 ### 2. Get Current User
 ```javascript
 // เดิม
-GET http://localhost:5000/api/User/GetUserbyUserId?userid=${userId}
+GET https://workshop2-back.onrender.com/api/User/GetUserbyUserId?userid=${userId}
 
 // ใหม่
-GET http://localhost:5000/api/auth/user
+GET https://workshop2-back.onrender.com/api/auth/user
 Headers: { Authorization: `Bearer ${token}` }
 Response: { data: {...} }
 ```
@@ -48,21 +48,21 @@ Response: { data: {...} }
 ### 1. Get All Warehouses
 ```javascript
 // เดิม
-GET http://localhost:5000/api/Warehouse/warehouserental
+GET https://workshop2-back.onrender.com/api/Warehouse/warehouserental
 
 // ใหม่
-GET http://localhost:5000/api/warehouses
+GET https://workshop2-back.onrender.com/api/warehouses
 Response: { data: [{warehouse_id, warehouse_name, ...}] }
 ```
 
 ### 2. Add Warehouse (✅ อัพเดทแล้ว)
 ```javascript
 // เดิม
-POST http://localhost:5000/api/Warehouse/AddWarehouse
+POST https://workshop2-back.onrender.com/api/Warehouse/AddWarehouse
 Body: { warehousename, warehouseaddress, warehousesize, warehousestatus }
 
 // ใหม่
-POST http://localhost:5000/api/warehouses
+POST https://workshop2-back.onrender.com/api/warehouses
 Body: { 
   warehouse_name, 
   warehouse_address, 
@@ -74,17 +74,17 @@ Body: {
 ### 3. Update Warehouse
 ```javascript
 // เดิม
-PUT http://localhost:5000/api/Warehouse/${id}
+PUT https://workshop2-back.onrender.com/api/Warehouse/${id}
 
 // ใหม่
-PUT http://localhost:5000/api/warehouses/${id}
+PUT https://workshop2-back.onrender.com/api/warehouses/${id}
 Body: { warehouse_name, warehouse_address, ... }
 ```
 
 ### 4. Get Warehouse with Rentals
 ```javascript
 // ใหม่ (feature เพิ่ม)
-GET http://localhost:5000/api/warehouses/${id}/rentals
+GET https://workshop2-back.onrender.com/api/warehouses/${id}/rentals
 Response: { data: { warehouse info + rentals: [...] } }
 ```
 
@@ -95,30 +95,30 @@ Response: { data: { warehouse info + rentals: [...] } }
 ### 1. Get All Companies
 ```javascript
 // เดิม
-GET http://localhost:5000/api/Company/GetAllCompany
+GET https://workshop2-back.onrender.com/api/Company/GetAllCompany
 
 // ใหม่
-GET http://localhost:5000/api/companies
+GET https://workshop2-back.onrender.com/api/companies
 Response: { data: [{company_id, company_name, ...}] }
 ```
 
 ### 2. Get Company by Name
 ```javascript
 // เดิม
-GET http://localhost:5000/api/Company/GetCompanyByName?Companyname=${name}
+GET https://workshop2-back.onrender.com/api/Company/GetCompanyByName?Companyname=${name}
 
 // ใหม่ (ใช้ filter ฝั่ง client หรือเพิ่ม endpoint)
-GET http://localhost:5000/api/companies
+GET https://workshop2-back.onrender.com/api/companies
 // แล้ว filter ใน frontend: companies.filter(c => c.company_name.includes(name))
 ```
 
 ### 3. Add Company
 ```javascript
 // เดิม
-POST http://localhost:5000/api/Company/AddCompany
+POST https://workshop2-back.onrender.com/api/Company/AddCompany
 
 // ใหม่
-POST http://localhost:5000/api/companies
+POST https://workshop2-back.onrender.com/api/companies
 Body: {
   company_name,
   company_firstname,
@@ -132,10 +132,10 @@ Body: {
 ### 4. Update Company
 ```javascript
 // เดิม
-PUT http://localhost:5000/api/Company/UpdateCompany?companyid=${id}
+PUT https://workshop2-back.onrender.com/api/Company/UpdateCompany?companyid=${id}
 
 // ใหม่
-PUT http://localhost:5000/api/companies/${id}
+PUT https://workshop2-back.onrender.com/api/companies/${id}
 Body: { company_name, company_email, ... }
 ```
 
@@ -146,31 +146,31 @@ Body: { company_name, company_email, ... }
 ### 1. Get All Employees
 ```javascript
 // เดิม
-GET http://localhost:5000/api/Employee/GetAllEmp
+GET https://workshop2-back.onrender.com/api/Employee/GetAllEmp
 
 // ใหม่
-GET http://localhost:5000/api/employees
+GET https://workshop2-back.onrender.com/api/employees
 Response: { data: [{user_id, user_name, role_id: 1, ...}] }
 ```
 
 ### 2. Get Employee by Name
 ```javascript
 // เดิม
-GET http://localhost:5000/api/Employee/GetEmpByName?Username=${name}
+GET https://workshop2-back.onrender.com/api/Employee/GetEmpByName?Username=${name}
 
 // ใหม่ (ใช้ filter ฝั่ง client)
-GET http://localhost:5000/api/employees
+GET https://workshop2-back.onrender.com/api/employees
 // แล้ว filter: employees.filter(e => e.user_name.includes(name))
 ```
 
 ### 3. Add Employee
 ```javascript
 // เดิม
-POST http://localhost:5000/api/Employee/AddEmp
+POST https://workshop2-back.onrender.com/api/Employee/AddEmp
 Body: { username, firstname, lastname, email, phone, address, status }
 
 // ใหม่
-POST http://localhost:5000/api/employees
+POST https://workshop2-back.onrender.com/api/employees
 Body: {
   user_name,
   user_firstname,  // password จะถูกตั้งเป็น bcrypt(user_firstname) อัตโนมัติ
@@ -185,10 +185,10 @@ Body: {
 ### 4. Update Employee
 ```javascript
 // เดิม
-PUT http://localhost:5000/api/Employee/UpdateEmp?Userid=${id}
+PUT https://workshop2-back.onrender.com/api/Employee/UpdateEmp?Userid=${id}
 
 // ใหม่
-PUT http://localhost:5000/api/employees/${id}
+PUT https://workshop2-back.onrender.com/api/employees/${id}
 Body: { user_firstname, user_lastname, ... }
 ```
 
@@ -199,14 +199,14 @@ Body: { user_firstname, user_lastname, ... }
 ### 1. Get All Rentals
 ```javascript
 // ใหม่
-GET http://localhost:5000/api/rentals
+GET https://workshop2-back.onrender.com/api/rentals
 Response: { data: [{rental_id, company_id, warehouse_id, ...}] }
 ```
 
 ### 2. Create Rental
 ```javascript
 // เดิม
-POST http://localhost:5000/api/Rental/RentalWarehouse
+POST https://workshop2-back.onrender.com/api/Rental/RentalWarehouse
 Body: {
   warehouseId,
   userId,
@@ -218,7 +218,7 @@ Body: {
 }
 
 // ใหม่
-POST http://localhost:5000/api/rentals
+POST https://workshop2-back.onrender.com/api/rentals
 Body: {
   warehouse_id,
   user_id,
@@ -233,11 +233,11 @@ Body: {
 ### 3. Cancel Rental
 ```javascript
 // เดิม
-PUT http://localhost:5000/api/Rental/update-status
+PUT https://workshop2-back.onrender.com/api/Rental/update-status
 Body: { rentalId, userId, description }
 
 // ใหม่
-POST http://localhost:5000/api/rentals/${rentalId}/cancel
+POST https://workshop2-back.onrender.com/api/rentals/${rentalId}/cancel
 Headers: { Authorization: `Bearer ${token}` }  // userId from token
 Body: { description }
 Response: {
@@ -251,7 +251,7 @@ Response: {
 ### 4. Get Rentals by Company
 ```javascript
 // ใหม่
-GET http://localhost:5000/api/rentals/company/${companyId}
+GET https://workshop2-back.onrender.com/api/rentals/company/${companyId}
 ```
 
 ---

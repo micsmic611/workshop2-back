@@ -66,7 +66,7 @@ const SomeComponent = () => {
       const decoded = jwtDecode(storedToken);
       const userId = decoded.userId;
 
-      const response = await fetch(`http://localhost:5000/api/auth/user`, {
+      const response = await fetch(`https://workshop2-back.onrender.com/api/auth/user`, {
         method: 'GET',
         headers: {
           Authorization: `Bearer ${storedToken}`,
@@ -106,7 +106,7 @@ const SomeComponent = () => {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:5000/api/users/${userData.user_id}`, {
+      const response = await fetch(`https://workshop2-back.onrender.com/api/users/${userData.user_id}`, {
         method: 'PUT',
         headers: {
           Authorization: `Bearer ${token}`,
@@ -156,7 +156,7 @@ const SomeComponent = () => {
 
   const fetchWarehouseData = async (storedToken) => {
     try {
-      const response = await fetch('http://localhost:5000/api/warehouses', {
+      const response = await fetch('https://workshop2-back.onrender.com/api/warehouses', {
         method: 'GET',
         headers: {
           Authorization: `Bearer ${storedToken}`,
@@ -176,7 +176,7 @@ const SomeComponent = () => {
   };
   const fetchCompanyData = async (storedToken) => {
     try {
-      const response = await fetch('http://localhost:5000/api/companies', {
+      const response = await fetch('https://workshop2-back.onrender.com/api/companies', {
         method: 'GET',
         headers: {
           Authorization: `Bearer ${storedToken}`,
@@ -197,7 +197,7 @@ const SomeComponent = () => {
   };
   const fetchEmpData = async (storedToken) => {
     try {
-      const response = await fetch('http://localhost:5000/api/employees', {
+      const response = await fetch('https://workshop2-back.onrender.com/api/employees', {
         method: 'GET',
         headers: {
           Authorization: `Bearer ${storedToken}`,
@@ -218,7 +218,7 @@ const SomeComponent = () => {
   };
   const fetchUSer1Data = async (storedToken) => {
     try {
-      const response = await fetch('http://localhost:5000/api/users', {
+      const response = await fetch('https://workshop2-back.onrender.com/api/users', {
         method: 'GET',
         headers: {
           Authorization: `Bearer ${storedToken}`,
@@ -243,7 +243,7 @@ const SomeComponent = () => {
   };
 
   //     try {
-  //         const response = await fetch('http://localhost:5000/api/Warehouse/warehouserental', {
+  //         const response = await fetch('https://workshop2-back.onrender.com/api/Warehouse/warehouserental', {
   //             method: 'GET',
   //             headers: {
   //                 Authorization: `Bearer ${storedToken}`,
